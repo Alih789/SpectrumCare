@@ -1,3 +1,4 @@
+
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import React from 'react';
@@ -5,6 +6,7 @@ import React from 'react';
 function HomePage(): JSX.Element {
 
     return (
+
       <View style={styles.background}>
         <Text style={styles.text}>Care Across the Spectrum</Text>
         <Image source={require("../homePageImage.png")} style={{width: "70%", height: 150}}/>
@@ -12,6 +14,7 @@ function HomePage(): JSX.Element {
     );
 
 }
+
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003A5D",
