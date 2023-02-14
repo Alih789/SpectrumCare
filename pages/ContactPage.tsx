@@ -2,14 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-class ContactPage extends React.Component {
-  render() {
+function HomePage({navigation}:any): JSX.Element {
+  
     return (
       <View>
         <Text style = {{alignSelf:"center"}}>Contact Page Placeholder</Text>
       </View>
     );
-  }
+  
 }
 
-export default ContactPage;
+export default HomePage;

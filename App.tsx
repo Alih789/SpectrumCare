@@ -10,8 +10,8 @@ import HomePage from './pages/HomePage';
 
 const Stack = createStackNavigator();
 
-class App extends React.Component {
-  render() {
+function App(): JSX.Element {
+  
     return (
       <NavigationContainer>
         <Stack.Navigator 
@@ -30,7 +30,7 @@ class App extends React.Component {
       </NavigationContainer>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
