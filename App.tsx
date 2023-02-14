@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
+import PrepPage from './pages/PrepPage';
+import WayfindingPage from './pages/WayfindingPage';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -24,6 +26,10 @@ function App(): JSX.Element {
                 iconName = 'home-outline';
               } else if (route.name === 'Contact') {
                 iconName =  'people-circle-outline'
+              } else if (route.name === 'Prep') {
+                iconName =  'list-outline'
+              } else if (route.name === 'Wayfinding') {
+                iconName =  'map-outline'
               }
 
               return <Ionicons name={iconName} size={size} color={color} />;
@@ -38,6 +44,14 @@ function App(): JSX.Element {
         <Tab.Screen
           name="Contact"
           component={ContactPage}
+        />
+        <Tab.Screen
+          name="Prep"
+          component={PrepPage}
+        />
+          <Tab.Screen
+          name="Wayfinding"
+          component={WayfindingPage}
         />
       </Tab.Navigator>
       </NavigationContainer>

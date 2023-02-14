@@ -9,7 +9,7 @@ function HomePage(): JSX.Element {
 
       <View style={styles.background}>
         <Text style={styles.text}>Care Across the Spectrum</Text>
-        <Image source={require("../homePageImage.png")} style={{width: "70%", height: 150}}/>
+        <Image source={require("../assets/images/homePageImage.png")} style={{width: "70%", height: 150}}/>
       </View>
     );
 
