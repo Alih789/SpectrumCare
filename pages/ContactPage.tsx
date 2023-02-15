@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import StaffContactEntry from '../components/StaffContactEntry';
 
 
 function HomePage(): JSX.Element {
@@ -9,34 +10,11 @@ function HomePage(): JSX.Element {
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
+        <StaffContactEntry />
+        <StaffContactEntry />
+        <StaffContactEntry />
+        <StaffContactEntry />
+        <StaffContactEntry />
       </ScrollView>
     </SafeAreaView>
   );
