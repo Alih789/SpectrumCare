@@ -1,42 +1,20 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import StaffContactEntry from '../components/StaffContactEntry';
 
 
 function HomePage(): JSX.Element {
-
+  
   return (
     <View style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
-        <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
-          <Text>Staff Contact Info Here</Text>
-        </View>
+        <StaffContactEntry />
+        <StaffContactEntry />
+        <StaffContactEntry />
+        <StaffContactEntry />
+        <StaffContactEntry />
       </ScrollView>
     </View>
   );
@@ -57,18 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 36,
   },
-  cell: {
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    height: 200,
-    padding: 20,
-  },
-  placeholderImg: {
-    width: "40%", 
-    height: 150,
-  },
+  
 });
 
 export default HomePage;
