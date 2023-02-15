@@ -6,7 +6,7 @@ function HomePage(): JSX.Element {
 
     return (
       <View>
-        <Text style = {{alignSelf:"center"}}>Contact Page Placeholder</Text>
+        <Text style = {{alignSelf:"center"}}>Updated Placeholder to see changes</Text>
       </View>
     );
 

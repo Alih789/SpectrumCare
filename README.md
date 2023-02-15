@@ -11,3 +11,5 @@ pod install
 cd ..
 npx react-native start
 ```
+
+Errors: Gesture Handler
