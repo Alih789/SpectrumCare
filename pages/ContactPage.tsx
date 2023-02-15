@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
@@ -7,18 +7,36 @@ function HomePage(): JSX.Element {
 
   return (
     <View style={styles.background}>
-      <Text style={styles.HeaderText}> Staff Contact List </Text>
+      <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
-        <View style={styles.Cells} />
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
+        <View style={styles.cell}>
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Text>Staff Contact Info Here</Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -31,17 +49,17 @@ const styles = StyleSheet.create({
   scrollView: {
     marginHorizontal: 25,
   },
-  HeaderText: {
-    paddingTop:30,
+  headerText: {
+    paddingTop: 30,
     paddingBottom: 20,
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 36,
   },
-  Cells: {
-    flexDirection: 'row',
+  cell: {
     backgroundColor: 'white',
+    flexDirection: 'row',
     borderStyle: 'solid',
     borderWidth: 2,
     height: 200,
