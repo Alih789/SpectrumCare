@@ -1,5 +1,5 @@
 
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 
 import React from 'react';
 
@@ -7,10 +7,10 @@ function HomePage(): JSX.Element {
 
     return (
 
-      <View style={styles.background}>
+      <SafeAreaView style={styles.background}>
         <Text style={styles.text}>Care Across the Spectrum</Text>
         <Image source={require("../assets/images/homePageImage.png")} style={{width: "70%", height: 150}}/>
-      </View>
+      </SafeAreaView>
     );
 
 }

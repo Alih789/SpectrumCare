@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StaffContactEntry from '../components/StaffContactEntry';
 
@@ -7,7 +7,7 @@ import StaffContactEntry from '../components/StaffContactEntry';
 function HomePage(): JSX.Element {
   
   return (
-    <View style={styles.background}>
+    <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
         <StaffContactEntry />
@@ -16,7 +16,7 @@ function HomePage(): JSX.Element {
         <StaffContactEntry />
         <StaffContactEntry />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         height: 200,
         padding: 20,
+        borderRadius: 15,
       },
       placeholderImg: {
         width: "40%", 
