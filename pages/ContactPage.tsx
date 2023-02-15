@@ -10,31 +10,31 @@ function HomePage(): JSX.Element {
       <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
         <View style={styles.cell}>
-          <Image source={require("../assets/images/placeholderImage.jpeg")} style={{ width: "40%", height: 150 }} />
+          <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.placeholderImg} />
           <Text>Staff Contact Info Here</Text>
         </View>
       </ScrollView>
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     height: 200,
     padding: 20,
+  },
+  placeholderImg: {
+    width: "40%", 
+    height: 150,
   },
 });
 
