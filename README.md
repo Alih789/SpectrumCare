@@ -12,4 +12,8 @@ cd ..
 npx react-native start
 ```
 
-Errors: Gesture Handler
+Sergio's branch updates:
+Podfile lock dependency updated for RNGestureHandler. Sergio has to upgrade this to newest
+version to run iOS. Did not push to master currently only has this on local branch.
+
+Doc: https://docs.swmansion.com/react-native-gesture-handler/docs/installation
