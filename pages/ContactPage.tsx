@@ -1,12 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
 function HomePage(): JSX.Element {
 
   return (
-    <View style={styles.background}>
+    <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
         <View style={styles.cell}>
@@ -38,7 +38,7 @@ function HomePage(): JSX.Element {
           <Text>Staff Contact Info Here</Text>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   placeholderImg: {
-    width: "40%", 
+    width: "40%",
     height: 150,
   },
 });
