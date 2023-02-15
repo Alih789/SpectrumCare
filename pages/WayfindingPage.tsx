@@ -1,13 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 
 
 function WayfindingPage(): JSX.Element {
 
     return (
-      <View>
+      <SafeAreaView>
         <Text style = {{alignSelf:"center"}}> Wayfinding Page Placeholder</Text>
-      </View>
+      </SafeAreaView>
     );
 
 }

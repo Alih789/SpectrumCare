@@ -36,6 +36,7 @@ function App(): JSX.Element {
             },
             tabBarActiveTintColor: '#00b2e3',
             tabBarInactiveTintColor: '#999999',
+            headerShown: false,
           })}>
         <Tab.Screen
           name="Home"
