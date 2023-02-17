@@ -23,6 +23,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
       title: 'Hospital Entrance to CT Scan',
     },
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-iuhijnboiubwe',
+      title: 'Main Parking Lot to Lab',
+    },
+
   ];
 
   type RouteProps = {title: string};
@@ -38,8 +43,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
           // onPress={() => alert('Pressed!')}
           >
             <View>
-          {/* <Ionicons name={'arrow-forward-circle-outline'} size={30} /> */}
-          <Text style={styles.routetitle}>{title}</Text>
+          <Ionicons name={'arrow-forward-circle-outline'} size={30} />
 
             </View>
         </TouchableHighlight>
@@ -48,14 +52,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
   );
 
     return (
-      <SafeAreaView style={styles.container}>
-        <Text style = {{alignSelf:"center"}}> Wayfinding Page Placeholder</Text>
+      <SafeAreaView style={styles.background}>
+        <Text style = {styles.headerText}> Wayfinding </Text>
 
         <FlatList
           data={DATA}
           renderItem={({item}) => <Route title={item.title} />}
           keyExtractor={item => item.id}
-          style={{height:'100%'}}
+          style={styles.list}
         />
       </SafeAreaView>
     );
@@ -63,27 +67,40 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  background: {
     backgroundColor: "#003A5D",
-    // marginTop: StatusBar.currentHeight || 0,
+  },
+  list: {
+    height: '100%'
+  },
+  headerText: {
+    paddingTop: 30,
+    paddingBottom: 20,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 36,
   },
   route: {
     backgroundColor: '#E5E5E5',
-    padding: 10,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    paddingLeft: 12,
+    marginVertical: 5,
+    marginHorizontal: 12,
     flexDirection: 'row',
     flex: 2,
     justifyContent: 'space-between',
+    alignContent: 'center',
   },
   routetitle: {
     fontSize: 18,
+    alignSelf: 'center',
+    flex: 1,
+    flexWrap: 'wrap'
   },
   routebutton: {
     alignSelf:'flex-end',
     padding: 20
   }
-});
+});''
 
 export default WayfindingPage;
