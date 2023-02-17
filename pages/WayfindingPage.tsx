@@ -1,35 +1,35 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, View, FlatList, Button, TouchableHighlight } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-type RouteProps = { title: string, navigation: any };
+import { useNavigation } from '@react-navigation/native';
 
-function Route ({ title, navigation}: RouteProps) {
+type RouteProps = { title: string };
+
+function Route({ title }: RouteProps) {
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.route}>
-    <Text style={styles.routetitle}>{title}</Text>
-    <View style={styles.routebutton}>
-      <TouchableHighlight
-        activeOpacity={0.6}
-        underlayColor="#DDDDDD"
-        onPress={() => navigation.navigate('WayfindingHome', { screen: 'Route' })}
-      >
-        <View>
-          <Ionicons name={'arrow-forward-circle-outline'} size={30} />
-        </View>
-      </TouchableHighlight>
-
-      {/* <Button
-        title={`Go to ${title}`}
-        onPress={() => navigation.navigate('WayfindingHome', { screen: 'Route' })}
-      /> */}
+      <Text style={styles.routetitle}>{title}</Text>
+      <View style={styles.routebutton}>
+        <TouchableHighlight
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={() => navigation.navigate('Wayfinding', { screen: 'Route' })}
+        >
+          <View>
+            <Ionicons name={'arrow-forward-circle-outline'} size={30} />
+          </View>
+        </TouchableHighlight>
+      </View>
     </View>
-  </View>
   )
 };
 
-function WayfindingPage({navigation}:any): JSX.Element {
+function WayfindingPage(): JSX.Element {
 
   const DATA = [
     {
@@ -48,25 +48,19 @@ function WayfindingPage({navigation}:any): JSX.Element {
       id: 'parking-lot-to-lab',
       title: 'Main Parking Lot to Lab',
     },
-
   ];
 
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Wayfinding </Text>
-
-      <Button
-          title={`Go to ${"wf route"}`}
-          onPress={() => navigation.navigate('Wayfinding', { screen: 'Route' })}
-        />
-      {/* <FlatList
+      <FlatList
         data={DATA}
         renderItem={({ item }) =>
-        <Route title={item.title} />
-      }
+          <Route title={item.title} />
+        }
         keyExtractor={item => item.id}
         style={styles.list}
-      /> */}
+      />
     </SafeAreaView>
   );
 }
