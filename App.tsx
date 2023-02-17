@@ -10,8 +10,24 @@ import PrepPage from './pages/PrepPage';
 import WayfindingPage from './pages/WayfindingPage';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import WFRoutePage from './pages/WFRoutePage';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function Wayfinding() {
+  return (
+    <Stack.Navigator>
+    <Stack.Screen
+      name="WayfindingHome"
+      component={WayfindingPage}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen name="Route" component={WFRoutePage} />
+  </Stack.Navigator>
+  )
+}
 
 function App(): JSX.Element {
 
@@ -50,9 +66,9 @@ function App(): JSX.Element {
           name="Prep"
           component={PrepPage}
         />
-          <Tab.Screen
+        <Tab.Screen
           name="Wayfinding"
-          component={WayfindingPage}
+          component={Wayfinding}
         />
       </Tab.Navigator>
       </NavigationContainer>

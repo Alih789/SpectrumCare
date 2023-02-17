@@ -1,69 +1,74 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, View, FlatList, Button, TouchableHighlight} from 'react-native';
-
-import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
+import { Text, SafeAreaView, StyleSheet, View, FlatList, Button, TouchableHighlight } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// type Props = NativeStackScreenProps<RootStackParamList, 'Profile', 'MyStack'>;
+type RouteProps = { title: string, navigation: any };
 
-// function WayfindingPage({ route, navigation }: Props): JSX.Element {
-  function WayfindingPage(): JSX.Element {
+function Route ({ title, navigation}: RouteProps) {
+  return (
+    <View style={styles.route}>
+    <Text style={styles.routetitle}>{title}</Text>
+    <View style={styles.routebutton}>
+      <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={() => navigation.navigate('WayfindingHome', { screen: 'Route' })}
+      >
+        <View>
+          <Ionicons name={'arrow-forward-circle-outline'} size={30} />
+        </View>
+      </TouchableHighlight>
+
+      {/* <Button
+        title={`Go to ${title}`}
+        onPress={() => navigation.navigate('WayfindingHome', { screen: 'Route' })}
+      /> */}
+    </View>
+  </View>
+  )
+};
+
+function WayfindingPage({navigation}:any): JSX.Element {
 
   const DATA = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      id: 'parking-lot-to-peds-surg',
       title: 'Main Parking Lot to Pediatric Surgery Clinic',
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      id: 'h-enter-to-mri',
       title: 'Hospital Entrance to MRI Scan',
     },
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      id: 'h-enter-to-ct',
       title: 'Hospital Entrance to CT Scan',
     },
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-iuhijnboiubwe',
+      id: 'parking-lot-to-lab',
       title: 'Main Parking Lot to Lab',
     },
 
   ];
 
-  type RouteProps = {title: string};
+  return (
+    <SafeAreaView style={styles.background}>
+      <Text style={styles.headerText}> Wayfinding </Text>
 
-
-  const Route = ({title}: RouteProps) => (
-    <View style={styles.route}>
-      <Text style={styles.routetitle}>{title}</Text>
-      <View style={styles.routebutton}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          // onPress={() => alert('Pressed!')}
-          >
-            <View>
-          <Ionicons name={'arrow-forward-circle-outline'} size={30} />
-
-            </View>
-        </TouchableHighlight>
-      </View>
-    </View>
-  );
-
-    return (
-      <SafeAreaView style={styles.background}>
-        <Text style = {styles.headerText}> Wayfinding </Text>
-
-        <FlatList
-          data={DATA}
-          renderItem={({item}) => <Route title={item.title} />}
-          keyExtractor={item => item.id}
-          style={styles.list}
+      <Button
+          title={`Go to ${"wf route"}`}
+          onPress={() => navigation.navigate('Wayfinding', { screen: 'Route' })}
         />
-      </SafeAreaView>
-    );
-
+      {/* <FlatList
+        data={DATA}
+        renderItem={({ item }) =>
+        <Route title={item.title} />
+      }
+        keyExtractor={item => item.id}
+        style={styles.list}
+      /> */}
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -101,9 +106,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   routebutton: {
-    alignSelf:'flex-end',
+    alignSelf: 'flex-end',
     padding: 20
   }
-});''
+});
 
 export default WayfindingPage;
