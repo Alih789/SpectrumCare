@@ -68,7 +68,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "#003A5D",
+    backgroundColor: "#003a5d",
   },
   list: {
     height: '100%'
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
   },
   route: {
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#00b2e3',
     paddingLeft: 12,
     marginVertical: 5,
     marginHorizontal: 12,
@@ -90,9 +90,12 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
+    borderRadius: 10
   },
   routetitle: {
     fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
     alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap'
