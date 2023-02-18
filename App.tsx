@@ -14,8 +14,17 @@ import PrepPage from './pages/PrepPage';
 import WayfindingPage from './pages/WayfindingPage';
 import WFRoutePage from './pages/WFRoutePage';
 
+//todo: move to types file?
+type WayfindingStackParamList = {
+  WayfindingHome: undefined;
+  Route: {
+    routeID: string,
+    routeTitle: string,
+  }
+}
+
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<WayfindingStackParamList>();
 
 function Wayfinding() {
   return (
@@ -29,7 +38,11 @@ function Wayfinding() {
         component={WayfindingPage}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Route" component={WFRoutePage} />
+      <Stack.Screen
+        name="Route"
+        component={WFRoutePage}
+        initialParams={{ routeID: "", routeTitle: "" }}
+      />
     </Stack.Navigator>
   )
 }

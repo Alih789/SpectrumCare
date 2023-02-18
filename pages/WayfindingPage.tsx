@@ -5,9 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { useNavigation } from '@react-navigation/native';
 
-type RouteProps = { title: string };
+type RouteProps = { title: string, routeID: string };
 
-function Route({ title }: RouteProps) {
+function Route({ title, routeID }: RouteProps) {
 
   const navigation = useNavigation();
 
@@ -16,10 +16,16 @@ function Route({ title }: RouteProps) {
       <TouchableHighlight
         activeOpacity={0.6}
         underlayColor="#DDDDDD"
-        onPress={() => navigation.navigate('Wayfinding', {
-          screen: 'Route',
-          routeName: title
-        })}
+        onPress={() => {
+          navigation.navigate('Wayfinding', {
+            screen: 'Route',
+            params: {
+              routeID: routeID,
+              routeTitle: title,
+            }
+          })
+          // console.log("ROUTE ID IS: " + routeID)
+        }}
         style={styles.touchable}
       >
         <View style={styles.route}>
@@ -61,7 +67,7 @@ function WayfindingPage(): JSX.Element {
       <FlatList
         data={DATA}
         renderItem={({ item }) =>
-          <Route title={item.title} />
+          <Route title={item.title} routeID={item.id} />
         }
         keyExtractor={item => item.id}
         style={styles.list}
