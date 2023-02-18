@@ -12,25 +12,30 @@ function Route({ title }: RouteProps) {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.route}>
-      <Text style={styles.routetitle}>{title}</Text>
-      <View style={styles.routebutton}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          onPress={() => navigation.navigate('Wayfinding', { screen: 'Route' })}
-        >
-          <View>
-            <Ionicons name={'arrow-forward-circle-outline'} size={30} />
+    <View >
+      <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={() => navigation.navigate('Wayfinding', {
+          screen: 'Route',
+          routeName: title
+        })}
+        style={styles.touchable}
+      >
+        <View style={styles.route}>
+          <Text style={styles.routetitle}>{title}</Text>
+          <View style={styles.routebutton}>
+            <Ionicons name={'arrow-forward-circle-outline'} size={40} />
           </View>
-        </TouchableHighlight>
-      </View>
+        </View>
+      </TouchableHighlight>
     </View>
   )
 };
 
 function WayfindingPage(): JSX.Element {
 
+  // array of data, 1 object per route displayed
   const DATA = [
     {
       id: 'parking-lot-to-peds-surg',
@@ -80,11 +85,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 36,
   },
-  route: {
+  touchable: {
     backgroundColor: '#00b2e3',
-    paddingLeft: 12,
     marginVertical: 5,
     marginHorizontal: 12,
+    borderRadius: 10
+  },
+  route: {
+    backgroundColor: '#00b2e3',
+    paddingLeft: 20,
     flexDirection: 'row',
     flex: 2,
     justifyContent: 'space-between',
