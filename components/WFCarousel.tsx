@@ -13,6 +13,7 @@ import {
 
 type WFCarouselProps = {
   images: string[];
+  text: string[];
 };
 
 const MAX_WIDTH = Dimensions.get('screen').width;
@@ -20,41 +21,41 @@ const MAX_WIDTH = Dimensions.get('screen').width;
 // indicators
 // automatic shuffling of images
 
-function WFCarousel({ images }: WFCarouselProps): JSX.Element {
+function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
 
   const animation = useRef(new Animated.Value(0));
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   // useInterval(() => handleAnimation(), 5000);
 
-  // handle image changes
+  // handle image and text changes
   const handleNextSlide = () => {
-    let newCurrentImage = currentImage + 1;
+    let newCurrentSlide = currentSlide + 1;
 
-    if (newCurrentImage >= images.length) {
-      newCurrentImage = images.length - 1;
+    if (newCurrentSlide >= images.length) {
+      newCurrentSlide = images.length - 1;
     }
 
     Animated.spring(animation.current, {
-      toValue: -(MAX_WIDTH * newCurrentImage),
+      toValue: -(MAX_WIDTH * newCurrentSlide),
       useNativeDriver: true,
     }).start();
 
-    setCurrentImage(newCurrentImage);
+    setCurrentSlide(newCurrentSlide);
   };
 
   const handlePrevSlide = () => {
-    let newCurrentImage = currentImage - 1;
+    let newCurrentSlide = currentSlide - 1;
 
-    if (newCurrentImage <= 0) {
-      newCurrentImage = 0;
+    if (newCurrentSlide <= 0) {
+      newCurrentSlide = 0;
     }
 
     Animated.spring(animation.current, {
-      toValue: -(MAX_WIDTH * newCurrentImage),
+      toValue: -(MAX_WIDTH * newCurrentSlide),
       useNativeDriver: true,
     }).start();
 
-    setCurrentImage(newCurrentImage);
+    setCurrentSlide(newCurrentSlide);
   };
 
   return (
@@ -62,7 +63,7 @@ function WFCarousel({ images }: WFCarouselProps): JSX.Element {
       <View>
         <Animated.View
           style={[
-            styles.container,
+            styles.slide,
             {
               transform: [{ translateX: animation.current }],
             },
@@ -70,7 +71,17 @@ function WFCarousel({ images }: WFCarouselProps): JSX.Element {
           {images.map((image) => (
             <Image key={image} source={{ uri: image }} style={styles.image} />
           ))}
-
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.slide,
+            {
+              transform: [{ translateX: animation.current }],
+            },
+          ]}>
+          {text.map((text) => (
+            <Text key={text} style={styles.text}>{text}</Text>
+          ))}
         </Animated.View>
 
         <View style={styles.navigationContainer}>
@@ -85,7 +96,7 @@ function WFCarousel({ images }: WFCarouselProps): JSX.Element {
                 key={`${image}_${index}`}
                 style={[
                   styles.indicator,
-                  index === currentImage ? styles.activeIndicator : undefined,
+                  index === currentSlide ? styles.activeIndicator : undefined,
                 ]}
               />
             ))}
@@ -105,24 +116,33 @@ function WFCarousel({ images }: WFCarouselProps): JSX.Element {
 };
 
 const styles = StyleSheet.create({
+  slide: {
+    flexDirection: 'row',
+  },
   image: {
     resizeMode: 'cover',
     height: 500,
     width: MAX_WIDTH,
   },
-  container: {
-    flexDirection: 'row',
+  text: {
+    height: 100,
+    width: MAX_WIDTH,
+    padding: 10,
+    backgroundColor: 'white',
+    fontSize: 18
   },
   navigationContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: MAX_WIDTH,
     padding: 10,
   },
   indicatorContainer: {
-    position: 'absolute',
+    // position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: MAX_WIDTH,
+    // width: MAX_WIDTH,
     bottom: 10,
     zIndex: 2,
     alignSelf: 'center'

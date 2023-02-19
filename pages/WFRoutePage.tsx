@@ -21,11 +21,17 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  // todo: "gather" (load from files) image and text data to pass to slideshow component
+  // todo: Use routeID and/or routeTitle to "gather" (load from files) image and text data to pass to slideshow component
   const images = [
     'https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'https://images.pexels.com/photos/6129141/pexels-photo-6129141.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  ];
+
+  const text = [
+    'This is the hospital entrance. You should see a welcome desk and sitting area. To procesed to the clinic, take the first hallway on the left.',
+    'You are now in the hallway leading to the clinic. Keep walking until you see the "Children\'s Surgery" sign.',
+    'You have arrived the the Children\'s surgery clinic. Please check in at the desk to your right.',
   ];
 
   return (
@@ -40,7 +46,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           </Pressable>
         </View>
 
-        <WFCarousel images={images} />
+        <WFCarousel images={images} text={text} />
 
         <View style={styles.centeredView}>
           <Modal
