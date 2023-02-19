@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Animated,
   Button,
@@ -17,40 +17,35 @@ type WFCarouselProps = {
 
 const MAX_WIDTH = Dimensions.get('screen').width;
 
-function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useRef<() => void | null>();
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  });
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      if (typeof savedCallback?.current !== 'undefined') {
-        savedCallback?.current();
-      }
-    }
-    if (delay !== null) {
-      const id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
 // indicators
 // automatic shuffling of images
 
-function WFCarousel({ images}: WFCarouselProps): JSX.Element {
+function WFCarousel({ images }: WFCarouselProps): JSX.Element {
 
   const animation = useRef(new Animated.Value(0));
   const [currentImage, setCurrentImage] = useState(0);
   // useInterval(() => handleAnimation(), 5000);
 
   // handle image changes
-  const handleAnimation = () => {
+  const handleNextSlide = () => {
     let newCurrentImage = currentImage + 1;
 
     if (newCurrentImage >= images.length) {
+      newCurrentImage = images.length - 1;
+    }
+
+    Animated.spring(animation.current, {
+      toValue: -(MAX_WIDTH * newCurrentImage),
+      useNativeDriver: true,
+    }).start();
+
+    setCurrentImage(newCurrentImage);
+  };
+
+  const handlePrevSlide = () => {
+    let newCurrentImage = currentImage - 1;
+
+    if (newCurrentImage <= 0) {
       newCurrentImage = 0;
     }
 
@@ -69,32 +64,40 @@ function WFCarousel({ images}: WFCarouselProps): JSX.Element {
           style={[
             styles.container,
             {
-              transform: [{translateX: animation.current}],
+              transform: [{ translateX: animation.current }],
             },
           ]}>
           {images.map((image) => (
-            <Image key={image} source={{uri: image}} style={styles.image} />
+            <Image key={image} source={{ uri: image }} style={styles.image} />
           ))}
 
         </Animated.View>
 
-        <View style={styles.indicatorContainer}>
-          {images.map((image, index) => (
-            <View
-              key={`${image}_${index}`}
-              style={[
-                styles.indicator,
-                index === currentImage ? styles.activeIndicator : undefined,
-              ]}
-            />
-          ))}
+        <View style={styles.navigationContainer}>
+          <Pressable
+            style={[styles.slideButton, styles.prevSlideButton]}
+            onPress={() => handlePrevSlide()}>
+            <Text> Previous Slide</Text>
+          </Pressable>
+          <View style={styles.indicatorContainer}>
+            {images.map((image, index) => (
+              <View
+                key={`${image}_${index}`}
+                style={[
+                  styles.indicator,
+                  index === currentImage ? styles.activeIndicator : undefined,
+                ]}
+              />
+            ))}
+          </View>
+          <Pressable
+            style={[styles.slideButton, styles.nextSlideButton]}
+            onPress={() => handleNextSlide()}>
+            <Text> Next Slide</Text>
+          </Pressable>
         </View>
 
-        <Pressable
-            style={styles.nextSlideButton}
-            onPress={() => handleAnimation()}>
-            <Text >Route Steps</Text>
-        </Pressable>
+
 
       </View>
     </React.Fragment>
@@ -110,6 +113,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
+  navigationContainer: {
+    flexDirection: 'row',
+    padding: 10,
+  },
   indicatorContainer: {
     position: 'absolute',
     flexDirection: 'row',
@@ -118,6 +125,7 @@ const styles = StyleSheet.create({
     width: MAX_WIDTH,
     bottom: 10,
     zIndex: 2,
+    alignSelf: 'center'
   },
   indicator: {
     width: 15,
@@ -131,12 +139,17 @@ const styles = StyleSheet.create({
   activeIndicator: {
     backgroundColor: 'white',
   },
-  nextSlideButton: {
+  slideButton: {
     borderRadius: 20,
     elevation: 2,
-    alignSelf: 'flex-end',
     padding: 20,
     backgroundColor: '#00b2e3',
+  },
+  nextSlideButton: {
+    alignSelf: 'flex-end',
+  },
+  prevSlideButton: {
+    alignSelf: 'flex-start',
   }
 });
 

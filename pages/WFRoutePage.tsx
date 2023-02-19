@@ -23,9 +23,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
 
   // todo: "gather" (load from files) image and text data to pass to slideshow component
   const images = [
-    'https://images.pexels.com/photos/2115695/pexels-photo-2115695.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/4159435/pexels-photo-4159435.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/5991465/pexels-photo-5991465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/6129141/pexels-photo-6129141.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   ];
 
   return (
@@ -40,7 +40,6 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           </Pressable>
         </View>
 
-        {/* <Text style={styles.headerText}> PUT SLIDESHOW COMPONENT HERE </Text> */}
         <WFCarousel images={images} />
 
         <View style={styles.centeredView}>
