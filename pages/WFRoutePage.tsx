@@ -3,6 +3,7 @@ import { Text, SafeAreaView, StyleSheet, View, Alert, Modal, Pressable } from 'r
 import type { StackScreenProps } from '@react-navigation/stack';
 
 import WFCarousel from '../components/WFCarousel';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // todo: move to types file?
 type WayfindingStackParamList = {
@@ -42,7 +43,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           <Pressable
             style={[styles.modalButton]}
             onPress={() => setModalVisible(true)}>
-            <Text >Route Steps</Text>
+            <Ionicons name={'list-outline'} size={45} color={'white'} />
           </Pressable>
         </View>
 
@@ -116,9 +117,9 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     borderRadius: 20,
-    elevation: 2,
+    elevation: 6,
     alignSelf: 'flex-end',
-    padding: 20,
+    padding: 8,
     backgroundColor: '#00b2e3',
   },
 });
