@@ -2,12 +2,14 @@ import React from 'react';
 import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StaffContactEntry from '../components/StaffContactEntry';
+import NotesButton from '../components/NotesButton';
 
 
 function HomePage(): JSX.Element {
 
   return (
     <SafeAreaView style={styles.background}>
+      <NotesButton/>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <ScrollView style={styles.scrollView}>
         <StaffContactEntry />
