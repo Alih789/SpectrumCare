@@ -63,7 +63,7 @@ function NotesButton(): JSX.Element {
     return (
 
         collapsed?
-      <SafeAreaView>
+      <SafeAreaView style={styles.parentViewButtonStyle}>
 
         <TouchableOpacity
           activeOpacity={0.7}
@@ -112,20 +112,21 @@ function NotesButton(): JSX.Element {
 
 
   const styles = StyleSheet.create({
+    parentViewButtonStyle:{
+      position:'absolute',
+      bottom:10,
+      right:10
+    },
     touchableOpacityStyle: {
-      position: 'absolute',
       width: 50,
       height: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
-      right: -175,
-      bottom: -325,
+      
     },
     floatingButtonStyle: {
       resizeMode: 'contain',
       width: 50,
       height: 50,
-      //backgroundColor:'black'
+      
     },
     modalBackgroundStyle:{
       position:"relative",
