@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     width: MAX_WIDTH,
   },
   text: {
-    height: 125,
+    height: 100,
     width: MAX_WIDTH,
     padding: 10,
     backgroundColor: 'white',
