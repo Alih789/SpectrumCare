@@ -1,87 +1,121 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, View, FlatList, Button, TouchableHighlight} from 'react-native';
-
-import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
+import { Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// type Props = NativeStackScreenProps<RootStackParamList, 'Profile', 'MyStack'>;
+import { useNavigation } from '@react-navigation/native';
 
-// function WayfindingPage({ route, navigation }: Props): JSX.Element {
-  function WayfindingPage(): JSX.Element {
+type RouteProps = { title: string, routeID: string };
 
+function Route({ title, routeID }: RouteProps) {
+
+  const navigation = useNavigation();
+
+  return (
+    <View >
+      <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={() => {
+          navigation.navigate('Wayfinding', {
+            screen: 'Route',
+            params: {
+              routeID: routeID,
+              routeTitle: title,
+            }
+          })
+          // console.log("ROUTE ID IS: " + routeID)
+        }}
+        style={styles.touchable}
+      >
+        <View style={styles.route}>
+          <Text style={styles.routetitle}>{title}</Text>
+          <View style={styles.routebutton}>
+            <Ionicons name={'arrow-forward-circle-outline'} size={40} />
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+  )
+};
+
+function WayfindingPage(): JSX.Element {
+
+  // array of data, 1 object per route displayed
   const DATA = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      id: 'parking-lot-to-peds-surg',
       title: 'Main Parking Lot to Pediatric Surgery Clinic',
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      id: 'h-enter-to-mri',
       title: 'Hospital Entrance to MRI Scan',
     },
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      id: 'h-enter-to-ct',
       title: 'Hospital Entrance to CT Scan',
+    },
+    {
+      id: 'parking-lot-to-lab',
+      title: 'Main Parking Lot to Lab',
     },
   ];
 
-  type RouteProps = {title: string};
-
-
-  const Route = ({title}: RouteProps) => (
-    <View style={styles.route}>
-      <Text style={styles.routetitle}>{title}</Text>
-      <View style={styles.routebutton}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          // onPress={() => alert('Pressed!')}
-          >
-            <View>
-          {/* <Ionicons name={'arrow-forward-circle-outline'} size={30} /> */}
-          <Text style={styles.routetitle}>{title}</Text>
-
-            </View>
-        </TouchableHighlight>
-      </View>
-    </View>
+  return (
+    <SafeAreaView style={styles.background}>
+      <Text style={styles.headerText}> Wayfinding </Text>
+      <FlatList
+        data={DATA}
+        renderItem={({ item }) =>
+          <Route title={item.title} routeID={item.id} />
+        }
+        keyExtractor={item => item.id}
+        style={styles.list}
+      />
+    </SafeAreaView>
   );
-
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text style = {{alignSelf:"center"}}> Wayfinding Page Placeholder</Text>
-
-        <FlatList
-          data={DATA}
-          renderItem={({item}) => <Route title={item.title} />}
-          keyExtractor={item => item.id}
-          style={{height:'100%'}}
-        />
-      </SafeAreaView>
-    );
-
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#003A5D",
-    // marginTop: StatusBar.currentHeight || 0,
+  background: {
+    backgroundColor: "#003a5d",
+  },
+  list: {
+    height: '100%'
+  },
+  headerText: {
+    paddingTop: 30,
+    paddingBottom: 20,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 36,
+  },
+  touchable: {
+    backgroundColor: '#00b2e3',
+    marginVertical: 5,
+    marginHorizontal: 12,
+    borderRadius: 10
   },
   route: {
-    backgroundColor: '#E5E5E5',
-    padding: 10,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    backgroundColor: '#00b2e3',
+    paddingLeft: 20,
     flexDirection: 'row',
     flex: 2,
     justifyContent: 'space-between',
+    alignContent: 'center',
+    borderRadius: 10
   },
   routetitle: {
     fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    flex: 1,
+    flexWrap: 'wrap'
   },
   routebutton: {
-    alignSelf:'flex-end',
+    alignSelf: 'flex-end',
     padding: 20
   }
 });
