@@ -1,68 +1,71 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 import React from 'react';
-import {
-  StyleSheet,
-  Button,
-  View,
-  SafeAreaView,
-  Text,
-  Alert,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const Separator = () => <View style={styles.separator} />;
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ContactPage from './pages/ContactPage';
+import HomePage from './pages/HomePage';
+import PrepPage from './pages/PrepPage';
+import WayfindingPage from './pages/WayfindingPage';
 
-const App = () => (
-  <SafeAreaView style={styles.container}>
-    <Text style={styles.figtree}>
-      This is a test of Figtree font
-    </Text>
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-    <View>
-      <Text style={styles.title}>
-        This layout strategy lets the title define the width of the button.
-      </Text>
-      <View style={styles.fixToText}>
-        <Button
-          title="  Button  "
-          color="#00b2e3"
-          onPress={() => Alert.alert('Left button pressed')}
+const Tab = createBottomTabNavigator();
+
+function App(): JSX.Element {
+
+    return (
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
+              let iconName:string = "";
+
+              if (route.name === 'Home') {
+                iconName = 'home-outline';
+              } else if (route.name === 'Contact') {
+                iconName =  'people-circle-outline'
+              } else if (route.name === 'Prep') {
+                iconName =  'list-outline'
+              } else if (route.name === 'Wayfinding') {
+                iconName =  'map-outline'
+              }
+
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: '#00b2e3',
+            tabBarInactiveTintColor: '#999999',
+            headerShown: false,
+          })}>
+        <Tab.Screen
+          name="Home"
+          component={HomePage}
         />
-        <Button
-          title="Right button"
-          onPress={() => Alert.alert('Right button pressed')}
+        <Tab.Screen
+          name="Contact"
+          component={ContactPage}
         />
-      </View>
-    </View>
-  </SafeAreaView>
-);
+        <Tab.Screen
+          name="Prep"
+          component={PrepPage}
+        />
+          <Tab.Screen
+          name="Wayfinding"
+          component={WayfindingPage}
+        />
+      </Tab.Navigator>
+      </NavigationContainer>
+    );
+  }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 16,
-  },
-  title: {
-    textAlign: 'center',
-    marginVertical: 8,
-    fontFamily: "Figtree-Regular",
-  },
-  figtree: {
-    fontFamily: "Figtree-Black",
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
 
