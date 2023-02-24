@@ -55,7 +55,7 @@ export default function PrepCarousel({
           activeOffsetY: [-10, 10],
         }}
         scrollAnimationDuration={1000}
-        onSnapToItem={(index: number) => console.log('current index:', index)}
+        // onSnapToItem={(index: number) => console.log('current index:', index)}
         renderItem={({item}) => <View>{item}</View>}
       />
     </ScrollView>
