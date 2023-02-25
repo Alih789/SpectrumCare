@@ -16,46 +16,46 @@ const Tab = createBottomTabNavigator();
 function App(): JSX.Element {
 
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size }) => {
-              let iconName:string = "";
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, size }) => {
+                let iconName:string = "";
 
-              if (route.name === 'Home') {
-                iconName = 'home-outline';
-              } else if (route.name === 'Contact') {
-                iconName =  'people-circle-outline'
-              } else if (route.name === 'Prep') {
-                iconName =  'list-outline'
-              } else if (route.name === 'Wayfinding') {
-                iconName =  'map-outline'
-              }
+                if (route.name === 'Home') {
+                  iconName = 'home-outline';
+                } else if (route.name === 'Contact') {
+                  iconName =  'people-circle-outline'
+                } else if (route.name === 'Prep') {
+                  iconName =  'list-outline'
+                } else if (route.name === 'Wayfinding') {
+                  iconName =  'map-outline'
+                }
 
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: '#00b2e3',
-            tabBarInactiveTintColor: '#999999',
-            headerShown: false,
-          })}>
-        <Tab.Screen
-          name="Home"
-          component={HomePage}
-        />
-        <Tab.Screen
-          name="Contact"
-          component={ContactPage}
-        />
-        <Tab.Screen
-          name="Prep"
-          component={PrepPage}
-        />
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: '#00b2e3',
+              tabBarInactiveTintColor: '#999999',
+              headerShown: false,
+            })}>
           <Tab.Screen
-          name="Wayfinding"
-          component={WayfindingPage}
-        />
-      </Tab.Navigator>
-      </NavigationContainer>
+            name="Home"
+            component={HomePage}
+          />
+          <Tab.Screen
+            name="Contact"
+            component={ContactPage}
+          />
+          <Tab.Screen
+            name="Prep"
+            component={PrepPage}
+          />
+            <Tab.Screen
+            name="Wayfinding"
+            component={WayfindingPage}
+          />
+        </Tab.Navigator>
+        </NavigationContainer>
     );
   }
 
