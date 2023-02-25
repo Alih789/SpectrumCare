@@ -1,16 +1,29 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StaffContactEntry from '../components/StaffContactEntry';
+
 import NotesButton from '../components/NotesButton';
+import SearchBar from "react-native-dynamic-search-bar";
 
 
 function HomePage(): JSX.Element {
+
+  const images =[
+    'https://physicians.ucdavis.edu/Custom/Photos/22079.jpg',
+  ];
+
+  const Names = [
+  ];
 
   return (
     <SafeAreaView style={styles.background}>
       <NotesButton/>
       <Text style={styles.headerText}> Staff Contact List </Text>
+      <SearchBar
+        placeholder="Search here"
+        onChangeText={(text) => console.log(text)}
+      />
       <ScrollView style={styles.scrollView}>
         <StaffContactEntry />
         <StaffContactEntry />
@@ -28,6 +41,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginHorizontal: 25,
+    paddingTop: 10,
   },
   headerText: {
     paddingTop: 30,
@@ -36,18 +50,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 36,
-  },
-  cell: {
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    height: 200,
-    padding: 20,
-  },
-  placeholderImg: {
-    width: "40%",
-    height: 150,
   },
 });
 
