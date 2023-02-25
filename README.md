@@ -1,4 +1,25 @@
-## iOS Env Setup Steps (as of 2-14-23)
+
+# SpectrumCare mobile app development instructions
+
+## Android Env Setup Steps (as of 2-24-23)
+
+Follow the commands below to clone this repo and set up your local development environment: (for android only)
+
+```
+git clone https://github.com/Alih789/SpectrumCare.git
+cd SpectrumCare
+npm install --force
+```
+
+Start your device emulator in Android Studio (hit the play button for the device in the device manager)
+
+Once device is open, run:
+```
+npx react-native start
+```
+
+## iOS Env Setup Steps (as of 2-24-23)
+
 Follow the commands below to clone this repo and set up your local development environment: (iOS only)
 
 ```
@@ -12,8 +33,7 @@ cd ..
 npx react-native start
 ```
 
-Sergio's branch updates:
-Podfile lock dependency updated for RNGestureHandler. Sergio has to upgrade this to newest
-version to run iOS. Did not push to master currently only has this on local branch.
+## External Packages Used in Project:
 
-Doc: https://docs.swmansion.com/react-native-gesture-handler/docs/installation
+- react native gesture handler
+  -  Doc: https://docs.swmansion.com/react-native-gesture-handler/docs/installation
