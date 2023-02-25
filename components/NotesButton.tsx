@@ -37,22 +37,22 @@ function NotesButton(): JSX.Element {
         const savedNotes  = await AsyncStorage.getItem('notesData')
         if(savedNotes !== null) {
           onChangeText(savedNotes)
-          console.log("IM HERE OP4 LAST OP STANDING")
+          // console.log("IM HERE OP4 LAST OP STANDING")
         }
       } catch(e) {
-        console.log("MISSION FAILED WE'LL GET EM NEXT TIME")
+        // console.log("MISSION FAILED WE'LL GET EM NEXT TIME")
         // error reading value
       }
     }
 
-    
+
     const [text, onChangeText] = React.useState('Useless Multiline Placeholder');
 
-    
+
   function onCollapseHandler(textToSave){
     storeData(textToSave);
     setCollapsed(true)
-    
+
   }
   function onExpandHandler(){
     getData();
@@ -82,7 +82,7 @@ function NotesButton(): JSX.Element {
             style={styles.floatingButtonStyle}
           />
         </TouchableOpacity>
-      </SafeAreaView> : 
+      </SafeAreaView> :
       <Modal
       animationType="none"
       visible={!collapsed}
@@ -102,7 +102,7 @@ function NotesButton(): JSX.Element {
               value={text}
               style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top"}}
             />
-          </View>        
+          </View>
         </SafeAreaView>
       </Modal>
     );
@@ -137,7 +137,7 @@ function NotesButton(): JSX.Element {
       elevation:7,
       shadowRadius:10,
       shadowColor:"black",
-      marginTop:"10%"    
+      marginTop:"10%"
     },
     text: {
       color: "black",
