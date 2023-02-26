@@ -68,10 +68,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
               <View style={styles.modalView}>
                 <Text style={styles.modalHeadingText}> Select Landmark to Jump to</Text>
                 {modalText.map((item, index, key) => ((
-                  <TouchableOpacity >
+                  <TouchableOpacity key={item} >
                     <View style={styles.modalItem}>
                       <Text
-                        key={item}
                         // onPress={() => this.setState({ indexSelect : index})}
                         style={[styles.modalItemText,
                           // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
@@ -88,7 +87,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
                 <Pressable
                   style={[styles.modalButton]}
                   onPress={() => setModalVisible(!modalVisible)}>
-                  <Text >Hide Modal</Text>
+                  <Text >Close</Text>
                 </Pressable>
               </View>
             </View>
@@ -109,19 +108,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     backgroundColor: "#003a5d",
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   headerText: {
     fontSize: 22,
     color: 'white',
     fontWeight: 'bold',
-    alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap'
   },
   modalOpenButton: {
     borderRadius: 20,
     elevation: 6,
-    alignSelf: 'flex-end',
     padding: 8,
     backgroundColor: '#00b2e3',
   },
@@ -129,7 +128,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     height: Dimensions.get('screen').height,
   },
@@ -138,7 +136,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 10,
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -152,16 +149,17 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     elevation: 6,
     alignSelf: 'flex-end',
-    padding: 8,
+    padding: 10,
     marginTop: 10,
     backgroundColor: '#00b2e3',
   },
   modalHeadingText: {
     fontSize: 22,
+    padding: 8,
   },
   modalItem: {
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: 10,
+    paddingBottom: 10,
     borderBottomColor: 'black',
     borderBottomWidth: 0.5,
     top: 0,
@@ -170,10 +168,12 @@ const styles = StyleSheet.create({
     // padding: 0,
     margin: 0,
     marginHorizontal: 0,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
   },
   modalItemText: {
     fontSize: 18,
+    width: '100%',
   }
 });
 

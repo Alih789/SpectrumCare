@@ -181,8 +181,9 @@ const styles = StyleSheet.create({
     width: MAX_WIDTH,
     bottom: 10,
     top: 20,
-    zIndex: 2,
-    alignSelf: 'center'
+    // zIndex: 2,
+    alignSelf: 'center',
+    height: 30,
   },
   indicator: {
     width: 15,
@@ -200,8 +201,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     elevation: 2,
     padding: 20,
-    // backgroundColor: '#003a5d',
-    backgroundColor: '#00b2e3',
+    backgroundColor: '#003a5d',
   },
   nextSlideButton: {
     alignSelf: 'flex-end',
