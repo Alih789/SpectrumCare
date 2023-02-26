@@ -18,18 +18,21 @@ function HomePage(): JSX.Element {
 
   return (
     <SafeAreaView style={styles.background}>
-      <NotesButton/>
-      <Text style={styles.headerText}> Staff Contact List </Text>
-      <SearchBar
-        placeholder="Search here"
-        onChangeText={(text) => console.log(text)}
-      />
-      <ScrollView style={styles.scrollView}>
-        <StaffContactEntry />
-        <StaffContactEntry />
-        <StaffContactEntry />
-        <StaffContactEntry />
-        <StaffContactEntry />
+      <ScrollView>
+        
+        <Text style={styles.headerText}> Staff Contact List </Text>
+        <SearchBar
+          placeholder="Search here"
+          onChangeText={(text) => console.log(text)}
+        />
+        <ScrollView style={styles.scrollView}>
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+        </ScrollView>
+        <NotesButton/>
       </ScrollView>
     </SafeAreaView>
   );

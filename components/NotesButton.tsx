@@ -13,7 +13,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const storeData = async (value) => {
+const storeData = async (value :any) => {
   try {
     await AsyncStorage.setItem('notesData', value)
   } catch (e) {
@@ -37,22 +37,22 @@ function NotesButton(): JSX.Element {
         const savedNotes  = await AsyncStorage.getItem('notesData')
         if(savedNotes !== null) {
           onChangeText(savedNotes)
-          // console.log("IM HERE OP4 LAST OP STANDING")
+          
         }
       } catch(e) {
-        // console.log("MISSION FAILED WE'LL GET EM NEXT TIME")
+        
         // error reading value
       }
     }
 
-
+    
     const [text, onChangeText] = React.useState('Useless Multiline Placeholder');
 
-
-  function onCollapseHandler(textToSave){
+    
+  function onCollapseHandler(textToSave:any){
     storeData(textToSave);
     setCollapsed(true)
-
+    
   }
   function onExpandHandler(){
     getData();
@@ -63,7 +63,7 @@ function NotesButton(): JSX.Element {
     return (
 
         collapsed?
-      <SafeAreaView>
+      <SafeAreaView style={styles.parentViewButtonStyle}>
 
         <TouchableOpacity
           activeOpacity={0.7}
@@ -82,7 +82,7 @@ function NotesButton(): JSX.Element {
             style={styles.floatingButtonStyle}
           />
         </TouchableOpacity>
-      </SafeAreaView> :
+      </SafeAreaView> : 
       <Modal
       animationType="none"
       visible={!collapsed}
@@ -102,7 +102,7 @@ function NotesButton(): JSX.Element {
               value={text}
               style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top"}}
             />
-          </View>
+          </View>        
         </SafeAreaView>
       </Modal>
     );
@@ -112,20 +112,21 @@ function NotesButton(): JSX.Element {
 
 
   const styles = StyleSheet.create({
+    parentViewButtonStyle:{
+      position:'absolute',
+      bottom:10,
+      right:10
+    },
     touchableOpacityStyle: {
-      position: 'absolute',
       width: 50,
       height: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
-      right: -175,
-      bottom: -325,
+      
     },
     floatingButtonStyle: {
       resizeMode: 'contain',
       width: 50,
       height: 50,
-      //backgroundColor:'black'
+      
     },
     modalBackgroundStyle:{
       position:"relative",
@@ -137,7 +138,7 @@ function NotesButton(): JSX.Element {
       elevation:7,
       shadowRadius:10,
       shadowColor:"black",
-      marginTop:"10%"
+      marginTop:"10%"    
     },
     text: {
       color: "black",
