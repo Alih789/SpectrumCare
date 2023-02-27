@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
@@ -7,27 +7,34 @@ import SearchBar from "react-native-dynamic-search-bar";
 
 function HomePage(): JSX.Element {
 
-  const images =[
-    'https://physicians.ucdavis.edu/Custom/Photos/22079.jpg',
-  ];
+  const images = [
+    "../assets/images/staffImages/Victoria_R_Immunolgy.jpeg",
+  ]
 
-  const Names = [
-  ];
+  const names = [
+    "Victoria R. Dimitriades, M.D.",
+  ]
+  const jobTitle = [
+    "Chief, Division of Pediatric Allergy, Immunology",
+  ]
 
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <SearchBar
-        placeholder="Search here"
+        placeholder="Search"
         onChangeText={(text) => console.log(text)}
+        style={styles.searchBar}
       />
-      <ScrollView style={styles.scrollView}>
-        <StaffContactEntry />
-        <StaffContactEntry />
-        <StaffContactEntry />
-        <StaffContactEntry />
-        <StaffContactEntry />
-      </ScrollView>
+        <ScrollView style={styles.scrollView}>
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+          <StaffContactEntry />
+        </ScrollView>
     </SafeAreaView>
   );
 }
@@ -37,8 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#003A5D",
   },
   scrollView: {
-    marginHorizontal: 25,
-    paddingTop: 10,
+    marginHorizontal: 20,
   },
   headerText: {
     paddingTop: 30,
@@ -47,6 +53,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 36,
+  },
+  searchBar:{
+    borderRadius: 10,
+    padding: 5,
+    marginBottom: 10,
   },
 });
 
