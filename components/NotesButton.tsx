@@ -36,9 +36,13 @@ function NotesButton(): JSX.Element {
     const getData = async () => {
       try {
         const savedNotes  = await storage.getString('notesData')
-        if(savedNotes !== "undefined") {
+        console.log("PRINNTING NOTES: ",savedNotes, typeof(savedNotes))
+
+        if(typeof(savedNotes) === 'string' && savedNotes !="undefined") {
           onChangeText(String(savedNotes))
           
+        } else{
+          onChangeText("Create your first note!")
         }
       } catch(e) {
         
