@@ -9,13 +9,14 @@ import {
     Modal,
     TextInput,
   } from 'react-native';
+import { storage } from './storageConst';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const storeData = async (value :any) => {
   try {
-    await AsyncStorage.setItem('notesData', value)
+    await storage.set('notesData', value)
   } catch (e) {
     // saving error
   }
@@ -34,9 +35,9 @@ function NotesButton(): JSX.Element {
 
     const getData = async () => {
       try {
-        const savedNotes  = await AsyncStorage.getItem('notesData')
-        if(savedNotes !== null) {
-          onChangeText(savedNotes)
+        const savedNotes  = await storage.getString('notesData')
+        if(savedNotes !== "undefined") {
+          onChangeText(String(savedNotes))
           
         }
       } catch(e) {
