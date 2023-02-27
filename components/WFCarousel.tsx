@@ -57,30 +57,48 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
 
   return (
     <React.Fragment>
-      <View>
+      <View style={{ height: '100%' }}>
+        <View style={styles.slidesContainer}>
+          <Animated.View
+            style={[
+              styles.slide,
+              {
+                transform: [{ translateX: animation.current }],
+              },
+            ]}>
+            {images.map((image) => (
+              <Image key={image} source={{ uri: image }} style={styles.image} />
+            ))}
+          </Animated.View>
+          <Animated.View
+            style={[
+              styles.slide,
+              {
+                transform: [{ translateX: animation.current }],
+              },
+            ]}>
+            {text.map((text) => (
+              <Text key={text} style={styles.text}>{text}</Text>
+            ))}
+          </Animated.View>
+        </View>
 
-        <Animated.View
-          style={[
-            styles.slide,
-            {
-              transform: [{ translateX: animation.current }],
-            },
-          ]}>
-          {images.map((image) => (
-            <Image key={image} source={{ uri: image }} style={styles.image} />
-          ))}
-        </Animated.View>
-        <Animated.View
-          style={[
-            styles.slide,
-            {
-              transform: [{ translateX: animation.current }],
-            },
-          ]}>
-          {text.map((text) => (
-            <Text key={text} style={styles.text}>{text}</Text>
-          ))}
-        </Animated.View>
+
+
+        <TouchableOpacity
+          onPress={() => handlePrevSlide()}
+          style={[styles.slideButton, styles.prevSlideButton]}
+        >
+          <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
+        </TouchableOpacity>
+
+
+        <TouchableOpacity
+          onPress={() => handleNextSlide()}
+          style={[styles.slideButton, styles.nextSlideButton]}
+        >
+          <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
+        </TouchableOpacity>
 
         <View style={styles.navigationContainer}>
           {/* <Pressable
@@ -106,44 +124,6 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
           </Pressable> */}
         </View>
 
-        <TouchableOpacity
-          onPress={() => handlePrevSlide()}
-          style={{
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 70,
-            position: 'absolute',
-            bottom: 300,
-            left: 20,
-            height: 70,
-            backgroundColor: '#00b2e3',
-            borderRadius: 100,
-          }}
-        >
-          <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
-        </TouchableOpacity>
-
-
-        <TouchableOpacity
-          onPress={() => handleNextSlide()}
-          style={{
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 70,
-            position: 'absolute',
-            bottom: 300,
-            right: 20,
-            height: 70,
-            backgroundColor: '#00b2e3',
-            borderRadius: 100,
-          }}
-        >
-          <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
-        </TouchableOpacity>
 
       </View>
     </React.Fragment>
@@ -151,6 +131,10 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
 };
 
 const styles = StyleSheet.create({
+  slidesContainer: {
+    height: 600,
+    width: MAX_WIDTH,
+  },
   slide: {
     flexDirection: 'row',
   },
@@ -160,18 +144,17 @@ const styles = StyleSheet.create({
     width: MAX_WIDTH,
   },
   text: {
-    height: 100,
     width: MAX_WIDTH,
+    height: 100,
     padding: 10,
     backgroundColor: 'white',
     fontSize: 18
   },
   navigationContainer: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // // alignContent: 'center',
-    // width: MAX_WIDTH,
-    // padding: 10,
+    alignItems: 'center',
+    width: MAX_WIDTH,
+    padding: 10,
+    backgroundColor: '#003a5d',
   },
   indicatorContainer: {
     // position: 'absolute',
@@ -179,11 +162,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: MAX_WIDTH,
-    bottom: 10,
-    top: 20,
-    // zIndex: 2,
-    alignSelf: 'center',
-    height: 30,
+    // bottom: 10,
+    // top: 10,
+    zIndex: 2,
   },
   indicator: {
     width: 15,
@@ -198,21 +179,39 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   slideButton: {
-    borderRadius: 20,
-    elevation: 2,
-    padding: 20,
-    backgroundColor: '#003a5d',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 70,
+    position: 'absolute',
+    bottom: 400,
+    height: 70,
+    backgroundColor: '#00b2e3',
+    borderRadius: 100,
   },
   nextSlideButton: {
-    alignSelf: 'flex-end',
+    right: 20,
   },
   prevSlideButton: {
-    alignSelf: 'flex-start',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
+    left: 20,
   }
+  // slideButton: {
+  //   borderRadius: 20,
+  //   elevation: 2,
+  //   padding: 20,
+  //   backgroundColor: '#003a5d',
+  // },
+  // nextSlideButton: {
+  //   alignSelf: 'flex-end',
+  // },
+  // prevSlideButton: {
+  //   alignSelf: 'flex-start',
+  // },
+  // buttonText: {
+  //   color: 'white',
+  //   fontSize: 16,
+  // }
 });
 
 export default WFCarousel;
