@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     flex: 1,
     flexWrap: 'wrap',
-    fontFamily: 'proximanova-bold'
   },
   modalOpenButton: {
     borderRadius: 20,
@@ -157,7 +156,6 @@ const styles = StyleSheet.create({
   modalHeadingText: {
     fontSize: 22,
     padding: 8,
-    fontFamily: 'proximanova-bold'
   },
   modalItem: {
     paddingTop: 10,
@@ -176,7 +174,6 @@ const styles = StyleSheet.create({
   modalItemText: {
     fontSize: 18,
     width: '100%',
-    fontFamily: 'proximanova-semibold'
   }
 });
 

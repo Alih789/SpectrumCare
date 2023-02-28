@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     fontSize: 18,
-    fontFamily: 'proximanova-regular'
   },
   navigationContainer: {
     alignItems: 'center',
