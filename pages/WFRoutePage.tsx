@@ -4,6 +4,7 @@ import type { StackScreenProps } from '@react-navigation/stack';
 
 import WFCarousel from '../components/WFCarousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 // todo: move to types file?
 type WayfindingStackParamList = {
@@ -39,15 +40,15 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
     require("../assets/images/wfImages/01-parking-clinic/13.png"),
     require("../assets/images/wfImages/01-parking-clinic/14.png"),
     require("../assets/images/wfImages/01-parking-clinic/15.png"),
-    require("../assets/images/wfImages/01-parking-clinic/16.png"),
-    require("../assets/images/wfImages/01-parking-clinic/17.png"),
-    require("../assets/images/wfImages/01-parking-clinic/18.png"),
+    // require("../assets/images/wfImages/01-parking-clinic/16.png"),
+    // require("../assets/images/wfImages/01-parking-clinic/17.png"),
+    // require("../assets/images/wfImages/01-parking-clinic/18.png"),
   ];
 
   const text = [
-    'This is the hospital entrance. You should see a welcome desk and sitting area. To procesed to the clinic, take the first hallway on the left.',
-    'You are now in the hallway leading to the clinic. Keep walking until you see the "Children\'s Surgery" sign.',
-    'You have arrived the the Children\'s surgery clinic. Please check in at the desk to your right.',
+    "1",
+    "2",
+    "3",
     "4",
     "5",
     "6",
@@ -60,9 +61,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
     "13",
     "14",
     "15",
-    "16",
-    "17",
-    "18",
+    // "16",
+    // "17",
+    // "18",
   ];
 
   const modalText = [
@@ -81,9 +82,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
     "13",
     "14",
     "15",
-    "16",
-    "17",
-    "18",
+    // "16",
+    // "17",
+    // "18",
   ];
 
   return (
@@ -98,7 +99,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           </Pressable>
         </View>
 
-        <WFCarousel images={images} text={text} />
+        <WFCarousel imageURLs={images} text={text} />
 
         <View style={styles.centeredView}>
           <Modal
@@ -112,23 +113,23 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
                 <Text style={styles.modalHeadingText}> Select Landmark to Jump to</Text>
-                {modalText.map((item, index, key) => ((
-                  <TouchableOpacity key={item} >
-                    <View style={styles.modalItem}>
-                      <Text
-                        // onPress={() => this.setState({ indexSelect : index})}
-                        style={[styles.modalItemText,
-                          // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
-                        ]}
-                      >
-                        {item}
-                      </Text>
-
-                    </View>
-
-                  </TouchableOpacity>
-                ))
-                )}
+                <ScrollView>
+                  {modalText.map((item, index, key) => ((
+                    <TouchableOpacity key={item} >
+                      <View style={styles.modalItem}>
+                        <Text
+                          // onPress={() => this.setState({ indexSelect : index})}
+                          style={[styles.modalItemText,
+                            // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
+                          ]}
+                        >
+                          {item}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))
+                  )}
+                </ScrollView>
                 <Pressable
                   style={[styles.modalButton]}
                   onPress={() => setModalVisible(!modalVisible)}>
@@ -189,6 +190,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    maxHeight: 400,
   },
   modalButton: {
     borderRadius: 20,
