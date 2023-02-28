@@ -1,37 +1,128 @@
 import React from 'react';
-import {Text, SafeAreaView, StyleSheet} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import PrepCarousel from '../components/PrepCarousel';
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableHighlight,
+  View,
+  FlatList,
+} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+
+const prepInfo = require('../assets/testData/procedureMenuData.json');
+
+type PrepProps = {title: string; id: string};
 
 function PrepPage(): JSX.Element {
-  const headers = ['Before Procedure', 'During Procedure', 'After Procedure'];
-
-  const images = [
-    'https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/6129141/pexels-photo-6129141.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-  ];
-
-  const text = [
-    'lorem impsomfalmlkmflkda;nfdsbkjf bahfdvlnjfjhbf nlajhfc mkanh mdjanhf mkdsha;clkjfa n vjdfj m;ldn sh;ljf al;h;la jl njdv jkalmcjf laks cjhd;fhjdsl mjfakld;amj, lmfaj;lfdhnaipg s g;lkajdfon;vja;njhdl;jfondsj;m av njfdsamvfad fvadfdasjmfmcasjdfjaniv jdaLorem ipsum dolor sit amet consectetur adipisicing elit. Ad abquibusdam quidem odio pariatur, ipsam consectetur corruptimaiores!',
-    'A fuga et ad aut vero fugiat perferendis pariatur maxime voluptates asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus eaque minus commodi eius pariatur nam. Doloremque animi molestiae doloribus eaque, voluptates a consectetur autem corrupti adipisci temporibus, iusto dolore dignissimos?',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipit possimus aliquam, consequuntur odio ut quo nulla non sequi, sit, temporibus tempore. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id ipsa fuga aliquid, soluta delectus placeat, omnis voluptate consequatur in nulla itaque, odit eius ullam expedita? Quam eaque delectus asperiores rem! ',
-  ];
-
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <SafeAreaView style={styles.background}>
-        <PrepCarousel bodyText={text} imageURLs={images} headers={headers} />
-      </SafeAreaView>
-    </GestureHandlerRootView>
+    <SafeAreaView style={styles.background}>
+      <Text style={styles.headerText}> Explore Visits </Text>
+      <FlatList
+        data={prepInfo.data.sort(compareObjectTitles)}
+        renderItem={({item}) => <Route title={item.title} routeID={item.id} />}
+        keyExtractor={item => item.id}
+        style={styles.list}
+      />
+    </SafeAreaView>
   );
 }
+
+type RouteProps = {title: string; routeID: string};
+
+function Route({title, routeID}: RouteProps) {
+  const navigation = useNavigation();
+
+  return (
+    <View>
+      <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={() => {
+          navigation.navigate('Prep', {
+            screen: 'Route',
+            params: {
+              routeID: routeID,
+              routeTitle: title,
+            },
+          });
+          // console.log("ROUTE ID IS: " + routeID)
+        }}
+        style={styles.touchable}>
+        <View style={styles.route}>
+          <Text style={styles.routetitle}>{title}</Text>
+          <View style={styles.routebutton}>
+            <Ionicons
+              name={'arrow-forward-circle-outline'}
+              size={40}
+              color="white"
+            />
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#003A5D',
+    backgroundColor: '#003a5d',
+  },
+  list: {
+    height: '100%',
+  },
+  headerText: {
+    paddingTop: 30,
+    paddingBottom: 20,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 36,
+  },
+  touchable: {
+    backgroundColor: '#00b2e3',
+    marginVertical: 5,
+    marginHorizontal: 12,
+    borderRadius: 10,
+  },
+  route: {
+    backgroundColor: '#003a5d',
+    paddingLeft: 20,
+    flexDirection: 'row',
+    flex: 2,
+    justifyContent: 'space-between',
+    alignContent: 'center',
+    borderRadius: 10,
+    borderTopColor: 'white',
+    borderTopWidth: 1,
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+  },
+  routetitle: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    alignSelf: 'center',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  routebutton: {
+    alignSelf: 'flex-end',
+    padding: 10,
   },
 });
 export default PrepPage;
+
+function compareObjectTitles(a: PrepProps, b: PrepProps) {
+  const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+  const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+}
