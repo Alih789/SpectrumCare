@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
   header: {
     color: 'white',
     fontSize: 25,
-    padding: 10,
   },
   image: {
     resizeMode: 'cover',
