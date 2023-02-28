@@ -40,9 +40,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
     require("../assets/images/wfImages/01-parking-clinic/13.png"),
     require("../assets/images/wfImages/01-parking-clinic/14.png"),
     require("../assets/images/wfImages/01-parking-clinic/15.png"),
-    // require("../assets/images/wfImages/01-parking-clinic/16.png"),
-    // require("../assets/images/wfImages/01-parking-clinic/17.png"),
-    // require("../assets/images/wfImages/01-parking-clinic/18.png"),
+    require("../assets/images/wfImages/01-parking-clinic/16.png"),
+    require("../assets/images/wfImages/01-parking-clinic/17.png"),
+    require("../assets/images/wfImages/01-parking-clinic/18.png"),
   ];
 
   const text = [
@@ -61,9 +61,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
     "13",
     "14",
     "15",
-    // "16",
-    // "17",
-    // "18",
+    "16",
+    "17",
+    "18",
   ];
 
   const modalText = [
@@ -82,9 +82,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
     "13",
     "14",
     "15",
-    // "16",
-    // "17",
-    // "18",
+    "16",
+    "17",
+    "18",
   ];
 
   return (

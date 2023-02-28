@@ -55,12 +55,15 @@ export default function WFCarousel({
     );
   }
 
-  const ref: any  = React.createRef();
+  const carouselRef: any = React.createRef();
 
   const handleNextSlide = () => {
-    ref.current.next()
+    carouselRef.current.next()
   };
 
+  const handlePrevSlide = () => {
+    carouselRef.current.prev()
+  };
 
   return (
     <View>
@@ -73,13 +76,13 @@ export default function WFCarousel({
           activeOffsetX: [-10, 10],
           activeOffsetY: [-10, 10],
         }}
-        ref={ref}
+        ref={carouselRef}
 
-        scrollAnimationDuration={1000}
+        scrollAnimationDuration={500}
         // onSnapToItem={(index: number) => console.log('current index:', index)}
         renderItem={({ item }) => <View>{item}</View>}
       />
-      {/* <View style={styles.navigationContainer}>
+      <View style={styles.navigationContainer}>
         <View style={styles.indicatorContainer}>
           {imageURLs.map((image, index) => (
             <View
@@ -91,15 +94,21 @@ export default function WFCarousel({
             />
           ))}
         </View>
-      </View> */}
+      </View>
+      <TouchableOpacity
+        onPress={() => handlePrevSlide()}
+        style={[styles.slideButton, styles.prevSlideButton]}
+      >
+        <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
+      </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => handleNextSlide()}
-          style={[styles.slideButton, styles.nextSlideButton]}
-
+        style={[styles.slideButton, styles.nextSlideButton]}
       >
         <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
       </TouchableOpacity>
-    </View>
+    </View >
   );
 }
 
@@ -153,7 +162,7 @@ const styles = StyleSheet.create({
   activeIndicator: {
     backgroundColor: 'white',
   },
-    slideButton: {
+  slideButton: {
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.2)',
     alignItems: 'center',
@@ -240,12 +249,12 @@ const styles = StyleSheet.create({
 
 
 
-//         <TouchableOpacity
-//           onPress={() => handlePrevSlide()}
-//           style={[styles.slideButton, styles.prevSlideButton]}
-//         >
-//           <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
-//         </TouchableOpacity>
+        // <TouchableOpacity
+        //   onPress={() => handlePrevSlide()}
+        //   style={[styles.slideButton, styles.prevSlideButton]}
+        // >
+        //   <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
+        // </TouchableOpacity>
 
 
 //         <TouchableOpacity
