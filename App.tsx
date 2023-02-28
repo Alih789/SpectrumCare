@@ -42,9 +42,6 @@ function Wayfinding() {
         name="Route"
         component={WFRoutePage}
         initialParams={{ routeID: "", routeTitle: "" }}
-        // options={{header(props) {
-
-        // },}}
       />
     </Stack.Navigator>
   )
