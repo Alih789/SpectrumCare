@@ -65,8 +65,8 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
                 transform: [{ translateX: animation.current }],
               },
             ]}>
-            {images.map((image) => (
-              <Image key={image} source={{ uri: image }} style={styles.image} />
+            {images.map((image: any) => (
+              <Image key={image} source={image} style={styles.image} />
             ))}
           </Animated.View>
           <Animated.View
@@ -99,8 +99,8 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
           <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
         </TouchableOpacity>
 
-        <View style={styles.navigationContainer}>
-          <View style={styles.indicatorContainer}>
+        {/* <View style={styles.navigationContainer}> */}
+          {/* <View style={styles.indicatorContainer}>
             {images.map((image, index) => (
               <View
                 key={`${image}_${index}`}
@@ -111,7 +111,7 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
               />
             ))}
           </View>
-        </View>
+        </View> */}
       </View>
     </React.Fragment>
   );
