@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
-import {Header} from 'react-native/Libraries/NewAppScreen';
 
 type PrepCarouselProps = {
   imageURLs: string[];
@@ -76,10 +75,15 @@ const styles = StyleSheet.create({
     height: height / 2,
     width: width,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   scrollView: {
     alignSelf: 'center',
     borderColor: 'black',
-    margin: 15,
+    margin: 10,
   },
 
   text: {
