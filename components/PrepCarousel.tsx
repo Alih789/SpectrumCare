@@ -70,6 +70,8 @@ const styles = StyleSheet.create({
   header: {
     color: 'white',
     fontSize: 25,
+    fontFamily: 'proximanova-bold',
+    padding: 10,
   },
   image: {
     resizeMode: 'cover',
@@ -85,5 +87,6 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 15,
+    fontFamily: 'proximanova-regular'
   },
 });

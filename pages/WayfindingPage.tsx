@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 36,
+    fontFamily: 'proximanova-bold'
   },
   touchable: {
     backgroundColor: '#00b2e3',
@@ -112,7 +113,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     flex: 1,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontFamily: 'proximanova-bold'
   },
   routebutton: {
     alignSelf: 'flex-end',
