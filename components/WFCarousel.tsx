@@ -5,7 +5,6 @@ import {
   Image,
   StyleSheet,
   View,
-  Pressable,
   Text,
   TouchableOpacity
 } from 'react-native';
@@ -101,11 +100,6 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
         </TouchableOpacity>
 
         <View style={styles.navigationContainer}>
-          {/* <Pressable
-            style={[styles.slideButton, styles.prevSlideButton]}
-            onPress={() => handlePrevSlide()}>
-            <Text style={styles.buttonText}> Previous Slide</Text>
-          </Pressable> */}
           <View style={styles.indicatorContainer}>
             {images.map((image, index) => (
               <View
@@ -117,14 +111,7 @@ function WFCarousel({ images, text }: WFCarouselProps): JSX.Element {
               />
             ))}
           </View>
-          {/* <Pressable
-            style={[styles.slideButton, styles.nextSlideButton]}
-            onPress={() => handleNextSlide()}>
-            <Text style={styles.buttonText} > Next Slide</Text>
-          </Pressable> */}
         </View>
-
-
       </View>
     </React.Fragment>
   );
@@ -196,22 +183,6 @@ const styles = StyleSheet.create({
   prevSlideButton: {
     left: 20,
   }
-  // slideButton: {
-  //   borderRadius: 20,
-  //   elevation: 2,
-  //   padding: 20,
-  //   backgroundColor: '#003a5d',
-  // },
-  // nextSlideButton: {
-  //   alignSelf: 'flex-end',
-  // },
-  // prevSlideButton: {
-  //   alignSelf: 'flex-start',
-  // },
-  // buttonText: {
-  //   color: 'white',
-  //   fontSize: 16,
-  // }
 });
 
 export default WFCarousel;

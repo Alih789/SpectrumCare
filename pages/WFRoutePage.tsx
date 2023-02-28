@@ -22,7 +22,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  // todo: Use routeID and/or routeTitle to "gather" (load from files) image and text data to pass to slideshow component
+  // todo: Use routeID and/or routeTitle to "gather" (load from files and/or firebase) image and text data to pass to slideshow component
   const images = [
     'https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'https://images.pexels.com/photos/6129141/pexels-photo-6129141.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
