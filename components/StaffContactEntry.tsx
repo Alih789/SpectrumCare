@@ -1,20 +1,14 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-// type ContactListProps = {
-//   imageURLs: string[];
-//   name: string[];
-//   jobTitle: string[];
-// };
-
-function StaffContactEntry(): JSX.Element {
+function StaffContactEntry({name, image, jobTitle}: {name: string, image: string, jobTitle: string}): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg")} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} onError ={(e) => console.log('Error Loading image', e)}/>
       <View style={styles.detailsContainer}>
-        <Text style={styles.name}>Victoria R. Dimitriades, M.D.</Text>
-        <Text style={styles.jobTitle}>Chief, Division of Pediatric Allergy, Immunology</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.jobTitle}>{jobTitle}</Text>
       </View>
     </View>
   )

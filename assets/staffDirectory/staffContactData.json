@@ -1,0 +1,26 @@
+{"data": [
+    {
+        "name": "Victoria R. Dimitriades, M.D.",
+        "image": "../assets/images/staffImages/Victoria_R_Immunolgy.jpeg",
+        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor, Department of Pediatrics"
+    },
+    { 
+        "name": "Sheryl J. Boon, M.D., M.S.P.H.",
+        "image": "../assets/images/staffImages/Sheryl_Rheumatology.jpeg",
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor"
+    },
+    { 
+        "name": "Angel Alberto Herrera Guerra, M.D.",
+        "image": "../assets/images/staffImages/Angel_Rheumatology.jpeg",
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Associate Professor"
+    },
+    { 
+        "name": "Anh Phuong Nguyen, M.D., M.P.H.",
+        "image": "../assets/images/staffImages/Anh_Rheumatology.jpeg",
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Assistant Clinical Professor"
+    }
+]}

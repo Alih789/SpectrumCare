@@ -1,39 +1,44 @@
-import React from 'react';
-import { StyleSheet, Text, SafeAreaView} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import Reac, {useState} from 'react';
+import { StyleSheet, Text, SafeAreaView, useWindowDimensions} from 'react-native';
+import {ScrollView } from 'react-native-gesture-handler';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 
+const staffInfo = require('../assets/staffDirectory/staffContactData.json');
+
 
 function HomePage(): JSX.Element {
+  const [searchData, setSearchData] = useState('');
+  const {height} = useWindowDimensions();
 
-  const images = [
-    "../assets/images/staffImages/Victoria_R_Immunolgy.jpeg",
-  ]
+  const handleSearch = (text: string) => {
+    setSearchData(text);
+  };
 
-  const names = [
-    "Victoria R. Dimitriades, M.D.",
-  ]
-  const jobTitle = [
-    "Chief, Division of Pediatric Allergy, Immunology",
-  ]
+  const filteredData = staffInfo.data.filter((item) => {
+    const name = item.name.toLowerCase();
+    const query = searchData.toLowerCase();
+    return name.includes(query)
+  });
 
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
       <SearchBar
         placeholder="Search"
-        onChangeText={(text) => console.log(text)}
+        onChangeText={handleSearch}
         style={styles.searchBar}
       />
-        <ScrollView style={styles.scrollView}>
-          <StaffContactEntry />
-          <StaffContactEntry />
-          <StaffContactEntry />
-          <StaffContactEntry />
-          <StaffContactEntry />
-          <StaffContactEntry />
-          <StaffContactEntry />
+        <ScrollView style={[styles.scrollView, {height: height - 150}]}>
+          {filteredData.map((item, index: number) => (
+            <StaffContactEntry
+              key={index}
+              name={item.name}
+              image={item.image}
+              jobTitle={item.jobTitle}
+            />
+
+          ))}
         </ScrollView>
     </SafeAreaView>
   );
