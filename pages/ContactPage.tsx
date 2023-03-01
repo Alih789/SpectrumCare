@@ -1,4 +1,4 @@
-import Reac, {useState} from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, useWindowDimensions} from 'react-native';
 import {ScrollView } from 'react-native-gesture-handler';
 import StaffContactEntry from '../components/StaffContactEntry';
