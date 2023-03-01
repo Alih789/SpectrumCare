@@ -48,17 +48,17 @@ function WayfindingPage(): JSX.Element {
       title: 'Main Parking Lot to Pediatric Surgery Clinic',
     },
     {
-      id: 'h-enter-to-mri',
-      title: 'Hospital Entrance to MRI Scan',
-    },
-    {
-      id: 'h-enter-to-ct',
-      title: 'Hospital Entrance to CT Scan',
-    },
-    {
       id: 'parking-lot-to-lab',
       title: 'Main Parking Lot to Lab',
     },
+    {
+      id: 'h-enter-radiology',
+      title: 'Hospital Entrance to Radiology',
+    },
+    {
+      id: 'h-enter-or',
+      title: 'Hospital Entrance to OR Checkin',
+    }
   ];
 
   return (

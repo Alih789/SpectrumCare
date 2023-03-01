@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
-    height: 500,
+    height:500,
     width: width,
   },
   scrollView: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   text: {
     width: width,
-    height: 100,
+    height: 150,
     padding: 10,
     backgroundColor: 'white',
     fontSize: 18
