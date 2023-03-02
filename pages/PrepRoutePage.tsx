@@ -4,34 +4,22 @@ import type {StackScreenProps} from '@react-navigation/stack';
 import BackButton from '../components/BackButton';
 import PrepCarousel from '../components/PrepCarousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {PrepStackParamList} from '../assets/customTypes';
 
-// todo: move to types file?
-type WayfindingStackParamList = {
-  WayfindingHome: undefined;
-  Route: {
-    routeID: string;
-    routeTitle: string;
-  };
-};
+type Props = StackScreenProps<PrepStackParamList, 'Route'>;
 
-type Props = StackScreenProps<WayfindingStackParamList, 'Route'>;
-
-function WFRoutePage({navigation, route}: Props): JSX.Element {
-  const {routeID, routeTitle} = route.params;
-  const singleProcedure = require('../assets/testData/singleProcedure.json');
-
-  const headers = singleProcedure.mri.headers;
-
-  const images = singleProcedure.mri.images;
-
-  const text = singleProcedure.mri.bodyText;
+function PrepRoutePage({navigation, route}: Props): JSX.Element {
+  // const {routeID, routeTitle} = route.params;
+  // ^^ will use routeID pass in by navigation when completed
+  const routeID = 'mri';
+  const procedureInfo = require('../assets/testData/ProcedureData.json');
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView>
         <View style={styles.background}>
           <BackButton />
-          <PrepCarousel bodyText={text} imageURLs={images} headers={headers} />
+          <PrepCarousel procedureInfo={procedureInfo[routeID]} />
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>
@@ -46,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WFRoutePage;
+export default PrepRoutePage;
