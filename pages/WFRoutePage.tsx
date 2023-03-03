@@ -27,7 +27,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   var text: string[] = [];
   var modalText: string[] = [];
 
-  if (routeID === 'parking-lot-to-peds-surg') {
+  if (routeID === '01-parking-clinic') {
     // todo: Use routeID and/or routeTitle to "gather" (load from files and/or firebase) image and text data to pass to slideshow component
     images = [
       require("../assets/images/wfImages/01-parking-clinic/1.png"),
@@ -92,7 +92,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "18",
     ];
 
-  } else if (routeID === 'parking-lot-to-lab') {
+  } else if (routeID === '02-parking-labs') {
     images = [
       require("../assets/images/wfImages/02-parking-labs/1.png"),
       require("../assets/images/wfImages/02-parking-labs/2.png"),
@@ -146,7 +146,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "14",
       "15",
     ];
-  } else if (routeID === 'h-enter-radiology') {
+  } else if (routeID === '03-hosp-enter-radiology') {
     images = [
       require("../assets/images/wfImages/03-hosp-enter-radiology/1.png"),
       require("../assets/images/wfImages/03-hosp-enter-radiology/2.png"),
@@ -192,7 +192,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "12",
     ];
 
-  } else if (routeID === 'h-enter-or') {
+  } else if (routeID === '04-hosp-enter-OR-checkin') {
     images = [
       require("../assets/images/wfImages/04-hosp-enter-OR-checkin/1.png"),
       require("../assets/images/wfImages/04-hosp-enter-OR-checkin/2.png"),
@@ -256,10 +256,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "18",
     ];
 
-  } else {
-
   }
-
 
 
   return (

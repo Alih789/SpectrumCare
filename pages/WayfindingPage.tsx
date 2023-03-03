@@ -44,20 +44,20 @@ function WayfindingPage(): JSX.Element {
   // array of data, 1 object per route displayed
   const DATA = [
     {
-      id: 'parking-lot-to-peds-surg',
+      id: '01-parking-clinic',
       title: 'Main Parking Lot to Pediatric Surgery Clinic',
     },
     {
-      id: 'parking-lot-to-lab',
+      id: '02-parking-labs',
       title: 'Main Parking Lot to Lab',
     },
     {
-      id: 'h-enter-radiology',
+      id: '03-hosp-enter-radiology',
       title: 'Hospital Entrance to Radiology',
     },
     {
-      id: 'h-enter-or',
-      title: 'Hospital Entrance to OR Checkin',
+      id: '04-hosp-enter-OR-checkin',
+      title: 'Hospital Entrance to OR Check In',
     }
   ];
 
