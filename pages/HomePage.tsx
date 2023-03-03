@@ -14,7 +14,7 @@ function HomePage(): JSX.Element {
       />
       <YoutubeIframe
         videoId="Usa_M01f68o"
-        height={500}
+        height={250}
         width={dimensions.width}
       />
     </SafeAreaView>

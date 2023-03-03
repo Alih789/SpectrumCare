@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#003a5d',
   },
   headerText: {
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',

@@ -14,8 +14,7 @@ function BackButton() {
         onPress={() => {
           navigation.goBack();
         }}>
-        <Ionicons name="arrow-back-outline" size={25} />
-        <Text style={{fontSize: 20}}>Back</Text>
+        <Ionicons name="arrow-back-outline" color={'white'} size={40} />
       </TouchableNativeFeedback>
     </View>
   );
@@ -27,11 +26,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     borderRadius: 10,
-    backgroundColor: 'rgba(255,255,255, 0.8)',
-    padding: 5,
     top: 5,
-    left: 5,
-    width: '20%',
+    width: '12%',
   },
 });
 
