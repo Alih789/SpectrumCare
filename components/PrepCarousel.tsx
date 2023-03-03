@@ -31,6 +31,7 @@ export default function PrepCarousel({
             videoId={page.media.content}
             height={styles.video.height}
             width={styles.video.width}
+            webViewStyle={{opacity: 0.99}}
           />
         ) : (
           <Image

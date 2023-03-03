@@ -20,6 +20,9 @@ function PrepRoutePage({navigation, route}: Props): JSX.Element {
         <View style={styles.background}>
           <BackButton />
           <PrepCarousel procedureInfo={procedureInfo[routeID]} />
+          {/* <View style={{backgroundColor: 'white', width: '100%'}}>
+            <Text>tes</Text>
+          </View> */}
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>
