@@ -1,25 +1,56 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, useWindowDimensions} from 'react-native';
-import {ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 
-const staffInfo = require('../assets/staffDirectory/staffContactData.json');
-
+// const staffInfo = require('../assets/staffDirectory/staffContactData.json');
 
 function HomePage(): JSX.Element {
-  const [searchData, setSearchData] = useState('');
+
+
+  const staffInfo = [
+    {
+        "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Victoria R. Dimitriades, M.D.",
+        "image": "../assets/images/staffImages/Victoria_R_Immunolgy.jpeg",
+        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor, Department of Pediatrics"
+    },
+    { 
+        "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Sheryl J. Boon, M.D., M.S.P.H.",
+        "image": "../assets/images/staffImages/Sheryl_Rheumatology.jpeg",
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor"
+    },
+    { 
+        "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Angel Alberto Herrera Guerra, M.D.",
+        "image": "../assets/images/staffImages/Angel_Rheumatology.jpeg",
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Associate Professor"
+    },
+    { 
+        "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Anh Phuong Nguyen, M.D., M.P.H.",
+        "image": "../assets/images/staffImages/Anh_Rheumatology.jpeg",
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Assistant Clinical Professor"
+    }
+];
+  //used to store full data source
+  const [fullData, setFullData] = useState(staffInfo);
+  //used to store filtered data based on the search
+  const [searchData, setSearchData] = useState(staffInfo);
+  //adjust the background to appear when searching for specific names
   const {height} = useWindowDimensions();
 
   const handleSearch = (text: string) => {
-    setSearchData(text);
+    const filteredData = fullData.filter((item) =>
+            item.name.toLowerCase().includes(text.toLowerCase())
+          );
+          setSearchData(filteredData);
   };
-
-  const filteredData = staffInfo.data.filter((item) => {
-    const name = item.name.toLowerCase();
-    const query = searchData.toLowerCase();
-    return name.includes(query)
-  });
 
   return (
     <SafeAreaView style={styles.background}>
@@ -27,19 +58,17 @@ function HomePage(): JSX.Element {
       <SearchBar
         placeholder="Search"
         onChangeText={handleSearch}
+        onClearPress={()=>{
+          setSearchData(fullData);
+        }}
         style={styles.searchBar}
       />
-        <ScrollView style={[styles.scrollView, {height: height - 150}]}>
-          {filteredData.map((item, index: number) => (
-            <StaffContactEntry
-              key={index}
-              name={item.name}
-              image={item.image}
-              jobTitle={item.jobTitle}
-            />
-
-          ))}
-        </ScrollView>
+      <FlatList
+        data={searchData}
+        renderItem={({item}) => <StaffContactEntry name={item.name} image={item.image} jobTitle={item.jobTitle} />}
+        keyExtractor={item => item.id}
+        style={[styles.list, {height: height - 150}]}
+      />
     </SafeAreaView>
   );
 }
@@ -48,7 +77,7 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003A5D",
   },
-  scrollView: {
+  list: {
     marginHorizontal: 20,
   },
   headerText: {

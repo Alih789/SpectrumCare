@@ -1,11 +1,13 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-function StaffContactEntry({name, image, jobTitle}: {name: string, image: string, jobTitle: string}): JSX.Element {
+type itemProps ={name: string, image: string, jobTitle: string}
+
+function StaffContactEntry({name, image, jobTitle}: itemProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Image source={{uri: image}} style={styles.image} onError ={(e) => console.log('Error Loading image', e)}/>
+      <Image source={{uri: image}} style={styles.image}/>
       <View style={styles.detailsContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
@@ -32,7 +34,6 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight: 'bold',
-
   },
   detailsContainer: {
     flexDirection: 'column',
