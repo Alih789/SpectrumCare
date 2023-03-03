@@ -119,14 +119,14 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "Keep walking towards the sign and to the left for the entrance.",
       "Through the main entry door, you will see this desk. Walk to the right for elevators.",
       "This is the elevator bay.",
-      // "Take any elevator up to the 4th floor.",
-      // "Coming out of the elevator, you will see this view.",
-      // "On one side is an OB office - don't go there!",
-      // "On the other side as you exit the elevator, is the Children's Surgery clinic, suite 4100. This is the right way!",
-      // "Enter here.",
-      // "Check in at reception, and you will wait in this waiting room to be seen.",
-      // "When they call you, you will enter to have your vitals taken.",
-      // "Then you will walk down this hall to be roomed.",
+      "Take any elevator up to the 2nd floor.",
+      "This is the 2nd floor elevator bay.",
+      "On one side is this office - don't go this way!",
+      "On the other side as you exit the elevator, is this hallway. Walk towards it and turn left.",
+      "Turn left.",
+      "Walk down this hallway.",
+      "Room 2300 is the Laboratory. You have arrived!",
+      "Step inside and check in at this desk for labs, and pull a ticket.",
     ];
 
     modalText = [
