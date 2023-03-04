@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList } from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import Fuse from 'fuse.js';
@@ -8,45 +8,44 @@ import Fuse from 'fuse.js';
 
 function HomePage(): JSX.Element {
 
-
   const staffInfo = [
     {
-        "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Victoria R. Dimitriades, M.D.",
-        "image": "../assets/images/staffImages/Victoria_R_Immunolgy.jpeg",
-        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Clinical Professor, Department of Pediatrics"
+      "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
+      "name": "Victoria R. Dimitriades, M.D.",
+      "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
+      "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+      "jobTitle": "Clinical Professor, Department of Pediatrics"
     },
-    { 
-        "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Sheryl J. Boon, M.D., M.S.P.H.",
-        "image": "../assets/images/staffImages/Sheryl_Rheumatology.jpeg",
-        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Clinical Professor"
+    {
+      "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
+      "name": "Sheryl J. Boon, M.D., M.S.P.H.",
+      "imagePath": require("../assets/images/staffImages/Sheryl_Rheumatology.jpeg"),
+      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+      "jobTitle": "Clinical Professor"
     },
-    { 
-        "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Angel Alberto Herrera Guerra, M.D.",
-        "image": "../assets/images/staffImages/Angel_Rheumatology.jpeg",
-        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Associate Professor"
+    {
+      "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
+      "name": "Angel Alberto Herrera Guerra, M.D.",
+      "imagePath": require("../assets/images/staffImages/Angel_Rheumatology.jpeg"),
+      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+      "jobTitle": "Associate Professor"
     },
-    { 
-        "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Anh Phuong Nguyen, M.D., M.P.H.",
-        "image": "../assets/images/staffImages/Anh_Rheumatology.jpeg",
-        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Assistant Clinical Professor"
+    {
+      "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
+      "name": "Anh Phuong Nguyen, M.D., M.P.H.",
+      "imagePath": require("../assets/images/staffImages/Anh_Rheumatology.jpeg"),
+      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+      "jobTitle": "Assistant Clinical Professor"
     }
-];
+  ];
   //used to store full data source
   const [fullData, setFullData] = useState(staffInfo);
   //used to store filtered data based on the search
   const [searchData, setSearchData] = useState(staffInfo);
-
+  //stores current searched term 
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
-  const {height} = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
   const options = {
     keys: ["name"],
@@ -59,15 +58,15 @@ function HomePage(): JSX.Element {
     maxPatternLength: 32,
   };
 
-  const fuse = new Fuse(fullData,options);
+  const fuse = new Fuse(fullData, options);
 
   const handleSearch = (text: string) => {
-    if(text.length == 0){
+    if (text.length == 0) {
       setSearchData(fullData);
     } else {
       const results = fuse.search(text);
       const filteredData = results.map((result) => result.item);
-    setSearchData(filteredData);
+      setSearchData(filteredData);
     }
     setSearchTerm(text);
   };
@@ -79,7 +78,7 @@ function HomePage(): JSX.Element {
         placeholder="Search"
         onChangeText={handleSearch}
         value={searchTerm}
-        onClearPress={()=>{
+        onClearPress={() => {
           setSearchData(fullData);
           setSearchTerm('')
         }}
@@ -87,9 +86,15 @@ function HomePage(): JSX.Element {
       />
       <FlatList
         data={searchData}
-        renderItem={({item}) => <StaffContactEntry name={item.name} image={item.image} jobTitle={item.jobTitle} />}
+        renderItem={({ item }) =>
+          <StaffContactEntry
+            name={item.name}
+            imagePath={item.imagePath}
+            jobTitle={item.jobTitle}
+            department={item.department}
+          />}
         keyExtractor={item => item.id}
-        style={[styles.list, {height: height - 150}]}
+        style={[styles.list, { height: height - 150 }]}
       />
     </SafeAreaView>
   );
@@ -110,7 +115,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 36,
   },
-  searchBar:{
+  searchBar: {
     borderRadius: 10,
     padding: 5,
     marginBottom: 10,
