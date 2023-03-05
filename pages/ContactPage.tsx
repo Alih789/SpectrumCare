@@ -69,16 +69,13 @@ function ContactPage(): JSX.Element {
     },
   ];
 
-  //used to store full data source
+  //used to store Full data source
   const [fullData, setFullData] = useState(staffInfo);
-
-  // const [favData, setFavData] = useState(favStaff);
-
+  //used to store Fav data source
   const [favData, setFavData] = useState(favStaff);
-
-  //used to store filtered data based on the search
+  //used to store Full filtered data based on the search
   const [searchFullData, setSearchFullData] = useState(staffInfo);
-
+  //used to store Fav filtered data based on the search
   const [searchFavData, setSearchFavData] = useState(favStaff);
   //stores current searched term 
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,7 +83,7 @@ function ContactPage(): JSX.Element {
   const { height } = useWindowDimensions();
   //stores current state of favorite button: red or gray
   const [isPressed, setIsPressed] = useState(false);
-
+  //determines which tab you are on
   const [activeTab, setActiveTab] = useState('General')
 
   const options = {
@@ -111,7 +108,6 @@ function ContactPage(): JSX.Element {
       if (activeTab == 'Favorite'){
         setSearchFavData(favData);
       }
-      // setSearchFullData(fullData);
     } else {
       if (activeTab == 'General'){
         const results = fuseFull.search(text);
@@ -127,9 +123,8 @@ function ContactPage(): JSX.Element {
     setSearchTerm(text);
   };
   
-  const handlePress = (item:any) => {
+  const handlePress = () => {
     setIsPressed(!isPressed);
-    setFavData([...favData, item]);
   };
 
   const handleTabToggle = (tab: string) => {
