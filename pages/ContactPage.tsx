@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList } from 'react-native';
+import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 // import NotesButton from '../components/NotesButton';
 import SearchBar from "react-native-dynamic-search-bar";
@@ -47,7 +47,7 @@ function ContactPage(): JSX.Element {
     },
   ];
 
-
+  const favStaff =[];
 
   //used to store full data source
   const [fullData, setFullData] = useState(staffInfo);
@@ -82,6 +82,10 @@ function ContactPage(): JSX.Element {
     setSearchTerm(text);
   };
 
+  const handleTabToggle = () => {
+    console.log("Button pressed!")
+  }
+
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Staff Contact List </Text>
@@ -95,6 +99,15 @@ function ContactPage(): JSX.Element {
         }}
         style={styles.searchBar}
       />
+      <View style={styles.toggleContainer}>
+        <Pressable style={styles.tabButton} onPress={handleTabToggle}>
+          <Text style={styles.tabText}>General</Text>
+        </Pressable>
+      <View style={styles.seperator}></View>
+        <Pressable  style={styles.tabButton} onPress={handleTabToggle}>
+          <Text style={styles.tabText}>Favorites</Text>
+        </Pressable>
+      </View>
       <FlatList
         data={searchData}
         renderItem={({ item }) =>
@@ -114,6 +127,23 @@ function ContactPage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003A5D",
+  },
+  toggleContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingBottom: 10,
+  },
+  tabButton: { //used to customize the way the button looks - current pressed turn light blue
+    backgroundColor: "white",
+    borderRadius: 50,
+    width: 165,
+    padding: 5,
+  },
+  tabText:{
+    color: "black",
+  },
+  seperator: {
+    marginHorizontal: 10,
   },
   list: {
     marginHorizontal: 20,
