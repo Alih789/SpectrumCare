@@ -14,6 +14,7 @@ import { storage } from './storageConst';
 
 
 
+
 const storeData = async (value :any) => {
   try {
     await storage.set('notesData', value)
@@ -78,13 +79,11 @@ function NotesButton(): JSX.Element {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={{
-              uri:
-                'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
-            }}
+            source={require('../assets/images/extraIcons/notesIconPhotoshoped.png')}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.floatingButtonStyle}
+
           />
         </TouchableOpacity>
       </SafeAreaView> : 
@@ -95,7 +94,7 @@ function NotesButton(): JSX.Element {
         <SafeAreaView style={styles.modalBackgroundStyle}>
           <View style ={{flexDirection:'row',justifyContent:"flex-start", backgroundColor:"#48CFAD", borderTopEndRadius:10,borderTopStartRadius:10}}>
             <Text onPress={()=> onCollapseHandler(text)} style = {{textAlignVertical:"center",paddingLeft:10, color:"black"}}>Collapse</Text>
-            <Text style = {[styles.text,{marginLeft:"20%"}]}>Notes</Text>
+            <Text style = {[styles.text,{marginLeft:"20%",paddingBottom:10}]}>Notes</Text>
           </View>
           <View>
             <TextInput
@@ -133,7 +132,7 @@ function NotesButton(): JSX.Element {
       resizeMode: 'contain',
       width: 50,
       height: 50,
-      
+          
     },
     modalBackgroundStyle:{
       position:"relative",
@@ -154,7 +153,7 @@ function NotesButton(): JSX.Element {
     warningBanner:{
       color: "black",
       fontSize: 14,
-      backgroundColor:"yellow",
+      backgroundColor:"#ff9800",
       padding:10,
       borderBottomLeftRadius:10,
       borderBottomRightRadius:10,
