@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -8,7 +7,7 @@ import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import PrepPage from './pages/PrepPage';
 import WayfindingPage from './pages/WayfindingPage';
-
+import WFRoutePage from './pages/WFRoutePage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {PrepStackParamList} from './assets/customTypes';
 import {
@@ -18,31 +17,62 @@ import {
 import PrepRoutePage from './pages/PrepRoutePage';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator<PrepStackParamList>();
+const PrepStack = createStackNavigator<PrepStackParamList>();
 
 function ProcedureNavigation() {
   return (
-    <Stack.Navigator
+    <PrepStack.Navigator
       screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-      <Stack.Screen
+      <PrepStack.Screen
         name="PrepHome"
         component={PrepPage}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      <PrepStack.Screen
         name="Route"
         component={PrepRoutePage}
         initialParams={{routeID: '', routeTitle: ''}}
-        // options={{header(props) {
-
-        // },}}
       />
-    </Stack.Navigator>
+    </PrepStack.Navigator>
   );
 }
+
+//todo: move to types file?
+type WayfindingStackParamList = {
+  WayfindingHome: undefined;
+  Route: {
+    routeID: string,
+    routeTitle: string,
+  }
+}
+
+const Stack = createStackNavigator<WayfindingStackParamList>();
+
+function Wayfinding() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+      }}>
+      <Stack.Screen
+        name="WayfindingHome"
+        component={WayfindingPage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Route"
+        component={WFRoutePage}
+        initialParams={{ routeID: "", routeTitle: "" }}
+      />
+    </Stack.Navigator>
+  )
+}
+
+
 function App(): JSX.Element {
   return (
     <NavigationContainer>
@@ -67,10 +97,22 @@ function App(): JSX.Element {
           tabBarInactiveTintColor: '#999999',
           headerShown: false,
         })}>
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Contact" component={ContactPage} />
-        <Tab.Screen name="Prep" component={ProcedureNavigation} />
-        <Tab.Screen name="Wayfinding" component={WayfindingPage} />
+        <Tab.Screen
+          name="Home"
+          component={HomePage}
+        />
+        <Tab.Screen
+          name="Contact"
+          component={ContactPage}
+        />
+        <Tab.Screen
+          name="Prep"
+          component={ProcedureNavigation}
+        />
+        <Tab.Screen
+          name="Wayfinding"
+          component={Wayfinding}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
