@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList } from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
+
+import NotesButton from '../components/NotesButton';
 import SearchBar from "react-native-dynamic-search-bar";
 import Fuse from 'fuse.js';
 
