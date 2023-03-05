@@ -8,7 +8,7 @@ import Fuse from 'fuse.js';
 
 // const staffInfo = require('../assets/staffDirectory/staffContactData.json');
 
-function HomePage(): JSX.Element {
+function ContactPage(): JSX.Element {
 
   const staffInfo = [
     {
@@ -38,8 +38,18 @@ function HomePage(): JSX.Element {
       "imagePath": require("../assets/images/staffImages/Anh_Rheumatology.jpeg"),
       "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Assistant Clinical Professor"
-    }
+    },
+    {
+      "id": "05-CAARE-Diagnostic-and-Treatment-Center",
+      "name": "Victoria R. Dimitriades, M.D.",
+      "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
+      "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+      "jobTitle": "Clinical Professor, Department of Pediatrics"
+    },
   ];
+
+
+
   //used to store full data source
   const [fullData, setFullData] = useState(staffInfo);
   //used to store filtered data based on the search
@@ -124,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default ContactPage;

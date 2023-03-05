@@ -8,14 +8,6 @@ function StaffContactEntry({name, imagePath, jobTitle, department}: itemProps): 
   console.log(imagePath)
   return (
     <View style={styles.container}>
-      {/* <FastImage
-        style={styles.image}
-        source={{
-          uri: imagePath,
-          priority: FastImage.priority.normal,
-        }}
-        resizeMode={FastImage.resizeMode.contain}
-      /> */}
       <Image source={imagePath} style={styles.image}/>
       <View style={styles.detailsContainer}>
         <Text style={styles.name}>{name}</Text>
@@ -42,17 +34,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 10,
   },
-  name: {
-    fontWeight: 'bold',
-  },
   detailsContainer: {
     flexDirection: 'column',
-    flexWrap: 'wrap',
+    flexShrink: 1,
+  },
+  name: {
+    flexWrap: "wrap",
+    fontWeight: 'bold',
+    fontSize: 14,
+    paddingBottom: 3,
   },
   jobTitle: {
-    fontSize: 9,
+    flexWrap: "wrap",
+    fontWeight: "600",
+    fontSize: 10,
   },
   department: {
+    flex: 0.7,
+    flexWrap: "wrap",
     fontSize: 9,
   },
 })
