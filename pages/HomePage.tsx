@@ -1,4 +1,5 @@
 import {Image, StyleSheet, Text, SafeAreaView, Dimensions} from 'react-native';
+import NotesButton from '../components/NotesButton';
 import React from 'react';
 import YoutubeIframe from 'react-native-youtube-iframe';
 
@@ -8,6 +9,7 @@ function HomePage(): JSX.Element {
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.text}>Care Across the Spectrum</Text>
+       <NotesButton/>
       <Image
         source={require('../assets/images/homePageImage.png')}
         style={{width: '70%', height: 150}}

@@ -33,6 +33,9 @@ cd ..
 npx react-native start
 ```
 
+## Important: WFImages (3-3-23)
+Right now, the images for the wayfinding component are in the team google drive. Download `wfImages` and move to /assets/images before running app.
+
 ## External Packages Used in Project:
 
 - react native gesture handler

@@ -3,17 +3,15 @@ import {StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import PrepPage from './pages/PrepPage';
 import WayfindingPage from './pages/WayfindingPage';
 import WFRoutePage from './pages/WFRoutePage';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {PrepStackParamList} from './assets/customTypes';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-} from '@react-navigation/stack';
 import PrepRoutePage from './pages/PrepRoutePage';
 
 const Tab = createBottomTabNavigator();
