@@ -1,15 +1,21 @@
-import {Image, StyleSheet, Text, View } from 'react-native'
+import {Image, StyleSheet, Text, View, Button, Pressable} from 'react-native'
 import React from 'react'
 
 type itemProps ={name: string, imagePath: any, jobTitle: string, department: string}
 
 function StaffContactEntry({name, imagePath, jobTitle, department}: itemProps): JSX.Element {
 
-  console.log(imagePath)
+  const handleFavPress = () => {
+    console.log("Button pressed!")
+  }
+  
   return (
     <View style={styles.container}>
       <Image source={imagePath} style={styles.image}/>
       <View style={styles.detailsContainer}>
+        <Pressable style={styles.favButton} onPress={handleFavPress}>
+          <Text>Button</Text>
+        </Pressable>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
         <Text style={styles.department}>{department}</Text>
@@ -37,6 +43,12 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flexDirection: 'column',
     flexShrink: 1,
+    position: 'relative',
+  },
+  favButton:{
+    position: "absolute",
+    top: -25,
+    right: 0,
   },
   name: {
     flexWrap: "wrap",
@@ -50,7 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   department: {
-    flex: 0.7,
+    flex: 0.6,
     flexWrap: "wrap",
     fontSize: 9,
   },
