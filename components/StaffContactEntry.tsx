@@ -1,22 +1,29 @@
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import React from 'react'
+import React, {useState} from 'react'
 
-type itemProps ={name: string, imagePath: any, jobTitle: string, department: string}
+type itemProps ={name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void}
 
-function StaffContactEntry({name, imagePath, jobTitle, department}: itemProps): JSX.Element {
+function StaffContactEntry({name, imagePath, jobTitle, department, onPress}: itemProps): JSX.Element {
 
+  const [isPressed, setIsPressed] = useState(false);
+  
   const handleFavPress = () => {
-    console.log("Button pressed!")
+    setIsPressed(!isPressed);
+    if (onPress) {
+      onPress(!isPressed);
+    }
   }
   
   return (
     <View style={styles.container}>
       <Image source={imagePath} style={styles.image}/>
       <View style={styles.detailsContainer}>
-        <Pressable style={styles.favButton} onPress={handleFavPress}>
-          <Ionicons name="heart" size={22}/>
+
+        <Pressable style={styles.favPostioning} onPress={handleFavPress}>
+          <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]}size={22}/>
         </Pressable>
+
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
         <Text style={styles.department}>{department}</Text>
@@ -46,12 +53,16 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     position: 'relative',
   },
-  favButton:{
+  favPostioning:{
     position: "absolute",
     top: -25,
     right: 0,
-    backgroundColor: "white",
-    borderRadius: 10,
+  },
+  defaultFav: {
+    color: 'grey',
+  },
+  favButtonPressed: {
+    color: 'red',
   },
   name: {
     flexWrap: "wrap",

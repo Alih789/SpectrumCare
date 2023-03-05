@@ -5,8 +5,6 @@ import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import Fuse from 'fuse.js';
 
-// const staffInfo = require('../assets/staffDirectory/staffContactData.json');
-
 function ContactPage(): JSX.Element {
 
   const staffInfo = [
@@ -57,6 +55,8 @@ function ContactPage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
   const { height } = useWindowDimensions();
+  
+  const [isPressed, setIsPressed] = useState(false);
 
   const options = {
     keys: ["name"],
@@ -80,6 +80,10 @@ function ContactPage(): JSX.Element {
       setSearchData(filteredData);
     }
     setSearchTerm(text);
+  };
+  
+  const handlePress = () => {
+    setIsPressed(!isPressed);
   };
 
   const handleTabToggle = () => {
@@ -109,11 +113,12 @@ function ContactPage(): JSX.Element {
           <Text style={styles.tabText}>Favorites</Text>
         </Pressable>
       </View>
-      
+
       <FlatList
         data={searchData}
         renderItem={({ item }) =>
           <StaffContactEntry
+            onPress={handlePress}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
