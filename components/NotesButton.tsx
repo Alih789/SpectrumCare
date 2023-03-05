@@ -93,7 +93,7 @@ function NotesButton(): JSX.Element {
       visible={!collapsed}
       transparent={true}>
         <SafeAreaView style={styles.modalBackgroundStyle}>
-          <View style ={{flexDirection:'row',justifyContent:"flex-start"}}>
+          <View style ={{flexDirection:'row',justifyContent:"flex-start", backgroundColor:"#48CFAD", borderTopEndRadius:10,borderTopStartRadius:10}}>
             <Text onPress={()=> onCollapseHandler(text)} style = {{textAlignVertical:"center",paddingLeft:10, color:"black"}}>Collapse</Text>
             <Text style = {[styles.text,{marginLeft:"20%"}]}>Notes</Text>
           </View>
@@ -105,9 +105,11 @@ function NotesButton(): JSX.Element {
               maxLength={1000}
               onChangeText={text => onChangeText(text)}
               value={text}
-              style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top"}}
+              style={{padding: 10,backgroundColor:"#a0CECB",textAlignVertical:"top"}}
             />
-          </View>        
+            <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
+          </View>   
+
         </SafeAreaView>
       </Modal>
     );
@@ -149,6 +151,17 @@ function NotesButton(): JSX.Element {
       color: "black",
       fontSize: 30,
     },
+    warningBanner:{
+      color: "black",
+      fontSize: 14,
+      backgroundColor:"yellow",
+      padding:10,
+      borderBottomLeftRadius:10,
+      borderBottomRightRadius:10,
+      height:60,
+      textAlignVertical:'bottom'
+      
+    }
   });
 
 
