@@ -19,11 +19,9 @@ function StaffContactEntry({name, imagePath, jobTitle, department, onPress}: ite
     <View style={styles.container}>
       <Image source={imagePath} style={styles.image}/>
       <View style={styles.detailsContainer}>
-
         <Pressable style={styles.favPostioning} onPress={handleFavPress}>
-          <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]}size={22}/>
+          <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]} size={22}/>
         </Pressable>
-
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
         <Text style={styles.department}>{department}</Text>

@@ -103,7 +103,6 @@ function ContactPage(): JSX.Element {
         }}
         style={styles.searchBar}
       />
-
       <View style={styles.toggleContainer}>
         <Pressable style={styles.tabButton} onPress={handleTabToggle}>
           <Text style={styles.tabText}>General</Text>
@@ -113,7 +112,6 @@ function ContactPage(): JSX.Element {
           <Text style={styles.tabText}>Favorites</Text>
         </Pressable>
       </View>
-
       <FlatList
         data={searchData}
         renderItem={({ item }) =>
@@ -134,6 +132,7 @@ function ContactPage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003A5D",
+    flex: 1,
   },
   toggleContainer: {
     flexDirection: "row",
