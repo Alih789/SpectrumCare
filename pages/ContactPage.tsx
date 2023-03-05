@@ -72,9 +72,14 @@ function ContactPage(): JSX.Element {
   //used to store full data source
   const [fullData, setFullData] = useState(staffInfo);
 
+  // const [favData, setFavData] = useState(favStaff);
+
   const [favData, setFavData] = useState(favStaff);
+
   //used to store filtered data based on the search
-  const [searchData, setSearchData] = useState(staffInfo);
+  const [searchFullData, setSearchFullData] = useState(staffInfo);
+
+  const [searchFavData, setSearchFavData] = useState(favStaff);
   //stores current searched term 
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
@@ -96,40 +101,35 @@ function ContactPage(): JSX.Element {
   };
 
   const fuseFull = new Fuse(fullData, options);
-  console.log(options);
   const fuseFav = new Fuse(favData, options);
-  console.log(options);
 
   const handleSearch = (text: string) => {
-    console.log(activeTab);
     if (text.length == 0) {
       if (activeTab == 'General'){
-        setSearchData(fullData);
+        setSearchFullData(fullData);
       } 
       if (activeTab == 'Favorite'){
-        setSearchData(favData);
+        setSearchFavData(favData);
       }
+      // setSearchFullData(fullData);
     } else {
-      console.log(activeTab);
       if (activeTab == 'General'){
         const results = fuseFull.search(text);
-        console.log("full",results);
         const filteredData = results.map((result) => result.item);
-        setSearchData(filteredData);    
+        setSearchFullData(filteredData);    
       }
       if (activeTab == 'Favorite') {
-        console.log(text);
         const resultsFav = fuseFav.search(text); //returns an empty array 
-        console.log("fav",resultsFav);
         const filteredFavData = resultsFav.map((result) => result.item);
-        setSearchData(filteredFavData);   
-      }
+        setSearchFavData(filteredFavData);   
+      } 
     }
     setSearchTerm(text);
   };
   
-  const handlePress = () => {
+  const handlePress = (item:any) => {
     setIsPressed(!isPressed);
+    setFavData([...favData, item]);
   };
 
   const handleTabToggle = (tab: string) => {
@@ -139,7 +139,7 @@ function ContactPage(): JSX.Element {
   const renderGeneralTab = () => {
     return (
     <FlatList
-        data={searchData}
+        data={searchFullData}
         renderItem={({ item }) =>
           <StaffContactEntry
             onPress={handlePress}
@@ -157,7 +157,7 @@ function ContactPage(): JSX.Element {
   const renderFavoriteTab = () => {
     return (
     <FlatList
-        data={favStaff}
+        data={searchFavData}
         renderItem={({ item }) =>
           <StaffContactEntry
             onPress={handlePress}
@@ -188,9 +188,8 @@ function ContactPage(): JSX.Element {
         onChangeText={handleSearch}
         value={searchTerm}
         onClearPress={() => {
-          console.log("return",activeTab)
-          if (activeTab == 'General'){setSearchData(fullData);}  
-          if (activeTab == 'Favorite'){setSearchData(favData);}
+          if (activeTab == 'General'){setSearchFullData(fullData);}  
+          if (activeTab == 'Favorite'){setSearchFavData(favData);}
           setSearchTerm('')
         }}
         style={styles.searchBar}
