@@ -1,4 +1,5 @@
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react'
 
 type itemProps ={name: string, imagePath: any, jobTitle: string, department: string}
@@ -14,7 +15,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department}: itemProps): 
       <Image source={imagePath} style={styles.image}/>
       <View style={styles.detailsContainer}>
         <Pressable style={styles.favButton} onPress={handleFavPress}>
-          <Text>Button</Text>
+          <Ionicons name="heart" size={22}/>
         </Pressable>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
@@ -49,6 +50,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -25,
     right: 0,
+    backgroundColor: "white",
+    borderRadius: 10,
   },
   name: {
     flexWrap: "wrap",
