@@ -77,7 +77,7 @@ export default AllStaffInfo = [
         "imagePath": require("../assets/images/staffImages/SherzanaS_Pediatrics.jpeg"),
         "department": "Director, Fetal Cardiology & Echocardiography",
         "jobTitle": "Associate Professor, Division of Pediatric Cardiology",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/21879/jonathan-dayan---pediatric-cardiology---fetal-cardiology-sacramento/",
+        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32222/sherzana-sunderji---fetal-cardiology---fetal-echocardiography---pediatric-cardiology---pediatric-cardiology-advanced-imaging-sacramento/",
       },
       // {
       //   "id": "11",
@@ -85,7 +85,7 @@ export default AllStaffInfo = [
       //   "imagePath": require("../assets/images/staffImages/JonathanD_Pediatrics.jpeg"),
       //   "department": "Division of Pediatric Cardiology",
       //   "jobTitle": "Associate Professor",
-      //   "hyperlink": "",
+      //   "hyperlink": "https://health.ucdavis.edu/pediatrics/team/21879/jonathan-dayan---pediatric-cardiology---fetal-cardiology-sacramento/",
       // },
       // {
       //   "id": "12",
