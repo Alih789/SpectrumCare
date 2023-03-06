@@ -7,13 +7,14 @@ import Fuse from 'fuse.js';
 
 function ContactPage(): JSX.Element {
 
-  const staffInfo = [
+  const fullStaffInfo = [
     {
       "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
       "name": "Victoria R. Dimitriades, M.D.",
       "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
       "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Clinical Professor, Department of Pediatrics",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
     },
     {
       "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
@@ -21,6 +22,7 @@ function ContactPage(): JSX.Element {
       "imagePath": require("../assets/images/staffImages/Sheryl_Rheumatology.jpeg"),
       "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Clinical Professor",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/43114/sheryl-boon-sacramento",
     },
     {
       "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
@@ -28,6 +30,7 @@ function ContactPage(): JSX.Element {
       "imagePath": require("../assets/images/staffImages/Angel_Rheumatology.jpeg"),
       "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Associate Professor",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32290/angel_alberto-herrera_guerra-pediatric_infectious_diseases",
     },
     {
       "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
@@ -35,6 +38,7 @@ function ContactPage(): JSX.Element {
       "imagePath": require("../assets/images/staffImages/Anh_Rheumatology.jpeg"),
       "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Assistant Clinical Professor",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42636/anh-nguyen-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
     },
     {
       "id": "05-CAARE-Diagnostic-and-Treatment-Center",
@@ -42,41 +46,45 @@ function ContactPage(): JSX.Element {
       "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
       "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Clinical Professor, Department of Pediatrics",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
     },
   ];
 
   const favStaff =[
     {
       "id": "06-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Sheryl J. Boon, M.D., M.S.P.H.",
-      "imagePath": require("../assets/images/staffImages/Sheryl_Rheumatology.jpeg"),
-      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Clinical Professor",
-    },
-    {
-      "id": "07-Pediatric-Allergy-Immunology-and-Rheumatology",
       "name": "Angel Alberto Herrera Guerra, M.D.",
       "imagePath": require("../assets/images/staffImages/Angel_Rheumatology.jpeg"),
       "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Associate Professor",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32290/angel_alberto-herrera_guerra-pediatric_infectious_diseases",
     },
     {
-      "id": "08-Pediatric-Allergy-Immunology-and-Rheumatology",
+      "id": "07-Pediatric-Allergy-Immunology-and-Rheumatology",
       "name": "Anh Phuong Nguyen, M.D., M.P.H.",
       "imagePath": require("../assets/images/staffImages/Anh_Rheumatology.jpeg"),
       "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
       "jobTitle": "Assistant Clinical Professor",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42636/anh-nguyen-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
+    },
+    {
+      "id": "08-CAARE-Diagnostic-and-Treatment-Center",
+      "name": "Victoria R. Dimitriades, M.D.",
+      "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
+      "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+      "jobTitle": "Clinical Professor, Department of Pediatrics",
+      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
     },
   ];
 
   //used to store Full data source
-  const [fullData, setFullData] = useState(staffInfo);
+  const [fullData, setFullData] = useState(fullStaffInfo);
   //used to store Fav data source
   const [favData, setFavData] = useState(favStaff);
   //used to store Full filtered data based on the search
-  const [searchFullData, setSearchFullData] = useState(staffInfo);
+  const [searchFullData, setSearchFullData] = useState(fullData);
   //used to store Fav filtered data based on the search
-  const [searchFavData, setSearchFavData] = useState(favStaff);
+  const [searchFavData, setSearchFavData] = useState(favData);
   //stores current searched term 
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
@@ -142,6 +150,7 @@ function ContactPage(): JSX.Element {
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
+            hyperlink={item.hyperlink}
           />}
         keyExtractor={item => item.id}
         style={[styles.list, { height: height - 150 }]}
@@ -160,6 +169,7 @@ function ContactPage(): JSX.Element {
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
+            hyperlink={item.hyperlink}
           />}
         keyExtractor={item => item.id}
         style={[styles.list, { height: height - 150 }]}

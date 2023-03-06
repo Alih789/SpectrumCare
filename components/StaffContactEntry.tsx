@@ -1,10 +1,10 @@
-import {Image, StyleSheet, Text, View, Pressable} from 'react-native'
+import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react'
 
-type itemProps ={name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void}
+type itemProps ={name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
 
-function StaffContactEntry({name, imagePath, jobTitle, department, onPress}: itemProps): JSX.Element {
+function StaffContactEntry({name, imagePath, jobTitle, department, onPress, hyperlink}: itemProps): JSX.Element {
 
   const [isPressed, setIsPressed] = useState(false);
   
@@ -25,6 +25,11 @@ function StaffContactEntry({name, imagePath, jobTitle, department, onPress}: ite
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
         <Text style={styles.department}>{department}</Text>
+        <Pressable onPress={() => Linking.openURL(hyperlink)}>
+          <View style={styles.box}>
+            <Text style={styles.linkText}>View Full Profile {">"} </Text>
+          </View>
+        </Pressable>
       </View>
     </View>
   )
@@ -74,9 +79,20 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   department: {
-    flex: 0.6,
+    flex: 0.5,
     flexWrap: "wrap",
     fontSize: 9,
+  },
+  box: {
+    borderWidth: 2,
+    borderColor: '#003A5D',
+    padding: 10,
+    borderRadius: 8,
+  },
+  linkText: {
+    textAlign: 'center',
+    fontWeight: "bold",
+    color: "#003A5D",
   },
 })
 export default StaffContactEntry
