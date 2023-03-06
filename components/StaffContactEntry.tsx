@@ -14,7 +14,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department, onPress, hype
       onPress(!isPressed);
     }
   }
-  
+
   return (
     <View style={styles.container}>
       <Image source={imagePath} style={styles.image}/>

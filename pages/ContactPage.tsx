@@ -5,50 +5,51 @@ import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import Fuse from 'fuse.js';
 
+
 function ContactPage(): JSX.Element {
 
-  const fullStaffInfo = [
+  const AllStaffInfo = [
     {
-      "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Victoria R. Dimitriades, M.D.",
-      "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
-      "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Clinical Professor, Department of Pediatrics",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
-    },
-    {
-      "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Sheryl J. Boon, M.D., M.S.P.H.",
-      "imagePath": require("../assets/images/staffImages/Sheryl_Rheumatology.jpeg"),
-      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Clinical Professor",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/43114/sheryl-boon-sacramento",
-    },
-    {
-      "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Angel Alberto Herrera Guerra, M.D.",
-      "imagePath": require("../assets/images/staffImages/Angel_Rheumatology.jpeg"),
-      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Associate Professor",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32290/angel_alberto-herrera_guerra-pediatric_infectious_diseases",
-    },
-    {
-      "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Anh Phuong Nguyen, M.D., M.P.H.",
-      "imagePath": require("../assets/images/staffImages/Anh_Rheumatology.jpeg"),
-      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Assistant Clinical Professor",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42636/anh-nguyen-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
-    },
-    {
-      "id": "05-CAARE-Diagnostic-and-Treatment-Center",
-      "name": "Victoria R. Dimitriades, M.D.",
-      "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
-      "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Clinical Professor, Department of Pediatrics",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
-    },
-  ];
+        "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Victoria R. Dimitriades, M.D.",
+        "imagePath": require('../assets/images/staffImages/Victoria_R_Immunolgy.jpeg'),
+        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor, Department of Pediatrics",
+        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento"
+      },
+      {
+        "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Sheryl J. Boon, M.D., M.S.P.H.",
+        "imagePath": require('../assets/images/staffImages/Sheryl_Rheumatology.jpeg'),
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor",
+        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/43114/sheryl-boon-sacramento"
+      },
+      {
+        "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Angel Alberto Herrera Guerra, M.D.",
+        "imagePath": require('../assets/images/staffImages/Angel_Rheumatology.jpeg'),
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Associate Professor",
+        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32290/angel_alberto-herrera_guerra-pediatric_infectious_diseases"
+      },
+      {
+        "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
+        "name": "Anh Phuong Nguyen, M.D., M.P.H.",
+        "imagePath": require('../assets/images/staffImages/Anh_Rheumatology.jpeg'),
+        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Assistant Clinical Professor",
+        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42636/anh-nguyen-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento"
+      },
+      {
+        "id": "05-CAARE-Diagnostic-and-Treatment-Center",
+        "name": "Victoria R. Dimitriades, M.D.",
+        "imagePath": require('../assets/images/staffImages/Victoria_R_Immunolgy.jpeg'),
+        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
+        "jobTitle": "Clinical Professor, Department of Pediatrics",
+        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento"
+      }
+];
 
   const favStaff =[
     {
@@ -78,7 +79,8 @@ function ContactPage(): JSX.Element {
   ];
 
   //used to store Full data source
-  const [fullData, setFullData] = useState(fullStaffInfo);
+  const [fullData, setFullData] = useState(AllStaffInfo);
+  // console.log(fullData)
   //used to store Fav data source
   const [favData, setFavData] = useState(favStaff);
   //used to store Full filtered data based on the search
@@ -92,7 +94,7 @@ function ContactPage(): JSX.Element {
   //stores current state of favorite button: red or gray
   const [isPressed, setIsPressed] = useState(false);
   //determines which tab you are on
-  const [activeTab, setActiveTab] = useState('General')
+  const [activeTab, setActiveTab] = useState('AllStaff')
 
   const options = {
     keys: ["name"],
@@ -110,14 +112,14 @@ function ContactPage(): JSX.Element {
 
   const handleSearch = (text: string) => {
     if (text.length == 0) {
-      if (activeTab == 'General'){
+      if (activeTab == 'AllStaff'){
         setSearchFullData(fullData);
       } 
       if (activeTab == 'Favorite'){
         setSearchFavData(favData);
       }
     } else {
-      if (activeTab == 'General'){
+      if (activeTab == 'AllStaff'){
         const results = fuseFull.search(text);
         const filteredData = results.map((result) => result.item);
         setSearchFullData(filteredData);    
@@ -139,7 +141,7 @@ function ContactPage(): JSX.Element {
     setActiveTab(tab);
   };
 
-  const renderGeneralTab = () => {
+  const renderAllStaffTab = () => {
     return (
     <FlatList
         data={searchFullData}
@@ -152,7 +154,7 @@ function ContactPage(): JSX.Element {
             department={item.department}
             hyperlink={item.hyperlink}
           />}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         style={[styles.list, { height: height - 150 }]}
       />
     )
@@ -178,8 +180,8 @@ function ContactPage(): JSX.Element {
   };
 
   const renderActiveTab = () =>{
-    if(activeTab == 'General') {
-      return renderGeneralTab();
+    if(activeTab == 'AllStaff') {
+      return renderAllStaffTab();
     } else {
       return renderFavoriteTab();
     }
@@ -193,15 +195,15 @@ function ContactPage(): JSX.Element {
         onChangeText={handleSearch}
         value={searchTerm}
         onClearPress={() => {
-          if (activeTab == 'General'){setSearchFullData(fullData);}  
+          if (activeTab == 'AllStaff'){setSearchFullData(fullData);}  
           if (activeTab == 'Favorite'){setSearchFavData(favData);}
           setSearchTerm('')
         }}
         style={styles.searchBar}
       />
       <View style={styles.toggleContainer}>
-        <Pressable style={styles.tabButton} onPress={() => handleTabToggle('General')}>
-          <Text style={styles.tabText}>General</Text>
+        <Pressable style={styles.tabButton} onPress={() => handleTabToggle('AllStaff')}>
+          <Text style={styles.tabText}>All Staff</Text>
         </Pressable>
       <View style={styles.seperator}></View>
         <Pressable  style={styles.tabButton} onPress={() => handleTabToggle('Favorite')}>
