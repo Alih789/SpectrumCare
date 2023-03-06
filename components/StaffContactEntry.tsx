@@ -54,12 +54,13 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flexDirection: 'column',
     flexShrink: 1,
-    position: 'relative',
+    // position: 'relative',
   },
   favPostioning:{
-    position: "absolute",
     top: -25,
     right: 0,
+    position: "absolute",
+
   },
   defaultFav: {
     color: 'grey',

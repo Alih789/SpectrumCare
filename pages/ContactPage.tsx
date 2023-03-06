@@ -1,88 +1,19 @@
 import React, { useState } from 'react';
 import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
-// import NotesButton from '../components/NotesButton';
 import SearchBar from "react-native-dynamic-search-bar";
 import Fuse from 'fuse.js';
+import AllStaffInfo from "../assets/AllStaffInfo.js";
+import FavStaffInfo from "../assets/FavStaffInfo.js";
 
 
 function ContactPage(): JSX.Element {
-
-  const AllStaffInfo = [
-    {
-        "id": "01-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Victoria R. Dimitriades, M.D.",
-        "imagePath": require('../assets/images/staffImages/Victoria_R_Immunolgy.jpeg'),
-        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Clinical Professor, Department of Pediatrics",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento"
-      },
-      {
-        "id": "02-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Sheryl J. Boon, M.D., M.S.P.H.",
-        "imagePath": require('../assets/images/staffImages/Sheryl_Rheumatology.jpeg'),
-        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Clinical Professor",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/43114/sheryl-boon-sacramento"
-      },
-      {
-        "id": "03-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Angel Alberto Herrera Guerra, M.D.",
-        "imagePath": require('../assets/images/staffImages/Angel_Rheumatology.jpeg'),
-        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Associate Professor",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32290/angel_alberto-herrera_guerra-pediatric_infectious_diseases"
-      },
-      {
-        "id": "04-Pediatric-Allergy-Immunology-and-Rheumatology",
-        "name": "Anh Phuong Nguyen, M.D., M.P.H.",
-        "imagePath": require('../assets/images/staffImages/Anh_Rheumatology.jpeg'),
-        "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Assistant Clinical Professor",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42636/anh-nguyen-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento"
-      },
-      {
-        "id": "05-CAARE-Diagnostic-and-Treatment-Center",
-        "name": "Victoria R. Dimitriades, M.D.",
-        "imagePath": require('../assets/images/staffImages/Victoria_R_Immunolgy.jpeg'),
-        "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
-        "jobTitle": "Clinical Professor, Department of Pediatrics",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento"
-      }
-];
-
-  const favStaff =[
-    {
-      "id": "06-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Angel Alberto Herrera Guerra, M.D.",
-      "imagePath": require("../assets/images/staffImages/Angel_Rheumatology.jpeg"),
-      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Associate Professor",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/32290/angel_alberto-herrera_guerra-pediatric_infectious_diseases",
-    },
-    {
-      "id": "07-Pediatric-Allergy-Immunology-and-Rheumatology",
-      "name": "Anh Phuong Nguyen, M.D., M.P.H.",
-      "imagePath": require("../assets/images/staffImages/Anh_Rheumatology.jpeg"),
-      "department": "Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Assistant Clinical Professor",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42636/anh-nguyen-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
-    },
-    {
-      "id": "08-CAARE-Diagnostic-and-Treatment-Center",
-      "name": "Victoria R. Dimitriades, M.D.",
-      "imagePath": require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg"),
-      "department": "Chief, Division of Pediatric Allergy, Immunology and Rheumatology",
-      "jobTitle": "Clinical Professor, Department of Pediatrics",
-      "hyperlink": "https://health.ucdavis.edu/pediatrics/team/22079/victoria-dimitriades-internal_medicine-pediatric_allergy_immunology_and_rheumatology-sacramento",
-    },
-  ];
 
   //used to store Full data source
   const [fullData, setFullData] = useState(AllStaffInfo);
   // console.log(fullData)
   //used to store Fav data source
-  const [favData, setFavData] = useState(favStaff);
+  const [favData, setFavData] = useState(FavStaffInfo);
   //used to store Full filtered data based on the search
   const [searchFullData, setSearchFullData] = useState(fullData);
   //used to store Fav filtered data based on the search
