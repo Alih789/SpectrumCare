@@ -9,33 +9,40 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
-import {Header} from 'react-native/Libraries/NewAppScreen';
+import {Procedure} from '../assets/customTypes';
+import YoutubeIframe from 'react-native-youtube-iframe';
 
-type PrepCarouselProps = {
-  imageURLs: string[];
-  headers: string[];
-  bodyText: string[];
-};
+interface PrepCarouselProps {
+  procedureInfo: Procedure;
+}
 
 const {width, height} = Dimensions.get('window');
 
 export default function PrepCarousel({
-  imageURLs,
-  headers,
-  bodyText,
+  procedureInfo,
 }: PrepCarouselProps): JSX.Element {
   let JSXData = [];
-  for (const i in imageURLs) {
+  for (const page of procedureInfo.pages) {
     JSXData.push(
       <>
-        <Text style={styles.header}>{headers[i]}</Text>
-        <Image
-          key={imageURLs[i]}
-          source={{uri: imageURLs[i]}}
-          style={styles.image}
-        />
-        <Text key={bodyText[i]} style={styles.text}>
-          {bodyText[i]}
+        <Text style={styles.header}>{page.header}</Text>
+        {page.media.isVideo ? (
+          <YoutubeIframe
+            videoId={page.media.content}
+            height={styles.video.height}
+            width={styles.video.width}
+            webViewStyle={{opacity: 0.99}}
+          />
+        ) : (
+          <Image
+            key={page.media.content}
+            source={{uri: page.media.content}}
+            style={styles.image}
+          />
+        )}
+
+        <Text key={page.bodyText} style={styles.text}>
+          {page.bodyText}
         </Text>
       </>,
     );
@@ -76,14 +83,23 @@ const styles = StyleSheet.create({
     height: height / 2,
     width: width,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   scrollView: {
     alignSelf: 'center',
     borderColor: 'black',
-    margin: 15,
+    margin: 10,
   },
 
   text: {
     color: 'white',
     fontSize: 15,
+  },
+  video: {
+    height: 250,
+    width: Dimensions.get('screen').width,
   },
 });
