@@ -78,10 +78,7 @@ function NotesButton(): JSX.Element {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={{
-              uri:
-                'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
-            }}
+            source={require("../assets/images/extraIcons/notesIconPhotoshoped.png")}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.floatingButtonStyle}
