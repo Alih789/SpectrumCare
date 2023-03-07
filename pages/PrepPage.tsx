@@ -5,17 +5,14 @@ import ProcedureList from '../components/ProcedureList';
 import prepInfo from '../assets/testData/procedureMenuData.json';
 import Fuse from 'fuse.js';
 
-
 function PrepPage(): JSX.Element {
-  //used to store full data source
-  const [fullData, setFullData] = useState(prepInfo.data);
   //used to store filtered data based on the search
   const [searchData, setSearchData] = useState(prepInfo.data);
-  //stores current searched term 
+  //stores current searched term
   const [searchTerm, setSearchTerm] = useState('');
 
   const options = {
-    keys: ["id"],
+    keys: ['id'],
     //search score for how close the match is to the actual string
     includeScore: true,
     threshold: 0.3,
@@ -25,14 +22,14 @@ function PrepPage(): JSX.Element {
     maxPatternLength: 32,
   };
 
-  const fuse = new Fuse(fullData, options);
+  const fuse = new Fuse(prepInfo.data, options);
 
   const handleSearch = (text: string) => {
     if (text.length == 0) {
-      setSearchData(fullData);
+      setSearchData(prepInfo.data);
     } else {
       const results = fuse.search(text);
-      const filteredData = results.map((result) => result.item);
+      const filteredData = results.map(result => result.item);
       setSearchData(filteredData);
     }
     setSearchTerm(text);
@@ -45,8 +42,8 @@ function PrepPage(): JSX.Element {
         placeholder="Search"
         value={searchTerm}
         onClearPress={() => {
-          setSearchData(fullData);
-          setSearchTerm('')
+          setSearchData(prepInfo.data);
+          setSearchTerm('');
         }}
         onChangeText={handleSearch}
         style={styles.searchBar}

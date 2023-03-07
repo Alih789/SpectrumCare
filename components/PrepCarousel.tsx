@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,7 +10,6 @@ import {
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import {Procedure} from '../assets/customTypes';
-import YoutubeIframe from 'react-native-youtube-iframe';
 import YoutubePlayer from './YoutubePlayer';
 
 interface PrepCarouselProps {
@@ -22,6 +21,8 @@ const {width, height} = Dimensions.get('window');
 export default function PrepCarousel({
   procedureInfo,
 }: PrepCarouselProps): JSX.Element {
+  const [playing, setPlaying] = useState(false);
+
   let JSXData = [];
   for (const page of procedureInfo.pages) {
     JSXData.push(
@@ -32,6 +33,8 @@ export default function PrepCarousel({
             videoId={page.media.content}
             height={styles.video.height}
             width={styles.video.width}
+            playing={playing}
+            setPlaying={setPlaying}
           />
         ) : (
           <Image
@@ -59,10 +62,9 @@ export default function PrepCarousel({
         data={JSXData}
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
-          activeOffsetY: [-10, 10],
         }}
         scrollAnimationDuration={1000}
-        // onSnapToItem={(index: number) => console.log('current index:', index)}
+        onScrollEnd={() => setPlaying(false)}
         renderItem={({item}) => <View>{item}</View>}
       />
     </ScrollView>

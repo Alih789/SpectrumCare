@@ -1,50 +1,61 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect, useState } from 'react'
+import {useNavigation} from '@react-navigation/native';
+import React, {useCallback} from 'react';
+import {Pressable} from 'react-native';
+import {View} from 'react-native';
 import YoutubeIframe from 'react-native-youtube-iframe';
 
-
 interface YoutubePlayerProps {
-    height: number,
-    width: number,
-    videoId: string
+  height: number;
+  width: number;
+  videoId: string;
+  playing: boolean;
+  setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function YoutubePlayer({
-    height,
-    width,
-    videoId,
-} : YoutubePlayerProps) {
-    const [playing, setPlaying] = useState(false)
-  const onStateChanged = useCallback( (state:string) =>{
-    if(state === "ended"){
-      setPlaying(false)
+  height,
+  width,
+  videoId,
+  playing,
+  setPlaying,
+}: YoutubePlayerProps) {
+  const onStateChanged = useCallback((state: string) => {
+    if (state === 'ended') {
+      setPlaying(false);
     }
-    if(state === "playing"){
-      setPlaying(true)
+    if (state === 'playing') {
+      setPlaying(true);
     }
-    if(state === "paused"){
-      setPlaying(false)
+    if (state === 'paused') {
+      setPlaying(false);
     }
-  },[])
+  }, []);
 
+  // Used to track if user goes back to list
   const navigation = useNavigation();
-  useEffect(() => {
-    const blur = navigation.addListener('blur', ()=> {setPlaying(false)})
-    const focus = navigation.addListener('focus', ()=> {setPlaying(true)})
-    // return blur, focus
-  }, [navigation])
-  
-  
-  
+  navigation.addListener('state', () => {
+    setPlaying(false);
+  });
+
+  // Used to track if user switches tabs
+  navigation.getParent()?.addListener('state', () => {
+    setPlaying(false);
+  });
 
   return (
-    <YoutubeIframe
-        play={playing}
-        videoId={videoId}
-        height={height}
-        width={width}
-        webViewStyle={{opacity: 0.99}}
-        onChangeState={onStateChanged}
-        initialPlayerParams={{modestbranding: true}}
-      />
-  )
+    <Pressable
+      onPress={() => {
+        setPlaying(prev => !prev);
+      }}>
+      <View pointerEvents="none">
+        <YoutubeIframe
+          play={playing}
+          videoId={videoId}
+          height={height}
+          width={width}
+          webViewStyle={{opacity: 0.99}}
+          onChangeState={onStateChanged}
+        />
+      </View>
+    </Pressable>
+  );
 }
