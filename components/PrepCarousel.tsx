@@ -11,6 +11,7 @@ import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import {Procedure} from '../assets/customTypes';
 import YoutubeIframe from 'react-native-youtube-iframe';
+import YoutubePlayer from './YoutubePlayer';
 
 interface PrepCarouselProps {
   procedureInfo: Procedure;
@@ -27,11 +28,10 @@ export default function PrepCarousel({
       <>
         <Text style={styles.header}>{page.header}</Text>
         {page.media.isVideo ? (
-          <YoutubeIframe
+          <YoutubePlayer
             videoId={page.media.content}
             height={styles.video.height}
             width={styles.video.width}
-            webViewStyle={{opacity: 0.99}}
           />
         ) : (
           <Image
