@@ -37,7 +37,7 @@ function ContactPage(): JSX.Element {
   };
 
   const fuseFull = new Fuse(fullData, options);
-  const fuseFav = new Fuse(favData, options);
+  // const fuseFav = new Fuse(favData, options);
 
   const handleSearch = (text: string) => {
     if (text.length == 0) {
@@ -53,11 +53,11 @@ function ContactPage(): JSX.Element {
         const filteredData = results.map((result) => result.item);
         setSearchFullData(filteredData);    
       }
-      if (activeTab == 'Favorite') {
-        const resultsFav = fuseFav.search(text); //returns an empty array 
-        const filteredFavData = resultsFav.map((result) => result.item);
-        setSearchFavData(filteredFavData);   
-      } 
+      // if (activeTab == 'Favorite') {
+      //   const resultsFav = fuseFull.search(text);  
+      //   const filteredFavData = resultsFav.map((result) => result.item);
+      //   setSearchFavData(filteredFavData);   
+      // } 
     }
     setSearchTerm(text);
   };
