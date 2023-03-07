@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
+import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
 
@@ -146,6 +147,7 @@ function ContactPage(): JSX.Element {
         </Pressable>
       </View>
       {renderActiveTab()}
+      <NotesButton></NotesButton>
     </SafeAreaView>
   );
 }
