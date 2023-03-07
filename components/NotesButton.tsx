@@ -94,10 +94,10 @@ function NotesButton(): JSX.Element {
       transparent={true}>
         <SafeAreaView style={styles.modalBackgroundStyle}>
           <View style ={{flexDirection:'row',justifyContent:"flex-start"}}>
-            <Text onPress={()=> onCollapseHandler(text)} style = {{textAlignVertical:"center",paddingLeft:10, color:"black"}}>Collapse</Text>
+            <Text onPress={()=> onCollapseHandler(text)} style = {{textAlignVertical:"center",paddingLeft:10, paddingTop:10, color:"black"}}>Collapse</Text>
             <Text style = {[styles.text,{marginLeft:"20%"}]}>Notes</Text>
           </View>
-          <View>
+          <View style = {{borderBottomLeftRadius:10, borderBottomRightRadius:10,overflow: 'hidden'}}>
             <TextInput
               editable
               multiline
@@ -105,14 +105,13 @@ function NotesButton(): JSX.Element {
               maxLength={1000}
               onChangeText={text => onChangeText(text)}
               value={text}
-              style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top"}}
+              style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top",height:"90%"}}
             />
+            <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
           </View>        
         </SafeAreaView>
       </Modal>
     );
-
-
   }
 
 
@@ -131,11 +130,11 @@ function NotesButton(): JSX.Element {
       resizeMode: 'contain',
       width: 50,
       height: 50,
-      
+          
     },
     modalBackgroundStyle:{
       position:"relative",
-      height:"80%",
+      height:"60%",
       width:"80%",
       backgroundColor:"#FFF",
       alignSelf:"center",
@@ -143,12 +142,25 @@ function NotesButton(): JSX.Element {
       elevation:7,
       shadowRadius:10,
       shadowColor:"black",
-      marginTop:"10%"    
+      marginTop:"30%"    
     },
     text: {
       color: "black",
       fontSize: 30,
     },
+    collapsedBanner:{
+      padding: 10,
+      flexDirection:'row',
+      justifyContent:"flex-start",
+    },
+    warningBanner:{
+      color: "black",
+      fontSize: 14,
+      backgroundColor:"#ff9800",
+      padding:10,
+      height:60,
+      textAlignVertical:'bottom',
+    }
   });
 
 
