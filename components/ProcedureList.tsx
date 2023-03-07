@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderRadius: 10,
     borderTopColor: 'white',
     borderTopWidth: 1,
     borderBottomColor: 'white',
