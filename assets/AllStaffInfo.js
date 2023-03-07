@@ -63,14 +63,14 @@ export default AllStaffInfo = [
       //   "jobTitle": "Health Sciences Clinical Professor",
       //   "hyperlink": "https://health.ucdavis.edu/pediatrics/team/42886/hema-bhargava---echocardiography---pediatric-cardiology-sacramento/",
       // },
-      {
-        "id": "09",
-        "name": "Daniel Lee Cortez, M.D., Ph.D.",
-        "imagePath": require("../assets/images/staffImages/DanielC_Pediatrics.jpeg"),
-        "department": "Director, Pediatric Electrophysiology",
-        "jobTitle": "Associate Professor",
-        "hyperlink": "https://health.ucdavis.edu/pediatrics/team/43007/daniel-cortez---electrophysiology---congenital-anomalies---pediatric-cardiology---pediatrics---adult-congenital-cardiology-sacramento/",
-      },
+      // {
+      //   "id": "09",
+      //   "name": "Daniel Lee Cortez, M.D., Ph.D.",
+      //   "imagePath": require("../assets/images/staffImages/DanielC_Pediatrics.jpeg"),
+      //   "department": "Director, Pediatric Electrophysiology",
+      //   "jobTitle": "Associate Professor",
+      //   "hyperlink": "https://health.ucdavis.edu/pediatrics/team/43007/daniel-cortez---electrophysiology---congenital-anomalies---pediatric-cardiology---pediatrics---adult-congenital-cardiology-sacramento/",
+      // },
       {
         "id": "10",
         "name": "Sherzana Sunderji, M.D.",

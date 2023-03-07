@@ -4,16 +4,14 @@ import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
-import FavStaffInfo from "../assets/FavStaffInfo.js";
 
 
 function ContactPage(): JSX.Element {
 
-  //used to store Full data source
+  //used to store All Staff data source
   const [fullData, setFullData] = useState(AllStaffInfo);
-  // console.log(fullData)
-  //used to store Fav data source
-  const [favData, setFavData] = useState(FavStaffInfo);
+  //used to store Favorite Staff data source
+  const [favData, setFavData] = useState([]);
   //used to store Full filtered data based on the search
   const [searchFullData, setSearchFullData] = useState(fullData);
   //used to store Fav filtered data based on the search
@@ -64,8 +62,13 @@ function ContactPage(): JSX.Element {
     setSearchTerm(text);
   };
   
-  const handlePress = () => {
+  const handlePress = (docID) => { () =>
+
     setIsPressed(!isPressed);
+    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID)
+    
+    setFavData(favData);
+    console.log("FAVDATA: ", favData)
   };
 
   const handleTabToggle = (tab: string) => {
@@ -78,7 +81,7 @@ function ContactPage(): JSX.Element {
         data={searchFullData}
         renderItem={({ item }) =>
           <StaffContactEntry
-            onPress={handlePress}
+            onPress={() => handlePress(item.id)}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
@@ -94,16 +97,17 @@ function ContactPage(): JSX.Element {
   const renderFavoriteTab = () => {
     return (
     <FlatList
-        data={searchFavData}
+        data={searchFullData}
         renderItem={({ item }) =>
+          favData.indexOf(item.id) > -1 ?
           <StaffContactEntry
-            onPress={handlePress}
+            onPress={() => handlePress(item.id)}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
-          />}
+          /> : console.log("ITEM ID NOT FOUND",item.id, " CURRENT ARRAY: ", favData)}
         keyExtractor={item => item.id}
         style={[styles.list, { height: height - 150 }]}
       />
@@ -156,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 10,
   },
-  tabButton: { //used to customize the way the button looks - current pressed turn light blue
+  tabButton: { 
     backgroundColor: "white",
     borderRadius: 50,
     width: 165,
