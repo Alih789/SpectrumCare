@@ -271,7 +271,10 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           </Pressable>
         </View>
 
-        <WFCarousel imageURLs={images} text={text} />
+        <View style={styles.carousel}>
+          <WFCarousel imageURLs={images} text={text} />
+        </View>
+
 
         <View style={styles.centeredView}>
           <Modal
@@ -328,6 +331,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#003a5d",
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  carousel: {
+    // marginTop: 50
+    backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,

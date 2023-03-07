@@ -10,6 +10,7 @@ import {
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 type WFCarouselProps = {
   imageURLs: any[];
@@ -31,9 +32,12 @@ export default function WFCarousel({
           source={imageURLs[i]}
           style={styles.image}
         />
-        <Text key={text[i]} style={styles.text}>
-          {text[i]}
-        </Text>
+        <ScrollView style={styles.scrollView}>
+          <Text key={text[i]} style={styles.text}>
+            {text[i]}
+          </Text>
+        </ScrollView>
+
       </>,
     );
   }
@@ -63,7 +67,7 @@ export default function WFCarousel({
 
         scrollAnimationDuration={500}
         // onSnapToItem={(index: number) => console.log('current index:', index)}
-        renderItem={({ item }) => <View>{item}</View>}
+        renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
       />
       <View style={styles.navigationContainer}>
         <View style={styles.indicatorContainer}>
@@ -99,23 +103,26 @@ const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    width: width,
+    height: "100%"
   },
   image: {
     resizeMode: 'cover',
-    height:500,
+    maxHeight: 500,
     width: width,
+    flex: 1,
   },
   scrollView: {
-    alignSelf: 'center',
-    borderColor: 'black',
-    margin: 15,
+    flex: 1,
   },
   text: {
     width: width,
-    height: 150,
+    height: 300,
     padding: 10,
     backgroundColor: 'white',
-    fontSize: 18
+    fontSize: 18,
   },
   navigationContainer: {
     alignItems: 'center',
