@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     maxHeight: 500,
     width: width,
-    flex: 2,
+    flex: 1,
   },
   scrollView: {
     flex: 1,
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     position: 'absolute',
-    bottom: 550,
+    bottom: "60%",
     backgroundColor: '#00b2e3',
     borderRadius: 100,
   },
