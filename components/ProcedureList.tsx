@@ -41,7 +41,6 @@ function Route({title, routeID}: RouteProps) {
               routeTitle: title,
             },
           });
-          // console.log("ROUTE ID IS: " + routeID)
         }}
         style={styles.touchable}>
         <View style={styles.route}>

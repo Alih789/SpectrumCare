@@ -11,6 +11,7 @@ import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import {Procedure} from '../assets/customTypes';
 import YoutubePlayer from './YoutubePlayer';
+import BackButton from './BackButton';
 
 interface PrepCarouselProps {
   procedureInfo: Procedure;
@@ -27,7 +28,10 @@ export default function PrepCarousel({
   for (const page of procedureInfo.pages) {
     JSXData.push(
       <>
-        <Text style={styles.header}>{page.header}</Text>
+        <View style={styles.row}>
+          <BackButton />
+          <Text style={styles.header}>{page.header}</Text>
+        </View>
         {page.media.isVideo ? (
           <YoutubePlayer
             videoId={page.media.content}
@@ -78,7 +82,8 @@ const styles = StyleSheet.create({
   },
   header: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 30,
+    textAlign: 'center',
   },
   image: {
     resizeMode: 'cover',
@@ -87,8 +92,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 5,
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
   },
   scrollView: {
     alignSelf: 'center',
