@@ -64,7 +64,7 @@ export default function WFCarousel({
           activeOffsetY: [-10, 10],
         }}
         ref={carouselRef}
-
+        windowSize={10}
         scrollAnimationDuration={500}
         // onSnapToItem={(index: number) => console.log('current index:', index)}
         renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
