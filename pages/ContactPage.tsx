@@ -73,9 +73,9 @@ function ContactPage(): JSX.Element {
   const handlePress = (docID,fullItem) => { () =>
 
     setIsPressed(!isPressed);
-    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID)
+    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID);
 
-    favDataItems.indexOf(fullItem) > -1 ? favDataItems.splice(favDataItems.indexOf(fullItem),1) : favDataItems.push(fullItem)
+    favDataItems.indexOf(fullItem) > -1 ? favDataItems.splice(favDataItems.indexOf(fullItem),1) : favDataItems.push(fullItem);
     
     setFavDataItems(favDataItems);
     setFavData(favData);
@@ -143,7 +143,7 @@ function ContactPage(): JSX.Element {
         value={searchTerm}
         onClearPress={() => {
           if (activeTab == 'AllStaff'){setSearchFullData(fullData);}  
-          if (activeTab == 'Favorite'){setSearchFavData(favData);}
+          if (activeTab == 'Favorite'){setSearchFavData(favDataItems);}
           setSearchTerm('')
         }}
         style={styles.searchBar}
