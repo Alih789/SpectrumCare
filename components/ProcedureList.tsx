@@ -41,7 +41,6 @@ function Route({title, routeID}: RouteProps) {
               routeTitle: title,
             },
           });
-          // console.log("ROUTE ID IS: " + routeID)
         }}
         style={styles.touchable}>
         <View style={styles.route}>
@@ -79,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderRadius: 10,
     borderTopColor: 'white',
     borderTopWidth: 1,
     borderBottomColor: 'white',

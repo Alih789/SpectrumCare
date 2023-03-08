@@ -1,23 +1,22 @@
-import {Image, StyleSheet, Text, SafeAreaView, Dimensions} from 'react-native';
+import {StyleSheet, Text, SafeAreaView, Dimensions} from 'react-native';
 import NotesButton from '../components/NotesButton';
-import React from 'react';
-import YoutubeIframe from 'react-native-youtube-iframe';
+import React, {useState} from 'react';
+import YoutubePlayer from '../components/YoutubePlayer';
 
 const dimensions = Dimensions.get('screen');
 
 function HomePage(): JSX.Element {
+  const [playing, setPlaying] = useState(false);
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.text}>Care Across the Spectrum</Text>
-       <NotesButton/>
-      <Image
-        source={require('../assets/images/homePageImage.png')}
-        style={{width: '70%', height: 150}}
-      />
-      <YoutubeIframe
-        videoId="Usa_M01f68o"
+      <NotesButton />
+      <YoutubePlayer
+        videoId="fHkwkegRGDU"
         height={250}
-        width={dimensions.width}
+        width={dimensions.width * 0.8}
+        playing={playing}
+        setPlaying={setPlaying}
       />
     </SafeAreaView>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Pressable, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     borderRadius: 10,
-    top: 5,
     width: '12%',
   },
 });
