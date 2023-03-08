@@ -168,7 +168,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "This is the main entrance, walk through these doors.",
       "Second set of doors.",
       "Keep walking, head towards this waterfall mosaic.",
-      "From the waterfall, walk to the right.",
+      "From the waterfall, walk to the left.",
       "You will see this view of the lobby. Walk to the right, where the arrow points \"Other Hospital Destinations\".",
       "Walk down the corridor to the elevator bay.",
       "At the end of the elevator bay, turn right here.",
@@ -220,7 +220,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
       "This is the main entrance, walk through these doors.",
       "Second set of doors.",
       "Keep walking, head towards this waterfall mosaic.",
-      "From the waterfall, walk to the right.",
+      "From the waterfall, walk to the left.",
       "You will see this view of the lobby. Walk to the right, where the arrow points \"Other Hospital Destinations\".",
       "Walk down the corridor to the elevator bay. Get on any elevator and go to the 2nd floor.",
       "When you exit the elevator, you will be in this 2nd floor elevator bay.",
@@ -271,7 +271,10 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           </Pressable>
         </View>
 
-        <WFCarousel imageURLs={images} text={text} />
+        <View style={styles.carousel}>
+          <WFCarousel imageURLs={images} text={text} />
+        </View>
+
 
         <View style={styles.centeredView}>
           <Modal
@@ -328,6 +331,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#003a5d",
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  carousel: {
+    // marginTop: 50
+    // backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,
