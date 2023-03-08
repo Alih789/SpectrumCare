@@ -7,16 +7,23 @@ import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
 
 
+type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+
+
 function ContactPage(): JSX.Element {
 
   //used to store All Staff data source
   const [fullData, setFullData] = useState(AllStaffInfo);
   //used to store Favorite Staff data source
-  const [favData, setFavData] = useState([]);
+  const [favData, setFavData] = useState<String[]>([]);
+
+  //some use state containing an array template like fulldata item: {id,name,specialty...}
+  const [favDataItems,setFavDataItems] = useState<itemProps[]>([])
+
   //used to store Full filtered data based on the search
   const [searchFullData, setSearchFullData] = useState(fullData);
   //used to store Fav filtered data based on the search
-  const [searchFavData, setSearchFavData] = useState(favData);
+  const [searchFavData, setSearchFavData] = useState(favDataItems);
   //stores current searched term 
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
@@ -38,7 +45,7 @@ function ContactPage(): JSX.Element {
   };
 
   const fuseFull = new Fuse(fullData, options);
-  // const fuseFav = new Fuse(favData, options);
+  const fuseFav = new Fuse(favDataItems, options);
 
   const handleSearch = (text: string) => {
     if (text.length == 0) {
@@ -46,7 +53,7 @@ function ContactPage(): JSX.Element {
         setSearchFullData(fullData);
       } 
       if (activeTab == 'Favorite'){
-        setSearchFavData(favData);
+        setSearchFavData(favDataItems);
       }
     } else {
       if (activeTab == 'AllStaff'){
@@ -54,20 +61,23 @@ function ContactPage(): JSX.Element {
         const filteredData = results.map((result) => result.item);
         setSearchFullData(filteredData);    
       }
-      // if (activeTab == 'Favorite') {
-      //   const resultsFav = fuseFull.search(text);  
-      //   const filteredFavData = resultsFav.map((result) => result.item);
-      //   setSearchFavData(filteredFavData);   
-      // } 
+      if (activeTab == 'Favorite') {
+        const resultsFav = fuseFav.search(text);  
+        const filteredFavData = resultsFav.map((result) => result.item);
+        setSearchFavData(filteredFavData);   
+      } 
     }
     setSearchTerm(text);
   };
   
-  const handlePress = (docID) => { () =>
+  const handlePress = (docID,fullItem) => { () =>
 
     setIsPressed(!isPressed);
-    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID)
+    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID);
+
+    favDataItems.indexOf(fullItem) > -1 ? favDataItems.splice(favDataItems.indexOf(fullItem),1) : favDataItems.push(fullItem);
     
+    setFavDataItems(favDataItems);
     setFavData(favData);
     console.log("FAVDATA: ", favData)
   };
@@ -82,7 +92,7 @@ function ContactPage(): JSX.Element {
         data={searchFullData}
         renderItem={({ item }) =>
           <StaffContactEntry
-            onPress={() => handlePress(item.id)}
+            onPress={() => handlePress(item.id,item)}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
@@ -97,12 +107,13 @@ function ContactPage(): JSX.Element {
 
   const renderFavoriteTab = () => {
     return (
+
     <FlatList
-        data={searchFullData}
+        data={searchFavData} //data = {searchNewFavData, item array}
         renderItem={({ item }) =>
           favData.indexOf(item.id) > -1 ?
           <StaffContactEntry
-            onPress={() => handlePress(item.id)}
+            onPress={() => handlePress(item.id, item)}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
@@ -132,7 +143,7 @@ function ContactPage(): JSX.Element {
         value={searchTerm}
         onClearPress={() => {
           if (activeTab == 'AllStaff'){setSearchFullData(fullData);}  
-          if (activeTab == 'Favorite'){setSearchFavData(favData);}
+          if (activeTab == 'Favorite'){setSearchFavData(favDataItems);}
           setSearchTerm('')
         }}
         style={styles.searchBar}
