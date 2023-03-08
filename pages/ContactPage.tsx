@@ -200,7 +200,6 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     borderRadius: 10,
-    padding: 5,
     marginBottom: 10,
   },
 });
