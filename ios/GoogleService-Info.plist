@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>693925734658-cjk1nh0n8c4q9ng29k2baigj40qpgk9g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.693925734658-cjk1nh0n8c4q9ng29k2baigj40qpgk9g</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>693925734658-f1pf4qbogm320l55j7qi18t3bnosona7.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBCTH1eg4F6Rm8Uy8uOn4nYj_HXQXGy9s8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>693925734658</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.SpectrumCare</string>
+	<key>PROJECT_ID</key>
+	<string>spectrumcare-d5380</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spectrumcare-d5380.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:693925734658:ios:73004c50e13537812cba1b</string>
+</dict>
+</plist>
