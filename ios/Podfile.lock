@@ -24,9 +24,9 @@ PODS:
   - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.11.1)"
-  - hermes-engine (0.71.1):
-    - hermes-engine/Pre-built (= 0.71.1)
-  - hermes-engine/Pre-built (0.71.1)
+  - hermes-engine (0.71.6):
+    - hermes-engine/Pre-built (= 0.71.6)
+  - hermes-engine/Pre-built (0.71.6)
   - libevent (2.1.12)
   - MMKV (1.2.15):
     - MMKVCore (~> 1.2.15)
@@ -572,7 +572,7 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
-  hermes-engine: 922ccd744f50d9bfde09e9677bf0f3b562ea5fb9
+  hermes-engine: b434cea529ad0152c56c7cb6486b0c4c0b23b5de
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MMKV: 7f34558bbb5a33b0eaefae2de4b6a20a2ffdad6f
   MMKVCore: ddf41b9d9262f058419f9ba7598719af56c02cd3
@@ -615,6 +615,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
 
-PODFILE CHECKSUM: 122056cba5caa74b1544f6022f616539643141d8
+PODFILE CHECKSUM: db207043e1fd35ac8df2de82189bc5f0ad37994a
 
 COCOAPODS: 1.11.3
