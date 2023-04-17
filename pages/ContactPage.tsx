@@ -5,12 +5,17 @@ import SearchBar from "react-native-dynamic-search-bar";
 import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
+import firestore from '@react-native-firebase/firestore';
 
 
 type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
 
 
 function ContactPage(): JSX.Element {
+  
+  const allStaffCollections = firestore().collection('staff-list').get().then(collectionSnapshot => {
+    console.log('Total users: ', collectionSnapshot.size);});
+  console.log(allStaffCollections);
 
   //used to store All Staff data source
   const [fullData, setFullData] = useState(AllStaffInfo);
