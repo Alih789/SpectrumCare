@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
@@ -12,21 +12,49 @@ type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, dep
 
 
 function ContactPage(): JSX.Element {
-  
-  const allStaffCollections = firestore().collection('staff-list').get().then(collectionSnapshot => {
-    console.log('Total users: ', collectionSnapshot.size);});
-  console.log(allStaffCollections);
+
 
   //used to store All Staff data source
-  const [fullData, setFullData] = useState(AllStaffInfo);
+  const [fullData, setFullData] =  useState<itemProps[]>([])
+  const [searchFullData, setSearchFullData] = useState<itemProps[]>([]);
+
+  
+  //Handles query to database
+  useEffect( ()=> {
+
+    async function getStaffList(){
+      const allStaffCollections = (await firestore().collection('staff-list').get()).docs;
+      let  strippedAllStaffCollection :any = []
+     
+      allStaffCollections.forEach(doc => strippedAllStaffCollection.push(doc.data()))
+     
+      let allStaffCollectionObjects :itemProps[] = strippedAllStaffCollection
+
+      setFullData(allStaffCollectionObjects)
+    
+    }
+
+    getStaffList();
+
+  }, [])
+  
+
+  //handles updating the display based on what we get from the database
+  useEffect( ()=>{
+    setSearchFullData(fullData)
+  }, [fullData])
+  
+
+  
+  
+
+  
   //used to store Favorite Staff data source
   const [favData, setFavData] = useState<String[]>([]);
 
   //some use state containing an array template like fulldata item: {id,name,specialty...}
   const [favDataItems,setFavDataItems] = useState<itemProps[]>([])
 
-  //used to store Full filtered data based on the search
-  const [searchFullData, setSearchFullData] = useState(fullData);
   //used to store Fav filtered data based on the search
   const [searchFavData, setSearchFavData] = useState(favDataItems);
   //stores current searched term 
@@ -92,6 +120,7 @@ function ContactPage(): JSX.Element {
   };
 
   const renderAllStaffTab = () => {
+   
     return (
     <FlatList
         data={searchFullData}
