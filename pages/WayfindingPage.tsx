@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight } from 'react-native';
 
-// import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -16,22 +16,22 @@ function Route({ title, routeID }: RouteProps) {
       <TouchableHighlight
         activeOpacity={0.6}
         underlayColor="#DDDDDD"
-        // onPress={() => {
-        //   navigation.navigate('Wayfinding', {
-        //     screen: 'Route',
-        //     params: {
-        //       routeID: routeID,
-        //       routeTitle: title,
-        //     }
-        //   })
-        //   // console.log("ROUTE ID IS: " + routeID)
-        // }}
+        onPress={() => {
+          navigation.navigate('Wayfinding', {
+            screen: 'Route',
+            params: {
+              routeID: routeID,
+              routeTitle: title,
+            }
+          })
+          // console.log("ROUTE ID IS: " + routeID)
+        }}
         style={styles.touchable}
       >
         <View style={styles.route}>
           <Text style={styles.routetitle}>{title}</Text>
           <View style={styles.routebutton}>
-            {/* <Ionicons name={'arrow-forward-circle-outline'} size={40} /> */}
+            <Ionicons name={'arrow-forward-circle-outline'} size={40} />
           </View>
         </View>
       </TouchableHighlight>
@@ -64,14 +64,14 @@ function WayfindingPage(): JSX.Element {
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Wayfinding </Text>
-      {/* <FlatList
+      <FlatList
         data={DATA}
         renderItem={({ item }) =>
           <Route title={item.title} routeID={item.id} />
         }
         keyExtractor={item => item.id}
         style={styles.list}
-      /> */}
+      />
     </SafeAreaView>
   );
 }
