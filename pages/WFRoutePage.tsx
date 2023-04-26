@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, Alert, Modal, Pressable, TouchableOpacity, Dimensions } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
 
-import WFCarousel from '../components/WFCarousel';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import WFData from '../assets/testData/WFData';
@@ -21,70 +19,12 @@ type Props = StackScreenProps<WayfindingStackParamList, 'Route'>;
 
 function WFRoutePage({ navigation, route }: Props): JSX.Element {
 
-  const { routeID, routeTitle } = route.params;
 
-  const [modalVisible, setModalVisible] = useState(false);
-
-
-  let images: any[] = WFData[routeID].images;
-  let text: string[] = WFData[routeID].text;
-  let modalText: string[] = WFData[routeID].modalText;
 
   return (
     <SafeAreaView>
       <View style={styles.background}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}> {routeTitle}</Text>
-          <Pressable
-            style={[styles.modalOpenButton]}
-            onPress={() => setModalVisible(true)}>
-            <Ionicons name={'list-outline'} size={45} color={'white'} />
-          </Pressable>
-        </View>
 
-        <View style={styles.carousel}>
-          <WFCarousel imageURLs={images} text={text} />
-        </View>
-
-
-        <View style={styles.centeredView}>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
-            }}>
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalHeadingText}> Select Landmark to Jump to</Text>
-                <ScrollView>
-                  {modalText.map((item, index, key) => ((
-                    <TouchableOpacity key={item} >
-                      <View style={styles.modalItem}>
-                        <Text
-                          // onPress={() => this.setState({ indexSelect : index})}
-                          style={[styles.modalItemText,
-                            // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
-                          ]}
-                        >
-                          {item}
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                  ))
-                  )}
-                </ScrollView>
-                <Pressable
-                  style={[styles.modalButton]}
-                  onPress={() => setModalVisible(!modalVisible)}>
-                  <Text >Close</Text>
-                </Pressable>
-              </View>
-            </View>
-          </Modal>
-        </View>
       </View>
     </SafeAreaView>
   );

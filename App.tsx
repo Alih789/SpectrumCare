@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
@@ -88,8 +88,9 @@ function App(): JSX.Element {
             } else if (route.name === 'Wayfinding') {
               iconName = 'map-outline';
             }
+            return <Text> {route.name} </Text>
 
-            return <Ionicons name={iconName} size={size} color={color} />;
+            // return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: '#00b2e3',
           tabBarInactiveTintColor: '#999999',
