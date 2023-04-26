@@ -26,3 +26,9 @@ yarn
 npm_config_yes=true npx pod-install
 NO_FLIPPER=1 npx react-native start
 ```
+
+
+If you are having issue with npx:
+```
+npx react-native start --reset-cache
+```
