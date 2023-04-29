@@ -2,21 +2,11 @@ import {StyleSheet, Text, SafeAreaView, Dimensions, View} from 'react-native';
 import NotesButton from '../components/NotesButton';
 import React, {useState} from 'react';
 import YoutubePlayer from '../components/YoutubePlayer';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { IconProps } from '@rneui/base';
 
 
 const dimensions = Dimensions.get('screen');
-type ItemProps = {title: string, iconName: string};
-
-const Item = ({title, iconName}: ItemProps) => (
-  <View style={styles.item}>
-    <Ionicons name={iconName} size={40} color={'#00b2e3'} />
-    <Text style={styles.itemText}>{title}</Text>
-  </View>
-);
-
 
 const DATA = [
   {
@@ -37,40 +27,47 @@ const DATA = [
     iconName: 'map-outline',
     text: 'The interactive wayfinding feature can help you find your way to common pediatric surgery destinations at UC Davis health.! The images can also be helpful to share with your patient prior to your visit so they know what different parts of the hospital look like.'
   },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d74',
+    title: 'Notes',
+    iconName: 'document-text-outline',
+    text: 'Tap the floating notes icon to open the in-app notepad.'
+  },
 ];
-
 
 function HomePage(): JSX.Element {
   const [playing, setPlaying] = useState(false);
   return (
     <SafeAreaView style={styles.background}>
+      <ScrollView style={{backgroundColor: '#003A5D'}}>
       <Text style={styles.appHeader}>Care Across the Spectrum</Text>
+      <View style={styles.appWelcomeContainer}>
+        <Text style={styles.appWelcomeText}>
+          Welcome to the UC Davis Children's Surgery Center!
+          This app was designed to be a source of helpful preparatory information for families.
+          Scroll down to learn more about each of the features.
+        </Text>
+      </View>
+      {
+        DATA.map((item) => {
+          return (
+            <View key={item.id} style={styles.itemV}>
+              <Text style={styles.itemTitle}>{item.title}</Text>
+              <View style={styles.itemH}>
+                <Ionicons name={item.iconName} size={40} color={'#00b2e3'} style={styles.icon} />
+                  <Text style={styles.itemText}>
+                    {item.text}
+                </Text>
+              </View>
+            </View>
+          )})
+        }
 
-      <ScrollView >
         <View style={styles.appWelcomeContainer}>
           <Text style={styles.appWelcomeText}>
-            Welcome to the UC Davis Children's Surgery Center!
-            This app was designed to be a source of helpful preparatory information for families.
-            Scroll down to learn more about each of the features.
+            Watch this welcome video from the children's surgery center:
           </Text>
         </View>
-
-        {
-          DATA.map((item) => {
-            return (
-              <View key={item.id} style={styles.itemV}>
-                  <Text style={styles.itemTitle}>{item.title}</Text>
-                  <View style={styles.itemH}>
-                    <Ionicons name={item.iconName} size={40} color={'#00b2e3'} style={styles.icon} />
-                      <Text style={styles.itemText}>
-                        {item.text}
-                    </Text>
-                  </View>
-
-              </View>
-            )
-          })
-        }
         <View style={styles.videoPlayer} >
           <YoutubePlayer
             videoId="fHkwkegRGDU"
@@ -80,6 +77,7 @@ function HomePage(): JSX.Element {
             setPlaying={setPlaying}
           />
         </View>
+
       </ScrollView>
       <NotesButton />
     </SafeAreaView>
@@ -89,6 +87,7 @@ function HomePage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#003A5D',
+    // backgroundColor: '#00b2e3',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -97,28 +96,37 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
     textAlign: 'center',
-    padding: 10,
+    marginTop: 10,
+    marginRight: 10,
+    marginLeft: 10,
+    fontWeight: '600'
   },
   appWelcomeContainer: {
-    backgroundColor: '# 00b2e3',
-    width: '100%'
+    // backgroundColor: '#003A5D',
+    backgroundColor: '#00b2e3',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 12,
+    marginTop: 20,
+    borderRadius: 20
   },
   appWelcomeText: {
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    padding: 12
+    padding: 15,
+    fontWeight: '500'
   },
   itemV: {
-    // backgroundColor: '#ffffff',
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginLeft: 15,
+    marginRight: 10,
     marginTop: 8,
     marginBottom: 8,
     display: 'flex',
     flexDirection: 'column',
     alignContent: 'flex-start',
     justifyContent: 'flex-start',
+    backgroundColor: '#003A5D',
   },
   itemH:{
     display: 'flex',
@@ -131,15 +139,16 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#00b2e3',
     paddingBottom: 10,
+    fontWeight: '400'
   },
   itemText: {
-    fontSize: 14,
+    fontSize: 16,
     flex: 1,
     flexWrap: 'wrap',
     color: 'white'
   },
   icon: {
-    paddingRight: 10,
+    paddingRight: 15,
   },
   videoPlayer: {
     alignSelf: 'center',

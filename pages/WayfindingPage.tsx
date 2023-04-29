@@ -31,7 +31,7 @@ function Route({ title, routeID }: RouteProps) {
         <View style={styles.route}>
           <Text style={styles.routetitle}>{title}</Text>
           <View style={styles.routebutton}>
-            <Ionicons name={'arrow-forward-circle-outline'} size={40} />
+            <Ionicons name={'arrow-forward-circle-outline'} size={40} color="white" />
           </View>
         </View>
       </TouchableHighlight>
@@ -98,13 +98,16 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   route: {
-    backgroundColor: '#00b2e3',
+    backgroundColor: '#003a5d',
     paddingLeft: 20,
     flexDirection: 'row',
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderRadius: 10
+    borderTopColor: 'white',
+    borderTopWidth: 1,
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
   },
   routetitle: {
     fontSize: 18,
@@ -116,7 +119,7 @@ const styles = StyleSheet.create({
   },
   routebutton: {
     alignSelf: 'flex-end',
-    padding: 20
+    padding: 10
   }
 });
 
