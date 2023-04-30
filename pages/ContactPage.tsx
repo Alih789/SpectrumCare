@@ -128,7 +128,7 @@ function ContactPage(): JSX.Element {
           <StaffContactEntry
             onPress={() => handlePress(item.id,item)}
             name={item.name}
-            imagePath={item.imagePath}
+            // imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
@@ -149,7 +149,7 @@ function ContactPage(): JSX.Element {
           <StaffContactEntry
             onPress={() => handlePress(item.id, item)}
             name={item.name}
-            imagePath={item.imagePath}
+            // imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
