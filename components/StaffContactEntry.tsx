@@ -2,9 +2,9 @@ import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react'
 
-type itemProps ={name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+type itemProps ={name: string, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
 
-function StaffContactEntry({name, imagePath, jobTitle, department, onPress, hyperlink}: itemProps): JSX.Element {
+function StaffContactEntry({name, jobTitle, department, onPress, hyperlink}: itemProps): JSX.Element {
 
   const [isPressed, setIsPressed] = useState(false);
   
@@ -17,7 +17,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department, onPress, hype
 
   return (
     <View style={styles.container}>
-      <Image source={imagePath} style={styles.image}/>
+      <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.image}/>
       <View style={styles.detailsContainer}>
         <Pressable style={styles.favPostioning} onPress={handleFavPress}>
           <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]} size={22}/>

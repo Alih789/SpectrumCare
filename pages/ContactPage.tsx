@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
+import firestore from '@react-native-firebase/firestore';
 
 
 type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
@@ -12,19 +13,51 @@ type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, dep
 
 function ContactPage(): JSX.Element {
 
+
   //used to store All Staff data source
-  const [fullData, setFullData] = useState(AllStaffInfo);
+  const [fullData, setFullData] =  useState<itemProps[]>([])
+  const [searchFullData, setSearchFullData] = useState<itemProps[]>([]);
+
+
+  //Handles query to database
+  useEffect( ()=> {
+
+    async function getStaffList(){
+      const allStaffCollections = (await firestore().collection('staff-list').get()).docs;
+      let  strippedAllStaffCollection :any = []
+
+      allStaffCollections.forEach(doc => strippedAllStaffCollection.push(doc.data()))
+
+      let allStaffCollectionObjects :itemProps[] = strippedAllStaffCollection
+
+      setFullData(allStaffCollectionObjects)
+
+    }
+
+    getStaffList();
+
+  }, [])
+
+
+  //handles updating the display based on what we get from the database
+  useEffect( ()=>{
+    setSearchFullData(fullData)
+  }, [fullData])
+
+
+
+
+
+
   //used to store Favorite Staff data source
   const [favData, setFavData] = useState<String[]>([]);
 
   //some use state containing an array template like fulldata item: {id,name,specialty...}
   const [favDataItems,setFavDataItems] = useState<itemProps[]>([])
 
-  //used to store Full filtered data based on the search
-  const [searchFullData, setSearchFullData] = useState(fullData);
   //used to store Fav filtered data based on the search
   const [searchFavData, setSearchFavData] = useState(favDataItems);
-  //stores current searched term 
+  //stores current searched term
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
   const { height } = useWindowDimensions();
@@ -51,7 +84,7 @@ function ContactPage(): JSX.Element {
     if (text.length == 0) {
       if (activeTab == 'AllStaff'){
         setSearchFullData(fullData);
-      } 
+      }
       if (activeTab == 'Favorite'){
         setSearchFavData(favDataItems);
       }
@@ -59,24 +92,24 @@ function ContactPage(): JSX.Element {
       if (activeTab == 'AllStaff'){
         const results = fuseFull.search(text);
         const filteredData = results.map((result) => result.item);
-        setSearchFullData(filteredData);    
+        setSearchFullData(filteredData);
       }
       if (activeTab == 'Favorite') {
-        const resultsFav = fuseFav.search(text);  
+        const resultsFav = fuseFav.search(text);
         const filteredFavData = resultsFav.map((result) => result.item);
-        setSearchFavData(filteredFavData);   
-      } 
+        setSearchFavData(filteredFavData);
+      }
     }
     setSearchTerm(text);
   };
-  
+
   const handlePress = (docID,fullItem) => { () =>
 
     setIsPressed(!isPressed);
     favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID);
 
     favDataItems.indexOf(fullItem) > -1 ? favDataItems.splice(favDataItems.indexOf(fullItem),1) : favDataItems.push(fullItem);
-    
+
     setFavDataItems(favDataItems);
     setFavData(favData);
     console.log("FAVDATA: ", favData)
@@ -87,6 +120,7 @@ function ContactPage(): JSX.Element {
   };
 
   const renderAllStaffTab = () => {
+
     return (
     <FlatList
         data={searchFullData}
@@ -94,7 +128,7 @@ function ContactPage(): JSX.Element {
           <StaffContactEntry
             onPress={() => handlePress(item.id,item)}
             name={item.name}
-            imagePath={item.imagePath}
+            // imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
@@ -115,7 +149,7 @@ function ContactPage(): JSX.Element {
           <StaffContactEntry
             onPress={() => handlePress(item.id, item)}
             name={item.name}
-            imagePath={item.imagePath}
+            // imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
@@ -142,7 +176,7 @@ function ContactPage(): JSX.Element {
         onChangeText={handleSearch}
         value={searchTerm}
         onClearPress={() => {
-          if (activeTab == 'AllStaff'){setSearchFullData(fullData);}  
+          if (activeTab == 'AllStaff'){setSearchFullData(fullData);}
           if (activeTab == 'Favorite'){setSearchFavData(favDataItems);}
           setSearchTerm('')
         }}
@@ -173,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 10,
   },
-  tabButton: { 
+  tabButton: {
     backgroundColor: "white",
     borderRadius: 50,
     width: 165,
