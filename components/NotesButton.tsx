@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -14,9 +14,20 @@ import { storage } from './storageConst';
 
 
 
-const storeData = async (value :any) => {
+const storeData = async (value :any, page :any) => {
   try {
-    await storage.set('notesData', value)
+
+    if(page == 0){
+      storage.set('notesData0', value)
+    }else if (page == 1){
+      storage.set('notesData1', value)
+    }else if (page == 2){
+      storage.set('notesData2', value)
+    } else{
+      storage.set('notesData3', value)
+    }
+
+    
   } catch (e) {
     // saving error
   }
@@ -30,38 +41,61 @@ const storeData = async (value :any) => {
 function NotesButton(): JSX.Element {
 
     const [collapsed,setCollapsed] = useState(true)
+    const [page, setPage] = useState(0)
 
 
 
-    const getData = async () => {
-      try {
-        const savedNotes  = await storage.getString('notesData')
-        console.log("PRINNTING NOTES: ",savedNotes, typeof(savedNotes))
+    useEffect( ()=> {
+      const getData = async () => {
 
-        if(typeof(savedNotes) === 'string' && savedNotes !="undefined") {
-          onChangeText(String(savedNotes))
+        try {
+          let savedNotes;
+          if(page == 0){
+            savedNotes  =  storage.getString('notesData0');
+          }else if (page == 1){
+            savedNotes  =  storage.getString('notesData1');
+          }else if (page == 2){
+            savedNotes  =  storage.getString('notesData2');
+          } else{
+            savedNotes  =  storage.getString('notesData3');
+          }
+
+          console.log("PRINNTING NOTES: ",savedNotes,page, typeof(savedNotes))
+
+          if(typeof(savedNotes) === 'string' && savedNotes !="undefined") {
+            onChangeText(String(savedNotes))
+            
+          } else{
+            onChangeText("Create your first note!")
+          }
           
-        } else{
-          onChangeText("Create your first note!")
+        } catch(e) {
+          
+          // error reading value
         }
-      } catch(e) {
-        
-        // error reading value
       }
-    }
+      getData();
+    },[page])
 
     
     const [text, onChangeText] = React.useState('Useless Multiline Placeholder');
 
     
   function onCollapseHandler(textToSave:any){
-    storeData(textToSave);
+    storeData(textToSave, page);
+    setPage(0)
     setCollapsed(true)
-    
   }
   function onExpandHandler(){
-    getData();
+    //getData();
     setCollapsed(false);
+  }
+
+  function onChangePageHandler(pageArg:any){
+    console.log("PAGE SWAPPING TO: ", pageArg)
+    storeData(text,page);
+    console.log("page before set is ", page)
+    setPage(pageArg);
   }
 
 
@@ -102,8 +136,15 @@ function NotesButton(): JSX.Element {
               maxLength={1000}
               onChangeText={text => onChangeText(text)}
               value={text}
-              style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top",height:"90%"}}
+              style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top",height:"80%"}}
             />
+            <View style = {{flexDirection:"row", justifyContent:"space-between",backgroundColor:"#FFF", height:"7.5%", alignItems:"center",padding:5}}>
+              <Text onPress={() => onChangePageHandler(0) } style={{backgroundColor: (page ==0)? "#ADD8E6" : "#FFF" }} >Button 1</Text>
+              <Text onPress={() => onChangePageHandler(1) } style={{backgroundColor: (page ==1)? "#ADD8E6" : "#FFF" }} >Button 2</Text>
+              <Text onPress={() => onChangePageHandler(2) } style={{backgroundColor: (page ==2)? "#ADD8E6" : "#FFF" }} >Button 3</Text>
+              <Text onPress={() => onChangePageHandler(3) } style={{backgroundColor: (page ==3)? "#ADD8E6" : "#FFF" }} >Button 4</Text>
+            </View>
+
             <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
           </View>        
         </SafeAreaView>
