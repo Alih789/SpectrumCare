@@ -4,7 +4,7 @@ import type { StackScreenProps } from '@react-navigation/stack';
 
 import WFCarousel from '../components/WFCarousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 
 import WFData from '../assets/testData/WFData';
 
@@ -32,8 +32,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   let modalText: string[] = WFData[routeID].modalText;
 
   return (
-    <SafeAreaView>
-      <View style={styles.background}>
+    <GestureHandlerRootView>
+      <SafeAreaView style={styles.background}>
         <View style={styles.header}>
           <Text style={styles.headerText}> {routeTitle}</Text>
           <Pressable
@@ -46,7 +46,6 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
         <View style={styles.carousel}>
           <WFCarousel imageURLs={images} text={text} jumpToIndexFromModal={jumpToIndex}/>
         </View>
-
 
         <View style={styles.centeredView}>
           <Modal
@@ -86,8 +85,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
             </View>
           </Modal>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
