@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,8 @@ import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import Dots from 'react-native-dots-pagination';
 
 type WFCarouselProps = {
   imageURLs: any[];
@@ -43,13 +45,24 @@ export default function WFCarousel({
   }
 
   const carouselRef: any = React.createRef();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
 
   const handleNextSlide = () => {
     carouselRef.current.next()
+    setCurrentSlide(currentSlide + 1 >= imageURLs.length - 1 ? imageURLs.length - 1 : currentSlide + 1);
+
+    // console.log(currentSlide);
   };
 
   const handlePrevSlide = () => {
     carouselRef.current.prev()
+
+
+    setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : 0);
+    // console.log(currentSlide);
+
+
   };
 
   return (
@@ -57,7 +70,7 @@ export default function WFCarousel({
       <Carousel
         loop={false}
         width={width}
-        height={height}
+        height={height - 400}
         data={JSXData}
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
@@ -69,19 +82,7 @@ export default function WFCarousel({
         // onSnapToItem={(index: number) => console.log('current index:', index)}
         renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
       />
-      <View style={styles.navigationContainer}>
-        <View style={styles.indicatorContainer}>
-          {imageURLs.map((image, index) => (
-            <View
-              key={`${image}_${index}`}
-              style={[
-                styles.indicator,
-                // index === currentSlide ? styles.activeIndicator : undefined,
-              ]}
-            />
-          ))}
-        </View>
-      </View>
+
       <TouchableOpacity
         onPress={() => handlePrevSlide()}
         style={[styles.slideButton, styles.prevSlideButton]}
@@ -95,6 +96,21 @@ export default function WFCarousel({
       >
         <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
       </TouchableOpacity>
+
+      <View style={styles.navigationContainer}>
+        <View style={styles.indicatorContainer}>
+          {imageURLs.map((image, index) => (
+            <View
+              key={`${image}_${index}`}
+              style={[
+                styles.indicator,
+                index === currentSlide ? styles.activeIndicator : undefined,
+              ]}
+            />
+          ))}
+        </View>
+      </View>
+
     </View >
   );
 }
@@ -127,11 +143,11 @@ const styles = StyleSheet.create({
   navigationContainer: {
     alignItems: 'center',
     width: width,
-    padding: 10,
+    padding: 20,
     backgroundColor: '#003a5d',
   },
   indicatorContainer: {
-    // position: 'absolute',
+    position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -141,16 +157,19 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   indicator: {
-    width: 15,
-    height: 15,
-    borderRadius: 7.5,
+    width: 10,
+    height: 10,
+    borderRadius: 5.5,
     borderColor: 'white',
+    // backgroundColor: 'white',
     borderWidth: 1,
-    marginHorizontal: 10,
-    marginBottom: 10,
+    marginHorizontal: 4,
+    marginTop: 8,
+    marginBottom: 8,
   },
   activeIndicator: {
-    backgroundColor: 'white',
+    backgroundColor: '#00b2e3',
+    borderColor: '#00b2e3',
   },
   slideButton: {
     borderWidth: 1,
