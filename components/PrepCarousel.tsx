@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,56 +9,71 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
-import {Header} from 'react-native/Libraries/NewAppScreen';
+import {Procedure} from '../assets/customTypes';
+import YoutubePlayer from './YoutubePlayer';
 
-type PrepCarouselProps = {
-  imageURLs: string[];
-  headers: string[];
-  bodyText: string[];
-};
+interface PrepCarouselProps {
+  procedureInfo: Procedure;
+}
 
 const {width, height} = Dimensions.get('window');
 
+// Subtract 20 for margins, 20% for header and bottom navigator
+let carouselWidth = width - 20;
+const carouselHeight = height * 0.8;
+
 export default function PrepCarousel({
-  imageURLs,
-  headers,
-  bodyText,
+  procedureInfo,
 }: PrepCarouselProps): JSX.Element {
+  const [playing, setPlaying] = useState(false);
+
   let JSXData = [];
-  for (const i in imageURLs) {
+  for (const page of procedureInfo.pages) {
     JSXData.push(
       <>
-        <Text style={styles.header}>{headers[i]}</Text>
-        <Image
-          key={imageURLs[i]}
-          source={{uri: imageURLs[i]}}
-          style={styles.image}
-        />
-        <Text key={bodyText[i]} style={styles.text}>
-          {bodyText[i]}
-        </Text>
+        <Text style={styles.header}>{page.header}</Text>
+        {page.media.isVideo ? (
+          <YoutubePlayer
+            videoId={page.media.content}
+            height={styles.video.height}
+            width={styles.video.width}
+            playing={playing}
+            setPlaying={setPlaying}
+          />
+        ) : (
+          <Image
+            key={page.media.content}
+            source={{uri: page.media.content}}
+            style={styles.image}
+          />
+        )}
+
+        <View style={styles.scrollView}>
+          <ScrollView>
+            <Text key={page.bodyText} style={styles.text}>
+              {page.bodyText}
+            </Text>
+          </ScrollView>
+        </View>
       </>,
     );
   }
 
   return (
-    <ScrollView
-      style={styles.scrollView}
-      contentContainerStyle={styles.contentContainer}>
+    <View style={styles.contentContainer}>
       <Carousel
         loop={false}
-        width={width}
-        height={height}
+        width={carouselWidth}
+        height={carouselHeight}
         data={JSXData}
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
-          activeOffsetY: [-10, 10],
         }}
         scrollAnimationDuration={1000}
-        // onSnapToItem={(index: number) => console.log('current index:', index)}
-        renderItem={({item}) => <View>{item}</View>}
+        onScrollEnd={() => setPlaying(false)}
+        renderItem={({item}) => <View style={styles.page}>{item}</View>}
       />
-    </ScrollView>
+    </View>
   );
 }
 
@@ -66,24 +81,34 @@ const styles = StyleSheet.create({
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 10,
   },
   header: {
+    maxHeight: 40,
     color: 'white',
     fontSize: 25,
+    flex: 1,
   },
   image: {
     resizeMode: 'cover',
-    height: height / 2,
-    width: width,
+    maxHeight: height / 2,
+    width: carouselWidth,
+    flex: 1.5,
+  },
+  page: {
+    width: carouselWidth,
+    height: carouselHeight,
   },
   scrollView: {
-    alignSelf: 'center',
-    borderColor: 'black',
-    margin: 15,
+    marginTop: 5,
+    flex: 1,
   },
-
   text: {
     color: 'white',
-    fontSize: 15,
+    fontSize: 18,
+  },
+  video: {
+    height: 250,
+    width: Dimensions.get('screen').width,
   },
 });

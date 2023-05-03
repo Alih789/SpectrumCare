@@ -1,0 +1,114 @@
+{
+  "mri": {
+    "pages": [
+      {
+        "header": "Before Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "There are many things to do before you go take an mri."
+      },
+      {
+        "header": "During Procedure:",
+        "media": {
+          "isVideo": true,
+          "content": "4cSV5FTD1RI"
+        },
+        "bodyText": "This is the sound that an MRI will make during the scan. WARNING: It is very loud!"
+      },
+      {
+        "header": "After Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipit possimus aliquam, consequuntur odio ut quo nulla non sequi, sit, temporibus tempore. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id ipsa fuga aliquid, soluta delectus placeat, omnis voluptate consequatur in nulla itaque, odit eius ullam expedita? Quam eaque delectus asperiores rem! "
+      }
+    ]
+  },
+  "x-ray": {
+    "pages": [
+      {
+        "header": "Before Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "There are many things to do before you go take an mri."
+      },
+      {
+        "header": "During Procedure:",
+        "media": {
+          "isVideo": true,
+          "content": "4cSV5FTD1RI"
+        },
+        "bodyText": "This is the sound that an MRI will make during the scan. WARNING: It is very loud!"
+      },
+      {
+        "header": "After Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipit possimus aliquam, consequuntur odio ut quo nulla non sequi, sit, temporibus tempore. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id ipsa fuga aliquid, soluta delectus placeat, omnis voluptate consequatur in nulla itaque, odit eius ullam expedita? Quam eaque delectus asperiores rem! "
+      }
+    ]
+  },
+  "immunization": {
+    "pages": [
+      {
+        "header": "Before Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "There are many things to do before you go take an mri."
+      },
+      {
+        "header": "During Procedure:",
+        "media": {
+          "isVideo": true,
+          "content": "4cSV5FTD1RI"
+        },
+        "bodyText": "This is the sound that an MRI will make during the scan. WARNING: It is very loud!"
+      },
+      {
+        "header": "After Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipit possimus aliquam, consequuntur odio ut quo nulla non sequi, sit, temporibus tempore. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id ipsa fuga aliquid, soluta delectus placeat, omnis voluptate consequatur in nulla itaque, odit eius ullam expedita? Quam eaque delectus asperiores rem! "
+      }
+    ]
+  },
+  "heart-murmur-exam": {
+    "pages": [
+      {
+        "header": "Before Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1200"
+        },
+        "bodyText": "There are many things to do before you go take a Heart Murmur exam."
+      },
+      {
+        "header": "During Procedure:",
+        "media": {
+          "isVideo": true,
+          "content": "4cSV5FTD1RI"
+        },
+        "bodyText": "This is the sound that an MRI will make during the scan. WARNING: It is very loud!"
+      },
+      {
+        "header": "After Procedure:",
+        "media": {
+          "isVideo": false,
+          "content": "https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        },
+        "bodyText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipitLorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipitLorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipitLorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipitLorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipit possimus aliquam, consequuntur odio ut quo nulla non sequi, sit, temporibus tempore. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id ipsa fuga aliquid, soluta delectus placeat, omnis voluptate consequatur in nulla itaque, odit eius ullam expedita? Quam eaque delectus asperiores rem! "
+      }
+    ]
+  }
+}
