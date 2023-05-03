@@ -12,8 +12,6 @@ import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import Dots from 'react-native-dots-pagination';
-
 type WFCarouselProps = {
   imageURLs: any[];
   text: string[];
@@ -47,30 +45,30 @@ export default function WFCarousel({
   const carouselRef: any = React.createRef();
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const refreshImage = () => {
+    return new Promise(res => setTimeout(res, 50));
+  }
 
-  const handleNextSlide = () => {
+  const handleNextSlide = async() =>{
     carouselRef.current.next()
+    await refreshImage(); // sleep for 50ms while image scroll animation runs
     setCurrentSlide(currentSlide + 1 >= imageURLs.length - 1 ? imageURLs.length - 1 : currentSlide + 1);
-
-    // console.log(currentSlide);
   };
 
-  const handlePrevSlide = () => {
+  const handlePrevSlide = async() => {
     carouselRef.current.prev()
-
-
+    await refreshImage(); // sleep for 50ms while image scroll animation runs
     setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : 0);
-    // console.log(currentSlide);
-
-
   };
 
   return (
-    <View>
-      <Carousel
+    <View style={styles.background}>
+
+      <View style={styles.carouselContainer}>
+              <Carousel
         loop={false}
         width={width}
-        height={height - 400}
+        height={height}
         data={JSXData}
         panGestureHandlerProps={{
           activeOffsetX: [-10, 10],
@@ -82,17 +80,26 @@ export default function WFCarousel({
         // onSnapToItem={(index: number) => console.log('current index:', index)}
         renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
       />
+      </View>
 
       <TouchableOpacity
         onPress={() => handlePrevSlide()}
-        style={[styles.slideButton, styles.prevSlideButton]}
+        style={[
+          styles.prevSlideButton,
+          styles.slideButton,
+          currentSlide === 0 ? styles.inactiveSlideButton : undefined ]}
+        disabled={(currentSlide === 0)}
       >
         <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => handleNextSlide()}
-        style={[styles.slideButton, styles.nextSlideButton]}
+        style={[
+          styles.slideButton,
+          styles.nextSlideButton,
+          currentSlide === imageURLs.length - 1 ? styles.inactiveSlideButton : undefined ]}
+        disabled={(currentSlide === imageURLs.length - 1)}
       >
         <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
       </TouchableOpacity>
@@ -116,6 +123,14 @@ export default function WFCarousel({
 }
 
 const styles = StyleSheet.create({
+  background: {
+    width: width,
+    height: "100%",
+    backgroundColor: 'white',
+  },
+  carouselContainer: {
+    height: "80%",
+  },
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -137,35 +152,33 @@ const styles = StyleSheet.create({
     width: width,
     height: 300,
     padding: 10,
-    backgroundColor: 'white',
     fontSize: 18,
   },
   navigationContainer: {
     alignItems: 'center',
     width: width,
     padding: 20,
-    backgroundColor: '#003a5d',
+    backgroundColor: '#ffffff',
   },
   indicatorContainer: {
     position: 'absolute',
+    bottom: 0,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     width: width,
-    // bottom: 10,
-    // top: 10,
     zIndex: 2,
   },
   indicator: {
-    width: 10,
-    height: 10,
+    width: 12,
+    height: 12,
     borderRadius: 5.5,
-    borderColor: 'white',
-    // backgroundColor: 'white',
+    borderColor: '#00b2e3',
     borderWidth: 1,
     marginHorizontal: 4,
     marginTop: 8,
     marginBottom: 8,
+
   },
   activeIndicator: {
     backgroundColor: '#00b2e3',
@@ -182,6 +195,10 @@ const styles = StyleSheet.create({
     bottom: "60%",
     backgroundColor: '#00b2e3',
     borderRadius: 100,
+  },
+  inactiveSlideButton: {
+    backgroundColor: '#e5e5e5',
+    opacity: 0.5,
   },
   nextSlideButton: {
     right: 20,

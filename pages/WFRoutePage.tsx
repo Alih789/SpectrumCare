@@ -104,8 +104,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   carousel: {
-    // marginTop: 50
-    // backgroundColor: 'red'
+    // marginTop: 50,
+    // height: "80%",
+    backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,
