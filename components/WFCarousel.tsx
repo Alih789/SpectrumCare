@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,14 +15,13 @@ import { ScrollView } from 'react-native-gesture-handler';
 type WFCarouselProps = {
   imageURLs: any[];
   text: string[];
+  jumpToIndexFromModal: number;
 };
 
 const { width, height } = Dimensions.get('window');
 
-export default function WFCarousel({
-  imageURLs,
-  text
-}: WFCarouselProps): JSX.Element {
+export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WFCarouselProps): JSX.Element {
+
   let JSXData = [];
   for (const i in imageURLs) {
     JSXData.push(
@@ -48,18 +47,22 @@ export default function WFCarousel({
   const refreshImage = () => {
     return new Promise(res => setTimeout(res, 50));
   }
-
   const handleNextSlide = async() =>{
-    carouselRef.current.next()
+    carouselRef.current.next();
     await refreshImage(); // sleep for 50ms while image scroll animation runs
     setCurrentSlide(currentSlide + 1 >= imageURLs.length - 1 ? imageURLs.length - 1 : currentSlide + 1);
   };
 
   const handlePrevSlide = async() => {
-    carouselRef.current.prev()
+    carouselRef.current.prev();
     await refreshImage(); // sleep for 50ms while image scroll animation runs
     setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : 0);
   };
+
+  useEffect(() => {
+    carouselRef.current.scrollTo({index: jumpToIndexFromModal});
+    setCurrentSlide(jumpToIndexFromModal);
+  }, [jumpToIndexFromModal]);
 
   return (
     <View style={styles.background}>
@@ -77,7 +80,6 @@ export default function WFCarousel({
         ref={carouselRef}
         windowSize={10}
         scrollAnimationDuration={500}
-        // onSnapToItem={(index: number) => console.log('current index:', index)}
         renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
       />
       </View>

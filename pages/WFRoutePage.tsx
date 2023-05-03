@@ -24,6 +24,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   const { routeID, routeTitle } = route.params;
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [jumpToIndex, setJumpToIndex] = useState(0);
 
 
   let images: any[] = WFData[routeID].images;
@@ -43,7 +44,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
         </View>
 
         <View style={styles.carousel}>
-          <WFCarousel imageURLs={images} text={text} />
+          <WFCarousel imageURLs={images} text={text} jumpToIndexFromModal={jumpToIndex}/>
         </View>
 
 
@@ -64,9 +65,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
                     <TouchableOpacity key={item} >
                       <View style={styles.modalItem}>
                         <Text
-                          // onPress={() => this.setState({ indexSelect : index})}
+                          onPress={() => setJumpToIndex(index)}
                           style={[styles.modalItemText,
-                            // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
+                            { color: jumpToIndex === index ? '#00b2e3' : '#000000' }
                           ]}
                         >
                           {item}
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
   carousel: {
     // marginTop: 50,
     // height: "80%",
-    backgroundColor: 'red'
+    // backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,
