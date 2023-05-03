@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "693925734658",
+    "project_id": "spectrumcare-d5380",
+    "storage_bucket": "spectrumcare-d5380.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693925734658:android:9773336052734eae2cba1b",
+        "android_client_info": {
+          "package_name": "com.spectrumcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693925734658-f1pf4qbogm320l55j7qi18t3bnosona7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spectrumcare",
+            "certificate_hash": "e1904d35e0fe6290fc654f1b268230e34bc4c108"
+          }
+        },
+        {
+          "client_id": "693925734658-ig1aiq6omhl8gks8bqvlp3nqpi3qe77i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVFumavDIDzC5CjPGZxYLy_aRUw67O4us"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693925734658-ig1aiq6omhl8gks8bqvlp3nqpi3qe77i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "693925734658-07agdidakfv6n6sk2ema74l26e864gfa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.testFBProj"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

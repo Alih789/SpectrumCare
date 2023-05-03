@@ -1,32 +1,99 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, {useState} from 'react'
 
+type itemProps ={name: string, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
 
-function StaffContactEntry(): JSX.Element {
+function StaffContactEntry({name, jobTitle, department, onPress, hyperlink}: itemProps): JSX.Element {
+
+  const [isPressed, setIsPressed] = useState(false);
+  
+  const handleFavPress = () => {
+    setIsPressed(!isPressed);
+    if (onPress) {
+      onPress(!isPressed);
+    }
+  }
+
   return (
-    <View style={styles.cell}>
-          <Image source={require("../assets/images/staffImages/Victoria_R_Immunolgy.jpeg")} style={styles.placeholderImg} />
-          <Text>Victoria R. Dimitriades, M.D.</Text>
+    <View style={styles.container}>
+      <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.image}/>
+      <View style={styles.detailsContainer}>
+        <Pressable style={styles.favPostioning} onPress={handleFavPress}>
+          <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]} size={22}/>
+        </Pressable>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.jobTitle}>{jobTitle}</Text>
+        <Text style={styles.department}>{department}</Text>
+        <Pressable onPress={() => Linking.openURL(hyperlink)}>
+          <View style={styles.box}>
+            <Text style={styles.linkText}>View Full Profile {">"} </Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-    cell: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        height: 200,
-        padding: 20,
-        borderRadius: 15,
-      },
-      Text:{
-        width: "100%",
-      },
-      placeholderImg: {
-        width: "40%", 
-        height: 150,
-      },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    height: 200,
+    backgroundColor: 'white',
+    borderRadius: 15,
+    borderWidth: 2,
+  },
+  image: {
+    width: 100,
+    height: 150,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  detailsContainer: {
+    flexDirection: 'column',
+    flexShrink: 1,
+    // position: 'relative',
+  },
+  favPostioning:{
+    top: -25,
+    right: 0,
+    position: "absolute",
+
+  },
+  defaultFav: {
+    color: 'grey',
+  },
+  favButtonPressed: {
+    color: 'red',
+  },
+  name: {
+    flexWrap: "wrap",
+    fontWeight: 'bold',
+    fontSize: 14,
+    paddingBottom: 3,
+  },
+  jobTitle: {
+    flexWrap: "wrap",
+    fontWeight: "600",
+    fontSize: 10,
+  },
+  department: {
+    flex: 0.5,
+    flexWrap: "wrap",
+    fontSize: 9,
+  },
+  box: {
+    borderWidth: 2,
+    borderColor: '#003A5D',
+    padding: 10,
+    borderRadius: 8,
+  },
+  linkText: {
+    textAlign: 'center',
+    fontWeight: "bold",
+    color: "#003A5D",
+  },
 })
 export default StaffContactEntry

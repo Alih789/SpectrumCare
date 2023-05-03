@@ -4,6 +4,9 @@ import type { StackScreenProps } from '@react-navigation/stack';
 
 import WFCarousel from '../components/WFCarousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ScrollView } from 'react-native-gesture-handler';
+
+import WFData from '../assets/testData/WFData';
 
 // todo: move to types file?
 type WayfindingStackParamList = {
@@ -22,24 +25,10 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  // todo: Use routeID and/or routeTitle to "gather" (load from files) image and text data to pass to slideshow component
-  const images = [
-    'https://images.pexels.com/photos/6234634/pexels-photo-6234634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/6129141/pexels-photo-6129141.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'https://images.pexels.com/photos/6129644/pexels-photo-6129644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-  ];
 
-  const text = [
-    'This is the hospital entrance. You should see a welcome desk and sitting area. To procesed to the clinic, take the first hallway on the left.',
-    'You are now in the hallway leading to the clinic. Keep walking until you see the "Children\'s Surgery" sign.',
-    'You have arrived the the Children\'s surgery clinic. Please check in at the desk to your right.',
-  ];
-
-  const modalText = [
-    'Hospital Entry',
-    'Entry Hallway',
-    'Clinic Welcome Desk',
-  ];
+  let images: any[] = WFData[routeID].images;
+  let text: string[] = WFData[routeID].text;
+  let modalText: string[] = WFData[routeID].modalText;
 
   return (
     <SafeAreaView>
@@ -53,7 +42,10 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
           </Pressable>
         </View>
 
-        <WFCarousel images={images} text={text} />
+        <View style={styles.carousel}>
+          <WFCarousel imageURLs={images} text={text} />
+        </View>
+
 
         <View style={styles.centeredView}>
           <Modal
@@ -67,23 +59,23 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
                 <Text style={styles.modalHeadingText}> Select Landmark to Jump to</Text>
-                {modalText.map((item, index, key) => ((
-                  <TouchableOpacity key={item} >
-                    <View style={styles.modalItem}>
-                      <Text
-                        // onPress={() => this.setState({ indexSelect : index})}
-                        style={[styles.modalItemText,
-                          // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
-                        ]}
-                      >
-                        {item}
-                      </Text>
-
-                    </View>
-
-                  </TouchableOpacity>
-                ))
-                )}
+                <ScrollView>
+                  {modalText.map((item, index, key) => ((
+                    <TouchableOpacity key={item} >
+                      <View style={styles.modalItem}>
+                        <Text
+                          // onPress={() => this.setState({ indexSelect : index})}
+                          style={[styles.modalItemText,
+                            // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
+                          ]}
+                        >
+                          {item}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))
+                  )}
+                </ScrollView>
                 <Pressable
                   style={[styles.modalButton]}
                   onPress={() => setModalVisible(!modalVisible)}>
@@ -110,6 +102,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#003a5d",
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  carousel: {
+    // marginTop: 50
+    // backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,
@@ -144,6 +140,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    maxHeight: 400,
   },
   modalButton: {
     borderRadius: 20,
