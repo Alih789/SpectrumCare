@@ -26,11 +26,12 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
   for (const i in imageURLs) {
     JSXData.push(
       <>
-        <Image
-          key={imageURLs[i]}
-          source={imageURLs[i]}
-          style={styles.image}
-        />
+        {/* <ScrollView style={styles.scrollView}> */}
+          <Image
+            key={imageURLs[i]}
+            source={imageURLs[i]}
+            style={styles.image}
+          />
         <ScrollView style={styles.scrollView}>
           <Text key={text[i]} style={styles.text}>
             {text[i]}
@@ -68,20 +69,23 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
     <View style={styles.background}>
 
       <View style={styles.carouselContainer}>
-              <Carousel
-        loop={false}
-        width={width}
-        height={height}
-        data={JSXData}
-        panGestureHandlerProps={{
-          activeOffsetX: [-10, 10],
-          activeOffsetY: [-10, 10],
-        }}
-        ref={carouselRef}
-        windowSize={10}
-        scrollAnimationDuration={500}
-        renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
-      />
+        <Carousel
+          loop={false}
+          width={width}
+          height={height}
+          data={JSXData}
+          panGestureHandlerProps={{
+            activeOffsetX: [-10, 10],
+            activeOffsetY: [-10, 10],
+          }}
+          ref={carouselRef}
+          windowSize={10}
+          scrollAnimationDuration={500}
+          renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
+          onSnapToItem={(index) => {
+            setCurrentSlide(index);
+          }}
+        />
       </View>
 
       <TouchableOpacity
@@ -199,7 +203,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   inactiveSlideButton: {
-    backgroundColor: '#e5e5e5',
+    // backgroundColor: '#e5e5e5',
     opacity: 0.5,
   },
   nextSlideButton: {
