@@ -26,13 +26,12 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
   for (const i in imageURLs) {
     JSXData.push(
       <>
-        {/* <ScrollView style={styles.scrollView}> */}
+        <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'white'}>
           <Image
             key={imageURLs[i]}
             source={imageURLs[i]}
             style={styles.image}
           />
-        <ScrollView style={styles.scrollView}>
           <Text key={text[i]} style={styles.text}>
             {text[i]}
           </Text>
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: 500,
+    maxHeight: 450,
     width: width,
     flex: 1,
   },
@@ -165,10 +164,12 @@ const styles = StyleSheet.create({
     width: width,
     padding: 20,
     backgroundColor: '#ffffff',
+    // height: "20%",
+    // marginBottom: 12
   },
   indicatorContainer: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 25,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
