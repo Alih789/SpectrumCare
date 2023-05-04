@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
     textAlign: 'center',
+    fontFamily: 'Figtree-Bold'
   },
 });
 

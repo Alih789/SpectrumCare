@@ -20,6 +20,20 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Figtree-Black.ttf</string>
+		<string>Figtree-BlackItalic.ttf</string>
+		<string>Figtree-Bold.ttf</string>
+		<string>Figtree-BoldItalic.ttf</string>
+		<string>Figtree-ExtraBold.ttf</string>
+		<string>Figtree-ExtraBoldItalic.ttf</string>
+		<string>Figtree-Italic.ttf</string>
+		<string>Figtree-Light.ttf</string>
+		<string>Figtree-LightItalic.ttf</string>
+		<string>Figtree-Medium.ttf</string>
+		<string>Figtree-MediumItalic.ttf</string>
+		<string>Figtree-Regular.ttf</string>
+		<string>Figtree-SemiBold.ttf</string>
+		<string>Figtree-SemiBoldItalic.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -55,7 +69,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
