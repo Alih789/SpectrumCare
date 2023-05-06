@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
-import {Procedure} from '../assets/customTypes';
+import { PrepInfoProps } from '../assets/customTypes';
 import YoutubePlayer from './YoutubePlayer';
 
 interface PrepCarouselProps {
-  procedureInfo: Procedure;
+  procedureInfo: PrepInfoProps;
 }
 
 const {width, height} = Dimensions.get('window');

@@ -5,22 +5,14 @@ export type PrepStackParamList = {
     routeTitle: string;
   };
 };
-// export type PrepInfoProps = {title: string; id: string};
+
 export type PrepInfoProps = {
   title: string,
   id: string,
   category: string,
-  pages: Array<prepPagesArrayProps[]>,
+  pages: PageInfo[],
 };
 
-export type prepPagesArrayProps = {
-  header: string,
-  bodyText: string,
-  media: {
-    content: string,
-    isVideo: boolean,
-  }
-}
 
 interface PageInfo {
   header: string;
@@ -30,6 +22,6 @@ interface PageInfo {
   };
   bodyText: string;
 }
-export interface Procedure {
-  pages: PageInfo[];
-}
+// export interface Procedure {
+//   pages: PageInfo[];
+// }
