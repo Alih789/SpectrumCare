@@ -10,7 +10,7 @@ type Props = StackScreenProps<PrepStackParamList, 'Route'>;
 
 function PrepRoutePage({navigation, route}: Props): JSX.Element {
   const {routeID, routeTitle} = route.params;
-  const procedureInfo = require('../assets/testData/ProcedureData.json');
+  // const procedureInfo = require('../assets/testData/ProcedureData.json');
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
@@ -20,7 +20,7 @@ function PrepRoutePage({navigation, route}: Props): JSX.Element {
             <BackButton />
             <Text style={styles.header}>{routeTitle}</Text>
           </View>
-          <PrepCarousel procedureInfo={procedureInfo[routeID]} />
+          {/* <PrepCarousel procedureInfo={procedureInfo[routeID]} /> */}
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>
