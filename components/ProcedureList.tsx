@@ -13,6 +13,7 @@ import {PrepInfoProps} from '../assets/customTypes';
 type ProcedureListProps = {data: PrepInfoProps[]};
 
 function ProcedureList({data}: ProcedureListProps) {
+// function ProcedureList(data: PrepInfoProps[]) {
   return (
     <FlatList
       data={data.sort(compareObjectTitles)}

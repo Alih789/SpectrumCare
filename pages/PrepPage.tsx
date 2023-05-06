@@ -1,13 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, SafeAreaView, StyleSheet} from 'react-native';
 import SearchBar from 'react-native-dynamic-search-bar';
 import ProcedureList from '../components/ProcedureList';
 import prepInfo from '../assets/testData/procedureMenuData.json';
 import Fuse from 'fuse.js';
 
+import {PrepInfoProps} from '../assets/customTypes';
+import firestore from '@react-native-firebase/firestore';
+
 function PrepPage(): JSX.Element {
+
+  //used to store All Procedures data source
+  const [fullData, setFullData] =  useState<PrepInfoProps[]>([])
   //used to store filtered data based on the search
-  const [searchData, setSearchData] = useState(prepInfo.data);
+  const [searchData, setSearchData] = useState<PrepInfoProps[]>([])
+
+
+  //Handles query to database
+  useEffect( ()=> {
+
+    async function getProceduresList(){
+      const allProceduresCollections = (await firestore().collection('procedures').get()).docs;
+      let  strippedAllProceduresCollection :any = []
+
+      allProceduresCollections.forEach(doc => strippedAllProceduresCollection.push(doc.data()))
+
+      let allProceduresCollectionObjects :PrepInfoProps[] = strippedAllProceduresCollection
+
+      setFullData(allProceduresCollectionObjects)
+
+    };
+
+    getProceduresList();
+
+  }, [])
+
+
+  //handles updating the display based on what we get from the database
+  useEffect( ()=>{
+    setSearchData(fullData)
+  }, [fullData])
+
+
+  //used to store filtered data based on the search
   //stores current searched term
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -22,11 +57,13 @@ function PrepPage(): JSX.Element {
     maxPatternLength: 32,
   };
 
-  const fuse = new Fuse(prepInfo.data, options);
+  // const fuse = new Fuse(prepInfo.data, options);
+  const fuse = new Fuse(fullData, options); // set full data from database as initial search data
 
   const handleSearch = (text: string) => {
     if (text.length == 0) {
-      setSearchData(prepInfo.data);
+      // setSearchData(prepInfo.data);
+      setSearchData(fullData);
     } else {
       const results = fuse.search(text);
       const filteredData = results.map(result => result.item);
@@ -42,7 +79,8 @@ function PrepPage(): JSX.Element {
         placeholder="Search"
         value={searchTerm}
         onClearPress={() => {
-          setSearchData(prepInfo.data);
+          // setSearchData(prepInfo.data);
+          setSearchData(fullData);
           setSearchTerm('');
         }}
         onChangeText={handleSearch}
