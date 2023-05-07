@@ -30,34 +30,51 @@ export default function PrepCarousel({
 
   let JSXData = [];
   for (const page of procedureInfo.pages) {
+    var media = null;
+    var text = null;
+    var accessibility = null;
+
+    // pages must have a header. A page can have only bodyText, only media, or both. A page can also have an accessibility component with info.
+    if (page.media) {
+      if (page.media.isVideo) {
+        media = <YoutubePlayer
+          videoId={page.media.content}
+          height={styles.video.height}
+          width={styles.video.width}
+          playing={playing}
+          setPlaying={setPlaying}
+        />;
+
+      } else {
+        media = <Image
+          key={page.media.content}
+          source={{ uri: page.media.content }}
+          style={styles.image}
+        />
+      }
+    }
+
+    if (page.bodyText) {
+      text = <Text key={page.bodyText} style={styles.text}>
+        {page.bodyText}
+      </Text>
+    }
+
+    if (page.accessibilityText) {
+      accessibility = <View style={styles.accessibilityContainer}>
+        <Text style={styles.accessibilityText}>
+          {page.accessibilityText}
+        </Text>
+      </View>
+    }
+
     JSXData.push(
       <>
         <Text style={styles.header}>{page.header}</Text>
-        {page.media.isVideo ? (
-          <YoutubePlayer
-            videoId={page.media.content}
-            height={styles.video.height}
-            width={styles.video.width}
-            playing={playing}
-            setPlaying={setPlaying}
-          />
-        ) : (
-          <Image
-            key={page.media.content}
-            source={{ uri: page.media.content }}
-            style={styles.image}
-          />
-        )}
-
-        <View style={styles.scrollView}>
-          <ScrollView>
-            <Text key={page.bodyText} style={styles.text}>
-              {page.bodyText}
-            </Text>
-          </ScrollView>
-        </View>
-      </>,
-    );
+        {media}
+        {text}
+        {accessibility}
+      </>,);
   }
 
   return (
@@ -134,7 +151,6 @@ const styles = StyleSheet.create({
   background: {
     width: width,
     height: "100%",
-    // backgroundColor: 'white',
   },
   carouselContainer: {
     height: "80%",
@@ -168,5 +184,21 @@ const styles = StyleSheet.create({
   activeIndicator: {
     backgroundColor: '#ffffff',
     borderColor: '#ffffff',
+  },
+  accessibilityContainer: {
+    // backgroundColor: '#003A5D',
+    backgroundColor: '#00c4b3',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 12,
+    marginTop: 20,
+    borderRadius: 20
+  },
+  accessibilityText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    padding: 15,
+    fontWeight: '500'
   },
 });

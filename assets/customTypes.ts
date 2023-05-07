@@ -21,6 +21,7 @@ interface PageInfo {
     content: string;
   };
   bodyText: string;
+  accessibilityText: string,
 }
 // export interface Procedure {
 //   pages: PageInfo[];
