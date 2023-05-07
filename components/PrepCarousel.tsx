@@ -128,11 +128,11 @@ const styles = StyleSheet.create({
     // height: '80%',
   },
   header: {
-    maxHeight: 40,
+    fontSize: 24,
     color: 'white',
-    fontSize: 25,
-    flex: 1,
-    fontWeight: 700,
+    fontWeight: 'bold',
+    // flex: 1,
+    // flexWrap: 'wrap'
   },
   image: {
     resizeMode: 'cover',
