@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -16,7 +16,7 @@ interface PrepCarouselProps {
   procedureInfo: PrepInfoProps;
 }
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 // Subtract 20 for margins, 20% for header and bottom navigator
 let carouselWidth = width - 20;
@@ -26,6 +26,7 @@ export default function PrepCarousel({
   procedureInfo,
 }: PrepCarouselProps): JSX.Element {
   const [playing, setPlaying] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   let JSXData = [];
   for (const page of procedureInfo.pages) {
@@ -43,7 +44,7 @@ export default function PrepCarousel({
         ) : (
           <Image
             key={page.media.content}
-            source={{uri: page.media.content}}
+            source={{ uri: page.media.content }}
             style={styles.image}
           />
         )}
@@ -60,19 +61,37 @@ export default function PrepCarousel({
   }
 
   return (
-    <View style={styles.contentContainer}>
-      <Carousel
-        loop={false}
-        width={carouselWidth}
-        height={carouselHeight}
-        data={JSXData}
-        panGestureHandlerProps={{
-          activeOffsetX: [-10, 10],
-        }}
-        scrollAnimationDuration={1000}
-        onScrollEnd={() => setPlaying(false)}
-        renderItem={({item}) => <View style={styles.page}>{item}</View>}
-      />
+    <View style={styles.background}>
+      <View style={styles.contentContainer}>
+        <Carousel
+          loop={false}
+          width={carouselWidth}
+          height={carouselHeight}
+          data={JSXData}
+          panGestureHandlerProps={{
+            activeOffsetX: [-10, 10],
+          }}
+          scrollAnimationDuration={1000}
+          onScrollEnd={() => setPlaying(false)}
+          renderItem={({ item }) => <View style={styles.page}>{item}</View>}
+          onSnapToItem={(index) => {
+            setCurrentSlide(index);
+          }}
+        />
+      </View>
+      <View style={styles.navigationContainer}>
+        <View style={styles.indicatorContainer}>
+          {procedureInfo.pages.map((header, index) => (
+            <View
+              key={`${header}_${index}`}
+              style={[
+                styles.indicator,
+                index === currentSlide ? styles.activeIndicator : undefined,
+              ]}
+            />
+          ))}
+        </View>
+      </View>
     </View>
   );
 }
@@ -82,6 +101,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
+    // height: '80%',
   },
   header: {
     maxHeight: 40,
@@ -110,5 +130,43 @@ const styles = StyleSheet.create({
   video: {
     height: 250,
     width: Dimensions.get('screen').width,
+  },
+  background: {
+    width: width,
+    height: "100%",
+    // backgroundColor: 'white',
+  },
+  carouselContainer: {
+    height: "80%",
+  },
+  navigationContainer: {
+    alignItems: 'center',
+    width: width,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+  indicatorContainer: {
+    position: 'absolute',
+    bottom: 25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: width,
+    zIndex: 2,
+    height: 200
+  },
+  indicator: {
+    width: 12,
+    height: 12,
+    borderRadius: 5.5,
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    marginHorizontal: 4,
+    marginTop: 8,
+    marginBottom: 8,
+  },
+  activeIndicator: {
+    backgroundColor: '#ffffff',
+    borderColor: '#ffffff',
   },
 });

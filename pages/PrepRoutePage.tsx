@@ -29,7 +29,6 @@ function PrepRoutePage({navigation, route}: Props): JSX.Element {
 
     async function getProcedureData(){
       const procedureDoc = (await firestore().collection('procedures').doc(routeTitle).get());
-      console.log(procedureDoc.data())
       var allProcedureCollectionObjects = procedureDoc.data() as PrepInfoProps;
       setPagesData(allProcedureCollectionObjects);
     };
