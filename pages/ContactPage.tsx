@@ -6,32 +6,63 @@ import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
 
-type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+type itemProps = {
+  id: string, 
+  name: string, 
+  imagePath: any, 
+  jobTitle: string, 
+  department: string, 
+  onPress: (isPressed: boolean) => void, 
+  hyperlink: string
+}
 
 
 function ContactPage(): JSX.Element {
-
-
+  
   //used to store All Staff data source
   const [fullData, setFullData] =  useState<itemProps[]>([])
   const [searchFullData, setSearchFullData] = useState<itemProps[]>([]);
+  
+  async function getImageUrl(imagePath: string){
+    const imageRef = storage().ref(imagePath);
+    try {
+      const downloadUrl = await imageRef.getDownloadURL();
+      // console.log(downloadUrl);
+      return downloadUrl;
+    } catch (error) {
+      console.log(error);
+      return "";
+    }
+  }
 
 
   //Handles query to database
   useEffect( ()=> {
-
+    
     async function getStaffList(){
-      const allStaffCollections = (await firestore().collection('staff-list').get()).docs;
-      let  strippedAllStaffCollection :any = []
+      const allStaffCollections = (await firestore().collection('staff-list').get());
+      
+      const allStaffCollectionObjects: itemProps[] = [];
 
-      allStaffCollections.forEach(doc => strippedAllStaffCollection.push(doc.data()))
-
-      let allStaffCollectionObjects :itemProps[] = strippedAllStaffCollection
-
-      setFullData(allStaffCollectionObjects)
-
+      for (const doc of allStaffCollections.docs){
+        const data = doc.data();
+        // console.log(data.imagePath)
+        const downloadUrl = await getImageUrl(data.imagePath);
+        const staffItem: itemProps = {
+          id: doc.id,
+          name: data.name,
+          imagePath: downloadUrl,
+          jobTitle: data.jobTitle,
+          department: data.department,
+          onPress: (isPressed: boolean) => {}, 
+          hyperlink: data.hyperlink,
+        };
+        allStaffCollectionObjects.push(staffItem);
+      }
+      setFullData(allStaffCollectionObjects);
     }
 
     getStaffList();
@@ -43,11 +74,6 @@ function ContactPage(): JSX.Element {
   useEffect( ()=>{
     setSearchFullData(fullData)
   }, [fullData])
-
-
-
-
-
 
   //used to store Favorite Staff data source
   const [favData, setFavData] = useState<String[]>([]);
@@ -128,7 +154,7 @@ function ContactPage(): JSX.Element {
           <StaffContactEntry
             onPress={() => handlePress(item.id,item)}
             name={item.name}
-            // imagePath={item.imagePath}
+            imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
@@ -149,7 +175,7 @@ function ContactPage(): JSX.Element {
           <StaffContactEntry
             onPress={() => handlePress(item.id, item)}
             name={item.name}
-            // imagePath={item.imagePath}
+            imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             hyperlink={item.hyperlink}
