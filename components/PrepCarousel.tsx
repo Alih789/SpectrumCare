@@ -35,46 +35,53 @@ export default function PrepCarousel({
     var accessibility = null;
 
     // pages must have a header. A page can have only bodyText, only media, or both. A page can also have an accessibility component with info.
-    if (page.media) {
-      if (page.media.isVideo) {
-        media = <YoutubePlayer
-          videoId={page.media.content}
-          height={styles.video.height}
-          width={styles.video.width}
-          playing={playing}
-          setPlaying={setPlaying}
-        />;
 
-      } else {
-        media = <Image
-          key={page.media.content}
-          source={{ uri: page.media.content }}
-          style={styles.image}
-        />
+    if (page.header) {
+      if (page.media) {
+        if (page.media.isVideo) {
+          media = <YoutubePlayer
+            videoId={page.media.content}
+            height={styles.video.height}
+            width={styles.video.width}
+            playing={playing}
+            setPlaying={setPlaying}
+          />;
+
+        } else {
+          media = <Image
+            key={page.media.content}
+            source={{ uri: page.media.content }}
+            style={styles.image}
+          />
+        }
       }
-    }
 
-    if (page.bodyText) {
-      text = <Text key={page.bodyText} style={styles.text}>
-        {page.bodyText}
-      </Text>
-    }
-
-    if (page.accessibilityText) {
-      accessibility = <View style={styles.accessibilityContainer}>
-        <Text style={styles.accessibilityText}>
-          {page.accessibilityText}
+      if (page.bodyText) {
+        text = <Text key={page.bodyText} style={styles.text}>
+          {/* {page.bodyText} */}
+          {page.bodyText.replaceAll("\\n", "\n")}
         </Text>
-      </View>
-    }
+      }
 
-    JSXData.push(
-      <>
-        <Text style={styles.header}>{page.header}</Text>
-        {media}
-        {text}
-        {accessibility}
-      </>,);
+      if (page.accessibilityText) {
+        accessibility = <View style={styles.accessibilityContainer}>
+          <Text style={styles.accessibilityText}>
+            {page.accessibilityText}
+          </Text>
+        </View>
+      }
+
+      JSXData.push(
+        <>
+          <Text style={styles.header}>{page.header}</Text>
+          {media}
+          <ScrollView style={styles.scrollView}>
+            {text}
+            {accessibility}
+          </ScrollView>
+
+        </>,);
+    }
   }
 
   return (
@@ -125,6 +132,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 25,
     flex: 1,
+    fontWeight: 700,
   },
   image: {
     resizeMode: 'cover',
@@ -138,6 +146,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginTop: 5,
+    marginBottom: 70,
     flex: 1,
   },
   text: {
@@ -153,7 +162,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   carouselContainer: {
-    height: "80%",
+    // height: "80%",
   },
   navigationContainer: {
     alignItems: 'center',
@@ -169,7 +178,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     zIndex: 2,
-    height: 200
+    height: 160
   },
   indicator: {
     width: 12,
@@ -190,7 +199,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00c4b3',
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 12,
+    marginBottom: 20,
     marginTop: 20,
     borderRadius: 20
   },
