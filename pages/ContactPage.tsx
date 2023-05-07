@@ -30,7 +30,6 @@ function ContactPage(): JSX.Element {
     const imageRef = storage().ref(imagePath);
     try {
       const downloadUrl = await imageRef.getDownloadURL();
-      // console.log(downloadUrl);
       return downloadUrl;
     } catch (error) {
       console.log(error);
