@@ -50,5 +50,20 @@ npx react-native start --reset-cache
 - `react-native-firebase` [docs](https://rnfirebase.io/)
 - `react-native-mmkv` [docs](https://github.com/mrousavy/react-native-mmkv)
 
+
+## Testing
+
+To run tests:
+```
+npx jest --coverage
+```
+
+or
+```
+yarn jest
+```
+
+
 ## Development Log
 - 2-26-23 We are in the process of integrating Firebase functionality into the iOS and Android builds of the app. To successfuly do this we had to begin with a fresh react native app created using [rnfbdemo](https://github.com/mikehardy/rnfbdemo). This also meant switching our dependency manager to `yarn`. `package-lock.json` will be deleted from the repository soon.
+

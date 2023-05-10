@@ -4,6 +4,7 @@ module.exports = {
   preset: 'react-native',
   setupFilesAfterEnv: [
     './jest.setup.js',
+    "@testing-library/jest-native/extend-expect"
   ],
   clearMocks: true,
   moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
