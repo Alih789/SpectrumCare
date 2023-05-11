@@ -94,6 +94,7 @@ function PrepPage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#003a5d',
+    flex: 1,
   },
   headerText: {
     paddingTop: 20,
