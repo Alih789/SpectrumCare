@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
+import {ActivityIndicator, View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
-import firestore from '@react-native-firebase/firestore';
+import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 
 
@@ -23,9 +23,11 @@ type itemProps = {
 function ContactPage(): JSX.Element {
   
   //used to store All Staff data source
-  const [fullData, setFullData] =  useState<itemProps[]>([])
+  const [fullData, setFullData] =  useState<itemProps[]>([]);
   const [searchFullData, setSearchFullData] = useState<itemProps[]>([]);
-  
+  const [loading, setLoading] = useState(true);
+  const [lastVisible, setLastVisible] = useState<FirebaseFirestoreTypes.DocumentSnapshot>();
+
   async function getImageUrl(imagePath: string){
     const imageRef = storage().ref(imagePath);
     try {
@@ -37,37 +39,63 @@ function ContactPage(): JSX.Element {
     }
   }
 
+  async function loadMore(){
+    //fetches the next set of data from the database 
+    //lastVisible carries the last entry from the loaded batch recorded by the fetch
+    const snapshot = await firestore()
+    .collection('staff-list')
+    .orderBy('name')
+    .startAfter(lastVisible)
+    .get();
+    const newData = await Promise.all(snapshot.docs.map(async (doc) => {
+      const data = doc.data();
+
+      //imagePath is then turned into a url with google token
+      const downloadUrl = await getImageUrl(data.imagePath);
+      //creating new objects with updated information
+      return {
+        id: doc.id,
+        name: data.name,
+        imagePath: downloadUrl,
+        jobTitle: data.jobTitle,
+        department: data.department,
+        onPress: (isPressed: boolean) => {},
+        hyperlink: data.hyperlink,
+      };
+    }));
+    //updates the fullData array by appending the new Data to it
+    setFullData([...fullData, ...newData]);
+    //updates the last document fetched from the db and starts the next batch from that point
+    setLastVisible(snapshot.docs[snapshot.docs.length-1])
+  }
 
   //Handles query to database
   useEffect( ()=> {
-    
     async function getStaffList(){
-      const allStaffCollections = (await firestore().collection('staff-list').get());
-      
-      const allStaffCollectionObjects: itemProps[] = [];
-
-      for (const doc of allStaffCollections.docs){
+      const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(5).get());
+      const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
         const data = doc.data();
-        // console.log(data.imagePath)
-        const downloadUrl = await getImageUrl(data.imagePath);
-        const staffItem: itemProps = {
+
+        const downloadUrl =  await getImageUrl(data.imagePath);
+
+        return {
           id: doc.id,
           name: data.name,
           imagePath: downloadUrl,
           jobTitle: data.jobTitle,
           department: data.department,
-          onPress: (isPressed: boolean) => {}, 
+          onPress: (isPressed: boolean) => {},
           hyperlink: data.hyperlink,
         };
-        allStaffCollectionObjects.push(staffItem);
-      }
-      setFullData(allStaffCollectionObjects);
+      }));
+
+      setFullData(newData);
+      setLastVisible(staffSnapshot.docs[staffSnapshot.docs.length-1]);
+      //setloading lets us know that the data has finished loading on screen
+      setLoading(false);
     }
-
     getStaffList();
-
   }, [])
-
 
   //handles updating the display based on what we get from the database
   useEffect( ()=>{
@@ -159,6 +187,9 @@ function ContactPage(): JSX.Element {
             hyperlink={item.hyperlink}
           />}
         keyExtractor={(item) => item.id}
+        onEndReached={loadMore}
+        onEndReachedThreshold={1.5}
+        ListFooterComponent={() => (loading ? <ActivityIndicator size='large' color="#0000ff"/> : null)}
         style={[styles.list, { height: height - 150 }]}
       />
     )
