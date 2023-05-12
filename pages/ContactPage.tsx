@@ -33,7 +33,10 @@ function ContactPage(): JSX.Element {
     const imageRef = storage().ref(imagePath);
     try {
       const downloadUrl = await imageRef.getDownloadURL();
-      return downloadUrl;
+      
+      if(downloadUrl){
+        return downloadUrl;
+      }
     } catch (error) {
       console.log(error);
       return "";
@@ -48,7 +51,13 @@ function ContactPage(): JSX.Element {
       const collectionRef = firestore().collection('staff-list');
       
       //query the next set of results
-      let query = collectionRef.orderBy('name').startAfter(lastVisible);
+      let query = collectionRef.orderBy('name');
+
+      //if we havent reached the end of the list 
+      if(lastVisible){
+        query = query.startAfter(lastVisible);
+      }
+       
       const snapshot = await query.get();
 
       const newData = await Promise.all(snapshot.docs.map(async (doc) => {
