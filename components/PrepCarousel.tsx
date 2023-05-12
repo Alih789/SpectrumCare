@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: "Figtree-Bold"
     // flex: 1,
     // flexWrap: 'wrap'
   },
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 18,
+    fontFamily: "Figtree-Medium"
   },
   video: {
     height: 250,
@@ -208,6 +209,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     padding: 15,
-    fontWeight: '500'
+    fontFamily: "Figtree-Bold"
   },
 });

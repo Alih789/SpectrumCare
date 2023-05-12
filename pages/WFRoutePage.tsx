@@ -79,7 +79,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
                 <Pressable
                   style={[styles.modalButton]}
                   onPress={() => setModalVisible(!modalVisible)}>
-                  <Text >Close</Text>
+                  <Text style={styles.modalButtonText}>Close</Text>
                 </Pressable>
               </View>
             </View>
@@ -111,9 +111,9 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 22,
     color: 'white',
-    fontWeight: 'bold',
     flex: 1,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontFamily: "Figtree-Bold"
   },
   modalOpenButton: {
     borderRadius: 20,
@@ -150,10 +150,18 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     backgroundColor: '#00b2e3',
+    fontFamily: "Figtree-SemiBold"
+  },
+  modalButtonText: {
+    fontSize: 18,
+    padding: 2,
+    color: 'white',
+    fontFamily: "Figtree-Bold",
   },
   modalHeadingText: {
     fontSize: 22,
     padding: 8,
+    fontFamily: "Figtree-Bold"
   },
   modalItem: {
     paddingTop: 10,
@@ -172,6 +180,7 @@ const styles = StyleSheet.create({
   modalItemText: {
     fontSize: 18,
     width: '100%',
+    fontFamily: "Figtree-SemiBold"
   }
 });
 

@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
     width: width,
     height: 300,
     padding: 10,
-    fontSize: 18,
+    fontSize: 20,
+    fontFamily: "Figtree-Medium"
   },
   navigationContainer: {
     alignItems: 'center',

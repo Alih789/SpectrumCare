@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 36,
+    fontFamily: "Figtree-Bold"
   },
   touchable: {
     backgroundColor: '#00b2e3',
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   routetitle: {
-    fontSize: 18,
+    fontSize: 22,
     color: 'white',
-    fontWeight: 'bold',
     alignSelf: 'center',
     flex: 1,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontFamily: "Figtree-SemiBold"
   },
   routebutton: {
     alignSelf: 'flex-end',

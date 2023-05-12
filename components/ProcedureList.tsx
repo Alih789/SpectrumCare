@@ -85,12 +85,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   routetitle: {
-    fontSize: 18,
+    fontSize: 22,
     color: 'white',
-    fontWeight: 'bold',
     alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap',
+    fontFamily: "Figtree-SemiBold"
   },
   routebutton: {
     alignSelf: 'flex-end',
