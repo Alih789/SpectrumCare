@@ -2,9 +2,9 @@ import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react'
 
-type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, hyperlink: string}
 
-function StaffContactEntry({name, imagePath, jobTitle, department, onPress, hyperlink}: itemProps): JSX.Element {
+function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, hyperlink}: itemProps): JSX.Element {
 
   const [isPressed, setIsPressed] = useState(false);
   
@@ -19,15 +19,16 @@ function StaffContactEntry({name, imagePath, jobTitle, department, onPress, hype
     <View style={styles.container}>
       <Image source={{uri: imagePath}} style={styles.image}/>
       <View style={styles.detailsContainer}>
-        <Pressable style={styles.favPostioning} onPress={handleFavPress}>
+        {/* <Pressable style={styles.favPostioning} onPress={handleFavPress}>
           <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]} size={22}/>
-        </Pressable>
+  </Pressable>*/}
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
         <Text style={styles.department}>{department}</Text>
+        <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
-            <Text style={styles.linkText}>View Full Profile {">"} </Text>
+            <Text style={styles.linkText}>View Full Profile {">"} </Text> 
           </View>
         </Pressable>
       </View>
@@ -39,11 +40,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: "space-between",
     padding: 10,
     height: 200,
     backgroundColor: 'white',
     borderRadius: 15,
     borderWidth: 2,
+    flexShrink: 1,
   },
   image: {
     width: 100,
@@ -53,8 +56,12 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     flexDirection: 'column',
-    flexShrink: 1,
-    // position: 'relative',
+    maxWidth: 200,
+    maxHeight: '100%',
+    marginRight: 10,
+    marginLeft: 10,
+    paddingRight: 10,
+
   },
   favPostioning:{
     top: -25,
@@ -72,28 +79,39 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     fontWeight: 'bold',
     fontSize: 14,
-    paddingBottom: 3,
+    marginBottom: 10,
   },
   jobTitle: {
     flexWrap: "wrap",
     fontWeight: "600",
-    fontSize: 10,
+    fontSize: 12,
+    marginBottom: 10,
   },
   department: {
-    flex: 0.5,
     flexWrap: "wrap",
-    fontSize: 9,
+    fontSize: 11,
+    marginBottom: 8,
   },
   box: {
     borderWidth: 2,
     borderColor: '#003A5D',
-    padding: 10,
+    paddingTop:5,
+    paddingBottom:5,
+    paddingLeft:20,
+    paddingRight:20,
     borderRadius: 8,
+    marginRight:10,
   },
   linkText: {
     textAlign: 'center',
     fontWeight: "bold",
     color: "#003A5D",
   },
+  phoneNumber: {
+    color: "black",
+    fontWeight: '500',
+    fontSize: 11,
+    marginBottom: 8,
+  }
 })
 export default StaffContactEntry

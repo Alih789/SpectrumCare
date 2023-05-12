@@ -14,7 +14,8 @@ type itemProps = {
   name: string, 
   imagePath: any, 
   jobTitle: string, 
-  department: string, 
+  department: string,
+  phoneNumber: string, 
   onPress: (isPressed: boolean) => void, 
   hyperlink: string
 }
@@ -57,8 +58,9 @@ function ContactPage(): JSX.Element {
         id: doc.id,
         name: data.name,
         imagePath: downloadUrl,
-        jobTitle: data.jobTitle,
+        jobTitle: data.title,
         department: data.department,
+        phoneNumber: data.phoneNumber,
         onPress: (isPressed: boolean) => {},
         hyperlink: data.hyperlink,
       };
@@ -76,13 +78,16 @@ function ContactPage(): JSX.Element {
       const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
         const data = doc.data();
 
+        console.log(data);
+
         const downloadUrl =  await getImageUrl(data.imagePath);
 
         return {
           id: doc.id,
           name: data.name,
           imagePath: downloadUrl,
-          jobTitle: data.jobTitle,
+          jobTitle: data.title,
+          phoneNumber: data.phoneNumber,
           department: data.department,
           onPress: (isPressed: boolean) => {},
           hyperlink: data.hyperlink,
@@ -120,7 +125,7 @@ function ContactPage(): JSX.Element {
   const [activeTab, setActiveTab] = useState('AllStaff')
 
   const options = {
-    keys: ["name"],
+    keys: ["department","name"],
     //search score for how close the match is to the actual string
     includeScore: true,
     threshold: 0.3,
@@ -184,6 +189,7 @@ function ContactPage(): JSX.Element {
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
+            phoneNumber={item.phoneNumber}
             hyperlink={item.hyperlink}
           />}
         keyExtractor={(item) => item.id}
@@ -208,6 +214,7 @@ function ContactPage(): JSX.Element {
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
+            phoneNumber={item.phoneNumber}
             hyperlink={item.hyperlink}
           /> : console.log("ITEM ID NOT FOUND",item.id, " CURRENT ARRAY: ", favData)}
         keyExtractor={item => item.id}
@@ -266,7 +273,8 @@ const styles = StyleSheet.create({
   tabButton: {
     backgroundColor: "white",
     borderRadius: 50,
-    width: 165,
+    paddingRight: 48,
+    paddingLeft: 48,
     padding: 5,
   },
   tabText:{
