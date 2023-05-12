@@ -43,32 +43,38 @@ function ContactPage(): JSX.Element {
   async function loadMore(){
     //fetches the next set of data from the database 
     //lastVisible carries the last entry from the loaded batch recorded by the fetch
-    const snapshot = await firestore()
-    .collection('staff-list')
-    .orderBy('name')
-    .startAfter(lastVisible)
-    .get();
-    const newData = await Promise.all(snapshot.docs.map(async (doc) => {
-      const data = doc.data();
+    try {
+      //Creating a ref for the collection we are trying to query
+      const collectionRef = firestore().collection('staff-list');
+      
+      //query the next set of results
+      let query = collectionRef.orderBy('name').startAfter(lastVisible);
+      const snapshot = await query.get();
 
-      //imagePath is then turned into a url with google token
-      const downloadUrl = await getImageUrl(data.imagePath);
-      //creating new objects with updated information
-      return {
-        id: doc.id,
-        name: data.name,
-        imagePath: downloadUrl,
-        jobTitle: data.title,
-        department: data.department,
-        phoneNumber: data.phoneNumber,
-        onPress: (isPressed: boolean) => {},
-        hyperlink: data.hyperlink,
-      };
-    }));
-    //updates the fullData array by appending the new Data to it
-    setFullData([...fullData, ...newData]);
-    //updates the last document fetched from the db and starts the next batch from that point
-    setLastVisible(snapshot.docs[snapshot.docs.length-1])
+      const newData = await Promise.all(snapshot.docs.map(async (doc) => {
+        const data = doc.data();
+  
+        //imagePath is then turned into a url with google token
+        const downloadUrl = await getImageUrl(data.imagePath);
+        //creating new objects with updated information
+        return {
+          id: doc.id,
+          name: data.name,
+          imagePath: downloadUrl,
+          jobTitle: data.title,
+          department: data.department,
+          phoneNumber: data.phoneNumber,
+          onPress: (isPressed: boolean) => {},
+          hyperlink: data.hyperlink,
+        };
+      }));
+      //updates the fullData array by appending the new Data to it
+      setFullData([...fullData, ...newData]);
+      //updates the last document fetched from the db and starts the next batch from that point
+      setLastVisible(snapshot.docs[snapshot.docs.length-1])
+    } catch(error) {
+      console.log('Error fetching next set of results: ', error);
+    }
   }
 
   //Handles query to database
