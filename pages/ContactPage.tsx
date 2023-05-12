@@ -84,8 +84,6 @@ function ContactPage(): JSX.Element {
       const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
         const data = doc.data();
 
-        console.log(data);
-
         const downloadUrl =  await getImageUrl(data.imagePath);
 
         return {
