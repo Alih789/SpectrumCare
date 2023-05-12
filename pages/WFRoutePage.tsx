@@ -4,7 +4,7 @@ import type { StackScreenProps } from '@react-navigation/stack';
 
 import WFCarousel from '../components/WFCarousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 
 import WFData from '../assets/testData/WFData';
 
@@ -24,6 +24,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   const { routeID, routeTitle } = route.params;
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [jumpToIndex, setJumpToIndex] = useState(0);
 
 
   let images: any[] = WFData[routeID].images;
@@ -31,8 +32,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   let modalText: string[] = WFData[routeID].modalText;
 
   return (
-    <SafeAreaView>
-      <View style={styles.background}>
+    <GestureHandlerRootView>
+      <SafeAreaView style={styles.background}>
         <View style={styles.header}>
           <Text style={styles.headerText}> {routeTitle}</Text>
           <Pressable
@@ -43,9 +44,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
         </View>
 
         <View style={styles.carousel}>
-          <WFCarousel imageURLs={images} text={text} />
+          <WFCarousel imageURLs={images} text={text} jumpToIndexFromModal={jumpToIndex}/>
         </View>
-
 
         <View style={styles.centeredView}>
           <Modal
@@ -64,9 +64,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
                     <TouchableOpacity key={item} >
                       <View style={styles.modalItem}>
                         <Text
-                          // onPress={() => this.setState({ indexSelect : index})}
+                          onPress={() => setJumpToIndex(index)}
                           style={[styles.modalItemText,
-                            // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
+                            { color: jumpToIndex === index ? '#00b2e3' : '#000000' }
                           ]}
                         >
                           {item}
@@ -85,8 +85,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
             </View>
           </Modal>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   carousel: {
-    // marginTop: 50
+    // marginTop: 50,
+    // height: "80%",
     // backgroundColor: 'red'
   },
   headerText: {

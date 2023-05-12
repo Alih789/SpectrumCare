@@ -5,7 +5,15 @@ export type PrepStackParamList = {
     routeTitle: string;
   };
 };
-export type PrepInfoProps = {title: string; id: string};
+
+export type PrepInfoProps = {
+  title: string,
+  id: string,
+  category: string,
+  pages: PageInfo[],
+};
+
+
 interface PageInfo {
   header: string;
   media: {
@@ -13,7 +21,8 @@ interface PageInfo {
     content: string;
   };
   bodyText: string;
+  accessibilityText: string,
 }
-export interface Procedure {
-  pages: PageInfo[];
-}
+// export interface Procedure {
+//   pages: PageInfo[];
+// }
