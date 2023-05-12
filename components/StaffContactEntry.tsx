@@ -44,9 +44,19 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 200,
     backgroundColor: 'white',
+    borderColor: 'white',
     borderRadius: 15,
     borderWidth: 2,
     flexShrink: 1,
+    marginBottom: 10,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:4,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   image: {
     width: 100,
@@ -92,7 +102,7 @@ const styles = StyleSheet.create({
   },
   department: {
     flexWrap: "wrap",
-    fontSize: 13,
+    fontSize: 11,
     marginBottom: 5,
     lineHeight: 17,
   },
@@ -115,7 +125,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: '500',
     fontSize: 11,
-    marginBottom: 5,
+    marginBottom: 12,
   }
 })
 export default StaffContactEntry
