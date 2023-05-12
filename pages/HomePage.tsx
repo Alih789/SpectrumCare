@@ -99,10 +99,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 10,
     marginLeft: 10,
-    fontWeight: '600'
+    fontFamily: "Figtree-SemiBold"
   },
   appWelcomeContainer: {
-    // backgroundColor: '#003A5D',
     backgroundColor: '#00b2e3',
     marginLeft: 20,
     marginRight: 20,
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     padding: 15,
-    fontWeight: '500'
+    fontFamily: "Figtree-SemiBold"
   },
   itemV: {
     marginLeft: 15,
@@ -139,13 +138,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#00b2e3',
     paddingBottom: 10,
-    fontWeight: '400'
+    fontFamily: "Figtree-Bold"
   },
   itemText: {
     fontSize: 16,
     flex: 1,
     flexWrap: 'wrap',
-    color: 'white'
+    color: 'white',
+    fontFamily: "Figtree-Medium"
   },
   icon: {
     paddingRight: 15,

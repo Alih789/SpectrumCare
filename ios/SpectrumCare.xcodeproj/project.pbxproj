@@ -23,6 +23,20 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8FC54EF0AA2936EE6E2B642B /* Pods_SpectrumCare_SpectrumCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78895633DD6944D6BC96EA50 /* Pods_SpectrumCare_SpectrumCareTests.framework */; };
 		BA80895CFEEF4B1865C86690 /* Pods_SpectrumCare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A265A2FE6AF24487A9028C0 /* Pods_SpectrumCare.framework */; };
+		8C717F4674574210901E5A79 /* Figtree-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6950782D206F41A8BB80E1BD /* Figtree-Black.ttf */; };
+		6C2DDC5556134485A3AB4AF0 /* Figtree-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA2FF02191C04D4EB1FBDD26 /* Figtree-BlackItalic.ttf */; };
+		4666425020564464B10AF9A7 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF4EFDC630C94BDE939DC53E /* Figtree-Bold.ttf */; };
+		14F21E73268A427C9A0DDE7F /* Figtree-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE6F12A0C60A4B3AA899FBED /* Figtree-BoldItalic.ttf */; };
+		4CB4BB99CE354A75B3BC8A7B /* Figtree-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625DFF535A0941868BEAB372 /* Figtree-ExtraBold.ttf */; };
+		F5E8AA8E27514641A87C221F /* Figtree-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6B9A85E634A423F8666743A /* Figtree-ExtraBoldItalic.ttf */; };
+		71F60434E8DF4EF4B492C116 /* Figtree-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5D5D654A4E444BCA1E9BA1D /* Figtree-Italic.ttf */; };
+		3B62E0F425A64DE198EDE147 /* Figtree-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61452492303446FD82667AC2 /* Figtree-Light.ttf */; };
+		1644478627954AB4B03920EE /* Figtree-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F918863444E647D8877A2885 /* Figtree-LightItalic.ttf */; };
+		053FD24B6BE64E2C9276BBE4 /* Figtree-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02AE35938EA0463489BAD65D /* Figtree-Medium.ttf */; };
+		E693A59B2AAE4F608AD4392F /* Figtree-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 192B226C8A624DF68B0AF46A /* Figtree-MediumItalic.ttf */; };
+		0C91BA701A30403ABFCDDA16 /* Figtree-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E426716A3C4C54B645B7A2 /* Figtree-Regular.ttf */; };
+		65658CE6CC8141299F0FA1BF /* Figtree-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A38ABC2A2450D932C309F /* Figtree-SemiBold.ttf */; };
+		53D7E6B255C444D3A1F0A73F /* Figtree-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2E36307E8A2417B878C16C7 /* Figtree-SemiBoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +84,20 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SpectrumCare/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SpectrumCare-SpectrumCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumCare-SpectrumCareTests.release.xcconfig"; path = "Target Support Files/Pods-SpectrumCare-SpectrumCareTests/Pods-SpectrumCare-SpectrumCareTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		6950782D206F41A8BB80E1BD /* Figtree-Black.ttf */ = {isa = PBXFileReference; name = "Figtree-Black.ttf"; path = "../assets/fonts/Figtree-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA2FF02191C04D4EB1FBDD26 /* Figtree-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-BlackItalic.ttf"; path = "../assets/fonts/Figtree-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EF4EFDC630C94BDE939DC53E /* Figtree-Bold.ttf */ = {isa = PBXFileReference; name = "Figtree-Bold.ttf"; path = "../assets/fonts/Figtree-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AE6F12A0C60A4B3AA899FBED /* Figtree-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-BoldItalic.ttf"; path = "../assets/fonts/Figtree-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		625DFF535A0941868BEAB372 /* Figtree-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Figtree-ExtraBold.ttf"; path = "../assets/fonts/Figtree-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A6B9A85E634A423F8666743A /* Figtree-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-ExtraBoldItalic.ttf"; path = "../assets/fonts/Figtree-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A5D5D654A4E444BCA1E9BA1D /* Figtree-Italic.ttf */ = {isa = PBXFileReference; name = "Figtree-Italic.ttf"; path = "../assets/fonts/Figtree-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		61452492303446FD82667AC2 /* Figtree-Light.ttf */ = {isa = PBXFileReference; name = "Figtree-Light.ttf"; path = "../assets/fonts/Figtree-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F918863444E647D8877A2885 /* Figtree-LightItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-LightItalic.ttf"; path = "../assets/fonts/Figtree-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		02AE35938EA0463489BAD65D /* Figtree-Medium.ttf */ = {isa = PBXFileReference; name = "Figtree-Medium.ttf"; path = "../assets/fonts/Figtree-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		192B226C8A624DF68B0AF46A /* Figtree-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-MediumItalic.ttf"; path = "../assets/fonts/Figtree-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F0E426716A3C4C54B645B7A2 /* Figtree-Regular.ttf */ = {isa = PBXFileReference; name = "Figtree-Regular.ttf"; path = "../assets/fonts/Figtree-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9C5A38ABC2A2450D932C309F /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; name = "Figtree-SemiBold.ttf"; path = "../assets/fonts/Figtree-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F2E36307E8A2417B878C16C7 /* Figtree-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Figtree-SemiBoldItalic.ttf"; path = "../assets/fonts/Figtree-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +201,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				40B0466FA5751BFFB60A8700 /* GoogleService-Info.plist */,
+				A6995977E43D434F80F0F288 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -198,6 +227,28 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		A6995977E43D434F80F0F288 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				6950782D206F41A8BB80E1BD /* Figtree-Black.ttf */,
+				CA2FF02191C04D4EB1FBDD26 /* Figtree-BlackItalic.ttf */,
+				EF4EFDC630C94BDE939DC53E /* Figtree-Bold.ttf */,
+				AE6F12A0C60A4B3AA899FBED /* Figtree-BoldItalic.ttf */,
+				625DFF535A0941868BEAB372 /* Figtree-ExtraBold.ttf */,
+				A6B9A85E634A423F8666743A /* Figtree-ExtraBoldItalic.ttf */,
+				A5D5D654A4E444BCA1E9BA1D /* Figtree-Italic.ttf */,
+				61452492303446FD82667AC2 /* Figtree-Light.ttf */,
+				F918863444E647D8877A2885 /* Figtree-LightItalic.ttf */,
+				02AE35938EA0463489BAD65D /* Figtree-Medium.ttf */,
+				192B226C8A624DF68B0AF46A /* Figtree-MediumItalic.ttf */,
+				F0E426716A3C4C54B645B7A2 /* Figtree-Regular.ttf */,
+				9C5A38ABC2A2450D932C309F /* Figtree-SemiBold.ttf */,
+				F2E36307E8A2417B878C16C7 /* Figtree-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -305,6 +356,20 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				25884A73B408895D6AF336B6 /* GoogleService-Info.plist in Resources */,
+				8C717F4674574210901E5A79 /* Figtree-Black.ttf in Resources */,
+				6C2DDC5556134485A3AB4AF0 /* Figtree-BlackItalic.ttf in Resources */,
+				4666425020564464B10AF9A7 /* Figtree-Bold.ttf in Resources */,
+				14F21E73268A427C9A0DDE7F /* Figtree-BoldItalic.ttf in Resources */,
+				4CB4BB99CE354A75B3BC8A7B /* Figtree-ExtraBold.ttf in Resources */,
+				F5E8AA8E27514641A87C221F /* Figtree-ExtraBoldItalic.ttf in Resources */,
+				71F60434E8DF4EF4B492C116 /* Figtree-Italic.ttf in Resources */,
+				3B62E0F425A64DE198EDE147 /* Figtree-Light.ttf in Resources */,
+				1644478627954AB4B03920EE /* Figtree-LightItalic.ttf in Resources */,
+				053FD24B6BE64E2C9276BBE4 /* Figtree-Medium.ttf in Resources */,
+				E693A59B2AAE4F608AD4392F /* Figtree-MediumItalic.ttf in Resources */,
+				0C91BA701A30403ABFCDDA16 /* Figtree-Regular.ttf in Resources */,
+				65658CE6CC8141299F0FA1BF /* Figtree-SemiBold.ttf in Resources */,
+				53D7E6B255C444D3A1F0A73F /* Figtree-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
