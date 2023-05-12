@@ -78,19 +78,23 @@ const styles = StyleSheet.create({
   name: {
     flexWrap: "wrap",
     fontWeight: 'bold',
-    fontSize: 14,
-    marginBottom: 10,
+    fontSize: 15,
+    marginBottom: 3,
+    lineHeight: 17,
   },
   jobTitle: {
     flexWrap: "wrap",
     fontWeight: "600",
-    fontSize: 12,
-    marginBottom: 10,
+    fontSize: 10,
+    marginBottom: 5,
+    lineHeight: 17,
+
   },
   department: {
     flexWrap: "wrap",
-    fontSize: 11,
-    marginBottom: 8,
+    fontSize: 13,
+    marginBottom: 5,
+    lineHeight: 17,
   },
   box: {
     borderWidth: 2,
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: '500',
     fontSize: 11,
-    marginBottom: 8,
+    marginBottom: 5,
   }
 })
 export default StaffContactEntry
