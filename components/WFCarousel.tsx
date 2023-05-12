@@ -3,6 +3,7 @@ import {
   View,
   Text,
   Dimensions,
+  ScrollView,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -10,7 +11,6 @@ import {
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native-gesture-handler';
 
 type WFCarouselProps = {
   imageURLs: any[];
@@ -20,18 +20,25 @@ type WFCarouselProps = {
 
 const { width, height } = Dimensions.get('window');
 
+// Subtract 20 for margins, 20% for header and bottom navigator
+let carouselWidth = width;
+const carouselHeight = height * 0.8;
+
 export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WFCarouselProps): JSX.Element {
 
   let JSXData = [];
   for (const i in imageURLs) {
     JSXData.push(
       <>
-        <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'white'}>
+        <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'black'}>
           <Image
             key={imageURLs[i]}
             source={imageURLs[i]}
             style={styles.image}
           />
+        {/* <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'black'}> */}
+
+
           <Text key={text[i]} style={styles.text}>
             {text[i]}
           </Text>
@@ -66,27 +73,23 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
 
   return (
     <View style={styles.background}>
-
-      <View style={styles.carouselContainer}>
+      <View style={styles.contentContainer}>
         <Carousel
           loop={false}
-          width={width}
-          height={height}
+          width={carouselWidth}
+          height={carouselHeight}
           data={JSXData}
           panGestureHandlerProps={{
             activeOffsetX: [-10, 10],
-            activeOffsetY: [-10, 10],
           }}
           ref={carouselRef}
-          windowSize={10}
-          scrollAnimationDuration={500}
-          renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
+          scrollAnimationDuration={1000}
+          renderItem={({ item }) => <View style={styles.page}>{item}</View>}
           onSnapToItem={(index) => {
             setCurrentSlide(index);
           }}
         />
       </View>
-
       <TouchableOpacity
         onPress={() => handlePrevSlide()}
         style={[
@@ -109,9 +112,8 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
         <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
       </TouchableOpacity>
 
-      <View style={styles.navigationContainer}>
         <View style={styles.indicatorContainer}>
-          {imageURLs.map((image, index) => (
+        {imageURLs.map((image, index) => (
             <View
               key={`${image}_${index}`}
               style={[
@@ -121,52 +123,40 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
             />
           ))}
         </View>
-      </View>
+    </View>
 
-    </View >
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    width: width,
-    height: "100%",
-    backgroundColor: 'white',
-  },
-  carouselContainer: {
-    height: "80%",
-  },
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    width: width,
-    height: "100%"
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: 450,
-    width: width,
-    flex: 1,
+    maxHeight: height / 2,
+    width: carouselWidth,
+    flex: 1.5,
+  },
+  page: {
+    width: carouselWidth,
+    height: carouselHeight,
+    maxHeight: carouselHeight,
   },
   scrollView: {
     flex: 1,
   },
   text: {
-    width: width,
-    height: 300,
-    padding: 10,
     fontSize: 20,
-    fontFamily: "Figtree-Medium"
+    padding: 10,
+    fontFamily: "Figtree-Medium",
+    flex: 1,
   },
-  navigationContainer: {
-    alignItems: 'center',
+  background: {
     width: width,
-    padding: 20,
-    backgroundColor: '#ffffff',
-    // height: "20%",
-    // marginBottom: 12
+    height: "100%",
+    backgroundColor: 'white'
   },
   indicatorContainer: {
     position: 'absolute',
@@ -176,6 +166,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     zIndex: 2,
+    height: 160
   },
   indicator: {
     width: 12,
@@ -186,7 +177,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginTop: 8,
     marginBottom: 8,
-
   },
   activeIndicator: {
     backgroundColor: '#00b2e3',
@@ -205,7 +195,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   inactiveSlideButton: {
-    // backgroundColor: '#e5e5e5',
     opacity: 0.5,
   },
   nextSlideButton: {

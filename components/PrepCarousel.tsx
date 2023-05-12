@@ -162,9 +162,6 @@ const styles = StyleSheet.create({
     width: width,
     height: "100%",
   },
-  carouselContainer: {
-    // height: "80%",
-  },
   navigationContainer: {
     alignItems: 'center',
     width: width,
@@ -196,7 +193,6 @@ const styles = StyleSheet.create({
     borderColor: '#ffffff',
   },
   accessibilityContainer: {
-    // backgroundColor: '#003A5D',
     backgroundColor: '#00c4b3',
     marginLeft: 20,
     marginRight: 20,
