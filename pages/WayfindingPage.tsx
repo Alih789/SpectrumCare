@@ -100,6 +100,8 @@ const styles = StyleSheet.create({
   route: {
     backgroundColor: '#003a5d',
     paddingLeft: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     flex: 2,
     justifyContent: 'space-between',
