@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Dimensions,
-  ScrollView,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -11,6 +10,7 @@ import {
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 type WFCarouselProps = {
   imageURLs: any[];
@@ -30,15 +30,12 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
   for (const i in imageURLs) {
     JSXData.push(
       <>
-        <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'black'}>
+        <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'white'}>
           <Image
             key={imageURLs[i]}
             source={imageURLs[i]}
             style={styles.image}
           />
-        {/* <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'black'}> */}
-
-
           <Text key={text[i]} style={styles.text}>
             {text[i]}
           </Text>
@@ -73,7 +70,7 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
 
   return (
     <View style={styles.background}>
-      <View style={styles.contentContainer}>
+      <View style={styles.carouselContainer}>
         <Carousel
           loop={false}
           width={carouselWidth}
@@ -81,10 +78,11 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
           data={JSXData}
           panGestureHandlerProps={{
             activeOffsetX: [-10, 10],
+            activeOffsetY: [-10, 10],
           }}
           ref={carouselRef}
           scrollAnimationDuration={1000}
-          renderItem={({ item }) => <View style={styles.page}>{item}</View>}
+          renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
           onSnapToItem={(index) => {
             setCurrentSlide(index);
           }}
@@ -113,7 +111,7 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
       </TouchableOpacity>
 
         <View style={styles.indicatorContainer}>
-        {imageURLs.map((image, index) => (
+          {imageURLs.map((image, index) => (
             <View
               key={`${image}_${index}`}
               style={[
@@ -129,9 +127,22 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
 }
 
 const styles = StyleSheet.create({
+  background: {
+    width: width,
+    height: "100%",
+    backgroundColor: 'white',
+  },
+  carouselContainer: {
+    height: "80%",
+  },
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    width: width,
+    height: carouselHeight,
+    paddingBottom: 80,
   },
   image: {
     resizeMode: 'cover',
@@ -148,19 +159,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
+    width: width,
     fontSize: 20,
     padding: 10,
     fontFamily: "Figtree-Medium",
     flex: 1,
   },
-  background: {
-    width: width,
-    height: "100%",
-    backgroundColor: 'white'
-  },
   indicatorContainer: {
     position: 'absolute',
-    bottom: 25,
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
