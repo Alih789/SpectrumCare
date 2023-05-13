@@ -198,7 +198,15 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 20,
     marginTop: 20,
-    borderRadius: 20
+    borderRadius: 20,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:4,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   accessibilityText: {
     color: 'white',

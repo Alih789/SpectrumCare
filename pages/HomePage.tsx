@@ -107,7 +107,15 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 12,
     marginTop: 20,
-    borderRadius: 20
+    borderRadius: 20,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:4,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   appWelcomeText: {
     color: 'white',
