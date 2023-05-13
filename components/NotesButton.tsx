@@ -31,7 +31,7 @@ const storeData = async (value :any, page :any, title :any) => {
       storage.set('title3',title)
     }
 
-    
+
   } catch (e) {
     // saving error
   }
@@ -73,31 +73,31 @@ function NotesButton(): JSX.Element {
 
           if(typeof(savedNotes) === 'string' && savedNotes !="undefined") {
             onChangeText(String(savedNotes))
-            
+
           } else{
             onChangeText("Create your first note!")
           }
 
           if(typeof(savedTitle) === 'string' && savedTitle !="undefined") {
             onChangeTitleText(String(savedTitle))
-            
+
           } else{
             onChangeTitleText("Notes")
           }
-          
+
         } catch(e) {
-          
+
           // error reading value
         }
       }
       getData();
     },[page])
 
-    
+
     const [text, onChangeText] = React.useState('Useless Multiline Placeholder');
     const [titleText, onChangeTitleText] = React.useState('Notes');
 
-    
+
   function onCollapseHandler(textToSave:any){
     storeData(textToSave, page,titleText);
     setPage(0)
@@ -135,7 +135,7 @@ function NotesButton(): JSX.Element {
             style={styles.floatingButtonStyle}
           />
         </TouchableOpacity>
-      </SafeAreaView> : 
+      </SafeAreaView> :
       <Modal
       animationType="none"
       visible={!collapsed}
@@ -170,7 +170,7 @@ function NotesButton(): JSX.Element {
             </View>
 
             <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
-          </View>        
+          </View>
         </View>
       </Modal>
     );
@@ -186,13 +186,13 @@ function NotesButton(): JSX.Element {
     touchableOpacityStyle: {
       width: 50,
       height: 50,
-      
+
     },
     floatingButtonStyle: {
       resizeMode: 'contain',
       width: 50,
       height: 50,
-          
+
     },
     modalBackgroundStyle:{
       position:"relative",
@@ -204,7 +204,7 @@ function NotesButton(): JSX.Element {
       elevation:7,
       shadowRadius:10,
       shadowColor:"black",
-      marginTop:"10%"    
+      marginTop:"15%"
     },
     text: {
       color: "black",
