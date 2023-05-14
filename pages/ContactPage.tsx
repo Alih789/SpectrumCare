@@ -29,6 +29,21 @@ function ContactPage(): JSX.Element {
   const [loading, setLoading] = useState(true);
   const [lastVisible, setLastVisible] = useState<FirebaseFirestoreTypes.DocumentSnapshot>();
 
+  //used to store Favorite Staff data source
+  const [favData, setFavData] = useState<itemProps[]>([]);
+  const [favColors, setFavColors] = useState({});
+
+  //used to store Fav filtered data based on the search
+  const [searchFavData, setSearchFavData] =  useState<itemProps[]>([]); 
+
+  //stores current searched term
+  const [searchTerm, setSearchTerm] = useState('');
+  //adjust the background to appear when searching for specific names
+  const { height } = useWindowDimensions();
+
+  //determines which tab you are on
+  const [activeTab, setActiveTab] = useState('AllStaff')
+
   async function getImageUrl(imagePath: string){
     const imageRef = storage().ref(imagePath);
     try {
@@ -66,6 +81,7 @@ function ContactPage(): JSX.Element {
         //imagePath is then turned into a url with google token
         const downloadUrl = await getImageUrl(data.imagePath);
         //creating new objects with updated information
+
         return {
           id: doc.id,
           name: data.name,
@@ -119,23 +135,20 @@ function ContactPage(): JSX.Element {
   useEffect( ()=>{
     setSearchFullData(fullData)
   }, [fullData])
+  
+  const handleFavPress = (staffId: string) => {
+    const staff:any = fullData.find((s) => s.id === staffId);
 
-  //used to store Favorite Staff data source
-  const [favData, setFavData] = useState<String[]>([]);
-
-  //some use state containing an array template like fulldata item: {id,name,specialty...}
-  const [favDataItems,setFavDataItems] = useState<itemProps[]>([])
-
-  //used to store Fav filtered data based on the search
-  const [searchFavData, setSearchFavData] = useState(favDataItems);
-  //stores current searched term
-  const [searchTerm, setSearchTerm] = useState('');
-  //adjust the background to appear when searching for specific names
-  const { height } = useWindowDimensions();
-  //stores current state of favorite button: red or gray
-  const [isPressed, setIsPressed] = useState(false);
-  //determines which tab you are on
-  const [activeTab, setActiveTab] = useState('AllStaff')
+    //If the staff isnt in the list add them
+    if(!favData.includes(staff)) {
+      setFavData(favData.concat(staff));
+      setFavColors({...favColors, [staffId]: "red"});
+    //Staff is in the list, remove them
+    } else {
+      setFavData(favData.filter((s) => s.id !== staffId));
+      setFavColors({...favColors, [staffId]: "gray"});
+    }
+  }
 
   const options = {
     keys: ["department","name"],
@@ -149,7 +162,7 @@ function ContactPage(): JSX.Element {
   };
 
   const fuseFull = new Fuse(fullData, options);
-  const fuseFav = new Fuse(favDataItems, options);
+  const fuseFav = new Fuse(favData, options);
 
   const handleSearch = (text: string) => {
     if (text.length == 0) {
@@ -157,7 +170,7 @@ function ContactPage(): JSX.Element {
         setSearchFullData(fullData);
       }
       if (activeTab == 'Favorite'){
-        setSearchFavData(favDataItems);
+        setSearchFavData(favData);
       }
     } else {
       if (activeTab == 'AllStaff'){
@@ -174,17 +187,6 @@ function ContactPage(): JSX.Element {
     setSearchTerm(text);
   };
 
-  const handlePress = (docID,fullItem) => { () =>
-
-    setIsPressed(!isPressed);
-    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID);
-
-    favDataItems.indexOf(fullItem) > -1 ? favDataItems.splice(favDataItems.indexOf(fullItem),1) : favDataItems.push(fullItem);
-
-    setFavDataItems(favDataItems);
-    setFavData(favData);
-    console.log("FAVDATA: ", favData)
-  };
 
   const handleTabToggle = (tab: string) => {
     setActiveTab(tab);
@@ -197,7 +199,7 @@ function ContactPage(): JSX.Element {
         data={searchFullData}
         renderItem={({ item }) =>
           <StaffContactEntry
-            onPress={() => handlePress(item.id,item)}
+            onPress={() => handleFavPress(item.id)}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
@@ -218,18 +220,17 @@ function ContactPage(): JSX.Element {
     return (
 
     <FlatList
-        data={searchFavData} //data = {searchNewFavData, item array}
+        data={favData} 
         renderItem={({ item }) =>
-          favData.indexOf(item.id) > -1 ?
           <StaffContactEntry
-            onPress={() => handlePress(item.id, item)}
+            onPress={() => handleFavPress(item.id)}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             phoneNumber={item.phoneNumber}
             hyperlink={item.hyperlink}
-          /> : console.log("ITEM ID NOT FOUND",item.id, " CURRENT ARRAY: ", favData)}
+            />}
         keyExtractor={item => item.id}
         style={[styles.list, { height: height - 150 }]}
       />
@@ -253,7 +254,7 @@ function ContactPage(): JSX.Element {
         value={searchTerm}
         onClearPress={() => {
           if (activeTab == 'AllStaff'){setSearchFullData(fullData);}
-          if (activeTab == 'Favorite'){setSearchFavData(favDataItems);}
+          if (activeTab == 'Favorite'){setSearchFavData(favData);}
           setSearchTerm('')
         }}
         style={styles.searchBar}
