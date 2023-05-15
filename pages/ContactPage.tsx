@@ -135,6 +135,13 @@ function ContactPage(): JSX.Element {
   useEffect( ()=>{
     setSearchFullData(fullData)
   }, [fullData])
+
+
+
+    //handles updating the display based on what we get from the favData
+  useEffect( ()=>{
+    setSearchFavData(favData)
+  }, [favData])
   
   const handleFavPress = (staffId: string) => {
     const staff:any = fullData.find((s) => s.id === staffId);
@@ -151,7 +158,7 @@ function ContactPage(): JSX.Element {
   }
 
   const options = {
-    keys: ["department","name"],
+    keys: ["department"],
     //search score for how close the match is to the actual string
     includeScore: true,
     threshold: 0.3,
@@ -165,6 +172,7 @@ function ContactPage(): JSX.Element {
   const fuseFav = new Fuse(favData, options);
 
   const handleSearch = (text: string) => {
+
     if (text.length == 0) {
       if (activeTab == 'AllStaff'){
         setSearchFullData(fullData);
@@ -220,7 +228,7 @@ function ContactPage(): JSX.Element {
     return (
 
     <FlatList
-        data={favData} 
+        data={searchFavData} 
         renderItem={({ item }) =>
           <StaffContactEntry
             onPress={() => handleFavPress(item.id)}
@@ -260,11 +268,11 @@ function ContactPage(): JSX.Element {
         style={styles.searchBar}
       />
       <View style={styles.toggleContainer}>
-        <Pressable style={styles.tabButton} onPress={() => handleTabToggle('AllStaff')}>
+        <Pressable style={[styles.tabButton, activeTab === "AllStaff" && styles.selectedTabButton]} onPress={() => handleTabToggle('AllStaff')}>
           <Text style={styles.tabText}>All Staff</Text>
         </Pressable>
       <View style={styles.seperator}></View>
-        <Pressable  style={styles.tabButton} onPress={() => handleTabToggle('Favorite')}>
+        <Pressable  style={[styles.tabButton, activeTab === "Favorite" && styles.selectedTabButton]} onPress={() => handleTabToggle('Favorite')}>
           <Text style={styles.tabText}>Favorites</Text>
         </Pressable>
       </View>
@@ -290,6 +298,9 @@ const styles = StyleSheet.create({
     paddingRight: 48,
     paddingLeft: 48,
     padding: 5,
+  },
+  selectedTabButton: {
+    backgroundColor: "lightblue",
   },
   tabText:{
     textAlign: "center",
