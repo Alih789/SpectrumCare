@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
   },
   header: {
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 30,
+    fontFamily: "Figtree-SemiBold"
   },
 });
 

@@ -1,6 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback} from 'react';
-import {Pressable} from 'react-native';
 import {View} from 'react-native';
 import YoutubeIframe from 'react-native-youtube-iframe';
 
@@ -42,11 +41,7 @@ export default function YoutubePlayer({
   });
 
   return (
-    <Pressable
-      onPress={() => {
-        setPlaying(prev => !prev);
-      }}>
-      <View pointerEvents="none">
+      <View >
         <YoutubeIframe
           play={playing}
           videoId={videoId}
@@ -56,6 +51,5 @@ export default function YoutubePlayer({
           onChangeState={onStateChanged}
         />
       </View>
-    </Pressable>
   );
 }

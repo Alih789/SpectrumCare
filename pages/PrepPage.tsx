@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 36,
+    fontFamily: "Figtree-SemiBold"
   },
   searchBar: {
     borderRadius: 10,

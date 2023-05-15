@@ -25,7 +25,7 @@ const DATA = [
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     title: 'Wayfinding',
     iconName: 'map-outline',
-    text: 'The interactive wayfinding feature can help you find your way to common pediatric surgery destinations at UC Davis health.! The images can also be helpful to share with your patient prior to your visit so they know what different parts of the hospital look like.'
+    text: 'The interactive wayfinding feature can help you find your way to common pediatric surgery destinations at UC Davis health. The images can also be helpful to share with your patient prior to your visit so they know what different parts of the hospital look like.'
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d74',
@@ -107,11 +107,19 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 12,
     marginTop: 20,
-    borderRadius: 20
+    borderRadius: 20,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:4,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   appWelcomeText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'center',
     padding: 15,
     fontFamily: "Figtree-SemiBold"
@@ -134,14 +142,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   itemTitle: {
-    fontSize: 18,
+    fontSize: 22,
     textAlign: 'left',
     color: '#00b2e3',
     paddingBottom: 10,
     fontFamily: "Figtree-Bold"
   },
   itemText: {
-    fontSize: 16,
+    fontSize: 18,
     flex: 1,
     flexWrap: 'wrap',
     color: 'white',
