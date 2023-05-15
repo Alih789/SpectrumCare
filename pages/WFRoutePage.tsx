@@ -116,9 +116,10 @@ const styles = StyleSheet.create({
     fontFamily: "Figtree-Bold"
   },
   modalOpenButton: {
-    borderRadius: 20,
-    elevation: 6,
-    padding: 8,
+    borderRadius: 17,
+    // elevation: 0,
+    padding: 7,
+    margin: 5,
     backgroundColor: '#00b2e3',
   },
   centeredView: {
@@ -145,7 +146,6 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     borderRadius: 20,
-    elevation: 6,
     alignSelf: 'flex-end',
     padding: 10,
     marginTop: 10,

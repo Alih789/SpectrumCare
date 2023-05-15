@@ -200,9 +200,24 @@ const styles = StyleSheet.create({
     bottom: "60%",
     backgroundColor: '#00b2e3',
     borderRadius: 100,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:4,
+    shadowRadius: 2.22,
+    elevation: 2,
   },
   inactiveSlideButton: {
-    opacity: 0.5,
+    opacity: 0.7,
+    elevation: 6,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
   },
   nextSlideButton: {
     right: 20,
