@@ -18,10 +18,10 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
   return (
     <View style={styles.container}>
       <Image source={{uri: imagePath}} style={styles.image}/>
+      <Pressable style={styles.favPostioning} onPress={handleFavPress}>
+        <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
+      </Pressable> 
       <View style={styles.detailsContainer}>
-        {/* <Pressable style={styles.favPostioning} onPress={handleFavPress}>
-          <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]} size={22}/>
-  </Pressable>*/}
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
         <Text style={styles.department}>{department}</Text>
@@ -73,18 +73,22 @@ const styles = StyleSheet.create({
     paddingRight: 10,
 
   },
+
+//Favoriting Button CSS -- Begin
   favPostioning:{
-    top: -25,
-    right: 0,
     position: "absolute",
+    top: 5,
+    right: 5,
 
   },
-  defaultFav: {
+  unFavorite: {
     color: 'grey',
   },
-  favButtonPressed: {
+  Favorite: {
     color: 'red',
   },
+// Favorting Button CSS -- End 
+
   name: {
     flexWrap: "wrap",
     fontWeight: 'bold',
