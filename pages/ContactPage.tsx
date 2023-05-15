@@ -10,19 +10,19 @@ import storage from '@react-native-firebase/storage';
 
 
 type itemProps = {
-  id: string, 
-  name: string, 
-  imagePath: any, 
-  jobTitle: string, 
+  id: string,
+  name: string,
+  imagePath: any,
+  jobTitle: string,
   department: string,
-  phoneNumber: string, 
-  onPress: (isPressed: boolean) => void, 
+  phoneNumber: string,
+  onPress: (isPressed: boolean) => void,
   hyperlink: string
 }
 
 
 function ContactPage(): JSX.Element {
-  
+
   //used to store All Staff data source
   const [fullData, setFullData] =  useState<itemProps[]>([]);
   const [searchFullData, setSearchFullData] = useState<itemProps[]>([]);
@@ -34,7 +34,7 @@ function ContactPage(): JSX.Element {
   const [favColors, setFavColors] = useState({});
 
   //used to store Fav filtered data based on the search
-  const [searchFavData, setSearchFavData] =  useState<itemProps[]>([]); 
+  const [searchFavData, setSearchFavData] =  useState<itemProps[]>([]);
 
   //stores current searched term
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,7 +48,7 @@ function ContactPage(): JSX.Element {
     const imageRef = storage().ref(imagePath);
     try {
       const downloadUrl = await imageRef.getDownloadURL();
-      
+
       if(downloadUrl){
         return downloadUrl;
       }
@@ -59,25 +59,25 @@ function ContactPage(): JSX.Element {
   }
 
   async function loadMore(){
-    //fetches the next set of data from the database 
+    //fetches the next set of data from the database
     //lastVisible carries the last entry from the loaded batch recorded by the fetch
     try {
       //Creating a ref for the collection we are trying to query
       const collectionRef = firestore().collection('staff-list');
-      
+
       //query the next set of results
       let query = collectionRef.orderBy('name');
 
-      //if we havent reached the end of the list 
+      //if we havent reached the end of the list
       if(lastVisible){
         query = query.startAfter(lastVisible);
       }
-       
+
       const snapshot = await query.get();
 
       const newData = await Promise.all(snapshot.docs.map(async (doc) => {
         const data = doc.data();
-  
+
         //imagePath is then turned into a url with google token
         const downloadUrl = await getImageUrl(data.imagePath);
         //creating new objects with updated information
@@ -142,7 +142,7 @@ function ContactPage(): JSX.Element {
   useEffect( ()=>{
     setSearchFavData(favData)
   }, [favData])
-  
+
   const handleFavPress = (staffId: string) => {
     const staff:any = fullData.find((s) => s.id === staffId);
 
@@ -228,7 +228,7 @@ function ContactPage(): JSX.Element {
     return (
 
     <FlatList
-        data={searchFavData} 
+        data={searchFavData}
         renderItem={({ item }) =>
           <StaffContactEntry
             onPress={() => handleFavPress(item.id)}
@@ -306,6 +306,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "black",
+    fontFamily: "Figtree-Bold"
   },
   seperator: {
     marginHorizontal: 10,
@@ -320,6 +321,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 36,
+    fontFamily: "Figtree-Bold"
   },
   searchBar: {
     borderRadius: 10,

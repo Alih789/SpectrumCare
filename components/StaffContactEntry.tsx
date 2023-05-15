@@ -7,7 +7,7 @@ type itemProps ={name: string, imagePath: string, jobTitle: string, department: 
 function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, hyperlink}: itemProps): JSX.Element {
 
   const [isPressed, setIsPressed] = useState(false);
-  
+
   const handleFavPress = () => {
     setIsPressed(!isPressed);
     if (onPress) {
@@ -20,7 +20,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
       <Image source={{uri: imagePath}} style={styles.image}/>
       <Pressable style={styles.favPostioning} onPress={handleFavPress}>
         <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
-      </Pressable> 
+      </Pressable>
       <View style={styles.detailsContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
@@ -28,7 +28,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
         <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
-            <Text style={styles.linkText}>View Full Profile {">"} </Text> 
+            <Text style={styles.linkText}>View Full Profile {">"} </Text>
           </View>
         </Pressable>
       </View>
@@ -87,28 +87,30 @@ const styles = StyleSheet.create({
   Favorite: {
     color: 'red',
   },
-// Favorting Button CSS -- End 
+// Favorting Button CSS -- End
 
   name: {
     flexWrap: "wrap",
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 17,
     marginBottom: 3,
     lineHeight: 17,
+    fontFamily: "Figtree-Bold"
   },
   jobTitle: {
     flexWrap: "wrap",
     fontWeight: "600",
-    fontSize: 10,
+    fontSize: 15,
     marginBottom: 5,
     lineHeight: 17,
-
+    fontFamily: "Figtree-SemiBold"
   },
   department: {
     flexWrap: "wrap",
-    fontSize: 11,
+    fontSize: 13,
     marginBottom: 5,
     lineHeight: 17,
+    fontFamily: "Figtree-Medium"
   },
   box: {
     borderWidth: 2,
@@ -124,12 +126,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: "bold",
     color: "#003A5D",
+    fontFamily: "Figtree-Medium"
   },
   phoneNumber: {
     color: "black",
     fontWeight: '500',
-    fontSize: 11,
+    fontSize: 13,
     marginBottom: 12,
+    fontFamily: "Figtree-Medium"
   }
 })
 export default StaffContactEntry
