@@ -2,7 +2,7 @@ import {StyleSheet, Text, SafeAreaView, Dimensions, View} from 'react-native';
 import NotesButton from '../components/NotesButton';
 import React, {useState} from 'react';
 import YoutubePlayer from '../components/YoutubePlayer';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
@@ -39,46 +39,48 @@ function HomePage(): JSX.Element {
   const [playing, setPlaying] = useState(false);
   return (
     <SafeAreaView style={styles.background}>
-      <ScrollView style={{backgroundColor: '#003A5D'}}>
-      <Text style={styles.appHeader}>Care Across the Spectrum</Text>
-      <View style={styles.appWelcomeContainer}>
-        <Text style={styles.appWelcomeText}>
-          Welcome to the UC Davis Children's Surgery Center!
-          This app was designed to be a source of helpful preparatory information for families.
-          Scroll down to learn more about each of the features.
-        </Text>
-      </View>
-      {
-        DATA.map((item) => {
-          return (
-            <View key={item.id} style={styles.itemV}>
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              <View style={styles.itemH}>
-                <Ionicons name={item.iconName} size={40} color={'#00b2e3'} style={styles.icon} />
-                  <Text style={styles.itemText}>
-                    {item.text}
-                </Text>
-              </View>
-            </View>
-          )})
-        }
-
+      <GestureHandlerRootView>
+        <ScrollView style={{backgroundColor: '#003A5D'}}>
+        <Text style={styles.appHeader}>Care Across the Spectrum</Text>
         <View style={styles.appWelcomeContainer}>
           <Text style={styles.appWelcomeText}>
-            Watch this welcome video from the children's surgery center:
+            Welcome to the UC Davis Children's Surgery Center!
+            This app was designed to be a source of helpful preparatory information for families.
+            Scroll down to learn more about each of the features.
           </Text>
         </View>
-        <View style={styles.videoPlayer} >
-          <YoutubePlayer
-            videoId="fHkwkegRGDU"
-            height={250}
-            width={dimensions.width * 0.8}
-            playing={playing}
-            setPlaying={setPlaying}
-          />
-        </View>
+        {
+          DATA.map((item) => {
+            return (
+              <View key={item.id} style={styles.itemV}>
+                <Text style={styles.itemTitle}>{item.title}</Text>
+                <View style={styles.itemH}>
+                  <Ionicons name={item.iconName} size={40} color={'#00b2e3'} style={styles.icon} />
+                    <Text style={styles.itemText}>
+                      {item.text}
+                  </Text>
+                </View>
+              </View>
+            )})
+          }
 
-      </ScrollView>
+          <View style={styles.appWelcomeContainer}>
+            <Text style={styles.appWelcomeText}>
+              Watch this welcome video from the children's surgery center:
+            </Text>
+          </View>
+          <View style={styles.videoPlayer} >
+            <YoutubePlayer
+              videoId="fHkwkegRGDU"
+              height={250}
+              width={dimensions.width * 0.8}
+              playing={playing}
+              setPlaying={setPlaying}
+            />
+          </View>
+
+        </ScrollView>
+      </GestureHandlerRootView>
       <NotesButton />
     </SafeAreaView>
   );
