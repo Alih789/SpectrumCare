@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     color: 'white',
-    fontFamily: "Figtree-Bold"
+    fontFamily: "Figtree-Bold",
+    marginBottom: 10,
     // flex: 1,
     // flexWrap: 'wrap'
   },
@@ -156,7 +157,8 @@ const styles = StyleSheet.create({
   },
   video: {
     height: 250,
-    width: Dimensions.get('screen').width,
+    // width: Dimensions.get('screen').width,
+    width: carouselWidth,
   },
   background: {
     width: width,
