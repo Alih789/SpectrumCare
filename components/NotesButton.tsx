@@ -144,7 +144,6 @@ function NotesButton(): JSX.Element {
         <View style={styles.modalBackgroundStyle}>
           <View style={styles.headerView}>
             <View style={styles.title}>
-              <Ionicons name="create-outline" size={25} color={'black'} style={styles.editIcon} />
               <TextInput
                 editable
                 numberOfLines={1}
@@ -153,6 +152,8 @@ function NotesButton(): JSX.Element {
                 value={titleText}
                 style={styles.headerText}
               />
+              <Ionicons name="create-outline" size={25} color={'black'} style={styles.editIcon} />
+
             </View>
 
             <Text onPress={() => onCollapseHandler(text)} style={styles.collapseButton}>Collapse</Text>
@@ -235,6 +236,7 @@ const styles = StyleSheet.create({
     fontFamily: "Figtree-Medium"
   },
   editIcon: {
+    marginLeft: 5,
   },
   title: {
     flexDirection: 'row',
