@@ -69,7 +69,7 @@ function NotesButton(): JSX.Element {
             savedTitle  = storage.getString('title3');
           }
 
-          console.log("PRINNTING NOTES: ",savedNotes,page, typeof(savedNotes))
+          // console.log("PRINNTING NOTES: ",savedNotes,page, typeof(savedNotes))
 
           if(typeof(savedNotes) === 'string' && savedNotes !="undefined") {
             onChangeText(String(savedNotes))
