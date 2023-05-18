@@ -15,8 +15,6 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
     }
   }
 
-  const telURL = "tel:".concat(phoneNumber)
-
   return (
     <View style={styles.container}>
       <Image source={{uri: imagePath}} style={styles.image}/>
@@ -24,14 +22,10 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
         <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
       </Pressable>
       <View style={styles.detailsContainer}>
-        <Text selectable={true} style={styles.name}>{name}</Text>
-        <Text selectable={true} style={styles.jobTitle}>{jobTitle}</Text>
-        <Text selectable={true} style={styles.department}>{department}</Text>
-        <Pressable onPress={() => Linking.openURL(telURL)} >
-          <Text selectable={true} style={styles.phoneNumber}>
-            {phoneNumber}
-          </Text>
-          </Pressable>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.jobTitle}>{jobTitle}</Text>
+        <Text style={styles.department}>{department}</Text>
+        <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
             <Text style={styles.linkText}>View Full Profile {">"} </Text>
