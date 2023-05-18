@@ -58,7 +58,6 @@ export default function PrepCarousel({
 
       if (page.bodyText) {
         text = <Text selectable={true} key={page.bodyText} style={styles.text}>
-          {/* {page.bodyText} */}
           {page.bodyText.replaceAll("\\n", "\n")}
         </Text>
       }
