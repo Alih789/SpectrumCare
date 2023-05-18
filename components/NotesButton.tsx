@@ -10,7 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 import { storage } from './storageConst';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 
@@ -142,16 +142,22 @@ function NotesButton(): JSX.Element {
         visible={!collapsed}
         transparent={true}>
         <View style={styles.modalBackgroundStyle}>
-          <View style={{ flexDirection: 'row', justifyContent: "flex-start", height: "15%" }}>
-            <Text onPress={() => onCollapseHandler(text)} style={{ textAlignVertical: "center", paddingLeft: 10, paddingTop: 10, color: "black" }}>Collapse</Text>
-            <TextInput
-              editable
-              numberOfLines={1}
-              maxLength={20}
-              onChangeText={titleText => onChangeTitleText(titleText)}
-              value={titleText}
-              style={[styles.text, { marginLeft: "7.5%", marginTop: 15 }]}
-            />
+          <View style={styles.headerView}>
+            <View style={styles.title}>
+              <Ionicons name="create-outline" size={25} color={'black'} style={styles.editIcon} />
+              <TextInput
+                editable
+                numberOfLines={1}
+                maxLength={20}
+                onChangeText={titleText => onChangeTitleText(titleText)}
+                value={titleText}
+                style={styles.headerText}
+              />
+            </View>
+
+            <Text onPress={() => onCollapseHandler(text)} style={styles.collapseButton}>Collapse</Text>
+
+
           </View>
           <View style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10, overflow: 'hidden' }}>
             <TextInput
@@ -161,7 +167,8 @@ function NotesButton(): JSX.Element {
               maxLength={1000}
               onChangeText={text => onChangeText(text)}
               value={text}
-              style={{ padding: 10, backgroundColor: pageColor, textAlignVertical: "top", height: "80%" }}
+
+              style={{ padding: 10, backgroundColor: pageColor, textAlignVertical: "top", height: "80%", fontFamily: "Figtree-Medium", }}
             />
             <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: pageColor, height: "10.5%", alignItems: "center" }}>
               <View style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabView]}>
@@ -213,9 +220,33 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     marginTop: "15%"
   },
-  text: {
+  headerView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    height: "12%"
+  },
+  collapseButton: {
+    textAlignVertical: "center",
+    paddingRight: 15,
+    paddingTop: 15,
+    color: "black",
+    fontFamily: "Figtree-Medium"
+  },
+  editIcon: {
+  },
+  title: {
+    flexDirection: 'row',
+    justifyContent: "flex-start",
+    marginTop: 15,
+    marginLeft: 15,
+  },
+  headerText: {
     color: "black",
     fontSize: 24,
+    fontFamily: "Figtree-Medium",
+    // marginLeft: "7.5%",
   },
   collapsedBanner: {
     padding: 10,
@@ -225,6 +256,7 @@ const styles = StyleSheet.create({
   warningBanner: {
     color: "black",
     fontSize: 14,
+    fontFamily: "Figtree-Medium",
     backgroundColor: "#ff9800",
     padding: 10,
     paddingTop: 5,
@@ -234,13 +266,14 @@ const styles = StyleSheet.create({
     textAlignVertical: 'bottom',
   },
   tabView: {
-    padding: 16,
-    bottom: 0,
+
   },
   tabViewText: {
-    fontFamily: "Figree-SemiBold",
-    // fontSize: 16,
-  }
+    padding: 16,
+    bottom: 0,
+    fontFamily: "Figtree-Medium",
+  },
+
 });
 
 
