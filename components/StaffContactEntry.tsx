@@ -7,7 +7,7 @@ type itemProps ={name: string, imagePath: string, jobTitle: string, department: 
 function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, hyperlink}: itemProps): JSX.Element {
 
   const [isPressed, setIsPressed] = useState(false);
-  
+
   const handleFavPress = () => {
     setIsPressed(!isPressed);
     if (onPress) {
@@ -15,20 +15,26 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
     }
   }
 
+  const telURL = "tel:".concat(phoneNumber)
+
   return (
     <View style={styles.container}>
       <Image source={{uri: imagePath}} style={styles.image}/>
       <Pressable style={styles.favPostioning} onPress={handleFavPress}>
         <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
-      </Pressable> 
+      </Pressable>
       <View style={styles.detailsContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.jobTitle}>{jobTitle}</Text>
-        <Text style={styles.department}>{department}</Text>
-        <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
+        <Text selectable={true} style={styles.name}>{name}</Text>
+        <Text selectable={true} style={styles.jobTitle}>{jobTitle}</Text>
+        <Text selectable={true} style={styles.department}>{department}</Text>
+        <Pressable onPress={() => Linking.openURL(telURL)} >
+          <Text selectable={true} style={styles.phoneNumber}>
+            {phoneNumber}
+          </Text>
+          </Pressable>
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
-            <Text style={styles.linkText}>View Full Profile {">"} </Text> 
+            <Text style={styles.linkText}>View Full Profile {">"} </Text>
           </View>
         </Pressable>
       </View>
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
   Favorite: {
     color: 'red',
   },
-// Favorting Button CSS -- End 
+// Favorting Button CSS -- End
 
   name: {
     flexWrap: "wrap",
