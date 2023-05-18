@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   indicatorContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 30,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
