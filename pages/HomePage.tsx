@@ -41,7 +41,7 @@ function HomePage(): JSX.Element {
     <SafeAreaView style={styles.background}>
       <GestureHandlerRootView>
         <ScrollView style={{ backgroundColor: '#003A5D' }}>
-          <Text style={styles.appHeader}>Peds Procedure Path</Text>
+          <Text style={styles.appHeader}>Care Path</Text>
           <View style={styles.appWelcomeContainer}>
             <Text style={styles.appWelcomeText}>
               Welcome to the UC Davis Children's Surgery Center!

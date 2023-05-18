@@ -84,12 +84,12 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   headerText: {
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
     textAlign: 'center',
     color: 'white',
     fontSize: 36,
-    fontFamily: "Figtree-Bold"
+    fontFamily: "Figtree-SemiBold"
   },
   touchable: {
     backgroundColor: '#00b2e3',
