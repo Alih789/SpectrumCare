@@ -125,7 +125,6 @@ function ContactPage(): JSX.Element {
       try{
           // We have data!!
           const stringArray = await storageLocal.getString('userFavoritedDocsArray')!;
-          console.log("STRING ARRAY RAWWWW: ",stringArray);
           // userFavDocArray =JSON.parse(stringArray);
           setUserFavDocArray(JSON.parse(stringArray));
         
@@ -169,7 +168,6 @@ function ContactPage(): JSX.Element {
 
     let stringDocsArray = JSON.stringify(userFavDocArray);
     storageLocal.set("userFavoritedDocsArray",stringDocsArray);
-    console.log("ARRAY AFTER SAVE: ", userFavDocArray);
     
   },[userFavDocArray])
   
@@ -177,7 +175,6 @@ function ContactPage(): JSX.Element {
     const staff: any = fullData.find((s) => s.id === staffID);
 
     if(!userFavDocArray.includes(staff)){
-      console.log("ARRAY BEFORE SAVE: ", userFavDocArray);
       setUserFavDocArray(userFavDocArray.concat([staff]));
     } else {
       //Delete object from the local storage
@@ -217,7 +214,7 @@ function ContactPage(): JSX.Element {
         setSearchFullData(fullData);
       }//TODO : Add else if favorites return full favorites array
       else{
-        setSearchFavData(favData);
+        setSearchFavData(userFavDocArray);
       }
     } else {
       //TODO : Add if else for when its in AllStaff and Favorites
@@ -228,7 +225,7 @@ function ContactPage(): JSX.Element {
         setSearchFullData(filteredFullData);
       }
       else{
-        const fuseFav = new Fuse(favData, options);
+        const fuseFav = new Fuse(userFavDocArray, options);
         const favResults = fuseFav.search(text);
         const filteredFavData = favResults.map((result) => result.item);
         setSearchFavData(filteredFavData);
@@ -236,12 +233,7 @@ function ContactPage(): JSX.Element {
     }
     setSearchTerm(text);
   };
-  
-  // console.log("Fav Data", favData);
-  // console.log("Fav Data length", favData.length);
-  // console.log("searched Fav Data", searchFavData);
-  // console.log("searched Fav Data Length", searchFavData.length);
-  // console.log("Search Term: ", searchTerm);
+ 
 
   const handleTabToggle = (tab: string) => {
     setActiveTab(tab);
@@ -297,7 +289,6 @@ function ContactPage(): JSX.Element {
 
   //Handles which data is displayed when tabs are clicked
   const renderActiveTab = () =>{
-    console.log("RENDERACTIVE TAB DOC ARRAY: ",userFavDocArray);
     if(activeTab == 'AllStaff') {
       return renderAllStaffTab();
     } else {
@@ -314,7 +305,7 @@ function ContactPage(): JSX.Element {
         value={searchTerm}
         onClearPress={() => {
           if (activeTab == 'AllStaff'){setSearchFullData(fullData);}
-          if (activeTab == 'Favorite'){setSearchFavData(favData);}
+          if (activeTab == 'Favorite'){setSearchFavData(userFavDocArray);}
           setSearchTerm('')
         }}
         style={styles.searchBar}

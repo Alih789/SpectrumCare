@@ -1,7 +1,6 @@
 import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import React, {useState, useEffect} from 'react'
-import { storage } from './storageConst';
+import React, {useState} from 'react'
 
 type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, isFavorited: boolean, hyperlink: string}
 
@@ -10,8 +9,6 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
   
   
   const [isPressed, setIsPressed] = useState(isFavorited);
-  console.log("isFavorited: ", isFavorited, "   |    name: ", name);
-
 
   const handleFavPress = () => {
     //Handles the favorite button color change
