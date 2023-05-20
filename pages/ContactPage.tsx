@@ -7,7 +7,7 @@ import Fuse from 'fuse.js';
 import AllStaffInfo from "../assets/AllStaffInfo.js";
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
-
+import {storage as storageLocal}from "../components/storageConst";
 
 type itemProps = {
   id: string, 
@@ -24,20 +24,19 @@ function ContactPage(): JSX.Element {
   
   //used to store All Staff data source
   const [fullData, setFullData] =  useState<itemProps[]>([]);
-  
-  const adjFullData = [...fullData];
-  const [searchFullData, setSearchFullData] = useState(adjFullData);
+  const [searchFullData, setSearchFullData] = useState(fullData);
     
   const [loading, setLoading] = useState(true);
   const [loadMoreInProgress, setLoadMoreInProgress] = useState(false);
   const [lastVisible, setLastVisible] = useState<FirebaseFirestoreTypes.DocumentSnapshot>();
+
+  const [userFavDocArray, setUserFavDocArray] = useState<itemProps[]>([]);
   
   //used to store Favorite Staff data source
   const [favData, setFavData] = useState<itemProps[]>([]);
-  const [favColors, setFavColors] = useState({});
   
   //used to store Fav filtered data based on the search
-  const [searchFavData, setSearchFavData] =  useState<itemProps[]>([]); 
+  const [searchFavData, setSearchFavData] = useState(favData);
   
   //stores current searched term
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,6 +45,8 @@ function ContactPage(): JSX.Element {
   
   //determines which tab you are on
   const [activeTab, setActiveTab] = useState('AllStaff')
+
+
   
   async function getImageUrl(imagePath: string){
     const imageRef = storage().ref(imagePath);
@@ -116,7 +117,24 @@ function ContactPage(): JSX.Element {
   }
   
   //Handles query to database
-  useEffect( ()=> {
+  // let userFavDocArray:any = [];
+  useEffect(()=> {
+
+    async function storageFavList(){ 
+      //getting previous save favourited list
+      try{
+          // We have data!!
+          const stringArray = await storageLocal.getString('userFavoritedDocsArray')!;
+          console.log("STRING ARRAY RAWWWW: ",stringArray);
+          // userFavDocArray =JSON.parse(stringArray);
+          setUserFavDocArray(JSON.parse(stringArray));
+        
+      } catch (error) {
+        // Error retrieving data
+        setUserFavDocArray([]);
+        console.log("Error: ", error);
+      }
+    }
     async function getStaffList(){
       const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(5).get());
       const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
@@ -141,9 +159,44 @@ function ContactPage(): JSX.Element {
       //setloading lets us know that the data has finished loading on screen
       setLoading(false);
     }
+    storageFavList();
     getStaffList();
   }, []);
 
+  //favData is appended and removed in this function
+
+  useEffect(() => {
+
+    let stringDocsArray = JSON.stringify(userFavDocArray);
+    storageLocal.set("userFavoritedDocsArray",stringDocsArray);
+    console.log("ARRAY AFTER SAVE: ", userFavDocArray);
+    
+  },[userFavDocArray])
+  
+  const handleFavPress = (staffID: string, name: string) => {
+    const staff: any = fullData.find((s) => s.id === staffID);
+
+    if(!userFavDocArray.includes(staff)){
+      console.log("ARRAY BEFORE SAVE: ", userFavDocArray);
+      setUserFavDocArray(userFavDocArray.concat([staff]));
+    } else {
+      //Delete object from the local storage
+      setUserFavDocArray(userFavDocArray.filter((s) => s.id !== staffID));
+    }
+
+
+    //if the staff isnt in the list add them to favData
+    if(!favData.includes(staff)){
+      //add to async array
+      setFavData(favData.concat(staff));
+    } else {
+      //Staff is in the list, remove them 
+      //remove from asyn array
+      setFavData(favData.filter((s) => s.id !== staffID));
+    }
+
+    //async store save array
+  }
 
   const handleSearch = (text: string) => {
     
@@ -163,15 +216,32 @@ function ContactPage(): JSX.Element {
         //No Search has occured
         setSearchFullData(fullData);
       }//TODO : Add else if favorites return full favorites array
+      else{
+        setSearchFavData(favData);
+      }
     } else {
       //TODO : Add if else for when its in AllStaff and Favorites
-      const fuseFull = new Fuse(fullData, options);
-      const results = fuseFull.search(text);
-      const filteredData = results.map((result) => result.item);
-      setSearchFullData(filteredData);
+      if(activeTab === "AllStaff"){
+        const fuseFull = new Fuse(fullData, options);
+        const fullResults = fuseFull.search(text);
+        const filteredFullData = fullResults.map((result) => result.item);
+        setSearchFullData(filteredFullData);
+      }
+      else{
+        const fuseFav = new Fuse(favData, options);
+        const favResults = fuseFav.search(text);
+        const filteredFavData = favResults.map((result) => result.item);
+        setSearchFavData(filteredFavData);
+      }
     }
     setSearchTerm(text);
   };
+  
+  // console.log("Fav Data", favData);
+  // console.log("Fav Data length", favData.length);
+  // console.log("searched Fav Data", searchFavData);
+  // console.log("searched Fav Data Length", searchFavData.length);
+  // console.log("Search Term: ", searchTerm);
 
   const handleTabToggle = (tab: string) => {
     setActiveTab(tab);
@@ -184,13 +254,14 @@ function ContactPage(): JSX.Element {
         renderItem={({ item, index}) => 
         <StaffContactEntry
         key={item.id + '_' + index}
-        onPress={() => handleFavPress(item.id)}
+        onPress={() => handleFavPress(item.id,item.name)}
         name={item.name}
         imagePath={item.imagePath}
         jobTitle={item.jobTitle}
         department={item.department}
         phoneNumber={item.phoneNumber}
         hyperlink={item.hyperlink}
+        isFavorited={userFavDocArray.filter((s) => s.id === item.id).length > 0}
         />}
         keyExtractor={(item, index) => item.id + '_' + index}
         onEndReached={loadMore}
@@ -205,25 +276,28 @@ function ContactPage(): JSX.Element {
   const renderFavoriteTab = () => {
     return (
     <FlatList
-        data={searchFavData} 
-        renderItem={({ item }) =>
+        data={searchFavData.length != 0 ? searchFavData : userFavDocArray}
+        renderItem={({ item, index}) => 
           <StaffContactEntry
-            onPress={() => handleFavPress(item.id)}
+            onPress={() => handleFavPress(item.id,item.name)}
+            key={item.id + '_' + index}
             name={item.name}
             imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
             phoneNumber={item.phoneNumber}
             hyperlink={item.hyperlink}
+            isFavorited={userFavDocArray.filter((s) => s.id === item.id).length > 0}
             />}
-        keyExtractor={item => item.id}
-        style={[styles.list, { height: height - 150 }]}
+            keyExtractor={(item, index) => item.id + '_' + index}
+            style={[styles.list, { height: height - 150 }]}
       />
     )
   };
 
   //Handles which data is displayed when tabs are clicked
   const renderActiveTab = () =>{
+    console.log("RENDERACTIVE TAB DOC ARRAY: ",userFavDocArray);
     if(activeTab == 'AllStaff') {
       return renderAllStaffTab();
     } else {
