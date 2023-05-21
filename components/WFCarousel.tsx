@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     width: width,
     fontSize: 20,
     padding: 10,
-    fontFamily: "Figtree-Medium",
+    fontFamily: "Figtree-Light",
     flex: 1,
   },
   indicatorContainer: {
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity:4,
+    shadowOpacity:1,
     shadowRadius: 2.22,
     elevation: 2,
   },

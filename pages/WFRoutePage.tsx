@@ -104,9 +104,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   carousel: {
-    // marginTop: 50,
-    // height: "80%",
-    // backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,
@@ -117,7 +114,6 @@ const styles = StyleSheet.create({
   },
   modalOpenButton: {
     borderRadius: 17,
-    // elevation: 0,
     padding: 7,
     margin: 5,
     backgroundColor: '#00b2e3',
