@@ -36,7 +36,6 @@ function Route({ title, routeID }: RouteProps) {
           </View>
         </View>
       </TouchableHighlight>
-      
     </View>
   )
 };
@@ -66,7 +65,6 @@ function WayfindingPage(): JSX.Element {
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Wayfinding </Text>
-      
       <FlatList
         data={DATA}
         renderItem={({ item }) =>
@@ -75,8 +73,7 @@ function WayfindingPage(): JSX.Element {
         keyExtractor={item => item.id}
         style={styles.list}
       />
-
-    <NotesButton />  
+      <NotesButton />
     </SafeAreaView>
   );
 }
@@ -84,17 +81,18 @@ function WayfindingPage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003a5d",
+    flex: 1,
   },
   list: {
     height: '100%'
   },
   headerText: {
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
     textAlign: 'center',
     color: 'white',
     fontSize: 36,
-    fontFamily: "Figtree-Bold"
+    fontFamily: "Figtree-SemiBold"
   },
   touchable: {
     backgroundColor: '#00b2e3',
