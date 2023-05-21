@@ -9,7 +9,7 @@ import {
     Modal,
     TextInput,
   } from 'react-native';
-import { storage } from './storageConst';
+import { storage } from '../components/storageConst';
 
 
 
