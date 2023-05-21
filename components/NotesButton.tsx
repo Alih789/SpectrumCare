@@ -246,8 +246,9 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "black",
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: "Figtree-Medium",
+    maxWidth: '88%',
     // marginLeft: "7.5%",
   },
   collapsedBanner: {
