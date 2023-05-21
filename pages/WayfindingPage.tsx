@@ -4,6 +4,7 @@ import { Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight } fr
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { useNavigation } from '@react-navigation/native';
+import NotesButton from '../components/NotesButton';
 
 type RouteProps = { title: string, routeID: string };
 
@@ -35,6 +36,7 @@ function Route({ title, routeID }: RouteProps) {
           </View>
         </View>
       </TouchableHighlight>
+      
     </View>
   )
 };
@@ -64,6 +66,7 @@ function WayfindingPage(): JSX.Element {
   return (
     <SafeAreaView style={styles.background}>
       <Text style={styles.headerText}> Wayfinding </Text>
+      
       <FlatList
         data={DATA}
         renderItem={({ item }) =>
@@ -72,6 +75,8 @@ function WayfindingPage(): JSX.Element {
         keyExtractor={item => item.id}
         style={styles.list}
       />
+
+    <NotesButton />  
     </SafeAreaView>
   );
 }
