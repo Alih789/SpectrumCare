@@ -13,7 +13,6 @@ import { storage } from './storageConst';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-
 const storeData = async (value: any, page: any, title: any) => {
   try {
 

@@ -2,14 +2,16 @@ import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react'
 
-type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, isFavorited: boolean, hyperlink: string}
 
-function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, hyperlink}: itemProps): JSX.Element {
+function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, isFavorited, hyperlink}: itemProps): JSX.Element {
 
-  const [isPressed, setIsPressed] = useState(false);
+  const [isPressed, setIsPressed] = useState(isFavorited);
 
   const handleFavPress = () => {
+    //Handles the favorite button color change
     setIsPressed(!isPressed);
+    //Triggers the removal and appending into the favDAta
     if (onPress) {
       onPress(!isPressed);
     }
