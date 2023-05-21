@@ -12,11 +12,7 @@ import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
 
-type WFCarouselProps = {
-  imageURLs: any[];
-  text: string[];
-  jumpToIndexFromModal: number;
-};
+import { WFCarouselProps } from '../assets/customTypes';
 
 const { width, height } = Dimensions.get('window');
 
@@ -49,7 +45,7 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const refreshImage = () => {
-    return new Promise(res => setTimeout(res, 50));
+    return new Promise((res: any) => setTimeout(res, 50));
   }
   const handleNextSlide = async() =>{
     carouselRef.current.next();

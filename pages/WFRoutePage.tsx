@@ -7,15 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 
 import WFData from '../assets/testData/WFData';
-
-// todo: move to types file?
-type WayfindingStackParamList = {
-  WayfindingHome: undefined;
-  Route: {
-    routeID: string,
-    routeTitle: string,
-  }
-}
+import { WayfindingStackParamList } from '../assets/customTypes';
 
 type Props = StackScreenProps<WayfindingStackParamList, 'Route'>;
 
