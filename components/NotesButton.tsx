@@ -115,6 +115,18 @@ function NotesButton(): JSX.Element {
     setPage(pageArg);
   }
 
+  function returnBackgroundColor(pageNumb: any){
+    if(pageNumb == 0)
+      return "#fdffb6";
+    else if (pageNumb == 1)
+      return "#ffadd1";
+    else if (pageNumb == 2)
+      return "#ffcaaf";
+    else if (pageNumb == 3)
+      return "#dab894";
+
+  }
+
 
     return (
 
@@ -146,11 +158,20 @@ function NotesButton(): JSX.Element {
             <TextInput
               editable
               numberOfLines={1}
-              maxLength={20}
+              maxLength={12}
               onChangeText={titleText => onChangeTitleText(titleText)}
               value={titleText}
               style = {[styles.text,{marginLeft:"7.5%",marginTop:15}]}
             />
+            <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={require("../assets/images/extraIcons/editIcon.png")}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.editIconStyle}
+          />
+
           </View>
           <View style = {{borderBottomLeftRadius:10, borderBottomRightRadius:10,overflow: 'hidden'}}>
             <TextInput
@@ -160,13 +181,13 @@ function NotesButton(): JSX.Element {
               maxLength={1000}
               onChangeText={text => onChangeText(text)}
               value={text}
-              style={{padding: 10,backgroundColor:"grey",textAlignVertical:"top",height:"80%"}}
+              style={{padding: 10,backgroundColor:returnBackgroundColor(page),textAlignVertical:"top",height:"80%"}}
             />
-            <View style = {{flexDirection:"row", justifyContent:"space-between",backgroundColor:"grey", height:"10.5%", alignItems:"center",padding:5}}>
-              <Text onPress={() => onChangePageHandler(0) } style={{backgroundColor: (page ==0)? "#ADD8E6" : "#FFF" , borderRadius:5, padding:5}} >Button 1</Text>
-              <Text onPress={() => onChangePageHandler(1) } style={{backgroundColor: (page ==1)? "#ADD8E6" : "#FFF" , borderRadius:5, padding:5}} >Button 2</Text>
-              <Text onPress={() => onChangePageHandler(2) } style={{backgroundColor: (page ==2)? "#ADD8E6" : "#FFF" , borderRadius:5, padding:5}} >Button 3</Text>
-              <Text onPress={() => onChangePageHandler(3) } style={{backgroundColor: (page ==3)? "#ADD8E6" : "#FFF" , borderRadius:5, padding:5}} >Button 4</Text>
+            <View style = {{flexDirection:"row", justifyContent:"space-between",backgroundColor:returnBackgroundColor(page), height:"10.5%", alignItems:"center",padding:5}}>
+              <Text onPress={() => onChangePageHandler(0) } style={{backgroundColor: (page ==0)? "#029666" : "#FFF" , borderRadius:5, padding:5, borderWidth: 1.5}} >Page 1</Text>
+              <Text onPress={() => onChangePageHandler(1) } style={{backgroundColor: (page ==1)? "#029666" : "#FFF" , borderRadius:5, padding:5, borderWidth: 1.5}} >Page 2</Text>
+              <Text onPress={() => onChangePageHandler(2) } style={{backgroundColor: (page ==2)? "#029666" : "#FFF" , borderRadius:5, padding:5, borderWidth: 1.5}} >Page 3</Text>
+              <Text onPress={() => onChangePageHandler(3) } style={{backgroundColor: (page ==3)? "#029666" : "#FFF" , borderRadius:5, padding:5, borderWidth: 1.5}} >Page 4</Text>
             </View>
 
             <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
@@ -193,6 +214,14 @@ function NotesButton(): JSX.Element {
       width: 50,
       height: 50,
 
+    },
+    editIconStyle: {
+      resizeMode:'center',
+      width: 25,
+      height: 25,
+      alignSelf:"center",
+      position:"absolute",
+      left:275
     },
     modalBackgroundStyle:{
       position:"relative",
