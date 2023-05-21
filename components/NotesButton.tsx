@@ -8,6 +8,7 @@ import {
   Text,
   Modal,
   TextInput,
+  Keyboard
 } from 'react-native';
 import { storage } from './storageConst';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -141,54 +142,56 @@ function NotesButton(): JSX.Element {
         animationType="none"
         visible={!collapsed}
         transparent={true}>
-        <View style={styles.modalBackgroundStyle}>
-          <View style={styles.headerView}>
-            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-end', width: "80%" }}>
-              <Text onPress={() => onCollapseHandler(text)} style={styles.collapseButton}>Collapse</Text>
+        <TouchableOpacity style={{width:"100%",height:"100%"}} activeOpacity={1} onPress={() => Keyboard.dismiss()}>
+          <View style={styles.modalBackgroundStyle} >
+            <View style={styles.headerView}>
+              <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-end', width: "80%" }}>
+                <Text onPress={() => onCollapseHandler(text)} style={styles.collapseButton}>Collapse</Text>
+                <TextInput
+                  editable
+                  numberOfLines={1}
+                  maxLength={12}
+                  onChangeText={titleText => onChangeTitleText(titleText)}
+                  value={titleText}
+                  style={[styles.text, { marginLeft: 10, marginTop: 15 }]}
+                  ref={titleRef}
+                />
+              </View>
+              <TouchableOpacity
+                onPress={() => { titleRef.current.focus() }} >
+                <Ionicons name='create-outline' size={25}
+                  color={'black'} style={styles.editIconStyle} />
+              </TouchableOpacity>
+            </View>
+            <View style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10, overflow: 'hidden' }}>
               <TextInput
                 editable
-                numberOfLines={1}
-                maxLength={12}
-                onChangeText={titleText => onChangeTitleText(titleText)}
-                value={titleText}
-                style={[styles.text, { marginLeft: 10, marginTop: 15 }]}
-                ref={titleRef}
-              />
-            </View>
-            <TouchableOpacity
-              onPress={() => { titleRef.current.focus() }} >
-              <Ionicons name='create-outline' size={25}
-                color={'black'} style={styles.editIconStyle} />
-            </TouchableOpacity>
-          </View>
-          <View style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10, overflow: 'hidden' }}>
-            <TextInput
-              editable
-              multiline
-              numberOfLines={25}
-              maxLength={1000}
-              onChangeText={text => onChangeText(text)}
-              value={text}
+                multiline
+                numberOfLines={25}
+                maxLength={1000}
+                onChangeText={text => onChangeText(text)}
+                value={text}
 
-              style={{ padding: 10, backgroundColor: pageColor, textAlignVertical: "top", height: "80%", fontFamily: "Figtree-Medium", }}
-            />
-            <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: pageColor, height: "10.5%", alignItems: "center" }}>
-              <View style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                <Text onPress={() => onChangePageHandler(0)} style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 1</Text>
+                style={{ padding: 10, backgroundColor: pageColor, textAlignVertical: "top", height: "80%", fontFamily: "Figtree-Medium", }}
+              />
+              <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: pageColor, height: "10.5%", alignItems: "center" }}>
+                <View style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabView]}>
+                  <Text onPress={() => onChangePageHandler(0)} style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 1</Text>
+                </View>
+                <View style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabView]}>
+                  <Text onPress={() => onChangePageHandler(1)} style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 2</Text>
+                </View>
+                <View style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabView]}>
+                  <Text onPress={() => onChangePageHandler(2)} style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 3</Text>
+                </View>
+                <View style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabView]}>
+                  <Text onPress={() => onChangePageHandler(3)} style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 4</Text>
+                </View>
               </View>
-              <View style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                <Text onPress={() => onChangePageHandler(1)} style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 2</Text>
-              </View>
-              <View style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                <Text onPress={() => onChangePageHandler(2)} style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 3</Text>
-              </View>
-              <View style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                <Text onPress={() => onChangePageHandler(3)} style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 4</Text>
-              </View>
+              <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
             </View>
-            <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </Modal>
   );
 }
