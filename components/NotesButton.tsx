@@ -143,22 +143,18 @@ function NotesButton(): JSX.Element {
         transparent={true}>
         <View style={styles.modalBackgroundStyle}>
           <View style={styles.headerView}>
-            <View style={styles.title}>
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-end', width: "80%" }}>
+              <Text onPress={() => onCollapseHandler(text)} style={styles.collapseButton}>Collapse</Text>
               <TextInput
                 editable
                 numberOfLines={1}
-                maxLength={20}
+                maxLength={12}
                 onChangeText={titleText => onChangeTitleText(titleText)}
                 value={titleText}
-                style={styles.headerText}
+                style={[styles.text, { marginLeft: 10, marginTop: 15 }]}
               />
-              <Ionicons name="create-outline" size={25} color={'black'} style={styles.editIcon} />
-
             </View>
-
-            <Text onPress={() => onCollapseHandler(text)} style={styles.collapseButton}>Collapse</Text>
-
-
+            <Ionicons name='create-outline' size={25} color={'black'} style={styles.editIconStyle} />
           </View>
           <View style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10, overflow: 'hidden' }}>
             <TextInput
@@ -201,13 +197,11 @@ const styles = StyleSheet.create({
   touchableOpacityStyle: {
     width: 50,
     height: 50,
-
   },
   floatingButtonStyle: {
     resizeMode: 'contain',
     width: 50,
     height: 50,
-
   },
   modalBackgroundStyle: {
     position: "relative",
@@ -225,31 +219,30 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: "space-between",
-    alignItems: "flex-start",
-    height: "12%"
+    alignItems: "flex-end",
+    paddingBottom: 10,
   },
   collapseButton: {
     textAlignVertical: "center",
-    paddingRight: 15,
-    paddingTop: 15,
+    paddingLeft: 10,
+    paddingTop: 12,
+    paddingBottom: 5,
     color: "black",
-    fontFamily: "Figtree-Medium"
-  },
-  editIcon: {
-    marginLeft: 5,
-  },
-  title: {
-    flexDirection: 'row',
-    justifyContent: "flex-start",
-    marginTop: 15,
-    marginLeft: 15,
-  },
-  headerText: {
-    color: "black",
-    fontSize: 20,
     fontFamily: "Figtree-Medium",
-    maxWidth: '88%',
-    // marginLeft: "7.5%",
+    flex: 1
+  },
+  text: {
+    color: "black",
+    fontSize: 24,
+    fontFamily: "Figtree-Medium",
+    textAlignVertical: "center",
+    textAlign: 'left',
+    flex: 3,
+  },
+  editIconStyle: {
+    marginRight: 20,
+    marginLeft: 12,
+    marginBottom: 2,
   },
   collapsedBanner: {
     padding: 10,
@@ -268,15 +261,11 @@ const styles = StyleSheet.create({
     height: 60,
     textAlignVertical: 'bottom',
   },
-  tabView: {
-
-  },
   tabViewText: {
     padding: 16,
     bottom: 0,
     fontFamily: "Figtree-Medium",
-  },
-
+  }
 });
 
 
