@@ -6,10 +6,6 @@ type itemProps ={name: string, imagePath: string, jobTitle: string, department: 
 
 function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, isFavorited, hyperlink}: itemProps): JSX.Element {
 
-function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, hyperlink}: itemProps): JSX.Element {
-
-  const [isPressed, setIsPressed] = useState(false);
-
 
 
   const [isPressed, setIsPressed] = useState(isFavorited);
@@ -23,8 +19,6 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
     }
   }
 
-  const telURL = "tel:".concat(phoneNumber)
-
   return (
     <View style={styles.container}>
       <Image source={{uri: imagePath}} style={styles.image}/>
@@ -32,14 +26,10 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
         <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
       </Pressable>
       <View style={styles.detailsContainer}>
-        <Text selectable={true} style={styles.name}>{name}</Text>
-        <Text selectable={true} style={styles.jobTitle}>{jobTitle}</Text>
-        <Text selectable={true} style={styles.department}>{department}</Text>
-        <Pressable onPress={() => Linking.openURL(telURL)} >
-          <Text selectable={true} style={styles.phoneNumber}>
-            {phoneNumber}
-          </Text>
-          </Pressable>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.jobTitle}>{jobTitle}</Text>
+        <Text style={styles.department}>{department}</Text>
+        <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
             <Text style={styles.linkText}>View Full Profile {">"} </Text>
@@ -106,23 +96,25 @@ const styles = StyleSheet.create({
   name: {
     flexWrap: "wrap",
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 17,
     marginBottom: 3,
     lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   jobTitle: {
     flexWrap: "wrap",
     fontWeight: "600",
-    fontSize: 10,
+    fontSize: 12,
     marginBottom: 5,
     lineHeight: 17,
-
+    fontFamily: 'Figtree-Medium'
   },
   department: {
     flexWrap: "wrap",
-    fontSize: 11,
+    fontSize: 13,
     marginBottom: 5,
     lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   box: {
     borderWidth: 2,
@@ -138,12 +130,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: "bold",
     color: "#003A5D",
+    fontFamily: 'Figtree-Light'
   },
   phoneNumber: {
     color: "black",
     fontWeight: '500',
-    fontSize: 11,
+    fontSize: 13,
     marginBottom: 12,
+    fontFamily: 'Figtree-Light'
   }
 })
 export default StaffContactEntry
