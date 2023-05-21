@@ -7,6 +7,7 @@ import Fuse from 'fuse.js';
 
 import {PrepInfoProps} from '../assets/customTypes';
 import firestore from '@react-native-firebase/firestore';
+import NotesButton from '../components/NotesButton'; 
 
 function PrepPage(): JSX.Element {
 
@@ -87,6 +88,7 @@ function PrepPage(): JSX.Element {
         style={styles.searchBar}
       />
       <ProcedureList data={searchData} />
+      <NotesButton />
     </SafeAreaView>
   );
 }
