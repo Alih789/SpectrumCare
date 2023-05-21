@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -96,6 +96,7 @@ function NotesButton(): JSX.Element {
   const [text, onChangeText] = React.useState('Useless Multiline Placeholder');
   const [titleText, onChangeTitleText] = React.useState('Notes');
 
+  const titleRef = useRef(null);
 
   function onCollapseHandler(textToSave: any) {
     storeData(textToSave, page, titleText);
@@ -151,9 +152,14 @@ function NotesButton(): JSX.Element {
                 onChangeText={titleText => onChangeTitleText(titleText)}
                 value={titleText}
                 style={[styles.text, { marginLeft: 10, marginTop: 15 }]}
+                ref={titleRef}
               />
             </View>
-            <Ionicons name='create-outline' size={25} color={'black'} style={styles.editIconStyle} />
+            <TouchableOpacity
+              onPress={() => { titleRef.current.focus() }} >
+              <Ionicons name='create-outline' size={25}
+                color={'black'} style={styles.editIconStyle} />
+            </TouchableOpacity>
           </View>
           <View style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10, overflow: 'hidden' }}>
             <TextInput
