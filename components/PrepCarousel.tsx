@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
   video: {
     height: 250,
-    width: Dimensions.get('screen').width,
+    width: carouselWidth,
   },
   background: {
     width: width,
