@@ -6,8 +6,6 @@ type itemProps ={name: string, imagePath: string, jobTitle: string, department: 
 
 function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, isFavorited, hyperlink}: itemProps): JSX.Element {
 
-  
-  
   const [isPressed, setIsPressed] = useState(isFavorited);
 
   const handleFavPress = () => {
@@ -24,7 +22,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
       <Image source={{uri: imagePath}} style={styles.image}/>
       <Pressable style={styles.favPostioning} onPress={handleFavPress}>
         <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
-      </Pressable> 
+      </Pressable>
       <View style={styles.detailsContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
@@ -32,7 +30,7 @@ function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, 
         <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
-            <Text style={styles.linkText}>View Full Profile {">"} </Text> 
+            <Text style={styles.linkText}>View Full Profile {">"} </Text>
           </View>
         </Pressable>
       </View>
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
   Favorite: {
     color: 'red',
   },
-// Favorting Button CSS -- End 
+// Favorting Button CSS -- End
 
   name: {
     flexWrap: "wrap",
