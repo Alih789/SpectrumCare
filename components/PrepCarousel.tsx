@@ -57,7 +57,8 @@ export default function PrepCarousel({
       }
 
       if (page.bodyText) {
-        text = <Text selectable={true} key={page.bodyText} style={styles.text}>
+        text = <Text key={page.bodyText} style={styles.text}>
+          {/* {page.bodyText} */}
           {page.bodyText.replaceAll("\\n", "\n")}
         </Text>
       }
@@ -129,8 +130,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     color: 'white',
-    fontFamily: "Figtree-Bold",
-    marginBottom: 10,
+    fontFamily: "Figtree-Bold"
     // flex: 1,
     // flexWrap: 'wrap'
   },
@@ -156,8 +156,7 @@ const styles = StyleSheet.create({
   },
   video: {
     height: 250,
-    // width: Dimensions.get('screen').width,
-    width: carouselWidth,
+    width: Dimensions.get('screen').width,
   },
   background: {
     width: width,

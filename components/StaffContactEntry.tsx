@@ -6,8 +6,6 @@ type itemProps ={name: string, imagePath: string, jobTitle: string, department: 
 
 function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, isFavorited, hyperlink}: itemProps): JSX.Element {
 
-
-
   const [isPressed, setIsPressed] = useState(isFavorited);
 
   const handleFavPress = () => {
