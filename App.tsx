@@ -99,8 +99,8 @@ function App(): JSX.Element {
           },
           headerShown: false,
           tabBarStyle: {
-            paddingBottom: 10,
-            height: 60,
+            // paddingBottom: 10,
+            // height: 60,
           },
         })}
         >
