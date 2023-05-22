@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: carouselHeight / 1.5,
+    maxHeight: 450,
     width: carouselWidth,
     flex: 1.5,
   },
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontFamily: "Figtree-Light",
     flex: 1,
-    paddingBottom: 35,
+    paddingBottom: 100,
   },
   indicatorContainer: {
     backgroundColor: 'white',
