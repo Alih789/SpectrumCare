@@ -104,17 +104,20 @@ export default function PrepCarousel({
         />
       </View>
       <View style={styles.navigationContainer}>
-        <View style={styles.indicatorContainer}>
-          {procedureInfo.pages.map((header, index) => (
-            <View
-              key={`${header}_${index}`}
-              style={[
-                styles.indicator,
-                index === currentSlide ? styles.activeIndicator : undefined,
-              ]}
-            />
-          ))}
-        </View>
+        {
+          procedureInfo.pages.length > 1 &&
+          <View style={styles.indicatorContainer}>
+            {procedureInfo.pages.map((header, index) => (
+              <View
+                key={`${header}_${index}`}
+                style={[
+                  styles.indicator,
+                  index === currentSlide ? styles.activeIndicator : undefined,
+                ]}
+              />
+            ))}
+          </View>
+        }
       </View>
     </View>
   );
