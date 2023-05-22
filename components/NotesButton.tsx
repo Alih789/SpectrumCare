@@ -8,7 +8,8 @@ import {
   Text,
   Modal,
   TextInput,
-  Keyboard
+  Keyboard,
+  Platform
 } from 'react-native';
 import { storage } from './storageConst';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -153,7 +154,7 @@ function NotesButton(): JSX.Element {
                   maxLength={12}
                   onChangeText={titleText => onChangeTitleText(titleText)}
                   value={titleText}
-                  style={[styles.text, { marginLeft: 10, marginTop: 15 }]}
+                  style={[styles.text, { marginLeft: 10, marginTop: 15}]}
                   ref={titleRef}
                 />
               </View>
@@ -229,6 +230,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-end",
     paddingBottom: 10,
+    
   },
   collapseButton: {
     textAlignVertical: "center",
@@ -237,7 +239,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     color: "black",
     fontFamily: "Figtree-Medium",
-    flex: 1
+    flex: 1,
+    marginBottom: Platform.OS == 'ios' ? 0 : 13,
   },
   text: {
     color: "black",
@@ -250,7 +253,7 @@ const styles = StyleSheet.create({
   editIconStyle: {
     marginRight: 20,
     marginLeft: 12,
-    marginBottom: 2,
+    marginBottom: Platform.OS == 'ios' ? 2 : 13,  
   },
   collapsedBanner: {
     padding: 10,
