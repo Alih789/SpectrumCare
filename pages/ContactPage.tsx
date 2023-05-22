@@ -310,11 +310,11 @@ function ContactPage(): JSX.Element {
         style={styles.searchBar}
       />
       <View style={styles.toggleContainer}>
-        <Pressable style={[styles.tabButton, activeTab === "AllStaff" && styles.selectedTabButton]} onPress={() => handleTabToggle('AllStaff')}>
+        <Pressable style={[styles.allButton, activeTab === "AllStaff" && styles.selectedTabButton]} onPress={() => handleTabToggle('AllStaff')}>
           <Text style={styles.tabText}>All Staff</Text>
         </Pressable>
       <View style={styles.seperator}></View>
-        <Pressable  style={[styles.tabButton, activeTab === "Favorite" && styles.selectedTabButton]} onPress={() => handleTabToggle('Favorite')}>
+        <Pressable  style={[styles.favButton, activeTab === "Favorite" && styles.selectedTabButton]} onPress={() => handleTabToggle('Favorite')}>
           <Text style={styles.tabText}>Favorites</Text>
         </Pressable>
       </View>
@@ -334,13 +334,37 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 10,
   },
-  tabButton: {
+  favButton:{
     backgroundColor: "white",
+    marginRight: 15,
+    marginLeft: 5,
+    width: 150,
+    maxWidth: "100%",
     borderRadius: 50,
-    paddingRight: 48,
-    paddingLeft: 48,
+    paddingRight: 45,
+    paddingLeft: 45,
     padding: 5,
   },
+  allButton:{
+    backgroundColor: "white",
+    marginLeft: 15,
+    marginRight: 5,
+    width: 155,
+    maxWidth: "100%",
+    borderRadius: 50,
+    paddingRight: 45,
+    paddingLeft: 45,
+    padding: 5,
+  },
+  // tabButton: {
+  //   backgroundColor: "white",
+  //   borderRadius: 50,
+  //   paddingRight: 48,
+  //   paddingLeft: 48,
+  //   padding: 5,
+  //   marginLeft: 10,
+  //   marginRight: 10,
+  // },
   selectedTabButton: {
     backgroundColor: "lightblue",
   },
@@ -348,7 +372,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "black",
     fontFamily: 'Figtree-SemiBold',
-    fontSize: 18,
+    fontSize: 13,
   },
   seperator: {
     marginHorizontal: 10,
