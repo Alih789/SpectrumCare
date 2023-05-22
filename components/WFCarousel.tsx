@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: height / 2,
+    maxHeight: 500,
     width: carouselWidth,
     flex: 1.5,
   },
