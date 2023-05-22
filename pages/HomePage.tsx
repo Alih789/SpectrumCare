@@ -79,7 +79,23 @@ function HomePage(): JSX.Element {
               setPlaying={setPlaying}
             />
           </View>
-
+          <View style={[{ height: 1, overflow: 'hidden', marginLeft: 15, marginRight: 15,}]}>
+            <View style={[{ height: 2, borderWidth: 1, borderColor: '#ddd', borderStyle: 'dashed' }]}></View>
+          </View>
+          <View style={styles.aboutContainer}>
+            <Text style={styles.aboutHeader}>
+              about
+            </Text>
+            <Text style={styles.aboutText}>
+              version: 1.0
+            </Text>
+            <Text style={styles.aboutText}>
+              released: may 2023
+            </Text>
+            <Text style={styles.aboutText}>
+              developers: Noelle Dea, Ali Hmaidi, Sergio Santoyo, George Ortega
+            </Text>
+          </View>
         </ScrollView>
       </GestureHandlerRootView>
       <NotesButton />
@@ -168,8 +184,39 @@ const styles = StyleSheet.create({
   videoPlayer: {
     alignSelf: 'center',
     justifySelf: 'center',
+    paddingTop: 20,
+  },
+  aboutContainer: {
+    backgroundColor: '#00b2e3',
+    opacity: 0.75,
+    marginBottom: 60,
+    marginTop: 60,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 20,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 4,
+    shadowRadius: 2.22,
+    elevation: 3,
     padding: 20,
-  }
+  },
+  aboutHeader: {
+    color: 'white',
+    zIndex: 2,
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: "Figtree-Medium"
+  },
+  aboutText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'left',
+    fontFamily: "Figtree-Light"
+  },
 });
 
 export default HomePage;
