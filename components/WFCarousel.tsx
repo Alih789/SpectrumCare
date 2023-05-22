@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     zIndex: 2,
-    height: 160
+    height: 180
   },
   indicator: {
     width: 12,

@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     color: 'white',
     flex: 1,
     flexWrap: 'wrap',
-    fontFamily: "Figtree-Bold"
+    fontFamily: "Figtree-SemiBold"
   },
   modalOpenButton: {
     borderRadius: 17,
@@ -144,12 +144,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 2,
     color: 'white',
-    fontFamily: "Figtree-Bold",
+    fontFamily: "Figtree-Medium",
   },
   modalHeadingText: {
     fontSize: 22,
     padding: 8,
-    fontFamily: "Figtree-Bold"
+    fontFamily: "Figtree-SemiBold"
   },
   modalItem: {
     paddingTop: 10,
@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    // padding: 0,
     margin: 0,
     marginHorizontal: 0,
     justifyContent: 'center',
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
   modalItemText: {
     fontSize: 18,
     width: '100%',
-    fontFamily: "Figtree-SemiBold"
+    fontFamily: "Figtree-Medium"
   }
 });
 
