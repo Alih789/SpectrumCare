@@ -1,34 +1,54 @@
-import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
+import {Image, StyleSheet, Text, View, Pressable, Linking, Alert } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react'
 
-type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, isFavorited: boolean, hyperlink: string}
 
-function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, hyperlink}: itemProps): JSX.Element {
+function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, isFavorited, hyperlink}: itemProps): JSX.Element {
 
-  const [isPressed, setIsPressed] = useState(false);
-  
+  const [isPressed, setIsPressed] = useState(isFavorited);
+
   const handleFavPress = () => {
+    //Handles the favorite button color change
     setIsPressed(!isPressed);
+    //Triggers the removal and appending into the favDAta
     if (onPress) {
       onPress(!isPressed);
     }
   }
+
+  const callNumber = (phone: string) => {
+    let phoneNumber = phone;
+    phoneNumber = `tel:1-${phone}`;
+    Linking.canOpenURL(phoneNumber)
+    .then(supported => {
+      if (!supported) {
+        // Alert.alert('Phone number is not available');
+      } else {
+        return Linking.openURL(phoneNumber);
+      }
+    })
+    .catch(err => console.log(err));
+  };
 
   return (
     <View style={styles.container}>
       <Image source={{uri: imagePath}} style={styles.image}/>
       <Pressable style={styles.favPostioning} onPress={handleFavPress}>
         <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
-      </Pressable> 
+      </Pressable>
       <View style={styles.detailsContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.jobTitle}>{jobTitle}</Text>
-        <Text style={styles.department}>{department}</Text>
-        <Text style={styles.phoneNumber}>Office: {phoneNumber}</Text>
+        <Text selectable={true} style={styles.name}>{name}</Text>
+        <Text selectable={true} style={styles.jobTitle}>{jobTitle}</Text>
+        <Text selectable={true} style={styles.department}>{department}</Text>
+        <Pressable onPress={() => callNumber(phoneNumber)}>
+          <Text  selectable={true} style={styles.phoneNumber}>Office: {phoneNumber}</Text>
+        </Pressable>
+
+
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
-            <Text style={styles.linkText}>View Full Profile {">"} </Text> 
+            <Text style={styles.linkText}>View Full Profile {">"} </Text>
           </View>
         </Pressable>
       </View>
@@ -87,28 +107,30 @@ const styles = StyleSheet.create({
   Favorite: {
     color: 'red',
   },
-// Favorting Button CSS -- End 
+// Favorting Button CSS -- End
 
   name: {
     flexWrap: "wrap",
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 17,
     marginBottom: 3,
     lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   jobTitle: {
     flexWrap: "wrap",
     fontWeight: "600",
-    fontSize: 10,
+    fontSize: 12,
     marginBottom: 5,
     lineHeight: 17,
-
+    fontFamily: 'Figtree-Medium'
   },
   department: {
     flexWrap: "wrap",
-    fontSize: 11,
+    fontSize: 13,
     marginBottom: 5,
     lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   box: {
     borderWidth: 2,
@@ -124,12 +146,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: "bold",
     color: "#003A5D",
+    fontFamily: 'Figtree-Light'
   },
   phoneNumber: {
     color: "black",
     fontWeight: '500',
-    fontSize: 11,
+    fontSize: 13,
     marginBottom: 12,
+    fontFamily: 'Figtree-Light'
   }
 })
 export default StaffContactEntry

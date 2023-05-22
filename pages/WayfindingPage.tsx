@@ -4,6 +4,7 @@ import { Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight } fr
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { useNavigation } from '@react-navigation/native';
+import NotesButton from '../components/NotesButton';
 
 type RouteProps = { title: string, routeID: string };
 
@@ -72,6 +73,7 @@ function WayfindingPage(): JSX.Element {
         keyExtractor={item => item.id}
         style={styles.list}
       />
+      <NotesButton />
     </SafeAreaView>
   );
 }
@@ -79,17 +81,18 @@ function WayfindingPage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003a5d",
+    flex: 1,
   },
   list: {
     height: '100%'
   },
   headerText: {
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
     textAlign: 'center',
     color: 'white',
     fontSize: 36,
-    fontFamily: "Figtree-Bold"
+    fontFamily: "Figtree-SemiBold"
   },
   touchable: {
     backgroundColor: '#00b2e3',
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap',
-    fontFamily: "Figtree-SemiBold"
+    fontFamily: "Figtree-Medium"
   },
   routebutton: {
     alignSelf: 'flex-end',

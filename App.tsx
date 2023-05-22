@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -89,16 +88,22 @@ function App(): JSX.Element {
               iconName = 'map-outline';
             }
 
-            return <Ionicons name={iconName} size={size} color={color} style={{paddingTop: 10}}/>;
+            return <Ionicons name={iconName} size={25} color={color} style={{marginTop: 5}}/>;
           },
           tabBarActiveTintColor: '#00b2e3',
           tabBarInactiveTintColor: '#999999',
           tabBarLabelStyle: {
             fontSize: 12,
             fontFamily: 'Figtree-SemiBold',
+
           },
           headerShown: false,
-        })}>
+          tabBarStyle: {
+            // paddingBottom: 10,
+            // height: 60,
+          },
+        })}
+        >
         <Tab.Screen
           name="Home"
           component={HomePage}
@@ -120,13 +125,6 @@ function App(): JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
 
 export default App;

@@ -12,11 +12,7 @@ import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
 
-type WFCarouselProps = {
-  imageURLs: any[];
-  text: string[];
-  jumpToIndexFromModal: number;
-};
+import { WFCarouselProps } from '../assets/customTypes';
 
 const { width, height } = Dimensions.get('window');
 
@@ -49,7 +45,7 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const refreshImage = () => {
-    return new Promise(res => setTimeout(res, 50));
+    return new Promise((res: any) => setTimeout(res, 50));
   }
   const handleNextSlide = async() =>{
     carouselRef.current.next();
@@ -142,11 +138,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: width,
     height: carouselHeight,
-    paddingBottom: 80,
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: height / 2,
+    maxHeight: 450,
     width: carouselWidth,
     flex: 1.5,
   },
@@ -162,24 +157,27 @@ const styles = StyleSheet.create({
     width: width,
     fontSize: 20,
     padding: 10,
-    fontFamily: "Figtree-Medium",
+    fontFamily: "Figtree-Light",
     flex: 1,
+    paddingBottom: 100,
   },
   indicatorContainer: {
+    backgroundColor: 'white',
     position: 'absolute',
     bottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: width,
     zIndex: 2,
-    height: 160
+    height: 100,
   },
   indicator: {
     width: 12,
     height: 12,
     borderRadius: 5.5,
     borderColor: '#00b2e3',
+    backgroundColor: 'white',
     borderWidth: 1,
     marginHorizontal: 4,
     marginTop: 8,
@@ -205,7 +203,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity:4,
+    shadowOpacity:1,
     shadowRadius: 2.22,
     elevation: 2,
   },
