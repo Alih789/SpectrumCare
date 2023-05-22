@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     fontFamily: "Figtree-Bold"
   },
   itemText: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
     fontFamily: "Figtree-Light",
     lineHeight: 30,
