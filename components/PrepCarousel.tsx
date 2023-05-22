@@ -169,17 +169,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     padding: 20,
-    backgroundColor: '#ffffff',
+    zIndex: 2,
   },
   indicatorContainer: {
     position: 'absolute',
-    bottom: 25,
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: width,
-    zIndex: 2,
-    height: 160
+    height: 100,
   },
   indicator: {
     width: 12,
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     borderColor: '#ffffff',
     borderWidth: 1,
     marginHorizontal: 4,
-    marginTop: 8,
+    marginTop: 10,
     marginBottom: 8,
   },
   activeIndicator: {
