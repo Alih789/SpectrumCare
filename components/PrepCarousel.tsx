@@ -57,7 +57,7 @@ export default function PrepCarousel({
       }
 
       if (page.bodyText) {
-        text = <Text key={page.bodyText} style={styles.text}>
+        text = <Text selectable={true} key={page.bodyText} style={styles.text}>
           {/* {page.bodyText} */}
           {page.bodyText.replaceAll("\\n", "\n")}
         </Text>
@@ -65,7 +65,7 @@ export default function PrepCarousel({
 
       if (page.accessibilityText) {
         accessibility = <View style={styles.accessibilityContainer}>
-          <Text style={styles.accessibilityText}>
+          <Text selectable={true} style={styles.accessibilityText}>
             {page.accessibilityText}
           </Text>
         </View>
