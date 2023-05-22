@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingRight: 45,
     paddingLeft: 45,
-    padding: 5,
+    padding: 4,
   },
   // tabButton: {
   //   backgroundColor: "white",
@@ -372,7 +372,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "black",
     fontFamily: 'Figtree-SemiBold',
-    fontSize: 13,
+    fontSize: 14,
   },
   seperator: {
     marginHorizontal: 10,
