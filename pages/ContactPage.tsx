@@ -4,7 +4,6 @@ import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
-import AllStaffInfo from "../assets/AllStaffInfo.js";
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import {storage as storageLocal}from "../components/storageConst";
@@ -347,9 +346,9 @@ const styles = StyleSheet.create({
   },
   tabText:{
     textAlign: "center",
-    fontWeight: "bold",
     color: "black",
     fontFamily: 'Figtree-SemiBold',
+    fontSize: 18,
   },
   seperator: {
     marginHorizontal: 10,

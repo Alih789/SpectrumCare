@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {Text, SafeAreaView, StyleSheet} from 'react-native';
 import SearchBar from 'react-native-dynamic-search-bar';
 import ProcedureList from '../components/ProcedureList';
-import prepInfo from '../assets/testData/procedureMenuData.json';
 import Fuse from 'fuse.js';
 
 import {PrepInfoProps} from '../assets/customTypes';
 import firestore from '@react-native-firebase/firestore';
-import NotesButton from '../components/NotesButton'; 
+import NotesButton from '../components/NotesButton';
 
 function PrepPage(): JSX.Element {
 
@@ -48,7 +47,7 @@ function PrepPage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
 
   const options = {
-    keys: ['id'],
+    keys: ['title'],
     //search score for how close the match is to the actual string
     includeScore: true,
     threshold: 0.3,
