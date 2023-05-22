@@ -138,11 +138,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: width,
     height: carouselHeight,
-    paddingBottom: 80,
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: 500,
+    maxHeight: carouselHeight / 1.5,
     width: carouselWidth,
     flex: 1.5,
   },
@@ -163,7 +162,6 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
   },
   indicatorContainer: {
-    display: 'flex',
     backgroundColor: 'white',
     position: 'absolute',
     bottom: 20,
