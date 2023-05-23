@@ -13,7 +13,7 @@ import {PrepInfoProps} from '../assets/customTypes';
 type ProcedureListProps = {data: PrepInfoProps[]};
 
 function ProcedureList({data}: ProcedureListProps) {
-  let categories: any[] = [...new Set(data.map(p => p.category))]; // unique categories
+  let categories: any[] = [...new Set(data.map(p => p.category))].sort(); // unique categories
 
   // construct "sections" object for SectionList
   let sections = categories.map((category) => ({
@@ -78,28 +78,25 @@ const styles = StyleSheet.create({
   },
   touchable: {
     backgroundColor: '#00b2e3',
-    marginVertical: 5,
     marginHorizontal: 12,
     borderRadius: 10,
   },
   category: {
-    // backgroundColor: '#003a5d',
-    // paddingLeft: 20,
-    // flexDirection: 'row',
-    // flex: 2,
-    // justifyContent: 'space-between',
-    // alignContent: 'center',
-    // borderBottomColor: 'white',
-    // borderBottomWidth: 3,
+    marginHorizontal: 12,
+    borderBottomColor: 'white',
+    borderBottomWidth: 0.5,
   },
   categoryHeader: {
     fontSize: 28,
     color: 'white',
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap',
-    fontFamily: "Figtree-SemiBold",
-    margin: 10,
+    fontFamily: "Figtree-Bold",
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 30,
+    marginBottom: 15,
   },
   route: {
     backgroundColor: '#003a5d',
@@ -108,10 +105,8 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderTopColor: 'white',
-    borderTopWidth: 1,
     borderBottomColor: 'white',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
   },
   routetitle: {
     fontSize: 22,
