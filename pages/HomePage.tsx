@@ -79,23 +79,6 @@ function HomePage(): JSX.Element {
               setPlaying={setPlaying}
             />
           </View>
-          <View style={[{ height: 1, overflow: 'hidden', marginLeft: 15, marginRight: 15,}]}>
-            <View style={[{ height: 2, borderWidth: 1, borderColor: '#ddd', borderStyle: 'dashed' }]}></View>
-          </View>
-          <View style={styles.aboutContainer}>
-            <Text style={styles.aboutHeader}>
-              about
-            </Text>
-            <Text style={styles.aboutText}>
-              version: 1.0
-            </Text>
-            <Text style={styles.aboutText}>
-              released: may 2023
-            </Text>
-            <Text style={styles.aboutText}>
-              developers: Noelle Dea, Ali Hmaidi, Sergio Santoyo, George Ortega
-            </Text>
-          </View>
         </ScrollView>
       </GestureHandlerRootView>
       <NotesButton />
