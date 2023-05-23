@@ -95,7 +95,22 @@ Build and run the app from XCode to see more precisely where the build is failin
 todo add details here
 
 ## Build App on Device
-todo
+[React Native Build instructions](https://reactnative.dev/docs/publishing-to-app-store)
+
+
+### iOS
+1. pod install
+2. Product > clean build folder
+3. Product > build
+4. Product > Archive. Make sure to set the device to "Any iOS Device (arm64)".
+5. After the archive is completed, in the archive window, click on Distribute App.
+6. Click on App Store Connect now (if you want to publish in App Store).
+7. Click Upload → Make sure all the check boxes are selected, hit Next.
+8. Choose between Automatically manage signing and Manually manage signing based on your needs.
+9. Click on Upload.
+Now you can find it in the App Store Connect under TestFlight.
+
+
 
 ## Playstore and App Store Updates
 todo
