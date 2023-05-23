@@ -1,6 +1,6 @@
-import {StyleSheet, Text, SafeAreaView, Dimensions, View} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Dimensions, View } from 'react-native';
 import NotesButton from '../components/NotesButton';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import YoutubePlayer from '../components/YoutubePlayer';
 import { ScrollView, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -40,28 +40,29 @@ function HomePage(): JSX.Element {
   return (
     <SafeAreaView style={styles.background}>
       <GestureHandlerRootView>
-        <ScrollView style={{backgroundColor: '#003A5D'}}>
-        <Text style={styles.appHeader}>Care Path</Text>
-        <View style={styles.appWelcomeContainer}>
-          <Text style={styles.appWelcomeText}>
-            Welcome to the UC Davis Children's Surgery Center!
-            This app was designed to be a source of helpful preparatory information for families.
-            Scroll down to learn more about each of the features.
-          </Text>
-        </View>
-        {
-          DATA.map((item) => {
-            return (
-              <View key={item.id} style={styles.itemV}>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <View style={styles.itemH}>
-                  <Ionicons name={item.iconName} size={40} color={'#00b2e3'} style={styles.icon} />
-                    <Text style={styles.itemText}>
-                      {item.text}
+        <ScrollView style={{ backgroundColor: '#003A5D' }}>
+          <Text style={styles.appHeader}>Care Path</Text>
+          <View style={styles.appWelcomeContainer}>
+            <Text style={styles.appWelcomeText}>
+              Welcome to the UC Davis Children's Surgery Center!
+              This app was designed to be a source of helpful preparatory information for families.
+              Scroll down to learn more about each of the features.
+            </Text>
+          </View>
+          {
+            DATA.map((item) => {
+              return (
+                <View key={item.id} style={styles.itemV}>
+                  <View style={styles.itemH}>
+                    <Ionicons name={item.iconName} size={40} color={'#00b2e3'} style={styles.icon} />
+                    <Text style={styles.itemTitle}>{item.title}</Text>
+                  </View>
+                  <Text style={styles.itemText}>
+                    {item.text}
                   </Text>
                 </View>
-              </View>
-            )})
+              )
+            })
           }
 
           <View style={styles.appWelcomeContainer}>
@@ -78,7 +79,6 @@ function HomePage(): JSX.Element {
               setPlaying={setPlaying}
             />
           </View>
-
         </ScrollView>
       </GestureHandlerRootView>
       <NotesButton />
@@ -89,7 +89,6 @@ function HomePage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#003A5D',
-    // backgroundColor: '#00b2e3',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity:4,
+    shadowOpacity: 4,
     shadowRadius: 2.22,
     elevation: 3,
   },
@@ -124,10 +123,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     padding: 15,
-    fontFamily: "Figtree-SemiBold"
+    fontFamily: "Figtree-Medium"
   },
   itemV: {
-    marginLeft: 15,
+    marginLeft: 20,
     marginRight: 10,
     marginTop: 8,
     marginBottom: 8,
@@ -137,11 +136,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: '#003A5D',
   },
-  itemH:{
+  itemH: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    marginBottom: 10,
   },
   itemTitle: {
     fontSize: 22,
@@ -151,11 +151,15 @@ const styles = StyleSheet.create({
     fontFamily: "Figtree-Bold"
   },
   itemText: {
-    fontSize: 18,
-    flex: 1,
-    flexWrap: 'wrap',
+    fontSize: 20,
     color: 'white',
-    fontFamily: "Figtree-Medium"
+    fontFamily: "Figtree-Light",
+    lineHeight: 30,
+    textAlign: 'left',
+    marginRight: 10,
+    marginLeft: 10,
+    marginBottom: 15,
+    marginTop: 0,
   },
   icon: {
     paddingRight: 15,
@@ -163,8 +167,39 @@ const styles = StyleSheet.create({
   videoPlayer: {
     alignSelf: 'center',
     justifySelf: 'center',
+    paddingTop: 20,
+  },
+  aboutContainer: {
+    backgroundColor: '#00b2e3',
+    opacity: 0.75,
+    marginBottom: 60,
+    marginTop: 60,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 20,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 4,
+    shadowRadius: 2.22,
+    elevation: 3,
     padding: 20,
-  }
+  },
+  aboutHeader: {
+    color: 'white',
+    zIndex: 2,
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: "Figtree-Medium"
+  },
+  aboutText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'left',
+    fontFamily: "Figtree-Light"
+  },
 });
 
 export default HomePage;

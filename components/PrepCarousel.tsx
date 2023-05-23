@@ -57,7 +57,7 @@ export default function PrepCarousel({
       }
 
       if (page.bodyText) {
-        text = <Text key={page.bodyText} style={styles.text}>
+        text = <Text selectable={true} key={page.bodyText} style={styles.text}>
           {/* {page.bodyText} */}
           {page.bodyText.replaceAll("\\n", "\n")}
         </Text>
@@ -65,7 +65,7 @@ export default function PrepCarousel({
 
       if (page.accessibilityText) {
         accessibility = <View style={styles.accessibilityContainer}>
-          <Text style={styles.accessibilityText}>
+          <Text selectable={true} style={styles.accessibilityText}>
             {page.accessibilityText}
           </Text>
         </View>
@@ -104,17 +104,20 @@ export default function PrepCarousel({
         />
       </View>
       <View style={styles.navigationContainer}>
-        <View style={styles.indicatorContainer}>
-          {procedureInfo.pages.map((header, index) => (
-            <View
-              key={`${header}_${index}`}
-              style={[
-                styles.indicator,
-                index === currentSlide ? styles.activeIndicator : undefined,
-              ]}
-            />
-          ))}
-        </View>
+        {
+          procedureInfo.pages.length > 1 &&
+          <View style={styles.indicatorContainer}>
+            {procedureInfo.pages.map((header, index) => (
+              <View
+                key={`${header}_${index}`}
+                style={[
+                  styles.indicator,
+                  index === currentSlide ? styles.activeIndicator : undefined,
+                ]}
+              />
+            ))}
+          </View>
+        }
       </View>
     </View>
   );
@@ -156,7 +159,7 @@ const styles = StyleSheet.create({
   },
   video: {
     height: 250,
-    width: Dimensions.get('screen').width,
+    width: carouselWidth,
   },
   background: {
     width: width,
@@ -166,17 +169,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     padding: 20,
-    backgroundColor: '#ffffff',
+    zIndex: 2,
   },
   indicatorContainer: {
     position: 'absolute',
-    bottom: 25,
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: width,
-    zIndex: 2,
-    height: 160
+    height: 100,
   },
   indicator: {
     width: 12,
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
     borderColor: '#ffffff',
     borderWidth: 1,
     marginHorizontal: 4,
-    marginTop: 8,
+    marginTop: 10,
     marginBottom: 8,
   },
   activeIndicator: {

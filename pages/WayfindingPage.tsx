@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap',
-    fontFamily: "Figtree-SemiBold"
+    fontFamily: "Figtree-Medium"
   },
   routebutton: {
     alignSelf: 'flex-end',

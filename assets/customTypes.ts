@@ -23,6 +23,17 @@ interface PageInfo {
   bodyText: string;
   accessibilityText: string,
 }
-// export interface Procedure {
-//   pages: PageInfo[];
-// }
+
+export type WayfindingStackParamList = {
+  WayfindingHome: undefined;
+  Route: {
+    routeID: string,
+    routeTitle: string,
+  }
+}
+
+export type WFCarouselProps = {
+  imageURLs: any[];
+  text: string[];
+  jumpToIndexFromModal: number;
+};

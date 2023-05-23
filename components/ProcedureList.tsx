@@ -1,11 +1,11 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  FlatList,
   View,
   TouchableHighlight,
   Text,
   StyleSheet,
+  SectionList,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {PrepInfoProps} from '../assets/customTypes';
@@ -13,13 +13,23 @@ import {PrepInfoProps} from '../assets/customTypes';
 type ProcedureListProps = {data: PrepInfoProps[]};
 
 function ProcedureList({data}: ProcedureListProps) {
-// function ProcedureList(data: PrepInfoProps[]) {
+  let categories: any[] = [...new Set(data.map(p => p.category))].sort(); // unique categories
+
+  // construct "sections" object for SectionList
+  let sections = categories.map((category) => ({
+    title: category,
+    data: data.filter(procedure => { if(procedure.category == category) return procedure})
+  }))
+
   return (
-    <FlatList
-      data={data.sort(compareObjectTitles)}
+    <SectionList
+      sections={sections}
       renderItem={({item}) => <Route title={item.title} routeID={item.id} />}
-      keyExtractor={item => item.id}
-      style={styles.list}
+      renderSectionHeader={({section: {title}}) => (
+        <View style={styles.category}>
+          <Text style={styles.categoryHeader}>{title}</Text>
+        </View>
+      )}
     />
   );
 }
@@ -68,9 +78,25 @@ const styles = StyleSheet.create({
   },
   touchable: {
     backgroundColor: '#00b2e3',
-    marginVertical: 5,
     marginHorizontal: 12,
     borderRadius: 10,
+  },
+  category: {
+    marginHorizontal: 12,
+    borderBottomColor: 'white',
+    borderBottomWidth: 0.5,
+  },
+  categoryHeader: {
+    fontSize: 28,
+    color: 'white',
+    alignSelf: 'center',
+    flex: 1,
+    flexWrap: 'wrap',
+    fontFamily: "Figtree-Bold",
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 30,
+    marginBottom: 15,
   },
   route: {
     backgroundColor: '#003a5d',
@@ -79,10 +105,8 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderTopColor: 'white',
-    borderTopWidth: 1,
     borderBottomColor: 'white',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
   },
   routetitle: {
     fontSize: 22,
@@ -90,7 +114,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 1,
     flexWrap: 'wrap',
-    fontFamily: "Figtree-SemiBold"
+    fontFamily: "Figtree-Medium"
   },
   routebutton: {
     alignSelf: 'flex-end',
@@ -99,16 +123,3 @@ const styles = StyleSheet.create({
 });
 export default ProcedureList;
 
-function compareObjectTitles(a: PrepInfoProps, b: PrepInfoProps) {
-  const nameA = a.title.toUpperCase(); // ignore upper and lowercase
-  const nameB = b.title.toUpperCase(); // ignore upper and lowercase
-  if (nameA < nameB) {
-    return -1;
-  }
-  if (nameA > nameB) {
-    return 1;
-  }
-
-  // names must be equal
-  return 0;
-}
