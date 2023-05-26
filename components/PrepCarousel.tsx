@@ -38,7 +38,7 @@ export default function PrepCarousel({
 
     if (page.header) {
       if (page.media) {
-        if (page.media.isVideo) {
+        if (page.media.contentType == 'video') {
           media = <YoutubePlayer
             videoId={page.media.content}
             height={styles.video.height}
@@ -47,10 +47,10 @@ export default function PrepCarousel({
             setPlaying={setPlaying}
           />;
 
-        } else {
+        } else if (page.media.contentType == 'image') {
           media = <Image
             key={page.media.content}
-            source={{ uri: page.media.content }}
+            source={{ uri: page.media.content}}
             style={styles.image}
           />
         }
