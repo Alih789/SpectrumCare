@@ -4,6 +4,7 @@ import { Text, SafeAreaView, StyleSheet, View, FlatList, TouchableHighlight } fr
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { useNavigation } from '@react-navigation/native';
+import NotesButton from '../components/NotesButton';
 
 type RouteProps = { title: string, routeID: string };
 
@@ -31,7 +32,7 @@ function Route({ title, routeID }: RouteProps) {
         <View style={styles.route}>
           <Text style={styles.routetitle}>{title}</Text>
           <View style={styles.routebutton}>
-            <Ionicons name={'arrow-forward-circle-outline'} size={40} />
+            <Ionicons name={'arrow-forward-circle-outline'} size={40} color="white" />
           </View>
         </View>
       </TouchableHighlight>
@@ -72,6 +73,7 @@ function WayfindingPage(): JSX.Element {
         keyExtractor={item => item.id}
         style={styles.list}
       />
+      <NotesButton />
     </SafeAreaView>
   );
 }
@@ -79,17 +81,18 @@ function WayfindingPage(): JSX.Element {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#003a5d",
+    flex: 1,
   },
   list: {
     height: '100%'
   },
   headerText: {
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 36,
+    fontFamily: "Figtree-SemiBold"
   },
   touchable: {
     backgroundColor: '#00b2e3',
@@ -98,25 +101,30 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   route: {
-    backgroundColor: '#00b2e3',
+    backgroundColor: '#003a5d',
     paddingLeft: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     flex: 2,
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderRadius: 10
+    borderTopColor: 'white',
+    borderTopWidth: 1,
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
   },
   routetitle: {
-    fontSize: 18,
+    fontSize: 22,
     color: 'white',
-    fontWeight: 'bold',
     alignSelf: 'center',
     flex: 1,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontFamily: "Figtree-Medium"
   },
   routebutton: {
     alignSelf: 'flex-end',
-    padding: 20
+    padding: 10
   }
 });
 

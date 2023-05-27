@@ -1,11 +1,11 @@
 {"data": [
 	{
-		"id": "mri",
-		"title": "MRI"
+		"id": "ed-videos",
+		"title": "Educational Videos"
 	},
 	{
-		"id": "x-ray",
-		"title": "X-Ray"
+		"id": "rad-MRI",
+		"title": "MRI"
 	},
 	{
 		"id": "immunization",

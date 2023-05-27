@@ -1,165 +1,292 @@
 import React, { useEffect, useState } from 'react';
-import {View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
+import {ActivityIndicator, View, StyleSheet, Text, SafeAreaView, useWindowDimensions, FlatList, Pressable} from 'react-native';
 import StaffContactEntry from '../components/StaffContactEntry';
 import SearchBar from "react-native-dynamic-search-bar";
 import NotesButton from '../components/NotesButton';
 import Fuse from 'fuse.js';
-import AllStaffInfo from "../assets/AllStaffInfo.js";
-import firestore from '@react-native-firebase/firestore';
+import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
+import {storage as storageLocal}from "../components/storageConst";
 
-
-type itemProps ={id: string, name: string, imagePath: any, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
-
+type itemProps = {
+  id: string,
+  name: string,
+  imagePath: any,
+  jobTitle: string,
+  department: string,
+  phoneNumber: string,
+  onPress: (isPressed: boolean) => void,
+  hyperlink: string
+}
 
 function ContactPage(): JSX.Element {
 
-
   //used to store All Staff data source
-  const [fullData, setFullData] =  useState<itemProps[]>([])
-  const [searchFullData, setSearchFullData] = useState<itemProps[]>([]);
+  const [fullData, setFullData] =  useState<itemProps[]>([]);
+  const [searchFullData, setSearchFullData] = useState(fullData);
 
+  const [loading, setLoading] = useState(true);
+  const [loadMoreInProgress, setLoadMoreInProgress] = useState(false);
+  const [lastVisible, setLastVisible] = useState<FirebaseFirestoreTypes.DocumentSnapshot>();
 
-  //Handles query to database
-  useEffect( ()=> {
-
-    async function getStaffList(){
-      const allStaffCollections = (await firestore().collection('staff-list').get()).docs;
-      let  strippedAllStaffCollection :any = []
-
-      allStaffCollections.forEach(doc => strippedAllStaffCollection.push(doc.data()))
-
-      let allStaffCollectionObjects :itemProps[] = strippedAllStaffCollection
-
-      setFullData(allStaffCollectionObjects)
-
-    }
-
-    getStaffList();
-
-  }, [])
-
-
-  //handles updating the display based on what we get from the database
-  useEffect( ()=>{
-    setSearchFullData(fullData)
-  }, [fullData])
-
-
-
-
-
+  const [userFavDocArray, setUserFavDocArray] = useState<itemProps[]>([]);
 
   //used to store Favorite Staff data source
-  const [favData, setFavData] = useState<String[]>([]);
-
-  //some use state containing an array template like fulldata item: {id,name,specialty...}
-  const [favDataItems,setFavDataItems] = useState<itemProps[]>([])
+  const [favData, setFavData] = useState<itemProps[]>([]);
 
   //used to store Fav filtered data based on the search
-  const [searchFavData, setSearchFavData] = useState(favDataItems);
+  const [searchFavData, setSearchFavData] = useState(favData);
+
   //stores current searched term
   const [searchTerm, setSearchTerm] = useState('');
   //adjust the background to appear when searching for specific names
   const { height } = useWindowDimensions();
-  //stores current state of favorite button: red or gray
-  const [isPressed, setIsPressed] = useState(false);
+
   //determines which tab you are on
   const [activeTab, setActiveTab] = useState('AllStaff')
 
-  const options = {
-    keys: ["name"],
-    //search score for how close the match is to the actual string
-    includeScore: true,
-    threshold: 0.3,
-    //min number of char required to in search to make sure matcb is valid
-    minMatchCharLength: 1,
-    //max length of the search
-    maxPatternLength: 32,
-  };
 
-  const fuseFull = new Fuse(fullData, options);
-  const fuseFav = new Fuse(favDataItems, options);
+
+  async function getImageUrl(imagePath: string){
+    const imageRef = storage().ref(imagePath);
+    try {
+      const downloadUrl = await imageRef.getDownloadURL();
+
+      if(downloadUrl){
+        return downloadUrl;
+      }
+    } catch (error) {
+      console.log(error);
+      return "";
+    }
+  }
+
+  async function loadMore(){
+
+    if(loadMoreInProgress){
+      //request has already been made, do nothing
+      return;
+    }
+    //fetches the next set of data from the database
+    //lastVisible carries the last entry from the loaded batch recorded by the fetch
+    try {
+      setLoadMoreInProgress(true);
+      //Creating a ref for the collection we are trying to query
+      const collectionRef = firestore().collection('staff-list');
+
+      //query the next set of results
+      let query = collectionRef.orderBy('name');
+
+      //if we havent reached the end of the list
+      if(lastVisible){
+        query = query.startAfter(lastVisible);
+      }else{
+        return;
+      }
+
+      const snapshot = await query.get();
+
+      const newData = await Promise.all(snapshot.docs.map(async (doc) => {
+        const data = doc.data();
+
+        //imagePath is then turned into a url with google token
+        const downloadUrl = await getImageUrl(data.imagePath);
+        //creating new objects with updated information
+
+        return {
+          id: doc.id,
+          name: data.name,
+          imagePath: downloadUrl,
+          jobTitle: data.title,
+          department: data.department,
+          phoneNumber: data.phoneNumber,
+          onPress: (isPressed: boolean) => {},
+          hyperlink: data.hyperlink,
+        };
+      }));
+      //updates the fullData array by appending the new Data to it
+      setFullData((prevData) => [...prevData, ...newData]);
+      //updates the last document fetched from the db and starts the next batch from that point
+      setLastVisible(snapshot.docs[snapshot.docs.length-1])
+    } catch(error) {
+      console.log('Error fetching next set of results: ', error);
+    }finally{
+      setLoadMoreInProgress(false);
+    }
+  }
+
+  //Handles query to database
+  // let userFavDocArray:any = [];
+  useEffect(()=> {
+
+    async function storageFavList(){
+      //getting previous save favourited list
+      try{
+          // We have data!!
+          const stringArray = await storageLocal.getString('userFavoritedDocsArray')!;
+          // userFavDocArray =JSON.parse(stringArray);
+          setUserFavDocArray(JSON.parse(stringArray));
+
+      } catch (error) {
+        // Error retrieving data
+        setUserFavDocArray([]);
+        console.log("Error: ", error);
+      }
+    }
+    async function getStaffList(){
+      const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(5).get());
+      const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
+        const data = doc.data();
+
+        const downloadUrl =  await getImageUrl(data.imagePath);
+
+        return {
+          id: doc.id,
+          name: data.name,
+          imagePath: downloadUrl,
+          jobTitle: data.title,
+          phoneNumber: data.phoneNumber,
+          department: data.department,
+          onPress: (isPressed: boolean) => {},
+          hyperlink: data.hyperlink,
+        };
+      }));
+
+      setFullData(newData);
+      setLastVisible(staffSnapshot.docs[staffSnapshot.docs.length-1]);
+      //setloading lets us know that the data has finished loading on screen
+      setLoading(false);
+    }
+    storageFavList();
+    getStaffList();
+  }, []);
+
+  //favData is appended and removed in this function
+
+  useEffect(() => {
+
+    let stringDocsArray = JSON.stringify(userFavDocArray);
+    storageLocal.set("userFavoritedDocsArray",stringDocsArray);
+
+  },[userFavDocArray])
+
+  const handleFavPress = (staffID: string, name: string) => {
+    const staff: any = fullData.find((s) => s.id === staffID);
+
+    if(!userFavDocArray.includes(staff)){
+      setUserFavDocArray(userFavDocArray.concat([staff]));
+    } else {
+      //Delete object from the local storage
+      setUserFavDocArray(userFavDocArray.filter((s) => s.id !== staffID));
+    }
+
+
+    //if the staff isnt in the list add them to favData
+    if(!favData.includes(staff)){
+      //add to async array
+      setFavData(favData.concat(staff));
+    } else {
+      //Staff is in the list, remove them
+      //remove from asyn array
+      setFavData(favData.filter((s) => s.id !== staffID));
+    }
+
+    //async store save array
+  }
 
   const handleSearch = (text: string) => {
-    if (text.length == 0) {
-      if (activeTab == 'AllStaff'){
+
+    const options = {
+      keys: ["department", "name"],
+      //search score for how close the match is to the actual string
+      includeScore: true,
+      threshold: 0.3,
+      //min number of char required to in search to make sure matcb is valid
+      minMatchCharLength: 3,
+      //max length of the search
+      maxPatternLength: 32,
+    };
+
+    if(text.length === 0){
+      if(activeTab === "AllStaff"){
+        //No Search has occured
         setSearchFullData(fullData);
-      }
-      if (activeTab == 'Favorite'){
-        setSearchFavData(favDataItems);
+      }//TODO : Add else if favorites return full favorites array
+      else{
+        setSearchFavData(userFavDocArray);
       }
     } else {
-      if (activeTab == 'AllStaff'){
-        const results = fuseFull.search(text);
-        const filteredData = results.map((result) => result.item);
-        setSearchFullData(filteredData);
+      //TODO : Add if else for when its in AllStaff and Favorites
+      if(activeTab === "AllStaff"){
+        const fuseFull = new Fuse(fullData, options);
+        const fullResults = fuseFull.search(text);
+        const filteredFullData = fullResults.map((result) => result.item);
+        setSearchFullData(filteredFullData);
       }
-      if (activeTab == 'Favorite') {
-        const resultsFav = fuseFav.search(text);
-        const filteredFavData = resultsFav.map((result) => result.item);
+      else{
+        const fuseFav = new Fuse(userFavDocArray, options);
+        const favResults = fuseFav.search(text);
+        const filteredFavData = favResults.map((result) => result.item);
         setSearchFavData(filteredFavData);
       }
     }
     setSearchTerm(text);
   };
 
-  const handlePress = (docID,fullItem) => { () =>
-
-    setIsPressed(!isPressed);
-    favData.indexOf(docID) > -1 ? favData.splice(favData.indexOf(docID), 1):favData.push(docID);
-
-    favDataItems.indexOf(fullItem) > -1 ? favDataItems.splice(favDataItems.indexOf(fullItem),1) : favDataItems.push(fullItem);
-
-    setFavDataItems(favDataItems);
-    setFavData(favData);
-    console.log("FAVDATA: ", favData)
-  };
 
   const handleTabToggle = (tab: string) => {
     setActiveTab(tab);
-  };
-
+  }
+  //Displays original full data
   const renderAllStaffTab = () => {
-
     return (
     <FlatList
-        data={searchFullData}
-        renderItem={({ item }) =>
-          <StaffContactEntry
-            onPress={() => handlePress(item.id,item)}
-            name={item.name}
-            // imagePath={item.imagePath}
-            jobTitle={item.jobTitle}
-            department={item.department}
-            hyperlink={item.hyperlink}
-          />}
-        keyExtractor={(item) => item.id}
+        data={searchFullData.length != 0 ? searchFullData : fullData}
+        renderItem={({ item, index}) =>
+        <StaffContactEntry
+        key={item.id + '_' + index}
+        onPress={() => handleFavPress(item.id,item.name)}
+        name={item.name}
+        imagePath={item.imagePath}
+        jobTitle={item.jobTitle}
+        department={item.department}
+        phoneNumber={item.phoneNumber}
+        hyperlink={item.hyperlink}
+        isFavorited={userFavDocArray.filter((s) => s.id === item.id).length > 0}
+        />}
+        keyExtractor={(item, index) => item.id + '_' + index}
+        onEndReached={loadMore}
+        onEndReachedThreshold={5}
+        ListFooterComponent={() => (loading ? <ActivityIndicator size='large' color="#0000ff"/> : null)}
         style={[styles.list, { height: height - 150 }]}
       />
     )
   };
 
+  //Displays only the favorites data
   const renderFavoriteTab = () => {
     return (
-
     <FlatList
-        data={searchFavData} //data = {searchNewFavData, item array}
-        renderItem={({ item }) =>
-          favData.indexOf(item.id) > -1 ?
+        data={searchFavData.length != 0 ? searchFavData : userFavDocArray}
+        renderItem={({ item, index}) =>
           <StaffContactEntry
-            onPress={() => handlePress(item.id, item)}
+            onPress={() => handleFavPress(item.id,item.name)}
+            key={item.id + '_' + index}
             name={item.name}
-            // imagePath={item.imagePath}
+            imagePath={item.imagePath}
             jobTitle={item.jobTitle}
             department={item.department}
+            phoneNumber={item.phoneNumber}
             hyperlink={item.hyperlink}
-          /> : console.log("ITEM ID NOT FOUND",item.id, " CURRENT ARRAY: ", favData)}
-        keyExtractor={item => item.id}
-        style={[styles.list, { height: height - 150 }]}
+            isFavorited={userFavDocArray.filter((s) => s.id === item.id).length > 0}
+            />}
+            keyExtractor={(item, index) => item.id + '_' + index}
+            style={[styles.list, { height: height - 150 }]}
       />
     )
   };
 
+  //Handles which data is displayed when tabs are clicked
   const renderActiveTab = () =>{
     if(activeTab == 'AllStaff') {
       return renderAllStaffTab();
@@ -177,17 +304,17 @@ function ContactPage(): JSX.Element {
         value={searchTerm}
         onClearPress={() => {
           if (activeTab == 'AllStaff'){setSearchFullData(fullData);}
-          if (activeTab == 'Favorite'){setSearchFavData(favDataItems);}
+          if (activeTab == 'Favorite'){setSearchFavData(userFavDocArray);}
           setSearchTerm('')
         }}
         style={styles.searchBar}
       />
       <View style={styles.toggleContainer}>
-        <Pressable style={styles.tabButton} onPress={() => handleTabToggle('AllStaff')}>
+        <Pressable style={[styles.allButton, activeTab === "AllStaff" && styles.selectedTabButton]} onPress={() => handleTabToggle('AllStaff')}>
           <Text style={styles.tabText}>All Staff</Text>
         </Pressable>
       <View style={styles.seperator}></View>
-        <Pressable  style={styles.tabButton} onPress={() => handleTabToggle('Favorite')}>
+        <Pressable  style={[styles.favButton, activeTab === "Favorite" && styles.selectedTabButton]} onPress={() => handleTabToggle('Favorite')}>
           <Text style={styles.tabText}>Favorites</Text>
         </Pressable>
       </View>
@@ -207,16 +334,45 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 10,
   },
-  tabButton: {
+  favButton:{
     backgroundColor: "white",
+    marginRight: 15,
+    marginLeft: 5,
+    width: 150,
+    maxWidth: "100%",
     borderRadius: 50,
-    width: 165,
+    paddingRight: 45,
+    paddingLeft: 45,
     padding: 5,
+  },
+  allButton:{
+    backgroundColor: "white",
+    marginLeft: 15,
+    marginRight: 5,
+    width: 155,
+    maxWidth: "100%",
+    borderRadius: 50,
+    paddingRight: 45,
+    paddingLeft: 45,
+    padding: 4,
+  },
+  // tabButton: {
+  //   backgroundColor: "white",
+  //   borderRadius: 50,
+  //   paddingRight: 48,
+  //   paddingLeft: 48,
+  //   padding: 5,
+  //   marginLeft: 10,
+  //   marginRight: 10,
+  // },
+  selectedTabButton: {
+    backgroundColor: "lightblue",
   },
   tabText:{
     textAlign: "center",
-    fontWeight: "bold",
     color: "black",
+    fontFamily: 'Figtree-SemiBold',
+    fontSize: 14,
   },
   seperator: {
     marginHorizontal: 10,
@@ -229,8 +385,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     textAlign: 'center',
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 36,
+    fontFamily: 'Figtree-SemiBold',
   },
   searchBar: {
     borderRadius: 10,

@@ -5,15 +5,35 @@ export type PrepStackParamList = {
     routeTitle: string;
   };
 };
-export type PrepInfoProps = {title: string; id: string};
-interface PageInfo {
+
+export type PrepInfoProps = {
+  title: string,
+  id: string,
+  category: string,
+  pages: PageInfo[],
+};
+
+
+export interface PageInfo {
   header: string;
   media: {
-    isVideo: boolean;
     content: string;
+    contentType: string;
   };
   bodyText: string;
+  accessibilityText: string,
 }
-export interface Procedure {
-  pages: PageInfo[];
+
+export type WayfindingStackParamList = {
+  WayfindingHome: undefined;
+  Route: {
+    routeID: string,
+    routeTitle: string,
+  }
 }
+
+export type WFCarouselProps = {
+  imageURLs: any[];
+  text: string[];
+  jumpToIndexFromModal: number;
+};

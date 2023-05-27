@@ -1,30 +1,51 @@
-import {Image, StyleSheet, Text, View, Pressable, Linking} from 'react-native'
+import {Image, StyleSheet, Text, View, Pressable, Linking, Alert } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react'
 
-type itemProps ={name: string, jobTitle: string, department: string, onPress: (isPressed: boolean) => void, hyperlink: string}
+type itemProps ={name: string, imagePath: string, jobTitle: string, department: string, phoneNumber: string, onPress: (isPressed: boolean) => void, isFavorited: boolean, hyperlink: string}
 
-function StaffContactEntry({name, jobTitle, department, onPress, hyperlink}: itemProps): JSX.Element {
+function StaffContactEntry({name, imagePath, jobTitle, department, phoneNumber, onPress, isFavorited, hyperlink}: itemProps): JSX.Element {
 
-  const [isPressed, setIsPressed] = useState(false);
-  
+  const [isPressed, setIsPressed] = useState(isFavorited);
+
   const handleFavPress = () => {
+    //Handles the favorite button color change
     setIsPressed(!isPressed);
+    //Triggers the removal and appending into the favDAta
     if (onPress) {
       onPress(!isPressed);
     }
   }
 
+  const callNumber = (phone: string) => {
+    let phoneNumber = phone;
+    phoneNumber = `tel:1-${phone}`;
+    Linking.canOpenURL(phoneNumber)
+    .then(supported => {
+      if (!supported) {
+        // Alert.alert('Phone number is not available');
+      } else {
+        return Linking.openURL(phoneNumber);
+      }
+    })
+    .catch(err => console.log(err));
+  };
+
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/images/placeholderImage.jpeg")} style={styles.image}/>
+      <Image source={{uri: imagePath}} style={styles.image}/>
+      <Pressable style={styles.favPostioning} onPress={handleFavPress}>
+        <Ionicons name="heart" style={[isPressed ? styles.Favorite : styles.unFavorite]} size={22}/>
+      </Pressable>
       <View style={styles.detailsContainer}>
-        <Pressable style={styles.favPostioning} onPress={handleFavPress}>
-          <Ionicons name="heart" style={[styles.defaultFav, isPressed && styles.favButtonPressed]} size={22}/>
+        <Text selectable={true} style={styles.name}>{name}</Text>
+        <Text selectable={true} style={styles.jobTitle}>{jobTitle}</Text>
+        <Text selectable={true} style={styles.department}>{department}</Text>
+        <Pressable onPress={() => callNumber(phoneNumber)}>
+          <Text  selectable={true} style={styles.phoneNumber}>Office: {phoneNumber}</Text>
         </Pressable>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.jobTitle}>{jobTitle}</Text>
-        <Text style={styles.department}>{department}</Text>
+
+
         <Pressable onPress={() => Linking.openURL(hyperlink)}>
           <View style={styles.box}>
             <Text style={styles.linkText}>View Full Profile {">"} </Text>
@@ -39,11 +60,23 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: "space-between",
     padding: 10,
     height: 200,
     backgroundColor: 'white',
+    borderColor: 'white',
     borderRadius: 15,
     borderWidth: 2,
+    flexShrink: 1,
+    marginBottom: 10,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:4,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   image: {
     width: 100,
@@ -53,47 +86,74 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     flexDirection: 'column',
-    flexShrink: 1,
-    // position: 'relative',
-  },
-  favPostioning:{
-    top: -25,
-    right: 0,
-    position: "absolute",
+    maxWidth: 200,
+    maxHeight: '100%',
+    marginRight: 10,
+    marginLeft: 10,
+    paddingRight: 10,
 
   },
-  defaultFav: {
+
+//Favoriting Button CSS -- Begin
+  favPostioning:{
+    position: "absolute",
+    top: 5,
+    right: 5,
+
+  },
+  unFavorite: {
     color: 'grey',
   },
-  favButtonPressed: {
+  Favorite: {
     color: 'red',
   },
+// Favorting Button CSS -- End
+
   name: {
     flexWrap: "wrap",
     fontWeight: 'bold',
-    fontSize: 14,
-    paddingBottom: 3,
+    fontSize: 17,
+    marginBottom: 3,
+    lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   jobTitle: {
     flexWrap: "wrap",
     fontWeight: "600",
-    fontSize: 10,
+    fontSize: 12,
+    marginBottom: 5,
+    lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   department: {
-    flex: 0.5,
     flexWrap: "wrap",
-    fontSize: 9,
+    fontSize: 13,
+    marginBottom: 5,
+    lineHeight: 17,
+    fontFamily: 'Figtree-Medium'
   },
   box: {
     borderWidth: 2,
     borderColor: '#003A5D',
-    padding: 10,
+    paddingTop:5,
+    paddingBottom:5,
+    paddingLeft:20,
+    paddingRight:20,
     borderRadius: 8,
+    marginRight:10,
   },
   linkText: {
     textAlign: 'center',
     fontWeight: "bold",
     color: "#003A5D",
+    fontFamily: 'Figtree-Light'
   },
+  phoneNumber: {
+    color: "black",
+    fontWeight: '500',
+    fontSize: 13,
+    marginBottom: 12,
+    fontFamily: 'Figtree-Light'
+  }
 })
 export default StaffContactEntry

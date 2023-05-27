@@ -4,18 +4,10 @@ import type { StackScreenProps } from '@react-navigation/stack';
 
 import WFCarousel from '../components/WFCarousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 
 import WFData from '../assets/testData/WFData';
-
-// todo: move to types file?
-type WayfindingStackParamList = {
-  WayfindingHome: undefined;
-  Route: {
-    routeID: string,
-    routeTitle: string,
-  }
-}
+import { WayfindingStackParamList } from '../assets/customTypes';
 
 type Props = StackScreenProps<WayfindingStackParamList, 'Route'>;
 
@@ -24,6 +16,7 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   const { routeID, routeTitle } = route.params;
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [jumpToIndex, setJumpToIndex] = useState(0);
 
 
   let images: any[] = WFData[routeID].images;
@@ -31,8 +24,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
   let modalText: string[] = WFData[routeID].modalText;
 
   return (
-    <SafeAreaView>
-      <View style={styles.background}>
+    <GestureHandlerRootView>
+      <SafeAreaView style={styles.background}>
         <View style={styles.header}>
           <Text style={styles.headerText}> {routeTitle}</Text>
           <Pressable
@@ -43,9 +36,8 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
         </View>
 
         <View style={styles.carousel}>
-          <WFCarousel imageURLs={images} text={text} />
+          <WFCarousel imageURLs={images} text={text} jumpToIndexFromModal={jumpToIndex}/>
         </View>
-
 
         <View style={styles.centeredView}>
           <Modal
@@ -64,9 +56,9 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
                     <TouchableOpacity key={item} >
                       <View style={styles.modalItem}>
                         <Text
-                          // onPress={() => this.setState({ indexSelect : index})}
+                          onPress={() => setJumpToIndex(index)}
                           style={[styles.modalItemText,
-                            // { color: this.state.indexSelect === index ? '#ff0000' : '#000000' }
+                            { color: jumpToIndex === index ? '#00b2e3' : '#000000' }
                           ]}
                         >
                           {item}
@@ -79,14 +71,14 @@ function WFRoutePage({ navigation, route }: Props): JSX.Element {
                 <Pressable
                   style={[styles.modalButton]}
                   onPress={() => setModalVisible(!modalVisible)}>
-                  <Text >Close</Text>
+                  <Text style={styles.modalButtonText}>Close</Text>
                 </Pressable>
               </View>
             </View>
           </Modal>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
@@ -104,20 +96,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   carousel: {
-    // marginTop: 50
-    // backgroundColor: 'red'
   },
   headerText: {
     fontSize: 22,
     color: 'white',
-    fontWeight: 'bold',
     flex: 1,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    fontFamily: "Figtree-SemiBold"
   },
   modalOpenButton: {
-    borderRadius: 20,
-    elevation: 6,
-    padding: 8,
+    borderRadius: 17,
+    padding: 7,
+    margin: 5,
     backgroundColor: '#00b2e3',
   },
   centeredView: {
@@ -144,15 +134,22 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     borderRadius: 20,
-    elevation: 6,
     alignSelf: 'flex-end',
     padding: 10,
     marginTop: 10,
     backgroundColor: '#00b2e3',
+    fontFamily: "Figtree-SemiBold"
+  },
+  modalButtonText: {
+    fontSize: 18,
+    padding: 2,
+    color: 'white',
+    fontFamily: "Figtree-Medium",
   },
   modalHeadingText: {
     fontSize: 22,
     padding: 8,
+    fontFamily: "Figtree-SemiBold"
   },
   modalItem: {
     paddingTop: 10,
@@ -162,7 +159,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    // padding: 0,
     margin: 0,
     marginHorizontal: 0,
     justifyContent: 'center',
@@ -171,6 +167,7 @@ const styles = StyleSheet.create({
   modalItemText: {
     fontSize: 18,
     width: '100%',
+    fontFamily: "Figtree-Medium"
   }
 });
 

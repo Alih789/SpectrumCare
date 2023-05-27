@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,27 +12,26 @@ import 'react-native-reanimated';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native-gesture-handler';
 
-type WFCarouselProps = {
-  imageURLs: any[];
-  text: string[];
-};
+import { WFCarouselProps } from '../assets/customTypes';
 
 const { width, height } = Dimensions.get('window');
 
-export default function WFCarousel({
-  imageURLs,
-  text
-}: WFCarouselProps): JSX.Element {
+// Subtract 20 for margins, 20% for header and bottom navigator
+let carouselWidth = width;
+const carouselHeight = height * 0.8;
+
+export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WFCarouselProps): JSX.Element {
+
   let JSXData = [];
   for (const i in imageURLs) {
     JSXData.push(
       <>
-        <Image
-          key={imageURLs[i]}
-          source={imageURLs[i]}
-          style={styles.image}
-        />
-        <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView} persistentScrollbar={true} indicatorStyle={'white'}>
+          <Image
+            key={imageURLs[i]}
+            source={imageURLs[i]}
+            style={styles.image}
+          />
           <Text key={text[i]} style={styles.text}>
             {text[i]}
           </Text>
@@ -43,114 +42,150 @@ export default function WFCarousel({
   }
 
   const carouselRef: any = React.createRef();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleNextSlide = () => {
-    carouselRef.current.next()
+  const refreshImage = () => {
+    return new Promise((res: any) => setTimeout(res, 50));
+  }
+  const handleNextSlide = async() =>{
+    carouselRef.current.next();
+    await refreshImage(); // sleep for 50ms while image scroll animation runs
+    setCurrentSlide(currentSlide + 1 >= imageURLs.length - 1 ? imageURLs.length - 1 : currentSlide + 1);
   };
 
-  const handlePrevSlide = () => {
-    carouselRef.current.prev()
+  const handlePrevSlide = async() => {
+    carouselRef.current.prev();
+    await refreshImage(); // sleep for 50ms while image scroll animation runs
+    setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : 0);
   };
+
+  useEffect(() => {
+    carouselRef.current.scrollTo({index: jumpToIndexFromModal});
+    setCurrentSlide(jumpToIndexFromModal);
+  }, [jumpToIndexFromModal]);
 
   return (
-    <View>
-      <Carousel
-        loop={false}
-        width={width}
-        height={height}
-        data={JSXData}
-        panGestureHandlerProps={{
-          activeOffsetX: [-10, 10],
-          activeOffsetY: [-10, 10],
-        }}
-        ref={carouselRef}
-        windowSize={10}
-        scrollAnimationDuration={500}
-        // onSnapToItem={(index: number) => console.log('current index:', index)}
-        renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
-      />
-      <View style={styles.navigationContainer}>
-        <View style={styles.indicatorContainer}>
-          {imageURLs.map((image, index) => (
-            <View
-              key={`${image}_${index}`}
-              style={[
-                styles.indicator,
-                // index === currentSlide ? styles.activeIndicator : undefined,
-              ]}
-            />
-          ))}
-        </View>
+    <View style={styles.background}>
+      <View style={styles.carouselContainer}>
+        <Carousel
+          loop={false}
+          width={carouselWidth}
+          height={carouselHeight}
+          data={JSXData}
+          panGestureHandlerProps={{
+            activeOffsetX: [-10, 10],
+            activeOffsetY: [-10, 10],
+          }}
+          ref={carouselRef}
+          scrollAnimationDuration={1000}
+          renderItem={({ item }) => <View style={styles.contentContainer}>{item}</View>}
+          onSnapToItem={(index) => {
+            setCurrentSlide(index);
+          }}
+        />
       </View>
       <TouchableOpacity
         onPress={() => handlePrevSlide()}
-        style={[styles.slideButton, styles.prevSlideButton]}
+        style={[
+          styles.prevSlideButton,
+          styles.slideButton,
+          currentSlide === 0 ? styles.inactiveSlideButton : undefined ]}
+        disabled={(currentSlide === 0)}
       >
         <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => handleNextSlide()}
-        style={[styles.slideButton, styles.nextSlideButton]}
+        style={[
+          styles.slideButton,
+          styles.nextSlideButton,
+          currentSlide === imageURLs.length - 1 ? styles.inactiveSlideButton : undefined ]}
+        disabled={(currentSlide === imageURLs.length - 1)}
       >
         <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
       </TouchableOpacity>
-    </View >
+
+        <View style={styles.indicatorContainer}>
+          {imageURLs.map((image, index) => (
+            <View
+              key={`${image}_${index}`}
+              style={[
+                styles.indicator,
+                index === currentSlide ? styles.activeIndicator : undefined,
+              ]}
+            />
+          ))}
+        </View>
+    </View>
+
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    width: width,
+    height: "100%",
+    backgroundColor: 'white',
+  },
+  carouselContainer: {
+    height: "80%",
+  },
   contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
     width: width,
-    height: "100%"
+    height: carouselHeight,
   },
   image: {
     resizeMode: 'cover',
-    maxHeight: 500,
-    width: width,
-    flex: 1,
+    maxHeight: 450,
+    width: carouselWidth,
+    flex: 1.5,
+  },
+  page: {
+    width: carouselWidth,
+    height: carouselHeight,
+    maxHeight: carouselHeight,
   },
   scrollView: {
     flex: 1,
   },
   text: {
     width: width,
-    height: 300,
+    fontSize: 20,
     padding: 10,
-    backgroundColor: 'white',
-    fontSize: 18,
-  },
-  navigationContainer: {
-    alignItems: 'center',
-    width: width,
-    padding: 10,
-    backgroundColor: '#003a5d',
+    fontFamily: "Figtree-Light",
+    flex: 1,
+    paddingBottom: 100,
   },
   indicatorContainer: {
-    // position: 'absolute',
+    backgroundColor: 'white',
+    position: 'absolute',
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: width,
-    // bottom: 10,
-    // top: 10,
     zIndex: 2,
+    height: 100,
   },
   indicator: {
-    width: 15,
-    height: 15,
-    borderRadius: 7.5,
-    borderColor: 'white',
+    width: 12,
+    height: 12,
+    borderRadius: 5.5,
+    borderColor: '#00b2e3',
+    backgroundColor: 'white',
     borderWidth: 1,
-    marginHorizontal: 10,
-    marginBottom: 10,
+    marginHorizontal: 4,
+    marginTop: 8,
+    marginBottom: 8,
   },
   activeIndicator: {
-    backgroundColor: 'white',
+    backgroundColor: '#00b2e3',
+    borderColor: '#00b2e3',
   },
   slideButton: {
     borderWidth: 1,
@@ -163,6 +198,24 @@ const styles = StyleSheet.create({
     bottom: "60%",
     backgroundColor: '#00b2e3',
     borderRadius: 100,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity:1,
+    shadowRadius: 2.22,
+    elevation: 2,
+  },
+  inactiveSlideButton: {
+    opacity: 0.7,
+    elevation: 6,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
   },
   nextSlideButton: {
     right: 20,
