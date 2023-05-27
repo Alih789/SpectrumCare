@@ -1,5 +1,8 @@
 // include this line for mocking react-native-gesture-handler
 import 'react-native-gesture-handler/jestSetup';
+import { cleanup } from '@testing-library/react-native';
+
+afterEach(cleanup);
 
 // include this section and the NativeAnimatedHelper section for mocking react-native-reanimated
 jest.mock('react-native-reanimated', () => {

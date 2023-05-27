@@ -63,6 +63,8 @@ or
 yarn jest
 ```
 
+Testing development borrows from [this demo repo](https://github.com/vanGalilea/react-native-testing/blob/master/__tests__/Counter.test.tsx)
+
 
 ## Development Log
 - 2-26-23 We are in the process of integrating Firebase functionality into the iOS and Android builds of the app. To successfuly do this we had to begin with a fresh react native app created using [rnfbdemo](https://github.com/mikehardy/rnfbdemo). This also meant switching our dependency manager to `yarn`. `package-lock.json` will be deleted from the repository soon.
