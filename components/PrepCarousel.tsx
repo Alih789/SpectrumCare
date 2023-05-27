@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -22,6 +22,34 @@ const { width, height } = Dimensions.get('window');
 let carouselWidth = width - 20;
 const carouselHeight = height * 0.8;
 
+interface FullWidthPictureProps {
+  uri: string;
+}
+
+const FullWidthPicture = ({uri}: FullWidthPictureProps) => {
+  const [ratio, setRatio] = useState(1);
+  useEffect(() => {
+    if (uri) {
+      Image.getSize(uri, (width, height) => {
+         setRatio(width / height);
+      });
+   }
+  }, [uri]);
+
+  return (
+   <Image
+     style={{
+      width: '100%',
+      // maxWidth: carouselWidth - 30,
+      height: undefined,
+      aspectRatio: ratio,
+    }}
+     resizeMode="contain"
+     source={{ uri }}
+   />
+ );
+};
+
 export default function PrepCarousel({
   procedureInfo,
 }: PrepCarouselProps): JSX.Element {
@@ -38,7 +66,7 @@ export default function PrepCarousel({
 
     if (page.header) {
       if (page.media) {
-        if (page.media.isVideo) {
+        if (page.media.contentType == 'video') {
           media = <YoutubePlayer
             videoId={page.media.content}
             height={styles.video.height}
@@ -47,12 +75,8 @@ export default function PrepCarousel({
             setPlaying={setPlaying}
           />;
 
-        } else {
-          media = <Image
-            key={page.media.content}
-            source={{ uri: page.media.content }}
-            style={styles.image}
-          />
+        } else if (page.media.contentType == 'image') {
+          media = <FullWidthPicture uri={page.media.content}/>
         }
       }
 
@@ -74,8 +98,8 @@ export default function PrepCarousel({
       JSXData.push(
         <>
           <Text style={styles.header}>{page.header}</Text>
-          {media}
           <ScrollView style={styles.scrollView}>
+            {media}
             {text}
             {accessibility}
           </ScrollView>
@@ -137,12 +161,6 @@ const styles = StyleSheet.create({
     // flex: 1,
     // flexWrap: 'wrap'
   },
-  image: {
-    resizeMode: 'cover',
-    maxHeight: height / 2,
-    width: carouselWidth,
-    flex: 1.5,
-  },
   page: {
     width: carouselWidth,
     height: carouselHeight,
@@ -154,8 +172,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 18,
-    fontFamily: "Figtree-Medium"
+    fontSize: 20,
+    fontFamily: "Figtree-Medium",
+    marginTop: 15,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
   },
   video: {
     height: 250,
