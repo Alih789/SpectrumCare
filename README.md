@@ -90,20 +90,15 @@ Or
 
 Build and run the app from XCode to see more precisely where the build is failing.
 
-
-## Testing
-todo add details here
-
 ## Build App on Device
 todo
 
 ## Playstore and App Store Updates
 todo
 
-
 ## Testing
 
-To run tests:
+### To run tests:
 ```
 npx jest --coverage
 ```
@@ -113,7 +108,11 @@ or
 yarn jest
 ```
 
+### To write a new test:
+Add a file to the `_tests_` directory.
+
 Testing development borrows from [this demo repo](https://github.com/vanGalilea/react-native-testing/blob/master/__tests__/Counter.test.tsx)
+
 
 
 ## Development Log
