@@ -14,11 +14,11 @@ export type PrepInfoProps = {
 };
 
 
-interface PageInfo {
+export interface PageInfo {
   header: string;
   media: {
-    isVideo: boolean;
     content: string;
+    contentType: string;
   };
   bodyText: string;
   accessibilityText: string,
