@@ -14,7 +14,7 @@ export type PrepInfoProps = {
 };
 
 
-interface PageInfo {
+export interface PageInfo {
   header: string;
   media: {
     content: string;

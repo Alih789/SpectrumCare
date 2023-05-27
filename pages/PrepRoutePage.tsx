@@ -7,7 +7,9 @@ import {PrepStackParamList} from '../assets/customTypes';
 import BackButton from '../components/BackButton';
 
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import { PrepInfoProps} from '../assets/customTypes';
+import { PageInfo } from '../assets/customTypes';
 
 
 type Props = StackScreenProps<PrepStackParamList, 'Route'>;
@@ -30,7 +32,34 @@ function PrepRoutePage({navigation, route}: Props): JSX.Element {
     async function getProcedureData(){
       const procedureDoc = (await firestore().collection('procedures').doc(routeTitle).get());
       var allProcedureCollectionObjects = procedureDoc.data() as PrepInfoProps;
-      setPagesData(allProcedureCollectionObjects);
+      var pagesDataWithImagesURLS: PageInfo[] = [];
+
+      for(var page of allProcedureCollectionObjects.pages) {
+        if(page.media){
+          if(page.media.contentType == 'image') {
+            const downloadUrl  = (await storage().ref(page.media.content).getDownloadURL());
+            pagesDataWithImagesURLS.push({
+              header: page.header,
+              media: {
+                content: downloadUrl,
+                contentType: page.media.contentType,
+              },
+              bodyText: page.bodyText,
+              accessibilityText: page.accessibilityText,
+            })
+          } else {
+            pagesDataWithImagesURLS.push(page);
+          }
+        } else {
+          pagesDataWithImagesURLS.push(page);
+        }
+      }
+
+      setPagesData({title: allProcedureCollectionObjects.title,
+        id: allProcedureCollectionObjects.id,
+        category: allProcedureCollectionObjects.category,
+        pages:pagesDataWithImagesURLS
+      });
     };
 
     getProcedureData();
