@@ -38,7 +38,12 @@ const FullWidthPicture = ({uri}: FullWidthPictureProps) => {
 
   return (
    <Image
-     style={{ width: '100%', height: undefined, aspectRatio: ratio }}
+     style={{
+      width: '100%',
+      // maxWidth: carouselWidth - 30,
+      height: undefined,
+      aspectRatio: ratio,
+    }}
      resizeMode="contain"
      source={{ uri }}
    />
@@ -167,7 +172,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: "Figtree-Medium",
     marginTop: 15,
     marginLeft: 10,

@@ -23,6 +23,7 @@ function ProcedureList({data}: ProcedureListProps) {
 
   return (
     <SectionList
+    stickySectionHeadersEnabled={false}
       sections={sections}
       renderItem={({item}) => <Route title={item.title} routeID={item.id} />}
       renderSectionHeader={({section: {title}}) => (
