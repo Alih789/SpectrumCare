@@ -134,7 +134,7 @@ function ContactPage(): JSX.Element {
       }
     }
     async function getStaffList(){
-      const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(5).get());
+      const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(30).get());
       const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
         const data = doc.data();
 
@@ -256,7 +256,7 @@ function ContactPage(): JSX.Element {
         />}
         keyExtractor={(item, index) => item.id + '_' + index}
         onEndReached={loadMore}
-        onEndReachedThreshold={5}
+        onEndReachedThreshold={13}
         ListFooterComponent={() => (loading ? <ActivityIndicator size='large' color="#0000ff"/> : null)}
         style={[styles.list, { height: height - 150 }]}
       />
