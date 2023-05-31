@@ -65,3 +65,7 @@ yarn-error.log
 assets/images/wfImages
 .metals
 .vscode
+
+# firebase keys
+android/app/google-services.json
+ios/SpectrumCare/GoogleService-Info.plist
