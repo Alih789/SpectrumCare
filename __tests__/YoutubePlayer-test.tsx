@@ -5,11 +5,12 @@ import React, {useState} from 'react';
 import YoutubePlayer from '../components/YoutubePlayer';
 import {render, screen} from '@testing-library/react';
 
-
-test('click-next', () => {
+describe("WFCarousel", () => {
     const [playing, setPlaying] = useState(false);
 
-    const { getByTestId } = render(
+
+    const renderYT = () =>
+      render(
         <YoutubePlayer
         height={10}
         width={10}
@@ -17,12 +18,13 @@ test('click-next', () => {
         playing={false}
         setPlaying={setPlaying}
         />
-    );
+      );
 
-    // expect(getByTestId("container-test-id").props.jumpToIndexFromModal).toBe(0);
-
-    // re render
-
-});
-
+    test("renders WFCarousel", () => {
+      renderYT();
+      // screen.debug is going to print the current DOM into the console
+      screen.debug();
+    //   expect(screen.getByText(/test/i)).toBeInTheDocument();
+    });
+  });
 
