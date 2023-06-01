@@ -229,18 +229,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-between",
     alignItems: "flex-end",
-    paddingBottom: 10,
+    paddingBottom: Platform.OS == 'ios' ? 10 : 0,
     
   },
   collapseButton: {
     textAlignVertical: "center",
-    paddingLeft: 10,
+    paddingLeft: 15,
     paddingTop: 12,
     paddingBottom: 5,
     color: "black",
     fontFamily: "Figtree-Medium",
     flex: 1,
     marginBottom: Platform.OS == 'ios' ? 0 : 13,
+    fontSize:12
   },
   text: {
     color: "black",
@@ -274,6 +275,7 @@ const styles = StyleSheet.create({
   },
   tabViewText: {
     padding: 16,
+    paddingBottom: Platform.OS == 'ios' ? 16 : 0, 
     bottom: 0,
     fontFamily: "Figtree-Medium",
   }
