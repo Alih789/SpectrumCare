@@ -200,9 +200,9 @@ function ContactPage(): JSX.Element {
       keys: ["department", "name"],
       //search score for how close the match is to the actual string
       includeScore: true,
-      threshold: 0.3,
+      threshold: 0.2,
       //min number of char required to in search to make sure matcb is valid
-      minMatchCharLength: 3,
+      minMatchCharLength: 2,
       //max length of the search
       maxPatternLength: 32,
     };
@@ -237,11 +237,13 @@ function ContactPage(): JSX.Element {
   const handleTabToggle = (tab: string) => {
     setActiveTab(tab);
   }
+
+  console.log(searchTerm)
   //Displays original full data
   const renderAllStaffTab = () => {
     return (
     <FlatList
-        data={searchFullData.length != 0 ? searchFullData : fullData}
+        data={searchTerm.length === 0 ? fullData : searchFullData}
         renderItem={({ item, index}) =>
         <StaffContactEntry
         key={item.id + '_' + index}
@@ -256,7 +258,7 @@ function ContactPage(): JSX.Element {
         />}
         keyExtractor={(item, index) => item.id + '_' + index}
         onEndReached={loadMore}
-        onEndReachedThreshold={13}
+        onEndReachedThreshold={15}
         ListFooterComponent={() => (loading ? <ActivityIndicator size='large' color="#0000ff"/> : null)}
         style={[styles.list, { height: height - 150 }]}
       />
@@ -267,7 +269,7 @@ function ContactPage(): JSX.Element {
   const renderFavoriteTab = () => {
     return (
     <FlatList
-        data={searchFavData.length != 0 ? searchFavData : userFavDocArray}
+        data={searchTerm.length === 0 ? userFavDocArray : searchFavData}
         renderItem={({ item, index}) =>
           <StaffContactEntry
             onPress={() => handleFavPress(item.id,item.name)}
