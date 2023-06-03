@@ -73,7 +73,7 @@ function Wayfinding() {
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      {/* <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({color, size}) => {
             let iconName: string = '';
@@ -120,11 +120,25 @@ function App(): JSX.Element {
           name="Wayfinding"
           component={Wayfinding}
         />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+      }}>
+      <Stack.Screen
+        name="WayfindingHome"
+        component={WayfindingPage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Route"
+        component={WFRoutePage}
+        initialParams={{ routeID: "", routeTitle: "" }}
+      />
+    </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
 
 export default App;
