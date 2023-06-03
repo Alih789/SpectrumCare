@@ -14,6 +14,9 @@ type NavigationScreenPropAlias = StackScreenProps<{}>;
 
 describe("WFRoutePage", () => {
 
+  // TODO add tests, having props issues
+
+
   // let navigation: Partial<NavigationScreenPropAlias>;
   // beforeEach(() => {
   //     navigation = {
@@ -22,18 +25,18 @@ describe("WFRoutePage", () => {
   // });
 
   // test("renders WFCarousel", () => {
-  //   const tree = renderer.create(
+    // const tree = renderer.create(
 
-  //     // TODO figure out what props to put here
-  //     // https://stackoverflow.com/questions/52569447/how-to-mock-react-navigations-navigation-prop-for-unit-tests-with-typescript-in
+    //   // TODO figure out what props to put here
+    //   // https://stackoverflow.com/questions/52569447/how-to-mock-react-navigations-navigation-prop-for-unit-tests-with-typescript-in
 
 
-  //     <WFRoutePage
-  //       navigation={navigation as NavigationScreenPropAlias}
-  //       route={}
-  //     />
+    //   <WFRoutePage
+    //     navigation={navigation as NavigationScreenPropAlias}
+    //     route={}
+    //   />
 
-  //   ).toJSON();
-  //   expect(tree).toMatchSnapshot();
+    // ).toJSON();
+    // expect(tree).toMatchSnapshot();
   // });
 });

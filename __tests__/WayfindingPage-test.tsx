@@ -12,7 +12,7 @@ jest.mock('@react-navigation/native', () => ({
 
 describe("WayfindingPage", () => {
 
-  test("renders WFCarousel", () => {
+  test("renders WayfindingPage", () => {
     const tree = renderer.create(
       <WayfindingPage />
 

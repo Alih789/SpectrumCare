@@ -30,6 +30,7 @@ describe("WFCarousel", () => {
       expect(tree).toMatchSnapshot();
     });
 
+    // TODO why does this not work?
 
     // test("increment page", () => {
     //   const { getByTestId } = render(
