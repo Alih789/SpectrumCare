@@ -91,6 +91,7 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
           styles.slideButton,
           currentSlide === 0 ? styles.inactiveSlideButton : undefined ]}
         disabled={(currentSlide === 0)}
+        testID="next-button"
       >
         <Ionicons name={'arrow-back-outline'} size={45} color={'white'} />
       </TouchableOpacity>
@@ -102,6 +103,7 @@ export default function WFCarousel({ imageURLs, text, jumpToIndexFromModal }: WF
           styles.nextSlideButton,
           currentSlide === imageURLs.length - 1 ? styles.inactiveSlideButton : undefined ]}
         disabled={(currentSlide === imageURLs.length - 1)}
+        testID="prev-button"
       >
         <Ionicons name={'arrow-forward-outline'} size={45} color={'white'} />
       </TouchableOpacity>
