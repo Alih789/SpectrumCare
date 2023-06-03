@@ -128,6 +128,7 @@ function NotesButton(): JSX.Element {
           activeOpacity={0.7}
           style={styles.touchableOpacityStyle}
           onPress={() => onExpandHandler()}
+          testID="expand-button"
         >
           <Image
             // FAB using TouchableOpacity with an image
@@ -156,6 +157,7 @@ function NotesButton(): JSX.Element {
                   value={titleText}
                   style={[styles.text, { marginLeft: 10, marginTop: 15}]}
                   ref={titleRef}
+                  testID= 'notes-text-input'
                 />
               </View>
               <TouchableOpacity
@@ -177,16 +179,16 @@ function NotesButton(): JSX.Element {
               />
               <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: pageColor, height: "10.5%", alignItems: "center" }}>
                 <View style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                  <Text onPress={() => onChangePageHandler(0)} style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 1</Text>
+                  <Text onPress={() => onChangePageHandler(0)}  style={[{ backgroundColor: (page == 0) ? pageColor : "#e5e5e5" }, styles.tabViewText]} testID="page-1-button">Page 1</Text>
                 </View>
                 <View style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                  <Text onPress={() => onChangePageHandler(1)} style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 2</Text>
+                  <Text onPress={() => onChangePageHandler(1)} style={[{ backgroundColor: (page == 1) ? pageColor : "#e5e5e5" }, styles.tabViewText]}  testID="page-2-button">Page 2</Text>
                 </View>
                 <View style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                  <Text onPress={() => onChangePageHandler(2)} style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 3</Text>
+                  <Text onPress={() => onChangePageHandler(2)} style={[{ backgroundColor: (page == 2) ? pageColor : "#e5e5e5" }, styles.tabViewText]}  testID="page-3-button">Page 3</Text>
                 </View>
                 <View style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabView]}>
-                  <Text onPress={() => onChangePageHandler(3)} style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabViewText]} >Page 4</Text>
+                  <Text onPress={() => onChangePageHandler(3)} style={[{ backgroundColor: (page == 3) ? pageColor : "#e5e5e5" }, styles.tabViewText]}  testID="page-4-button">Page 4</Text>
                 </View>
               </View>
               <Text style={styles.warningBanner}>DISCLAIMER: These notes are unique for each device -- they do not transfer over!</Text>
