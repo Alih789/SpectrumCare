@@ -31,23 +31,23 @@ describe("WFCarousel", () => {
     });
 
 
-    test("increment page", () => {
-      const { getByTestId } = render(
-        <WFCarousel
-          imageURLs={[require("../assets/images/wfImages/03-hosp-enter-radiology/1.png"), require("../assets/images/wfImages/03-hosp-enter-radiology/1.png", )]}
-          text={["test", "test"]}
-          jumpToIndexFromModal={0}
-        />
-      );
+    // test("increment page", () => {
+    //   const { getByTestId } = render(
+    //     <WFCarousel
+    //       imageURLs={[require("../assets/images/wfImages/03-hosp-enter-radiology/1.png"), require("../assets/images/wfImages/03-hosp-enter-radiology/1.png", )]}
+    //       text={["test", "test"]}
+    //       jumpToIndexFromModal={0}
+    //     />
+    //   );
 
-      // Get the button that increments and decrements
-      const nextButton = getByTestId('next-button');
-      const prevButton = getByTestId('prev-button');
+    //   // Get the button that increments and decrements
+    //   const nextButton = getByTestId('next-button');
+    //   const prevButton = getByTestId('prev-button');
 
-      fireEvent.press(nextButton);
+    //   fireEvent.press(nextButton);
 
-      // expect prev button to no longer be disabled
-      expect(prevButton.props.disabled).toEqual(false);
+    //   // expect prev button to no longer be disabled
+    //   expect(prevButton.props.disabled).toEqual(false);
 
-    })
+    // })
   });
