@@ -1,30 +1,36 @@
 /** @jest-environment jsdom */
 
 import 'react-native';
-import React, {useState} from 'react';
+import React, {useState as useStateMock } from 'react';
 import YoutubePlayer from '../components/YoutubePlayer';
-import {render, screen} from '@testing-library/react';
+import renderer from 'react-test-renderer';
+import { render, fireEvent } from '@testing-library/react-native';
 
-describe("WFCarousel", () => {
-    const [playing, setPlaying] = useState(false);
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useState: jest.fn(),
+}))
 
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: jest.fn(),
+  addListener: jest.fn(),
+}));
 
-    const renderYT = () =>
-      render(
-        <YoutubePlayer
+describe("YoutubePlayer", () => {
+  const setState = jest.fn()
+
+  beforeEach(() => {
+    useStateMock.mockImplementation(init => [init, setState])
+  })
+
+  const tree = renderer.create(<YoutubePlayer
         height={10}
         width={10}
         videoId="test"
         playing={false}
-        setPlaying={setPlaying}
-        />
-      );
+        setPlaying={setState}
+    />).toJSON();
+  expect(tree).toMatchSnapshot();
 
-    test("renders WFCarousel", () => {
-      renderYT();
-      // screen.debug is going to print the current DOM into the console
-      screen.debug();
-    //   expect(screen.getByText(/test/i)).toBeInTheDocument();
-    });
   });
 
