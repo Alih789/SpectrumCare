@@ -91,7 +91,12 @@ Or
 Build and run the app from XCode to see more precisely where the build is failing.
 
 ## Build App on Device
-todo
+### Build for iOS
+`pod install`
+Ensure app builds in dev, either using `npx` or XCode. 
+
+Instructions for creating a production build and uploading to TestFlight and App Store from React Native [here](https://reactnative.dev/docs/publishing-to-app-store)
+Another user's additional (more detailed) instructions with images [here](https://readybytes.in/blog/how-to-deploy-a-react-native-ios-app-on-the-app-store)
 
 ## Playstore and App Store Updates
 todo
