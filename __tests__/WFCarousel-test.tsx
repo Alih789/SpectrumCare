@@ -8,15 +8,6 @@ import renderer from 'react-test-renderer';
 import {render, screen, fireEvent} from '@testing-library/react';
 
 describe("WFCarousel", () => {
-    const renderWFCarousel = () =>
-      render(
-        <WFCarousel
-            imageURLs={[require("../assets/images/wfImages/03-hosp-enter-radiology/1.png")]}
-            text={["test"]}
-            jumpToIndexFromModal={0}
-            data-testid="container-test-id"
-        />
-      );
 
     test("renders WFCarousel", () => {
       const tree = renderer.create(
