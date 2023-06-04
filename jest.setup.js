@@ -105,10 +105,3 @@ jest.mock('react-native-gesture-handler', () => {
   jest.mock('@react-native-firebase/firestore', () => {})
 
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
-
-global.matchMedia = global.matchMedia || function () {
-  return {
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-  };
-};
