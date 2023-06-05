@@ -66,4 +66,7 @@ assets/images/wfImages
 .metals
 .vscode
 
-/coverage
+# firebase keys
+android/app/google-services.json
+ios/SpectrumCare/GoogleService-Info.plist
+
