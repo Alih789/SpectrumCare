@@ -20,7 +20,7 @@ jest.mock('@react-native-firebase/storage', () =>{
     return storageMock;
 });
 
-describe("ContactImages", () => {
+describe("Procedure Images", () => {
     
     //both are Staff Storage URL with tokens
     it('Get Image URL: Mock that correct fetch was made', async() => {
