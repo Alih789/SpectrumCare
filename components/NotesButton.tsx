@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-end",
     paddingBottom: 10,
-    
+
   },
   collapseButton: {
     textAlignVertical: "center",
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   editIconStyle: {
     marginRight: 20,
     marginLeft: 12,
-    marginBottom: Platform.OS == 'ios' ? 2 : 13,  
+    marginBottom: Platform.OS == 'ios' ? 2 : 13,
   },
   collapsedBanner: {
     padding: 10,

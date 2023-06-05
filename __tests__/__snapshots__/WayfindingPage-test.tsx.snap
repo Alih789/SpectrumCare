@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WayfindingPage renders WayfindingPage 1`] = `
+<RCTSafeAreaView
+  style={
+    {
+      "backgroundColor": "#003a5d",
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "white",
+        "fontFamily": "Figtree-SemiBold",
+        "fontSize": 36,
+        "paddingBottom": 10,
+        "paddingTop": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+     Wayfinding 
+  </Text>
+  <RCTScrollView
+    data={
+      [
+        {
+          "id": "01-parking-clinic",
+          "title": "Main Parking Lot to Pediatric Surgery Clinic",
+        },
+        {
+          "id": "02-parking-labs",
+          "title": "Main Parking Lot to Lab",
+        },
+        {
+          "id": "03-hosp-enter-radiology",
+          "title": "Hospital Entrance to Radiology",
+        },
+        {
+          "id": "04-hosp-enter-OR-checkin",
+          "title": "Hospital Entrance to OR Check In",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={[]}
+    style={
+      {
+        "height": "100%",
+      }
+    }
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "backgroundColor": "#00b2e3",
+                "borderRadius": 10,
+                "marginHorizontal": 12,
+                "marginVertical": 5,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignContent": "center",
+                  "backgroundColor": "#003a5d",
+                  "borderBottomColor": "white",
+                  "borderBottomWidth": 1,
+                  "borderTopColor": "white",
+                  "borderTopWidth": 1,
+                  "flex": 2,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingBottom": 10,
+                  "paddingLeft": 20,
+                  "paddingTop": 10,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "flex": 1,
+                    "flexWrap": "wrap",
+                    "fontFamily": "Figtree-Medium",
+                    "fontSize": 22,
+                  }
+                }
+              >
+                Main Parking Lot to Pediatric Surgery Clinic
+              </Text>
+              <View
+                style={
+                  {
+                    "alignSelf": "flex-end",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  selectable={false}
+                  style={
+                    [
+                      {
+                        "color": "white",
+                        "fontSize": 40,
+                      },
+                      undefined,
+                      {
+                        "fontFamily": "Ionicons",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "backgroundColor": "#00b2e3",
+                "borderRadius": 10,
+                "marginHorizontal": 12,
+                "marginVertical": 5,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignContent": "center",
+                  "backgroundColor": "#003a5d",
+                  "borderBottomColor": "white",
+                  "borderBottomWidth": 1,
+                  "borderTopColor": "white",
+                  "borderTopWidth": 1,
+                  "flex": 2,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingBottom": 10,
+                  "paddingLeft": 20,
+                  "paddingTop": 10,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "flex": 1,
+                    "flexWrap": "wrap",
+                    "fontFamily": "Figtree-Medium",
+                    "fontSize": 22,
+                  }
+                }
+              >
+                Main Parking Lot to Lab
+              </Text>
+              <View
+                style={
+                  {
+                    "alignSelf": "flex-end",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  selectable={false}
+                  style={
+                    [
+                      {
+                        "color": "white",
+                        "fontSize": 40,
+                      },
+                      undefined,
+                      {
+                        "fontFamily": "Ionicons",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "backgroundColor": "#00b2e3",
+                "borderRadius": 10,
+                "marginHorizontal": 12,
+                "marginVertical": 5,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignContent": "center",
+                  "backgroundColor": "#003a5d",
+                  "borderBottomColor": "white",
+                  "borderBottomWidth": 1,
+                  "borderTopColor": "white",
+                  "borderTopWidth": 1,
+                  "flex": 2,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingBottom": 10,
+                  "paddingLeft": 20,
+                  "paddingTop": 10,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "flex": 1,
+                    "flexWrap": "wrap",
+                    "fontFamily": "Figtree-Medium",
+                    "fontSize": 22,
+                  }
+                }
+              >
+                Hospital Entrance to Radiology
+              </Text>
+              <View
+                style={
+                  {
+                    "alignSelf": "flex-end",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  selectable={false}
+                  style={
+                    [
+                      {
+                        "color": "white",
+                        "fontSize": 40,
+                      },
+                      undefined,
+                      {
+                        "fontFamily": "Ionicons",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View>
+          <View
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "backgroundColor": "#00b2e3",
+                "borderRadius": 10,
+                "marginHorizontal": 12,
+                "marginVertical": 5,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignContent": "center",
+                  "backgroundColor": "#003a5d",
+                  "borderBottomColor": "white",
+                  "borderBottomWidth": 1,
+                  "borderTopColor": "white",
+                  "borderTopWidth": 1,
+                  "flex": 2,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingBottom": 10,
+                  "paddingLeft": 20,
+                  "paddingTop": 10,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "flex": 1,
+                    "flexWrap": "wrap",
+                    "fontFamily": "Figtree-Medium",
+                    "fontSize": 22,
+                  }
+                }
+              >
+                Hospital Entrance to OR Check In
+              </Text>
+              <View
+                style={
+                  {
+                    "alignSelf": "flex-end",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  selectable={false}
+                  style={
+                    [
+                      {
+                        "color": "white",
+                        "fontSize": 40,
+                      },
+                      undefined,
+                      {
+                        "fontFamily": "Ionicons",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+  <RCTSafeAreaView
+    style={
+      {
+        "bottom": 10,
+        "position": "absolute",
+        "right": 10,
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "height": 50,
+          "opacity": 1,
+          "width": 50,
+        }
+      }
+      testID="expand-button"
+    >
+      <Image
+        source={
+          {
+            "testUri": "../../../assets/images/extraIcons/notesIconPhotoshoped.png",
+          }
+        }
+        style={
+          {
+            "height": 50,
+            "resizeMode": "contain",
+            "width": 50,
+          }
+        }
+      />
+    </View>
+  </RCTSafeAreaView>
+</RCTSafeAreaView>
+`;

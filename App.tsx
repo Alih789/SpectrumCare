@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -73,7 +74,7 @@ function Wayfinding() {
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      {/* <Tab.Navigator
+      <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({color, size}) => {
             let iconName: string = '';
@@ -88,22 +89,12 @@ function App(): JSX.Element {
               iconName = 'map-outline';
             }
 
-            return <Ionicons name={iconName} size={25} color={color} style={{marginTop: 5}}/>;
+            return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: '#00b2e3',
           tabBarInactiveTintColor: '#999999',
-          tabBarLabelStyle: {
-            fontSize: 12,
-            fontFamily: 'Figtree-SemiBold',
-
-          },
           headerShown: false,
-          tabBarStyle: {
-            // paddingBottom: 10,
-            // height: 60,
-          },
-        })}
-        >
+        })}>
         <Tab.Screen
           name="Home"
           component={HomePage}
@@ -120,25 +111,18 @@ function App(): JSX.Element {
           name="Wayfinding"
           component={Wayfinding}
         />
-      </Tab.Navigator> */}
-      <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-      }}>
-      <Stack.Screen
-        name="WayfindingHome"
-        component={WayfindingPage}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Route"
-        component={WFRoutePage}
-        initialParams={{ routeID: "", routeTitle: "" }}
-      />
-    </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default App;

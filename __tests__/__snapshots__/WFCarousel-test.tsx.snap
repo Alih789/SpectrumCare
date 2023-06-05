@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WFCarousel renders WFCarousel 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "white",
+      "height": "100%",
+      "width": 750,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "height": "80%",
+      }
+    }
+  >
+    <View
+      activeOffsetX={
+        [
+          -10,
+          10,
+        ]
+      }
+      activeOffsetY={
+        [
+          -10,
+          10,
+        ]
+      }
+      enabled={true}
+      onGestureEvent={[Function]}
+    >
+      <View
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          [
+            {
+              "overflow": "hidden",
+            },
+            {
+              "height": 1067,
+              "width": 750,
+            },
+            {},
+            {
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 1067,
+                "position": "absolute",
+                "width": 750,
+              },
+              {
+                "transform": [
+                  {
+                    "translateX": undefined,
+                  },
+                ],
+              },
+            ]
+          }
+          testID="__CAROUSEL_ITEM_0_NOT_READY__"
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": true,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#00b2e3",
+        "borderColor": "rgba(0,0,0,0.2)",
+        "borderRadius": 100,
+        "borderWidth": 1,
+        "bottom": "60%",
+        "elevation": 6,
+        "height": 70,
+        "justifyContent": "center",
+        "left": 20,
+        "opacity": 0.7,
+        "position": "absolute",
+        "shadowColor": "black",
+        "shadowOffset": {
+          "height": 0,
+          "width": 0,
+        },
+        "shadowOpacity": 0,
+        "shadowRadius": 0,
+        "width": 70,
+      }
+    }
+    testID="next-button"
+  >
+    <Text
+      allowFontScaling={false}
+      selectable={false}
+      style={
+        [
+          {
+            "color": "white",
+            "fontSize": 45,
+          },
+          undefined,
+          {
+            "fontFamily": "Ionicons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": true,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#00b2e3",
+        "borderColor": "rgba(0,0,0,0.2)",
+        "borderRadius": 100,
+        "borderWidth": 1,
+        "bottom": "60%",
+        "elevation": 6,
+        "height": 70,
+        "justifyContent": "center",
+        "opacity": 0.7,
+        "position": "absolute",
+        "right": 20,
+        "shadowColor": "black",
+        "shadowOffset": {
+          "height": 0,
+          "width": 0,
+        },
+        "shadowOpacity": 0,
+        "shadowRadius": 0,
+        "width": 70,
+      }
+    }
+    testID="prev-button"
+  >
+    <Text
+      allowFontScaling={false}
+      selectable={false}
+      style={
+        [
+          {
+            "color": "white",
+            "fontSize": 45,
+          },
+          undefined,
+          {
+            "fontFamily": "Ionicons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "backgroundColor": "white",
+        "bottom": 20,
+        "flexDirection": "row",
+        "height": 100,
+        "justifyContent": "center",
+        "position": "absolute",
+        "width": 750,
+        "zIndex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "white",
+            "borderColor": "#00b2e3",
+            "borderRadius": 5.5,
+            "borderWidth": 1,
+            "height": 12,
+            "marginBottom": 8,
+            "marginHorizontal": 4,
+            "marginTop": 8,
+            "width": 12,
+          },
+          {
+            "backgroundColor": "#00b2e3",
+            "borderColor": "#00b2e3",
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;
