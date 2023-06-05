@@ -41,7 +41,7 @@ export default function YoutubePlayer({
   });
 
   return (
-      <View >
+      <View testID="click">
         <YoutubeIframe
           play={playing}
           videoId={videoId}

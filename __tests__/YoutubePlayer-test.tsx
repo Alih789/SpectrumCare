@@ -28,7 +28,6 @@ jest.mock("@react-navigation/native", () => {
 });
 
 
-
 describe("YoutubePlayer", () => {
   const setState = jest.fn()
 
@@ -48,5 +47,21 @@ describe("YoutubePlayer", () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   })
+
+  // test("click play", () => {
+  //   const { getByTestId } = render(
+  //     <YoutubePlayer
+  //     height={10}
+  //     width={10}
+  //     videoId="test"
+  //     playing={false}
+  //     setPlaying={setState}
+  //   />
+  //   );
+  //   const clickPlayer = getByTestId('click');
+  //   fireEvent.press(clickPlayer);
+
+  //   expect(setState).toHaveBeenCalled();
+  // })
 });
 
