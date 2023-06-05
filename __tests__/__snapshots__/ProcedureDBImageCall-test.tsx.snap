@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProcedureList rendered with the fetched URL renders ProcedureList 1`] = `
+<RCTScrollView
+  data={
+    [
+      {
+        "data": [
+          {
+            "category": "Radiology",
+            "id": "mri",
+            "pages": [
+              {
+                "bodyText": "There are many things to do before you go take an MRI.",
+                "header": "Before Procedure:",
+                "media": {
+                  "content": "https://firebasestorage.googleapis.com/v0/b/spectrumcare-d5380.appspot.com/o/procedureImages%2FNeedle_Pokes_page0.jpeg?alt=media&token=564fd33f-0164-4bc1-a5f0-284b0ebd41cb",
+                  "isVideo": false,
+                },
+              },
+              {
+                "bodyText": "This is the sound that an MRI will make during the scan. WARNING: It is very loud!",
+                "header": "During Procedure:",
+                "media": {
+                  "content": "https://firebasestorage.googleapis.com/v0/b/spectrumcare-d5380.appspot.com/o/procedureImages%2FNeedle_Pokes_page0.jpeg?alt=media&token=564fd33f-0164-4bc1-a5f0-284b0ebd41cb",
+                  "isVideo": true,
+                },
+              },
+              {
+                "bodyText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque totam quibusdam itaque voluptates dolorum laboriosam corrupti suscipit possimus aliquam, consequuntur odio ut quo nulla non sequi, sit, temporibus tempore. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id ipsa fuga aliquid, soluta delectus placeat, omnis voluptate consequatur in nulla itaque, odit eius ullam expedita? Quam eaque delectus asperiores rem! ",
+                "header": "After Procedure:",
+                "media": {
+                  "content": "https://firebasestorage.googleapis.com/v0/b/spectrumcare-d5380.appspot.com/o/procedureImages%2FNeedle_Pokes_page0.jpeg?alt=media&token=564fd33f-0164-4bc1-a5f0-284b0ebd41cb",
+                  "isVideo": false,
+                },
+              },
+            ],
+            "title": "MRI",
+          },
+        ],
+        "title": "Radiology",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={[]}
+>
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          {
+            "borderBottomColor": "white",
+            "borderBottomWidth": 0.5,
+            "marginHorizontal": 12,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "alignSelf": "center",
+              "color": "white",
+              "flex": 1,
+              "flexWrap": "wrap",
+              "fontFamily": "Figtree-Bold",
+              "fontSize": 28,
+              "marginBottom": 15,
+              "marginLeft": 10,
+              "marginRight": 10,
+              "marginTop": 30,
+            }
+          }
+        >
+          Radiology
+        </Text>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View>
+        <View
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#00b2e3",
+              "borderRadius": 10,
+              "marginHorizontal": 12,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "alignContent": "center",
+                "backgroundColor": "#003a5d",
+                "borderBottomColor": "white",
+                "borderBottomWidth": 0.5,
+                "flex": 2,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "alignSelf": "center",
+                  "color": "white",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontFamily": "Figtree-Medium",
+                  "fontSize": 22,
+                }
+              }
+            >
+              MRI
+            </Text>
+            <View
+              style={
+                {
+                  "alignSelf": "flex-end",
+                  "padding": 10,
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                selectable={false}
+                style={
+                  [
+                    {
+                      "color": "white",
+                      "fontSize": 40,
+                    },
+                    undefined,
+                    {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    />
+  </View>
+</RCTScrollView>
+`;
