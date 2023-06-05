@@ -1,6 +1,7 @@
 
 import 'react-native';
 import React from 'react';
+import {Platform} from 'react-native'
 
 import NotesButton from '../components/NotesButton';
 import { MMKV } from 'react-native-mmkv';
@@ -22,6 +23,7 @@ test('renders correctly', () => {
 // Page Toggle
 // If prop color changes correctly, then we know usestate has also successfully changed
 // Thus page toggling works
+// Default is set to test iOS since thats more relevant to us
 describe('NotesButton', () => {
     it('should toggle between pages', () => {
       const { getByTestId } = render(<NotesButton />);
@@ -37,19 +39,20 @@ describe('NotesButton', () => {
       const page4Button = getByTestId('page-4-button');
 
       // Initial page is 0, expect page 1 button to be active
-      expect(page1Button.props.style).toEqual([{"backgroundColor": "#ffe5fb"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16}]);
+      expect(page1Button.props.style).toEqual([{"backgroundColor": "#ffe5fb"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16,"paddingBottom": 16}]);
+      
 
       // Toggle to page 2
       fireEvent.press(page2Button);
-      expect(page2Button.props.style).toEqual([{"backgroundColor": "#ecf8f2"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16}]);
+      expect(page2Button.props.style).toEqual([{"backgroundColor": "#ecf8f2"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16,"paddingBottom": 16}]);
 
       // Toggle to page 3
       fireEvent.press(page3Button);
-      expect(page3Button.props.style).toEqual([{"backgroundColor": "#fffce5"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16}]);
+      expect(page3Button.props.style).toEqual([{"backgroundColor": "#fffce5"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16,"paddingBottom": 16}]);
 
       // Toggle to page 4
       fireEvent.press(page4Button);
-      expect(page4Button.props.style).toEqual([{"backgroundColor": "#e5fffd"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16}]);
+      expect(page4Button.props.style).toEqual([{"backgroundColor": "#e5fffd"}, {"bottom": 0, "fontFamily": "Figtree-Medium", "padding": 16,"paddingBottom": 16}]);
     });
   });
 
