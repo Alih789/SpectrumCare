@@ -42,6 +42,11 @@ To run and devlop the application, refer to the React Native docs Setting up the
 
 Follow the instructions for `React Native CLI Quickstart` (NOT Expo Go) for the Development OS and Target OS you will be working on.
 
+## IMPORTANT for iOS and Android:
+1. Download and move `wfImages` (folder of `.png` images) to `assets/images`
+2. Download `GoogleService-Info.plist` from Firebase and move in to `ios/SpectrumCare`
+3. Download `google-services.json` from Firebase and move in to `android/app`
+
 ## Android Development Environment Steps
 ```
 git clone https://github.com/Alih789/SpectrumCare.git
@@ -93,7 +98,7 @@ Build and run the app from XCode to see more precisely where the build is failin
 ## Build App on Device
 ### Build for iOS
 `pod install`
-Ensure app builds in dev, either using `npx` or XCode. 
+Ensure app builds in dev, either using `npx` or XCode.
 
 Instructions for creating a production build and uploading to TestFlight and App Store from React Native [here](https://reactnative.dev/docs/publishing-to-app-store)
 Another user's additional (more detailed) instructions with images [here](https://readybytes.in/blog/how-to-deploy-a-react-native-ios-app-on-the-app-store)
