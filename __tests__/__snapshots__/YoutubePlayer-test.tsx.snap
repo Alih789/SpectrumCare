@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`YoutubePlayer render yt player 1`] = `
+<View>
+  <YoutubeIframe
+    height={10}
+    onChangeState={[Function]}
+    play={false}
+    videoId="test"
+    webViewStyle={
+      {
+        "opacity": 0.99,
+      }
+    }
+    width={10}
+  />
+</View>
+`;

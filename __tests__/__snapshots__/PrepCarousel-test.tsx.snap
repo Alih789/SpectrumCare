@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrepCarousel renders PrepCarousel 1`] = `
+<View
+  style={
+    {
+      "height": "100%",
+      "width": 750,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "margin": 10,
+      }
+    }
+  >
+    <View
+      activeOffsetX={
+        [
+          -10,
+          10,
+        ]
+      }
+      enabled={true}
+      onGestureEvent={[Function]}
+    >
+      <View
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          [
+            {
+              "overflow": "hidden",
+            },
+            {
+              "height": 1067,
+              "width": 730,
+            },
+            {},
+            {
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "height": 1067,
+                "position": "absolute",
+                "width": 730,
+              },
+              {
+                "transform": [
+                  {
+                    "translateX": undefined,
+                  },
+                ],
+              },
+            ]
+          }
+          testID="__CAROUSEL_ITEM_0_NOT_READY__"
+        />
+        <View
+          style={
+            [
+              {
+                "height": 1067,
+                "position": "absolute",
+                "width": 730,
+              },
+              {
+                "transform": [
+                  {
+                    "translateX": undefined,
+                  },
+                ],
+              },
+            ]
+          }
+          testID="__CAROUSEL_ITEM_1_NOT_READY__"
+        />
+        <View
+          style={
+            [
+              {
+                "height": 1067,
+                "position": "absolute",
+                "width": 730,
+              },
+              {
+                "transform": [
+                  {
+                    "translateX": undefined,
+                  },
+                ],
+              },
+            ]
+          }
+          testID="__CAROUSEL_ITEM_2_NOT_READY__"
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "padding": 20,
+        "width": 750,
+        "zIndex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "bottom": 20,
+          "flexDirection": "row",
+          "height": 100,
+          "justifyContent": "center",
+          "position": "absolute",
+          "width": 750,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderColor": "#ffffff",
+              "borderRadius": 5.5,
+              "borderWidth": 1,
+              "height": 12,
+              "marginBottom": 8,
+              "marginHorizontal": 4,
+              "marginTop": 10,
+              "width": 12,
+            },
+            {
+              "backgroundColor": "#ffffff",
+              "borderColor": "#ffffff",
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          [
+            {
+              "borderColor": "#ffffff",
+              "borderRadius": 5.5,
+              "borderWidth": 1,
+              "height": 12,
+              "marginBottom": 8,
+              "marginHorizontal": 4,
+              "marginTop": 10,
+              "width": 12,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          [
+            {
+              "borderColor": "#ffffff",
+              "borderRadius": 5.5,
+              "borderWidth": 1,
+              "height": 12,
+              "marginBottom": 8,
+              "marginHorizontal": 4,
+              "marginTop": 10,
+              "width": 12,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

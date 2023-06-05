@@ -32,13 +32,16 @@ function PrepRoutePage({navigation, route}: Props): JSX.Element {
     async function getProcedureData(){
       const procedureDoc = (await firestore().collection('procedures').doc(routeTitle).get());
       var allProcedureCollectionObjects = procedureDoc.data() as PrepInfoProps;
-      var pagesDataWithImagesURLS: PageInfo[] = [];
+      var pagesDataAppReadyMediaContent: PageInfo[] = [];
 
       for(var page of allProcedureCollectionObjects.pages) {
+        // modify the "media.content" of each page (if page has media)
+        // to be in the correct format to display on the app
         if(page.media){
           if(page.media.contentType == 'image') {
+            // get full image path from Firebase storage
             const downloadUrl  = (await storage().ref(page.media.content).getDownloadURL());
-            pagesDataWithImagesURLS.push({
+            pagesDataAppReadyMediaContent.push({
               header: page.header,
               media: {
                 content: downloadUrl,
@@ -47,18 +50,28 @@ function PrepRoutePage({navigation, route}: Props): JSX.Element {
               bodyText: page.bodyText,
               accessibilityText: page.accessibilityText,
             })
-          } else {
-            pagesDataWithImagesURLS.push(page);
+          } else if(page.media.contentType == 'video'){
+            // strip video URL to just ID
+            const videoID = page.media.content.trim().slice(page.media.content.indexOf("v=") + 2);
+            pagesDataAppReadyMediaContent.push({
+              header: page.header,
+              media: {
+                content: videoID,
+                contentType: page.media.contentType,
+              },
+              bodyText: page.bodyText,
+              accessibilityText: page.accessibilityText,
+            })
           }
         } else {
-          pagesDataWithImagesURLS.push(page);
+          pagesDataAppReadyMediaContent.push(page);
         }
       }
 
       setPagesData({title: allProcedureCollectionObjects.title,
         id: allProcedureCollectionObjects.id,
         category: allProcedureCollectionObjects.category,
-        pages:pagesDataWithImagesURLS
+        pages:pagesDataAppReadyMediaContent
       });
     };
 

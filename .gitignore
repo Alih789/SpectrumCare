@@ -65,3 +65,5 @@ yarn-error.log
 assets/images/wfImages
 .metals
 .vscode
+
+/coverage
