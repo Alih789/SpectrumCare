@@ -134,7 +134,7 @@ function ContactPage(): JSX.Element {
       }
     }
     async function getStaffList(){
-      const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(5).get());
+      const staffSnapshot = (await firestore().collection('staff-list').orderBy('name').limit(30).get());
       const newData = await Promise.all(staffSnapshot.docs.map(async (doc) => {
         const data = doc.data();
 
@@ -162,7 +162,6 @@ function ContactPage(): JSX.Element {
   }, []);
 
   //favData is appended and removed in this function
-
   useEffect(() => {
 
     let stringDocsArray = JSON.stringify(userFavDocArray);
@@ -190,8 +189,6 @@ function ContactPage(): JSX.Element {
       //remove from asyn array
       setFavData(favData.filter((s) => s.id !== staffID));
     }
-
-    //async store save array
   }
 
   const handleSearch = (text: string) => {
@@ -200,9 +197,9 @@ function ContactPage(): JSX.Element {
       keys: ["department", "name"],
       //search score for how close the match is to the actual string
       includeScore: true,
-      threshold: 0.3,
+      threshold: 0.2,
       //min number of char required to in search to make sure matcb is valid
-      minMatchCharLength: 3,
+      minMatchCharLength: 2,
       //max length of the search
       maxPatternLength: 32,
     };
@@ -235,13 +232,17 @@ function ContactPage(): JSX.Element {
 
 
   const handleTabToggle = (tab: string) => {
+    //clear the search when switching tabs
+    setSearchTerm('');
+    //switch tabs
     setActiveTab(tab);
   }
+
   //Displays original full data
   const renderAllStaffTab = () => {
     return (
     <FlatList
-        data={searchFullData.length != 0 ? searchFullData : fullData}
+        data={searchTerm.length === 0 ? fullData : searchFullData}
         renderItem={({ item, index}) =>
         <StaffContactEntry
         key={item.id + '_' + index}
@@ -256,7 +257,7 @@ function ContactPage(): JSX.Element {
         />}
         keyExtractor={(item, index) => item.id + '_' + index}
         onEndReached={loadMore}
-        onEndReachedThreshold={5}
+        onEndReachedThreshold={15}
         ListFooterComponent={() => (loading ? <ActivityIndicator size='large' color="#0000ff"/> : null)}
         style={[styles.list, { height: height - 150 }]}
       />
@@ -267,7 +268,7 @@ function ContactPage(): JSX.Element {
   const renderFavoriteTab = () => {
     return (
     <FlatList
-        data={searchFavData.length != 0 ? searchFavData : userFavDocArray}
+        data={searchTerm.length === 0 ? userFavDocArray : searchFavData}
         renderItem={({ item, index}) =>
           <StaffContactEntry
             onPress={() => handleFavPress(item.id,item.name)}
@@ -338,10 +339,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginRight: 15,
     marginLeft: 5,
-    width: 150,
+    width: Platform.OS == 'ios' ? 150 : 155 ,
     maxWidth: "100%",
     borderRadius: 50,
-    paddingRight: 45,
+    paddingRight: Platform.OS == 'ios' ? 45 : 40,
     paddingLeft: 45,
     padding: 5,
   },
@@ -356,15 +357,6 @@ const styles = StyleSheet.create({
     paddingLeft: 45,
     padding: 4,
   },
-  // tabButton: {
-  //   backgroundColor: "white",
-  //   borderRadius: 50,
-  //   paddingRight: 48,
-  //   paddingLeft: 48,
-  //   padding: 5,
-  //   marginLeft: 10,
-  //   marginRight: 10,
-  // },
   selectedTabButton: {
     backgroundColor: "lightblue",
   },

@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  style={
+    {
+      "bottom": 10,
+      "position": "absolute",
+      "right": 10,
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "height": 50,
+        "opacity": 1,
+        "width": 50,
+      }
+    }
+    testID="expand-button"
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/images/extraIcons/notesIconPhotoshoped.png",
+        }
+      }
+      style={
+        {
+          "height": 50,
+          "resizeMode": "contain",
+          "width": 50,
+        }
+      }
+    />
+  </View>
+</RCTSafeAreaView>
+`;
