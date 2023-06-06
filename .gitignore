@@ -39,6 +39,7 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 # fastlane
 #
@@ -65,3 +66,9 @@ yarn-error.log
 assets/images/wfImages
 .metals
 .vscode
+
+# firebase keys
+android/app/google-services.json
+ios/SpectrumCare/GoogleService-Info.plist
+
+/coverage/

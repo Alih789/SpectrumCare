@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, SetStateAction} from 'react';
 import {
   View,
   Text,
@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import 'react-native-reanimated';
-import { PrepInfoProps } from '../assets/customTypes';
+import {PrepInfoProps} from '../assets/customTypes';
 import YoutubePlayer from './YoutubePlayer';
 
 interface PrepCarouselProps {
   procedureInfo: PrepInfoProps;
 }
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 // Subtract 20 for margins, 20% for header and bottom navigator
 let carouselWidth = width - 20;
@@ -31,30 +31,30 @@ const FullWidthPicture = ({uri}: FullWidthPictureProps) => {
   useEffect(() => {
     if (uri) {
       Image.getSize(uri, (width, height) => {
-         setRatio(width / height);
+        setRatio(width / height);
       });
-   }
+    }
   }, [uri]);
 
   return (
-   <Image
-     style={{
-      width: '100%',
-      // maxWidth: carouselWidth - 30,
-      height: undefined,
-      aspectRatio: ratio,
-    }}
-     resizeMode="contain"
-     source={{ uri }}
-   />
- );
+    <Image
+      style={{
+        width: '100%',
+        // maxWidth: carouselWidth - 30,
+        height: undefined,
+        aspectRatio: ratio,
+      }}
+      resizeMode="contain"
+      source={{uri}}
+    />
+  );
 };
 
 export default function PrepCarousel({
   procedureInfo,
 }: PrepCarouselProps): JSX.Element {
-  const [playing, setPlaying] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [onScrollEnd, setOnScrollEnd] = useState(false);
 
   let JSXData = [];
   for (const page of procedureInfo.pages) {
@@ -67,32 +67,36 @@ export default function PrepCarousel({
     if (page.header) {
       if (page.media) {
         if (page.media.contentType == 'video') {
-          media = <YoutubePlayer
-            videoId={page.media.content}
-            height={styles.video.height}
-            width={styles.video.width}
-            playing={playing}
-            setPlaying={setPlaying}
-          />;
-
+          media = (
+            <YoutubePlayer
+              videoId={page.media.content}
+              height={styles.video.height}
+              width={styles.video.width}
+              onScrollEnd={onScrollEnd}
+            />
+          );
         } else if (page.media.contentType == 'image') {
-          media = <FullWidthPicture uri={page.media.content}/>
+          media = <FullWidthPicture uri={page.media.content} />;
         }
       }
 
       if (page.bodyText) {
-        text = <Text selectable={true} key={page.bodyText} style={styles.text}>
-          {/* {page.bodyText} */}
-          {page.bodyText.replaceAll("\\n", "\n")}
-        </Text>
+        text = (
+          <Text selectable={true} key={page.bodyText} style={styles.text}>
+            {/* {page.bodyText} */}
+            {page.bodyText.replaceAll('\\n', '\n')}
+          </Text>
+        );
       }
 
       if (page.accessibilityText) {
-        accessibility = <View style={styles.accessibilityContainer}>
-          <Text selectable={true} style={styles.accessibilityText}>
-            {page.accessibilityText}
-          </Text>
-        </View>
+        accessibility = (
+          <View style={styles.accessibilityContainer}>
+            <Text selectable={true} style={styles.accessibilityText}>
+              {page.accessibilityText}
+            </Text>
+          </View>
+        );
       }
 
       JSXData.push(
@@ -103,8 +107,8 @@ export default function PrepCarousel({
             {text}
             {accessibility}
           </ScrollView>
-
-        </>,);
+        </>,
+      );
     }
   }
 
@@ -120,16 +124,17 @@ export default function PrepCarousel({
             activeOffsetX: [-10, 10],
           }}
           scrollAnimationDuration={1000}
-          onScrollEnd={() => setPlaying(false)}
-          renderItem={({ item }) => <View style={styles.page}>{item}</View>}
-          onSnapToItem={(index) => {
+          onScrollEnd={() => {
+            setOnScrollEnd(!onScrollEnd);
+          }}
+          renderItem={({item}) => <View style={styles.page}>{item}</View>}
+          onSnapToItem={index => {
             setCurrentSlide(index);
           }}
         />
       </View>
       <View style={styles.navigationContainer}>
-        {
-          procedureInfo.pages.length > 1 &&
+        {procedureInfo.pages.length > 1 && (
           <View style={styles.indicatorContainer}>
             {procedureInfo.pages.map((header, index) => (
               <View
@@ -141,7 +146,7 @@ export default function PrepCarousel({
               />
             ))}
           </View>
-        }
+        )}
       </View>
     </View>
   );
@@ -157,7 +162,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     color: 'white',
-    fontFamily: "Figtree-Bold"
+    fontFamily: 'Figtree-Bold',
     // flex: 1,
     // flexWrap: 'wrap'
   },
@@ -173,7 +178,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 20,
-    fontFamily: "Figtree-Medium",
+    fontFamily: 'Figtree-Medium',
     marginTop: 15,
     marginLeft: 10,
     marginRight: 10,
@@ -185,7 +190,7 @@ const styles = StyleSheet.create({
   },
   background: {
     width: width,
-    height: "100%",
+    height: '100%',
   },
   navigationContainer: {
     alignItems: 'center',
@@ -228,7 +233,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity:4,
+    shadowOpacity: 4,
     shadowRadius: 2.22,
     elevation: 3,
   },
@@ -237,6 +242,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     padding: 15,
-    fontFamily: "Figtree-Bold"
+    fontFamily: 'Figtree-Bold',
   },
 });
