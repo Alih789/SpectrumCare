@@ -1,18 +1,18 @@
 
 # SpectrumCare React Native Mobile App
 
-The    `SpectrumCare` React Native mobile app is a cross-platform application developed by UC Davis Engineering students as a senior design project. In conjunction with UC Davis Health staff, the students developed this app to serve as a single source of prepartory infomation for families recieving surgical care at the UC Davis Children's Hospital.
+The `SpectrumCare` React Native mobile app is a cross-platform application developed by UC Davis Engineering students as a senior design project. In conjunction with UC Davis Health staff, the students developed this app to serve as a single source of prepartory infomation for families recieving surgical care at the UC Davis Children's Hospital.
 
 ## Versions and App Info
 - package manager used is `yarn`
 - React Native Version 0.71.4
+- Display name of the App is `Care Path`. All internal app identifiers are still `SpectrumCare`.
 
 ### Development Environment Requirements:
 - Node.js > 12 and npm (Recommended: Use nvm)
 - Watchman
 - React Native CLI
 - yarn
-
 
 iOS Specific Requirements:
 - XCode (we develop using version 14.2, issues may arise with later versions)
@@ -25,7 +25,6 @@ Android Specific Requirements:
 
 For additional assistance setting up a React Native development environment, refer to the React Native Docs [here](https://reactnative.dev/docs/environment-setup)
 
-
 ### Dependencies:
 - `react-native-vector-icons` [docs](https://github.com/oblador/react-native-vector-icons)
 - `react-native-reanimated-carousel` [docs](https://github.com/dohooo/react-native-reanimated-carousel)
@@ -35,7 +34,6 @@ For additional assistance setting up a React Native development environment, ref
 - `react-native-youtube-iframe` [docs](https://github.com/LonelyCpp/react-native-youtube-iframe)
 - `react-native-firebase` [docs](https://rnfirebase.io/)
 - `react-native-mmkv` [docs](https://github.com/mrousavy/react-native-mmkv)
-
 
 ## Development Environment
 To run and devlop the application, refer to the React Native docs Setting up the development environment [here](https://reactnative.dev/docs/environment-setup)
@@ -123,8 +121,11 @@ Add a file to the `_tests_` directory.
 
 Testing development borrows from [this demo repo](https://github.com/vanGalilea/react-native-testing/blob/master/__tests__/Counter.test.tsx)
 
-
-
 ## Development Log
 - 2-26-23 We are in the process of integrating Firebase functionality into the iOS and Android builds of the app. To successfuly do this we had to begin with a fresh react native app created using [rnfbdemo](https://github.com/mikehardy/rnfbdemo). This also meant switching our dependency manager to `yarn`. `package-lock.json` will be deleted from the repository soon.
 
+## ✍️ Contributors
+* [Alih789](https://github.com/Alih789)
+* [nnathalied](https://github.com/nnathalied)
+* [ssantoyo](https://github.com/ssantoyo)
+* [GJOrtega18](https://github.com/GJOrtega18)
