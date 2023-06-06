@@ -7,7 +7,7 @@ interface YoutubePlayerProps {
   height: number;
   width: number;
   videoId: string;
-  onScrollEnd: boolean;
+  onScrollEnd?: boolean;
 }
 export default function YoutubePlayer({
   height,
