@@ -44,15 +44,15 @@ export default function YoutubePlayer({
   }, [onScrollEnd]);
 
   return (
-    <View>
-      <YoutubeIframe
-        play={playing}
-        videoId={videoId}
-        height={height}
-        width={width}
-        webViewStyle={{opacity: 0.99}}
-        onChangeState={onStateChanged}
-      />
-    </View>
+      <View testID="click">
+        <YoutubeIframe
+          play={playing}
+          videoId={videoId}
+          height={height}
+          width={width}
+          webViewStyle={{opacity: 0.99}}
+          onChangeState={onStateChanged}
+        />
+      </View>
   );
 }
