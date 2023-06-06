@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View} from 'react-native';
 import YoutubeIframe from 'react-native-youtube-iframe';
 
@@ -7,16 +7,15 @@ interface YoutubePlayerProps {
   height: number;
   width: number;
   videoId: string;
-  playing: boolean;
-  setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  onScrollEnd: boolean;
 }
 export default function YoutubePlayer({
   height,
   width,
   videoId,
-  playing,
-  setPlaying,
+  onScrollEnd,
 }: YoutubePlayerProps) {
+  const [playing, setPlaying] = useState(false);
   const onStateChanged = useCallback((state: string) => {
     if (state === 'ended') {
       setPlaying(false);
@@ -40,16 +39,20 @@ export default function YoutubePlayer({
     setPlaying(false);
   });
 
+  useEffect(() => {
+    setPlaying(false);
+  }, [onScrollEnd]);
+
   return (
-      <View >
-        <YoutubeIframe
-          play={playing}
-          videoId={videoId}
-          height={height}
-          width={width}
-          webViewStyle={{opacity: 0.99}}
-          onChangeState={onStateChanged}
-        />
-      </View>
+    <View>
+      <YoutubeIframe
+        play={playing}
+        videoId={videoId}
+        height={height}
+        width={width}
+        webViewStyle={{opacity: 0.99}}
+        onChangeState={onStateChanged}
+      />
+    </View>
   );
 }
