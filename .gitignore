@@ -71,3 +71,4 @@ assets/images/wfImages
 android/app/google-services.json
 ios/SpectrumCare/GoogleService-Info.plist
 
+/coverage/
