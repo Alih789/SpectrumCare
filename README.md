@@ -96,12 +96,22 @@ Or
 Build and run the app from XCode to see more precisely where the build is failing.
 
 ## Build App on Device
-### Build for iOS
-`pod install`
-Ensure app builds in dev, either using `npx` or XCode.
+[React Native Build instructions](https://reactnative.dev/docs/publishing-to-app-store)
 
-Instructions for creating a production build and uploading to TestFlight and App Store from React Native [here](https://reactnative.dev/docs/publishing-to-app-store)
-Another user's additional (more detailed) instructions with images [here](https://readybytes.in/blog/how-to-deploy-a-react-native-ios-app-on-the-app-store)
+
+### iOS
+1. pod install
+2. Product > clean build folder
+3. Product > build
+4. Product > Archive. Make sure to set the device to "Any iOS Device (arm64)".
+5. After the archive is completed, in the archive window, click on Distribute App.
+6. Click on App Store Connect now (if you want to publish in App Store).
+7. Click Upload → Make sure all the check boxes are selected, hit Next.
+8. Choose between Automatically manage signing and Manually manage signing based on your needs.
+9. Click on Upload.
+Now you can find it in the App Store Connect under TestFlight.
+
+
 
 ## Playstore and App Store Updates
 todo

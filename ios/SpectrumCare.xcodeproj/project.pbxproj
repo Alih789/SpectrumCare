@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SpectrumCareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SpectrumCareTests.m */; };
+		01C0A7362A1202A300CC2867 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01C0A7352A1202A200CC2867 /* AppIcon.xcassets */; };
 		01E68B0729F9BC8100749A24 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01E68AF529F9BC8100749A24 /* Octicons.ttf */; };
 		01E68B0B29F9BC8100749A24 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01E68AF729F9BC8100749A24 /* Entypo.ttf */; };
 		01E68B0F29F9BC8100749A24 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01E68AF929F9BC8100749A24 /* MaterialCommunityIcons.ttf */; };
@@ -53,6 +54,7 @@
 		00E356EE1AD99517003FC87E /* SpectrumCareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpectrumCareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SpectrumCareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpectrumCareTests.m; sourceTree = "<group>"; };
+		01C0A7352A1202A200CC2867 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		01E68AF429F9BC8100749A24 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		01E68AF529F9BC8100749A24 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		01E68AF629F9BC8100749A24 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -69,35 +71,35 @@
 		01E68B0129F9BC8100749A24 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		01E68B0229F9BC8100749A24 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		01E68B0329F9BC8100749A24 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
-		02AE35938EA0463489BAD65D /* Figtree-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Medium.ttf"; path = "../assets/fonts/Figtree-Medium.ttf"; sourceTree = "<group>"; };
+		02AE35938EA0463489BAD65D /* Figtree-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Medium.ttf"; path = "../assets/fonts/Figtree-Medium.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SpectrumCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpectrumCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SpectrumCare/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = SpectrumCare/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SpectrumCare/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SpectrumCare/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SpectrumCare/main.m; sourceTree = "<group>"; };
-		192B226C8A624DF68B0AF46A /* Figtree-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-MediumItalic.ttf"; path = "../assets/fonts/Figtree-MediumItalic.ttf"; sourceTree = "<group>"; };
+		192B226C8A624DF68B0AF46A /* Figtree-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-MediumItalic.ttf"; path = "../assets/fonts/Figtree-MediumItalic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-SpectrumCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumCare.debug.xcconfig"; path = "Target Support Files/Pods-SpectrumCare/Pods-SpectrumCare.debug.xcconfig"; sourceTree = "<group>"; };
 		40B0466FA5751BFFB60A8700 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SpectrumCare/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5709B34CF0A7D63546082F79 /* Pods-SpectrumCare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumCare.release.xcconfig"; path = "Target Support Files/Pods-SpectrumCare/Pods-SpectrumCare.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SpectrumCare-SpectrumCareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumCare-SpectrumCareTests.debug.xcconfig"; path = "Target Support Files/Pods-SpectrumCare-SpectrumCareTests/Pods-SpectrumCare-SpectrumCareTests.debug.xcconfig"; sourceTree = "<group>"; };
-		61452492303446FD82667AC2 /* Figtree-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Light.ttf"; path = "../assets/fonts/Figtree-Light.ttf"; sourceTree = "<group>"; };
-		625DFF535A0941868BEAB372 /* Figtree-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-ExtraBold.ttf"; path = "../assets/fonts/Figtree-ExtraBold.ttf"; sourceTree = "<group>"; };
-		6950782D206F41A8BB80E1BD /* Figtree-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Black.ttf"; path = "../assets/fonts/Figtree-Black.ttf"; sourceTree = "<group>"; };
+		61452492303446FD82667AC2 /* Figtree-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Light.ttf"; path = "../assets/fonts/Figtree-Light.ttf"; sourceTree = "<group>"; };
+		625DFF535A0941868BEAB372 /* Figtree-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-ExtraBold.ttf"; path = "../assets/fonts/Figtree-ExtraBold.ttf"; sourceTree = "<group>"; };
+		6950782D206F41A8BB80E1BD /* Figtree-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Black.ttf"; path = "../assets/fonts/Figtree-Black.ttf"; sourceTree = "<group>"; };
 		78895633DD6944D6BC96EA50 /* Pods_SpectrumCare_SpectrumCareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpectrumCare_SpectrumCareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A265A2FE6AF24487A9028C0 /* Pods_SpectrumCare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpectrumCare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SpectrumCare/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SpectrumCare-SpectrumCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumCare-SpectrumCareTests.release.xcconfig"; path = "Target Support Files/Pods-SpectrumCare-SpectrumCareTests/Pods-SpectrumCare-SpectrumCareTests.release.xcconfig"; sourceTree = "<group>"; };
-		9C5A38ABC2A2450D932C309F /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-SemiBold.ttf"; path = "../assets/fonts/Figtree-SemiBold.ttf"; sourceTree = "<group>"; };
-		A5D5D654A4E444BCA1E9BA1D /* Figtree-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Italic.ttf"; path = "../assets/fonts/Figtree-Italic.ttf"; sourceTree = "<group>"; };
-		A6B9A85E634A423F8666743A /* Figtree-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-ExtraBoldItalic.ttf"; path = "../assets/fonts/Figtree-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		AE6F12A0C60A4B3AA899FBED /* Figtree-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-BoldItalic.ttf"; path = "../assets/fonts/Figtree-BoldItalic.ttf"; sourceTree = "<group>"; };
-		CA2FF02191C04D4EB1FBDD26 /* Figtree-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-BlackItalic.ttf"; path = "../assets/fonts/Figtree-BlackItalic.ttf"; sourceTree = "<group>"; };
+		9C5A38ABC2A2450D932C309F /* Figtree-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-SemiBold.ttf"; path = "../assets/fonts/Figtree-SemiBold.ttf"; sourceTree = "<group>"; };
+		A5D5D654A4E444BCA1E9BA1D /* Figtree-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Italic.ttf"; path = "../assets/fonts/Figtree-Italic.ttf"; sourceTree = "<group>"; };
+		A6B9A85E634A423F8666743A /* Figtree-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-ExtraBoldItalic.ttf"; path = "../assets/fonts/Figtree-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		AE6F12A0C60A4B3AA899FBED /* Figtree-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-BoldItalic.ttf"; path = "../assets/fonts/Figtree-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CA2FF02191C04D4EB1FBDD26 /* Figtree-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-BlackItalic.ttf"; path = "../assets/fonts/Figtree-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EF4EFDC630C94BDE939DC53E /* Figtree-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Bold.ttf"; path = "../assets/fonts/Figtree-Bold.ttf"; sourceTree = "<group>"; };
-		F0E426716A3C4C54B645B7A2 /* Figtree-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Regular.ttf"; path = "../assets/fonts/Figtree-Regular.ttf"; sourceTree = "<group>"; };
-		F2E36307E8A2417B878C16C7 /* Figtree-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-SemiBoldItalic.ttf"; path = "../assets/fonts/Figtree-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		F918863444E647D8877A2885 /* Figtree-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-LightItalic.ttf"; path = "../assets/fonts/Figtree-LightItalic.ttf"; sourceTree = "<group>"; };
+		EF4EFDC630C94BDE939DC53E /* Figtree-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Bold.ttf"; path = "../assets/fonts/Figtree-Bold.ttf"; sourceTree = "<group>"; };
+		F0E426716A3C4C54B645B7A2 /* Figtree-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-Regular.ttf"; path = "../assets/fonts/Figtree-Regular.ttf"; sourceTree = "<group>"; };
+		F2E36307E8A2417B878C16C7 /* Figtree-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-SemiBoldItalic.ttf"; path = "../assets/fonts/Figtree-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		F918863444E647D8877A2885 /* Figtree-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Figtree-LightItalic.ttf"; path = "../assets/fonts/Figtree-LightItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				01C0A7352A1202A200CC2867 /* AppIcon.xcassets */,
 			);
 			name = SpectrumCare;
 			sourceTree = "<group>";
@@ -236,7 +239,6 @@
 				F2E36307E8A2417B878C16C7 /* Figtree-SemiBoldItalic.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -355,6 +357,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				01C0A7362A1202A300CC2867 /* AppIcon.xcassets in Resources */,
 				25884A73B408895D6AF336B6 /* GoogleService-Info.plist in Resources */,
 				8C717F4674574210901E5A79 /* Figtree-Black.ttf in Resources */,
 				6C2DDC5556134485A3AB4AF0 /* Figtree-BlackItalic.ttf in Resources */,
@@ -623,8 +626,11 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-SpectrumCare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XTPH96H59;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SpectrumCare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -639,9 +645,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SpectrumCare;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -651,8 +660,10 @@
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-SpectrumCare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XTPH96H59;
 				INFOPLIST_FILE = SpectrumCare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -664,10 +675,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SpectrumCare;
 				PRODUCT_NAME = SpectrumCare;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
